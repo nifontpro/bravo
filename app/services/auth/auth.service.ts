@@ -2,7 +2,6 @@ import {axiosClassic} from "../../api/interceptors";
 import {getAuthUrl} from "../../config/api.config";
 import {removeTokensStorage, saveToStorage} from "@/services/auth/auth.helper";
 import Cookies from "js-cookie";
-import {getContentType} from "../../api/api.helpers";
 import {IAuthResponse} from "@/services/auth/auth.types";
 
 export const AuthService = {
@@ -33,8 +32,13 @@ export const AuthService = {
 	async getNewTokens() {
 		const refreshToken = Cookies.get('refreshToken')
 		const response = await axiosClassic.post<IAuthResponse>(getAuthUrl('/refresh'),
-			{refreshToken},
-			{headers: getContentType()}
+			null,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${refreshToken}`
+				}
+			}
 		)
 
 		if (response.data.accessToken) {

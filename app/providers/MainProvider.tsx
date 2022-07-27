@@ -7,6 +7,7 @@ import {TypeComponentAuthFields} from "@/shared/auth.types";
 import {QueryClient, QueryClientProvider} from "react-query";
 import HeadProvider from "./HeadProvider/HeadProvider";
 import AuthProvider from "./AuthProvider/AuthProvider";
+import Layout from "@/components/layout/Layout";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -24,8 +25,7 @@ const MainProvider: FC<PropsWithChildren<TypeComponentAuthFields>> =
 					<QueryClientProvider client={queryClient}>
 						<ToastContainer position="bottom-right" newestOnTop/>
 						<AuthProvider Component={Component}>
-							{/*<Layout>{children}</Layout>*/}
-							{children}
+							<Layout>{children}</Layout>
 						</AuthProvider>
 					</QueryClientProvider>
 				</Provider>
