@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {AuthService} from "@/services/auth/auth.service";
 import {toast} from "react-toastify";
 import {toastError} from "@/utils/toast-error";
-import {IEmailPassword} from "./user.inteface";
+import {IEmailPassword} from "./auth.inteface";
 import {errorCatch} from "../../api.helpers";
 import {IAuthResponse} from "@/services/auth/auth.types";
 
@@ -25,7 +25,7 @@ export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	async ({email, password}, thunkAPI) => {
 		try {
 			const response = await AuthService.login(email, password)
-			toast.success('Login successfully')
+			toast.success('Вход выполнен успешно')
 			return response.data
 		} catch (error) {
 			toastError(error)

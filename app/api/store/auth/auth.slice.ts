@@ -1,17 +1,28 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {IInitialState} from "./user.inteface";
-import {getStoreLocal} from "@/utils/local-storage";
-import {checkAuth, login, logout, register} from "./user.actions";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {IAuthInitialState} from "./auth.inteface";
+import {checkAuth, login, logout, register} from "./auth.actions";
+import {IAuthResponse} from "@/services/auth/auth.types";
 
-const initialState: IInitialState = {
+const initialState: IAuthInitialState = {
 	isLoading: false,
-	user: getStoreLocal('user')
+	user: null, //getStoreLocal('user')
+	accessToken: ''
 }
 
-export const userSlice = createSlice({
-	name: 'user',
+export const authSlice = createSlice({
+	name: 'auth',
 	initialState,
-	reducers: {},
+	reducers: {
+		setAuthState: (state, action: PayloadAction<IAuthResponse>) => {
+			state.accessToken = action.payload.accessToken
+			state.user = action.payload.user
+		},
+		setLogout: (state) => {
+			state.isLoading = false
+			state.user = null
+			state.accessToken = ''
+		}
+	},
 	extraReducers: (builder) => {
 		/*		[register.pending.type]: (state) => {
 					state.isLoading = true
@@ -34,19 +45,25 @@ export const userSlice = createSlice({
 			.addCase(login.fulfilled, (state, {payload}) => {
 				state.isLoading = false
 				state.user = payload.user
+				state.accessToken = payload.accessToken
 			})
 			.addCase(login.rejected, state => {
 				state.isLoading = false
 				state.user = null
+				state.accessToken = ''
 			})
 			.addCase(logout.fulfilled, (state) => {
 				state.isLoading = false
 				state.user = null
+				state.accessToken = ''
 			})
 			.addCase(checkAuth.fulfilled, (state, {payload}) => {
 				state.user = payload.user
+				state.accessToken = payload.accessToken
 			})
 	}
 })
 
-export const {reducer: userReducer} = userSlice
+export default authSlice.reducer
+
+export const {setAuthState, setLogout} = authSlice.actions

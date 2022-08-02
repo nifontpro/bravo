@@ -1,8 +1,5 @@
 import {API_SERVER_URL} from 'config/api.config'
-import {errorCatch, getContentType} from "./api.helpers";
-import Cookies from "js-cookie";
-import {AuthService} from "@/services/auth/auth.service";
-import {removeTokensStorage} from "@/services/auth/auth.helper";
+import {getContentType} from "./api.helpers";
 import axios from "axios";
 
 export const axiosClassic = axios.create({
@@ -10,6 +7,7 @@ export const axiosClassic = axios.create({
 	headers: getContentType()
 })
 
+/*
 export const instance = axios.create({
 	baseURL: API_SERVER_URL,
 	headers: getContentType()
@@ -50,4 +48,4 @@ instance.interceptors.response.use((config) => config,
 	}
 )
 
-export default instance
+export default instance*/

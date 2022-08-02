@@ -1,4 +1,4 @@
-import axios, {axiosClassic} from "../api/interceptors";
+import {axiosClassic} from "../api/interceptors";
 import {ICompany} from "../model/company.types";
 import {getCompanyUrl} from "../config/api.config";
 
@@ -12,9 +12,9 @@ export const CompanyService = {
 		return await axiosClassic.get<ICompany[]>(getCompanyUrl('/all'))
 	},
 
-	async getByOwner() {
+/*	async getByOwner() {
 		return await axios.get<ICompany[]>(getCompanyUrl('/owner'))
-	},
+	},*/
 
 	async getById(id: string) {
 		return axiosClassic.get<ICompany>(getCompanyUrl(), {

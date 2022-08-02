@@ -1,12 +1,14 @@
 import {FC} from 'react';
 import Catalog from "@/ui/catalog/Catalog";
-import {useCompany} from "@/screens/company/useCompany";
+// import {useCompany} from "@/screens/company/useCompany";
 import Meta from "@/utils/meta/Meta";
 import Heading from "@/ui/heading/Heading";
+import {companyApi} from "../../../api/store/api/companyApi";
 
 const OwnerCompany: FC = () => {
 
-	const {companies, isLoading} = useCompany()
+	// const {companies, isLoading} = useCompany()
+	const {data: companies, isLoading} = companyApi.useGetByOwnerQuery()
 
 	return (
 		<Meta title="Компании владельца">

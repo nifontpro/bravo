@@ -1,4 +1,4 @@
-import * as userActions from './user/user.actions'
+import * as userActions from './auth/auth.actions'
 
 export const allActions = {
 	...userActions

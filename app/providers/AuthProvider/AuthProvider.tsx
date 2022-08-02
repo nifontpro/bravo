@@ -1,7 +1,6 @@
 import {FC, PropsWithChildren, useEffect} from 'react';
 import {useAuth} from "@/hooks/useAuth";
 import {useActions} from "@/hooks/useActions";
-import {useRouter} from "next/router";
 import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import {TypeComponentAuthFields} from "../../model/auth.types";
@@ -14,19 +13,22 @@ const AuthProvider: FC<PropsWithChildren<TypeComponentAuthFields>> = (
 
 	const {user} = useAuth()
 	const {logout, checkAuth} = useActions()
-	const {pathname} = useRouter()
+	// const {pathname} = useRouter()
 
-	useEffect(() => {
+/*	useEffect(() => {
 		const accessToken = Cookies.get('accessToken')
 		if (accessToken) {
 			checkAuth()
 		}
-	}, [])// eslint-disable-line react-hooks/exhaustive-deps
+	}, [])// eslint-disable-line react-hooks/exhaustive-deps*/
 
 	useEffect(() => {
 		const refreshToken = Cookies.get('refreshToken')
+		if (refreshToken) {
+			checkAuth()
+		}
 		if (!refreshToken && user) logout()
-	}, [pathname])// eslint-disable-line react-hooks/exhaustive-deps
+	}, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 	return !!role
 		? <>{children}</>

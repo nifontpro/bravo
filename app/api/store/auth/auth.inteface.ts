@@ -1,8 +1,9 @@
 import {IUser} from "@/services/auth/auth.types";
 
-export interface IInitialState {
+export interface IAuthInitialState {
 	user: IUser | null
 	isLoading: boolean
+	accessToken: string
 }
 
 export interface IEmailPassword {
