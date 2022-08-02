@@ -4,7 +4,7 @@ import {useActions} from "@/hooks/useActions";
 import {useRouter} from "next/router";
 import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
-import {TypeComponentAuthFields} from "@/shared/auth.types";
+import {TypeComponentAuthFields} from "../../model/auth.types";
 
 const DynamicCheckRole = dynamic(() => import('./CheckRole'), {ssr: false})
 

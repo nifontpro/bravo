@@ -7,10 +7,10 @@ const AuthItems: FC = () => {
 	const {user} = useAuth()
 	return <>
 		{user ? (<>
-			<MenuItem item={{icon: 'MdSettings', link: '/profile', title: 'Profile'}}/>
+			<MenuItem item={{icon: 'MdSettings', link: '/profile', title: 'Профиль'}}/>
 			<LogoutButton/>
 		</>) : (
-			<MenuItem item={{icon: 'MdLogin', link: '/auth', title: 'Login'}}/>
+			<MenuItem item={{icon: 'MdLogin', link: '/auth', title: 'Войти'}}/>
 		)}
 
 {/*		{user?.isAdmin && (<MenuItem

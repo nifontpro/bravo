@@ -1,0 +1,1 @@
+export const getCompanyPath = (id: string = '') => `/company/${id}`

@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {FormState, UseFormRegister} from "react-hook-form";
 import {IAuthInput} from "@/screens/auth/auth.interface";
 import Field from "@/ui/form/Field";
-import {validEmail} from "@/shared/regex";
+import {validEmail} from "@/utils/regex";
 
 interface IAuthFields {
 	register: UseFormRegister<any>

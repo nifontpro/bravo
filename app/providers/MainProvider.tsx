@@ -3,7 +3,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {Provider} from "react-redux";
 import {store} from "../api/store/store";
-import {TypeComponentAuthFields} from "@/shared/auth.types";
+import {TypeComponentAuthFields} from "../model/auth.types";
 import {QueryClient, QueryClientProvider} from "react-query";
 import HeadProvider from "./HeadProvider/HeadProvider";
 import AuthProvider from "./AuthProvider/AuthProvider";

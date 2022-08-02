@@ -3,6 +3,7 @@ import styles from './Menu.module.scss'
 import MenuItem from './MenuItem'
 import {IMenu} from './menu.interface'
 import dynamic from "next/dynamic";
+import {userMenuTitle} from "@/components/layout/Navigation/MenuContainer/menu.data";
 
 const DynamicAuthItems = dynamic(() => import ('./auth/AuthItems'), {ssr: false})
 
@@ -14,7 +15,7 @@ const Menu: FC<{ menu: IMenu }> = ({menu: {items, title}}) => {
 				{items.map((item) => (
 					<MenuItem item={item} key={item.link}/>
 				))}
-				{title === 'General' ? <DynamicAuthItems/> : null}
+				{title === userMenuTitle ? <DynamicAuthItems/> : null}
 			</ul>
 		</div>
 	)

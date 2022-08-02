@@ -1,1 +1,172 @@
-<svg width="247" height="34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 33h16v-2.586h-7.277A15.924 15.924 0 0 1 18 33ZM18 27.182a3.236 3.236 0 0 1-3.232-3.232A3.236 3.236 0 0 1 18 20.716v-7.434a3.236 3.236 0 0 1-3.232-3.232A3.236 3.236 0 0 1 18 6.817V1C9.163 1 2 8.163 2 17s7.163 16 16 16v-5.818Zm-6.95-6.95A3.236 3.236 0 0 1 7.818 17a3.236 3.236 0 0 1 3.232-3.232A3.236 3.236 0 0 1 14.284 17a3.236 3.236 0 0 1-3.232 3.232Z" fill="#E30B13"/><path d="M34 17c0-8.837-7.163-16-16-16v5.818a3.236 3.236 0 0 1 3.232 3.232A3.236 3.236 0 0 1 18 13.284v7.434a3.236 3.236 0 0 1 3.232 3.233A3.236 3.236 0 0 1 18 27.181V33c3.218 0 6.214-.95 8.723-2.586C31.103 27.56 34 22.618 34 17Zm-9.05-3.232A3.236 3.236 0 0 1 28.181 17a3.236 3.236 0 0 1-3.232 3.232A3.236 3.236 0 0 1 21.716 17a3.236 3.236 0 0 1 3.233-3.232Z" fill="#CE080F"/><path d="M56.784 9.6h-4.026v5.588h-4.752V9.6H43.98V25h4.026v-6.182h4.752V25h4.026V9.6Zm6.198 3.52V25h3.894V13.12h3.762V9.6h-11.44v3.52h3.784Zm17.545 3.124L74.5 9.556h-1.452V25h4.026v-6.864l3.256 3.432h.44l3.278-3.432V25h4.026V9.556h-1.408l-6.138 6.688ZM95.935 9.6h-3.96V25h9.548v-3.542h-5.588V9.6Zm12.225 0h-3.96V25h9.548v-3.542h-5.588V9.6Zm17.9 0h-9.614V25h9.812v-3.498h-5.896v-2.706h5.236v-3.498h-5.236V13.12h5.698V9.6Zm6.306 10.692h-3.806c-.088 6.776 12.452 6.6 12.452.132 0-3.85-2.992-4.246-6.05-4.576-1.386-.154-2.53-.396-2.442-1.562.132-1.826 4.268-2.002 4.268.044h3.74c.088-6.644-11.88-6.644-11.748 0 .044 3.344 2.244 4.488 5.588 4.73 1.54.088 2.816.264 2.816 1.342 0 1.804-4.818 1.848-4.818-.11Zm14.265 0h-3.806c-.088 6.776 12.452 6.6 12.452.132 0-3.85-2.992-4.246-6.05-4.576-1.386-.154-2.53-.396-2.442-1.562.132-1.826 4.268-2.002 4.268.044h3.74c.088-6.644-11.88-6.644-11.748 0 .044 3.344 2.244 4.488 5.588 4.73 1.54.088 2.816.264 2.816 1.342 0 1.804-4.818 1.848-4.818-.11Zm26.388-2.97c0-10.648-15.796-10.648-15.796 0 0 10.67 15.796 10.67 15.796 0Zm-11.748 0c0-5.544 7.722-5.544 7.722 0 0 5.588-7.722 5.588-7.722 0Zm26.544 7.7h1.408V9.6h-4.026v7.546l-7.788-7.612h-1.43V25h4.07v-7.568l7.766 7.59Zm8.059-4.73h-3.806c-.088 6.776 12.452 6.6 12.452.132 0-3.85-2.992-4.246-6.05-4.576-1.386-.154-2.53-.396-2.442-1.562.132-1.826 4.268-2.002 4.268.044h3.74c.087-6.644-11.88-6.644-11.748 0 .044 3.344 2.244 4.488 5.588 4.73 1.54.088 2.816.264 2.816 1.342 0 1.804-4.818 1.848-4.818-.11Zm27.777-.748c3.894-2.64 2.794-9.922-3.256-9.944h-6.754V25h3.938v-4.532h2.046l2.64 4.532h4.4v-.572l-3.014-4.884Zm-3.256-2.618h-2.816V13.12c.924 0 1.892-.022 2.816 0 2.244.022 2.134 3.806 0 3.806Zm14.613 4.752c-1.144 0-2.354-.616-2.354-1.87V9.6h-3.762v10.274c0 3.388 2.97 5.346 6.116 5.346 3.168 0 6.138-1.958 6.138-5.346V9.6h-3.806v10.208c0 1.254-1.188 1.87-2.332 1.87Z" fill="#fff"/><path d="M208.533 25.132c1.188 0 2.156-.792 2.156-2.002 0-1.232-.968-2.046-2.156-2.046-1.232 0-2.2.814-2.2 2.046 0 1.21.968 2.002 2.2 2.002Z" fill="#E30B13"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="280"
+   height="50"
+   viewBox="0 0 74.083332 13.229167"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="Logo.svg"
+   xml:space="preserve"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="false"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.5420314"
+     inkscape:cx="109.54166"
+     inkscape:cy="25.691472"
+     inkscape:window-width="2003"
+     inkscape:window-height="1226"
+     inkscape:window-x="3173"
+     inkscape:window-y="86"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" /><defs
+     id="defs2"><rect
+       x="112.08257"
+       y="4.7995057"
+       width="81.309273"
+       height="22.021261"
+       id="rect1688" /><rect
+       x="7.9050684"
+       y="4.7995057"
+       width="118.2937"
+       height="23.150557"
+       id="rect798" /><rect
+       x="5.6464772"
+       y="4.7995057"
+       width="103.04821"
+       height="21.738937"
+       id="rect114" /><rect
+       x="3.6702101"
+       y="3.3878863"
+       width="99.660324"
+       height="20.044994"
+       id="rect113" /></defs><g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1"><text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text111"
+       style="white-space:pre;shape-inside:url(#rect113);display:inline;fill:#000000" /><text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';fill:#000000;stroke-width:0.264583"
+       x="4.1084003"
+       y="2.9879277"
+       id="text119"><tspan
+         sodipodi:role="line"
+         id="tspan117"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';stroke-width:0.264583"
+         x="4.1084003"
+         y="2.9879277" /></text><text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text112"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:'Lobster 1.4';-inkscape-font-specification:'Lobster 1.4 Italic';white-space:pre;shape-inside:url(#rect114);display:inline;fill:#000000" /><text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text796"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:'Lobster 1.4';-inkscape-font-specification:'Lobster 1.4 Italic';white-space:pre;shape-inside:url(#rect798);display:inline;fill:#000000" /><text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Lobster 1.4';-inkscape-font-specification:'Lobster 1.4 Italic';fill:#f9f9f9;stroke-width:0.264583"
+       x="3.0626252"
+       y="8.6649904"
+       id="text804"><tspan
+         sodipodi:role="line"
+         id="tspan802"
+         style="font-size:8.46667px;fill:#f9f9f9;fill-opacity:1;stroke-width:0.264583"
+         x="3.0626252"
+         y="8.6649904">Ордена</tspan></text><text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text1686"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:'Lobster 1.4';-inkscape-font-specification:'Lobster 1.4 Italic';white-space:pre;shape-inside:url(#rect1688);display:inline;fill:#333333;fill-opacity:1" /><text
+       xml:space="preserve"
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:'Lobster 1.4';-inkscape-font-specification:'Lobster 1.4 Italic';fill:#f9f9f9;fill-opacity:1;stroke-width:0.264583"
+       x="43.698441"
+       y="8.9637823"
+       id="text1694"><tspan
+         sodipodi:role="line"
+         id="tspan1692"
+         style="font-size:8.46667px;fill:#f9f9f9;stroke-width:0.264583"
+         x="43.698441"
+         y="8.9637823">Медали</tspan></text><g
+       id="g4484"
+       transform="matrix(0.01816671,0,0,0.01967417,31.615294,1.3874568)"
+       style="fill:#ffd42a;image-rendering:optimizeSpeed"><g
+         id="g4427"
+         style="fill:#ffd42a">
+	<g
+   id="g4425"
+   style="fill:#ffd42a">
+		<g
+   id="g4423"
+   style="fill:#ffd42a">
+			<path
+   d="m 256,250.719 c -59.095,0 -107.172,48.048 -107.172,107.107 0,59.059 48.077,107.107 107.172,107.107 59.095,0 107.172,-48.048 107.172,-107.107 0,-59.059 -48.078,-107.107 -107.172,-107.107 z m 0,193.301 c -47.565,0 -86.26,-38.667 -86.26,-86.196 0,-47.529 38.696,-86.196 86.26,-86.196 47.564,0 86.26,38.667 86.26,86.196 0,47.53 -38.696,86.196 -86.26,86.196 z"
+   id="path4419"
+   style="fill:#ffd42a" />
+			<path
+   d="m 510.777,11.057 c -1.814,-3.415 -5.366,-5.768 -9.232,-5.768 h -176.6 c -3.474,0 -6.722,1.946 -8.667,4.826 L 256.056,99.445 195.715,10.051 C 193.77,7.176 190.526,5.287 187.053,5.287 H 10.456 c -3.869,0 -7.42,2.356 -9.235,5.772 -1.814,3.417 -1.593,7.665 0.572,10.87 l 153.112,226.567 c -29.437,27.22 -47.9,66.157 -47.9,109.302 0,82.104 66.839,148.915 148.995,148.915 82.156,0 148.995,-66.79 148.995,-148.895 0,-43.077 -18.406,-81.93 -47.763,-109.143 L 510.21,21.921 c 2.163,-3.204 2.382,-7.45 0.567,-10.864 z M 431.422,26.2 303.206,216.368 c -14.268,-4.775 -29.493,-7.55 -45.302,-7.75 L 380.962,26.2 Z m -100.919,0 h 25.23 L 231.301,210.762 c -10.83,1.813 -21.267,4.687 -31.177,8.709 z m -149,0 61.943,91.818 -12.591,18.543 L 156.289,26.2 Z m -50.459,0 87.202,129.153 -25.211,37.24 L 80.596,26.2 Z m -100.9,0 h 25.209 l 125.071,185.186 -12.617,18.582 z m 353.939,331.626 c 0,70.574 -57.458,127.99 -128.084,127.99 -70.626,0 -128.084,-57.416 -128.084,-127.99 0,-70.574 57.459,-127.99 128.085,-127.99 70.626,0 128.083,57.416 128.083,127.99 z M 340.882,235.304 c -5.719,-3.976 -11.728,-7.675 -17.99,-10.832 L 456.652,26.2 h 25.22 z"
+   id="path4421"
+   style="fill:#ffd42a" />
+		</g>
+	</g>
+</g><g
+         id="g4429"
+         style="fill:#ffd42a">
+</g><g
+         id="g4431"
+         style="fill:#ffd42a">
+</g><g
+         id="g4433"
+         style="fill:#ffd42a">
+</g><g
+         id="g4435"
+         style="fill:#ffd42a">
+</g><g
+         id="g4437"
+         style="fill:#ffd42a">
+</g><g
+         id="g4439"
+         style="fill:#ffd42a">
+</g><g
+         id="g4441"
+         style="fill:#ffd42a">
+</g><g
+         id="g4443"
+         style="fill:#ffd42a">
+</g><g
+         id="g4445"
+         style="fill:#ffd42a">
+</g><g
+         id="g4447"
+         style="fill:#ffd42a">
+</g><g
+         id="g4449"
+         style="fill:#ffd42a">
+</g><g
+         id="g4451"
+         style="fill:#ffd42a">
+</g><g
+         id="g4453"
+         style="fill:#ffd42a">
+</g><g
+         id="g4455"
+         style="fill:#ffd42a">
+</g><g
+         id="g4457"
+         style="fill:#ffd42a">
+</g></g></g></svg>

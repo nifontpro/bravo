@@ -22,7 +22,6 @@ const HeadProvider: FC<PropsWithChildren> = ({children}) => {
 					name="viewport"
 					content="width=device-width, initial-scale=1, maximum-scale=5"
 				/>
-
 				<Favicons/>
 
 				<meta name="theme-color" content={'#181B1E'}/>

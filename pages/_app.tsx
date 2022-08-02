@@ -1,6 +1,6 @@
-import '../app/styles/globals.scss'
+import '@/styles/globals.scss'
 import type {AppProps} from 'next/app'
-import {TypeComponentAuthFields} from "@/shared/auth.types";
+import {TypeComponentAuthFields} from "../app/model/auth.types";
 import MainProvider from "../app/providers/MainProvider";
 
 type TypeAppProps = AppProps & TypeComponentAuthFields

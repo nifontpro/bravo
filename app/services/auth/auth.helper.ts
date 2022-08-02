@@ -1,9 +1,10 @@
 import Cookies from "js-cookie";
 import {IAuthResponse, ITokens} from "@/services/auth/auth.types";
+import {REFRESH_TOKEN_LIFE} from "../../config/api.config";
 
 export const saveTokensStorage = (data: ITokens) => {
 	Cookies.set('accessToken', data.accessToken)
-	Cookies.set('refreshToken', data.refreshToken)
+	Cookies.set('refreshToken', data.refreshToken, {expires: REFRESH_TOKEN_LIFE})
 }
 
 
