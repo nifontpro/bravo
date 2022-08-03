@@ -9,7 +9,7 @@ const primary = '#E30B13'
 module.exports = {
   content: [
     './pages/**/*.{js,jsx,ts,tsx}',
-    './app/components/**/*.{js,jsx,ts,tsx}',
+    './app/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     colors: {

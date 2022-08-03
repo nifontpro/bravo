@@ -1,4 +1,4 @@
-import OwnerCompany from "@/screens/company/OwnerCompany";
+import OwnerCompany from "@/company/presenter/OwnerCompany";
 import {NextPage} from "next";
 
 const CompaniesPage: NextPage = () => {

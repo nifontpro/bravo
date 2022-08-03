@@ -1,9 +1,9 @@
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import Error404 from "../404";
-import SingleCompany from "@/screens/company/SingleCompany";
-import {errorCatch} from "../../app/api/api.helpers";
-import {CompanyService} from "@/services/company.service";
-import {ICompany} from "../../app/model/company.types";
+import SingleCompany from "@/company/presenter/SingleCompany";
+import {errorCatch} from "@/core/utils/api.helpers";
+import {CompanyService} from "@/company/data/company.service";
+import {ICompany} from "@/company/model/company.types";
 
 const SingleCompanyPage: NextPage<ICompany | undefined> = (company) => {
 

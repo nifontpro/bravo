@@ -16,16 +16,9 @@
     "incremental": true,
     "baseUrl": "./app/",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/ui/*": ["components/ui/*"],
-      "@/screens/*": ["components/screens/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/shared/*": ["shared/*"],
-      "@/services/*": ["services/*"],
-      "@/utils/*": ["utils/*"],
-      "@/store/*": ["store/*"],
-      "@/assets/*": ["assets/*"],
-      "@/styles/*": ["styles/*"]
+      "@/core/*": ["core/*"],
+      "@/auth/*": ["auth/*"],
+      "@/company/*": ["company/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -3,10 +3,10 @@
   "background_color" : "#191B1F",
   "scope" : "/",
   "start_url" : "/",
-  "name": "Medals and orders",
-  "app_name" : "Medals and orders",
-  "short_name" : "Medals and orders",
-  "description" : "Medals and orders application",
+  "name": "Браво",
+  "app_name" : "Браво",
+  "short_name" : "Браво",
+  "description" : "Браво: приложение для мотивации сотрудников с помощью наград",
   "icons" : [
     {
       "src" : "/favicons/apple-touch-icon-57x57.png",

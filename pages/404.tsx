@@ -1,5 +1,5 @@
-import Heading from '@/ui/heading/Heading'
-import Meta from "@/utils/meta/Meta";
+import Heading from '@/core/presenter/ui/heading/Heading'
+import Meta from "@/core/utils/meta/Meta";
 
 export default function Error404() {
 	return (

@@ -1,9 +1,9 @@
 import type {NextPage} from 'next'
 import {GetStaticProps} from "next";
-import {ICompany} from "../app/model/company.types";
-import Catalog from "@/ui/catalog/Catalog";
-import {CompanyService} from "@/services/company.service";
-import {errorCatch} from "../app/api/api.helpers";
+import {ICompany} from "@/company/model/company.types";
+import Catalog from "@/core/presenter/ui/catalog/Catalog";
+import {CompanyService} from "@/company/data/company.service";
+import {errorCatch} from "@/core/utils/api.helpers";
 
 const Home: NextPage<{ companies: ICompany[] | undefined}> = ({companies}) => {
 	return (
@@ -16,6 +16,7 @@ const Home: NextPage<{ companies: ICompany[] | undefined}> = ({companies}) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+
 	try {
 		const {data: companies} = await CompanyService.getAll()
 		return {
