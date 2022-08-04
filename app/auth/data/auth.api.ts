@@ -2,6 +2,7 @@ import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQuery, refreshQuery} from "@/core/data/base.api";
 import {IAuthResponse} from "@/auth/model/auth.types";
 import {authActions} from "@/auth/data/auth.slice";
+import {getAuthUrl} from "@/core/config/api.config";
 
 export const authApi = createApi({
 	reducerPath: 'authApi',
@@ -10,7 +11,7 @@ export const authApi = createApi({
 	endpoints: (build) => ({
 		login: build.mutation<IAuthResponse, { email: string, password: string }>({
 			query: (body) => ({
-				url: '/auth/login',
+				url: getAuthUrl('/login'),
 				method: 'POST',
 				body: body
 			}),
@@ -34,7 +35,7 @@ export const refreshApi = createApi({
 	endpoints: (build) => ({
 		refresh: build.mutation<IAuthResponse, void>({
 			query: () => ({
-				url: '/auth/refresh',
+				url: getAuthUrl('/refresh'),
 				method: 'GET'
 			}),
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {

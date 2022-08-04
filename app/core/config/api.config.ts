@@ -4,3 +4,4 @@ export const REFRESH_TOKEN_LIFE = 30 // Время жизни локальной
 
 export const getAuthUrl = (string: string) => `/auth${string}`
 export const getCompanyUrl = (string: string = '') => `/company${string}`
+export const getDepartmentUrl = (string: string = '') => `/department${string}`

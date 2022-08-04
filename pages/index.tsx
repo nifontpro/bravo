@@ -9,6 +9,7 @@ const Home: NextPage<{ companies: ICompany[] | undefined}> = ({companies}) => {
 	return (
 		<Catalog
 			data={companies || []}
+			prefix='/company'
 			title="Компании"
 			description="Компании, зарегестрированные в приложении"
 		/>

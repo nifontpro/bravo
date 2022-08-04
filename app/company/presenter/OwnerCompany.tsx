@@ -16,6 +16,7 @@ const OwnerCompany: FC = () => {
 				:
 				<Catalog
 					data={companies || []}
+					prefix='/company'
 					title="Ваши компании"
 					description="В этом списке компании, к котрым вы имеете доступ"
 				/>

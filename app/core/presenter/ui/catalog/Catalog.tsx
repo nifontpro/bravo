@@ -5,9 +5,8 @@ import Meta from "@/core/utils/meta/Meta";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import Description from "@/core/presenter/ui/heading/Description";
 import GalleryItem from "@/core/presenter/ui/gallery/GalleryItem";
-import {getCompanyPath} from "@/core/config/path.config";
 
-const Catalog: FC<ICatalog> = ({title, description, data}) => {
+const Catalog: FC<ICatalog> = ({title, description, prefix, data}) => {
 	return (
 		<Meta title={title} description={description}>
 			<Heading title={title} className={styles.heading}/>
@@ -23,7 +22,7 @@ const Catalog: FC<ICatalog> = ({title, description, data}) => {
 						item={{
 							name: d.name,
 							imageUrl: d.imageUrl,
-							link: getCompanyPath(d.id),
+							link: `${prefix}/${d.id}`,
 							content: {
 								title: d.name,
 							},

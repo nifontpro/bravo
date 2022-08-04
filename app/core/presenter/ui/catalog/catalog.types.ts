@@ -7,5 +7,6 @@ export interface ICatalogData {
 export interface ICatalog {
 	title: string
 	description?: string
+	prefix: string
 	data: ICatalogData[]
 }

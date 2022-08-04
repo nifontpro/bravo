@@ -16,7 +16,7 @@ const itemCompany: IMenuItem = {
 
 const itemDepartment: IMenuItem = {
 	icon: 'MdFoundation',
-	link: '/departments',
+	link: '/department',
 	title: 'Мои отделы',
 }
 

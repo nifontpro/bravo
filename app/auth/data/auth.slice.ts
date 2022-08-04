@@ -2,12 +2,12 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IAuthResponse, IUser} from "@/auth/model/auth.types";
 import {removeTokenStorage, saveToStorage} from "@/auth/data/auth.helper";
 
-export interface IAuthInitialState {
+interface IAuthState {
 	user: IUser | null
 	accessToken: string
 }
 
-const initialState: IAuthInitialState = {
+const initialState: IAuthState = {
 	user: null,
 	accessToken: ''
 }

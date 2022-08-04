@@ -19,6 +19,7 @@
       "@/core/*": ["core/*"],
       "@/auth/*": ["auth/*"],
       "@/company/*": ["company/*"],
+      "@/department/*": ["department/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
