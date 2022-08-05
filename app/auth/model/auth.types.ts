@@ -1,13 +1,4 @@
-export interface IUser {
-	id: string
-	email: string
-	login: string
-	firstname: string
-	lastname: string
-	role: string
-	profileImageUrl: string
-	bio: string
-}
+import {IUser} from "@/user/model/user.types";
 
 export interface ITokens {
 	accessToken: string

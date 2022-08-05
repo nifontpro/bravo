@@ -1,9 +1,9 @@
-import {useAuth} from "@/auth/data/useAuth";
 import {useRouter} from "next/router";
 import {useEffect} from "react";
+import {useAuthState} from "@/auth/data/auth.slice";
 
 export const useAuthRedirect = () => {
-	const {user} = useAuth()
+	const {user} = useAuthState()
 
 	const {query, push} = useRouter()
 

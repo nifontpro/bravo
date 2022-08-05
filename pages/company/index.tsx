@@ -1,10 +1,13 @@
 import OwnerCompany from "@/company/presenter/OwnerCompany";
-import {NextPage} from "next";
+import {NextPageAuth} from "@/auth/model/auth.roles";
 
-const CompaniesPage: NextPage = () => {
+const CompaniesPage: NextPageAuth = () => {
+
 	return (
 		<OwnerCompany/>
 	);
 };
+
+CompaniesPage.role = "owner"
 
 export default CompaniesPage

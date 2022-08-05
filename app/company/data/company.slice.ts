@@ -1,5 +1,6 @@
 import {ICompany} from "@/company/model/company.types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {useTypedSelector} from "@/core/hooks/useTypedSelector";
 
 interface ICompanyState {
 	currentCompany: ICompany | null
@@ -23,3 +24,5 @@ export const companySlice = createSlice({
 })
 
 export const companyActions = companySlice.actions
+
+export const useCompanyState = () => useTypedSelector((state) => state.company)

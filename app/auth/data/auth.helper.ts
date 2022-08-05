@@ -2,10 +2,16 @@ import Cookies from "js-cookie";
 import {IAuthResponse} from "@/auth/model/auth.types";
 import {REFRESH_TOKEN_LIFE} from "@/core/config/api.config";
 
-export const removeTokenStorage = () => {
-	Cookies.remove('refreshToken')
+const refreshToken = "refreshToken"
+
+export const removeRefreshCookie = () => {
+	Cookies.remove(refreshToken)
 }
 
-export const saveToStorage = (data: IAuthResponse) => {
+export const saveRefreshToCookie = (data: IAuthResponse) => {
 	Cookies.set('refreshToken', data.refreshToken, {expires: REFRESH_TOKEN_LIFE})
+}
+
+export const getRefreshCookie = () => {
+	return Cookies.get(refreshToken)
 }

@@ -22,7 +22,7 @@ const itemDepartment: IMenuItem = {
 
 const itemUser: IMenuItem = {
 	icon: 'MdGroup',
-	link: '/users',
+	link: '/user',
 	title: 'Мои сотрудники',
 }
 

@@ -13,7 +13,7 @@ const Departments: FC = () => {
 
 	const {currentCompany} = useAppSelector(state => state.company)
 	if (currentCompany) {
-		const {data: getDepartments, isLoading} = departmentApi.useGetByCompanyQuery(currentCompany?.id || '')
+		const {data: getDepartments, isLoading} = departmentApi.useGetByCompanyQuery(currentCompany.id)
 		departments = getDepartments
 		loading = isLoading
 	}

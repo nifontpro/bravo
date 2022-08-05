@@ -15,7 +15,7 @@ const SingleCompany: FC<{ company: ICompany }> = ({company}) => {
 
 	return <Meta title={company.name} description={`Просмотр компании ${company.name}`}>
 		<Banner
-			imagePath={company.imageUrl || ''}
+			imagePath={company.imageUrl}
 			Detail={() => null}
 		/>
 		<h1>Наименование компании: {company.name}</h1>

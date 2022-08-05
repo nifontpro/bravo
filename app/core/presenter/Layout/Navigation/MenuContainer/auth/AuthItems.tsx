@@ -1,10 +1,10 @@
 import {FC} from 'react'
-import {useAuth} from "@/auth/data/useAuth";
 import MenuItem from "@/core/presenter/Layout/Navigation/MenuContainer/MenuItem";
 import LogoutButton from "@/core/presenter/Layout/Navigation/MenuContainer/auth/LogoutButton";
+import {useAuthState} from "@/auth/data/auth.slice";
 
 const AuthItems: FC = () => {
-	const {user} = useAuth()
+	const {user} = useAuthState()
 	return <>
 		{user ? (<>
 			<MenuItem item={{icon: 'MdSettings', link: '/profile', title: 'Профиль'}}/>

@@ -1,6 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IAuthResponse, IUser} from "@/auth/model/auth.types";
-import {removeTokenStorage, saveToStorage} from "@/auth/data/auth.helper";
+import {IAuthResponse} from "@/auth/model/auth.types";
+import {removeRefreshCookie, saveRefreshToCookie} from "@/auth/data/auth.helper";
+import {useTypedSelector} from "@/core/hooks/useTypedSelector";
+import {IUser} from "@/user/model/user.types";
 
 interface IAuthState {
 	user: IUser | null
@@ -19,14 +21,16 @@ export const authSlice = createSlice({
 		setState: (state, action: PayloadAction<IAuthResponse>) => {
 			state.accessToken = action.payload.accessToken
 			state.user = action.payload.user
-			saveToStorage(action.payload)
+			saveRefreshToCookie(action.payload)
 		},
 		logout: (state) => {
 			state.user = null
 			state.accessToken = ''
-			removeTokenStorage()
+			removeRefreshCookie()
 		}
 	}
 })
 
 export const authActions = authSlice.actions
+
+export const useAuthState = () => useTypedSelector((state) => state.auth)

@@ -1,9 +1,9 @@
 import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {API_SERVER_URL} from "../config/api.config";
 import {TypeRootState} from "@/core/data/store";
-import Cookies from "js-cookie";
 import {IAuthResponse} from "@/auth/model/auth.types";
 import {authActions} from "@/auth/data/auth.slice";
+import {getRefreshCookie} from "@/auth/data/auth.helper";
 
 export const baseQuery = fetchBaseQuery({
 	baseUrl: API_SERVER_URL,
@@ -23,7 +23,7 @@ const accessQuery = fetchBaseQuery({
 export const refreshQuery = fetchBaseQuery({
 	baseUrl: API_SERVER_URL,
 	prepareHeaders: (headers) => {
-		const token = Cookies.get('refreshToken')
+		const token = getRefreshCookie()
 		if (token) {
 			headers.set("authorization", `Bearer ${token}`)
 		}

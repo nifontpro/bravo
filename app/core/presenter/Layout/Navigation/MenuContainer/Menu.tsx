@@ -5,7 +5,8 @@ import {IMenu} from '@/core/presenter/Layout/Navigation/MenuContainer/menu.inter
 import dynamic from "next/dynamic";
 import {userMenuTitle} from "@/core/presenter/Layout/Navigation/MenuContainer/menu.data";
 
-const DynamicAuthItems = dynamic(() => import ('@/core/presenter/Layout/Navigation/MenuContainer/auth/AuthItems'), {ssr: false})
+const DynamicAuthItems = dynamic(() =>
+	import ('@/core/presenter/Layout/Navigation/MenuContainer/auth/AuthItems'), {ssr: false})
 
 const Menu: FC<{ menu: IMenu }> = ({menu: {items, title}}) => {
 	return (

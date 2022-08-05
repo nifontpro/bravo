@@ -2,12 +2,12 @@ import {FC} from 'react'
 
 import Menu from '@/core/presenter/Layout/Navigation/MenuContainer/Menu'
 import {firstMenu, firstMenuAdmin, firstMenuDirector, firstMenuOwner, userMenu} from '@/core/presenter/Layout/Navigation/MenuContainer/menu.data'
-import {useAuth} from "@/auth/data/useAuth";
 import {IMenu} from "@/core/presenter/Layout/Navigation/MenuContainer/menu.interface";
+import {useAuthState} from "@/auth/data/auth.slice";
 
 const MenuContainer: FC = () => {
 
-	const {user} = useAuth()
+	const {user} = useAuthState()
 
 	let menu: IMenu = firstMenu
 
