@@ -1,10 +1,10 @@
 import {NextPage} from "next";
 import Auth from "@/auth/presenter/Auth";
 
-const AuthPage: NextPage = () => {
+const LoginPage: NextPage = () => {
 	return (
 		<Auth/>
 	);
 };
 
-export default AuthPage;
+export default LoginPage;

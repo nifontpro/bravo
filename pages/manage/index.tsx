@@ -1,11 +1,11 @@
 import {NextPage} from "next";
-import Users from "@/user/presenter/Users";
+import Admin from "../../app/admin/presenter/home/Admin";
 import AuthPage from "@/core/providers/AuthProvider/AuthPage";
 
-const DepartmentsPage: NextPage = () => {
+const AdminPage: NextPage = () => {
 	return <AuthPage minRole={"director"}>
-		<Users/>
+		<Admin/>
 	</AuthPage>
-};
+}
 
-export default DepartmentsPage;
+export default AdminPage;

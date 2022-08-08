@@ -1,13 +1,12 @@
 import OwnerCompany from "@/company/presenter/OwnerCompany";
-import {NextPageAuth} from "@/auth/model/auth.roles";
+import {NextPage} from "next";
+import AuthPage from "@/core/providers/AuthProvider/AuthPage";
 
-const CompaniesPage: NextPageAuth = () => {
+const CompaniesPage: NextPage = () => {
 
-	return (
+	return <AuthPage minRole={"owner"}>
 		<OwnerCompany/>
-	);
-};
-
-CompaniesPage.role = "owner"
+	</AuthPage>
+}
 
 export default CompaniesPage

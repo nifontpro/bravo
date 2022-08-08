@@ -1,17 +1,12 @@
 import Departments from "@/department/presenter/Departments";
-import {NextPageAuth} from "@/auth/model/auth.roles";
+import {NextPage} from "next";
+import AuthPage from "@/core/providers/AuthProvider/AuthPage";
 
-const DepartmentsPage: NextPageAuth = () => {
+const DepartmentsPage: NextPage = () => {
 
-	DepartmentsPage.role = "admin"
-
-	return (
-		<div>
-			<Departments/>
-		</div>
-	);
-};
-
-// DepartmentsPage.role = "admin"
+	return <AuthPage minRole={"admin"}>
+		<Departments/>
+	</AuthPage>
+}
 
 export default DepartmentsPage;
