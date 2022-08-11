@@ -25,4 +25,4 @@ const OwnerCompany: FC = () => {
 	);
 };
 
-export default OwnerCompany;
+export default OwnerCompany

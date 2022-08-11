@@ -4,6 +4,8 @@ import Meta from "@/core/utils/meta/Meta";
 import Banner from "@/core/presenter/ui/banner/Banner";
 import {useDispatch} from "react-redux";
 import {companyActions} from "@/company/data/company.slice";
+import Button from "@/core/presenter/ui/form/Button";
+import styles from '@/core/presenter/ui/form/form.module.scss';
 
 const SingleCompany: FC<{ company: ICompany }> = ({company}) => {
 
@@ -18,11 +20,13 @@ const SingleCompany: FC<{ company: ICompany }> = ({company}) => {
 			imagePath={company.imageUrl}
 			Detail={() => null}
 		/>
-		<h1>Наименование компании: {company.name}</h1>
-		<h2>Описание: {company.description}</h2>
-		<button onClick={handleClick} className="@apply hover:text-gray-300">
-			Выбрать по умолчанию
-		</button>
+		<div className={styles.singleEntity}>
+			<h1>Наименование компании: {company.name}</h1>
+			<h2>Описание: {company.description}</h2>
+			<Button onClick={handleClick}>
+				Выбрать по умолчанию
+			</Button>
+		</div>
 	</Meta>
 }
 

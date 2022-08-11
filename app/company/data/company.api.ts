@@ -52,18 +52,38 @@ export const companyApi = createApi({
 
 		getByOwner: build.query<ICompany[], void>({
 			query: () => ({
-				url: '/company/owner'
+				url: getCompanyUrl('/owner')
 			}),
 			providesTags: ['Company']
 		}),
 
-		/*		createCompany: build.mutation<void, { name: string, description: string }>({
-					query: (company) => ({
-						url: '/company/create',
-						method: 'POST',
-						body: company
-					}),
-					invalidatesTags: [{type: 'Company'}]
-				})*/
+		getById: build.query<ICompany, string>({
+			query: (companyId) => ({
+				url: getCompanyUrl(),
+				params: {companyId}
+			}),
+			providesTags: (result, error, id) => [{type: 'Company', id}]
+		}),
+
+		update: build.mutation<void, ICompany>({
+			query: (company) => ({
+				method: 'PUT',
+				url: getCompanyUrl('/update'),
+				body: company
+			}),
+			invalidatesTags: (result, error, company) => [{type: 'Company', id: company.id}]
+		}),
+
+		updateImage: build.mutation<void, { companyId: string, formData: FormData }>({
+			query: (arg) => ({
+				method: 'PUT',
+				url: getCompanyUrl('/image/update'),
+				params: {companyId: arg.companyId},
+				body: arg.formData
+			}),
+			invalidatesTags: (result, error, arg) => [
+				{type: 'Company', id: arg.companyId}
+			]
+		}),
 	})
 })

@@ -1,6 +1,6 @@
 export interface ICatalogData {
 	id: string
-	imageUrl: string | null
+	imageUrl?: string
 	name: string
 }
 

@@ -1,5 +1,5 @@
 export interface IGalleryItem {
-	imageUrl: string | null
+	imageUrl?: string
 	name: string
 	link: string
 	content?: {

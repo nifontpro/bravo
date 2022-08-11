@@ -1,8 +1,8 @@
 import {FC} from 'react'
-import {useCompany} from "./useCompany";
+import {useCompany} from "@/company/presenter/admin/useCompany";
 import Meta from "@/core/utils/meta/Meta";
 import Heading from "@/core/presenter/ui/heading/Heading";
-import AdminNavigation from "../admin-navigation/AdminNavigation";
+import AdminNavigation from "@/admin/presenter/admin-navigation/AdminNavigation";
 import AdminHeader from "@/core/presenter/ui/admin-table/AdminHeader/AdminHeader";
 import AdminTable from "@/core/presenter/ui/admin-table/AdminTable/AdminTable";
 
