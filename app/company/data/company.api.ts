@@ -13,21 +13,21 @@ export const companyApi = createApi({
 
 		getAll: build.query<ICompany[], void>({
 			query: () => ({
-				url: '/company/all'
+				url: getCompanyUrl('/all')
 			}),
-			providesTags: ['Company']
+			providesTags: [{type: 'Company'}]
 		}),
 
 		getAllAdmin: build.query<ITableItem[], void>({
 			query: () => ({
-				url: '/company/all'
+				url: getCompanyUrl('/all')
 			}),
-			providesTags: ['Company'],
+			providesTags: [{type: 'Company'}],
 			transformResponse: (response: ICompany[]) =>
 				response.map(company => ({
 						id: company.id,
 						editUrl: getAdminUrl(`company/edit/${company.id}`),
-						items: [company.name, company.description || '', company.id]
+						items: [company.name, company.description || '-', company.id]
 					})
 				)
 		}),
@@ -37,24 +37,24 @@ export const companyApi = createApi({
 					url: getCompanyUrl('/create'),
 					method: 'POST'
 				}),
-				invalidatesTags: ['Company']
+				invalidatesTags: [{type: 'Company'}]
 			}
 		),
 
 		delete: build.mutation<void, string>({
 			query: companyId => ({
+				method: 'DELETE',
 				url: getCompanyUrl(),
-				params: {companyId},
-				method: 'DELETE'
+				params: {companyId}
 			}),
-			invalidatesTags: ['Company']
+			invalidatesTags: [{type: 'Company'}]
 		}),
 
 		getByOwner: build.query<ICompany[], void>({
 			query: () => ({
 				url: getCompanyUrl('/owner')
 			}),
-			providesTags: ['Company']
+			providesTags: [{type: 'Company'}]
 		}),
 
 		getById: build.query<ICompany, string>({
@@ -65,14 +65,14 @@ export const companyApi = createApi({
 			providesTags: (result, error, id) => [{type: 'Company', id}]
 		}),
 
-		getByIdParams: build.mutation<ICompany, string>({
-			query: (companyId) => ({
-				method: 'GET',
-				url: getCompanyUrl(),
-				params: {companyId}
-			}),
-			invalidatesTags: (result, error, id) => [{type: 'Company', id}]
-		}),
+		/*		getByIdParams: build.mutation<ICompany, string>({
+					query: (companyId) => ({
+						method: 'GET',
+						url: getCompanyUrl(),
+						params: {companyId}
+					}),
+					invalidatesTags: (result, error, id) => [{type: 'Company', id}]
+				}),*/
 
 		update: build.mutation<void, ICompany>({
 			query: (company) => ({
@@ -80,7 +80,8 @@ export const companyApi = createApi({
 				url: getCompanyUrl('/update'),
 				body: company
 			}),
-			invalidatesTags: (result, error, company) => [{type: 'Company', id: company.id}]
+			// invalidatesTags: (result, error, company) => [{type: 'Company', id: company.id}]
+			invalidatesTags: [{type: 'Company'}]
 		}),
 
 		updateImage: build.mutation<void, { companyId: string, formData: FormData }>({
@@ -90,9 +91,7 @@ export const companyApi = createApi({
 				params: {companyId: arg.companyId},
 				body: arg.formData
 			}),
-			invalidatesTags: (result, error, arg) => [
-				{type: 'Company', id: arg.companyId}
-			]
+			invalidatesTags: (result, error, arg) => [{type: 'Company', id: arg.companyId}]
 		}),
 	})
 })

@@ -9,7 +9,7 @@ const ACCESS_TOKEN = "accessToken"
 const COMPANY = 'company'
 const DEPARTMENT = "department"
 
-export const clearAllData = () => {
+export const removeLocalData = () => {
 	Cookies.remove(REFRESH_TOKEN)
 	Cookies.remove(ACCESS_TOKEN)
 	localStorage.removeItem(COMPANY)

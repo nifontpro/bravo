@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import {useCompany} from "@/company/presenter/admin/useCompany";
+import {useCompanyAdmin} from "@/company/presenter/admin/useCompanyAdmin";
 import Meta from "@/core/utils/meta/Meta";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import AdminNavigation from "@/admin/presenter/admin-navigation/AdminNavigation";
@@ -8,7 +8,7 @@ import AdminTable from "@/core/presenter/ui/admin-table/AdminTable/AdminTable";
 
 const CompanyList: FC = () => {
 
-	const {companies, isLoading, handleSearch, searchTerm, createAsync, deleteAsync} = useCompany()
+	const {companies, isLoading, handleSearch, searchTerm, createAsync, deleteAsync} = useCompanyAdmin()
 
 	return (
 		<Meta title="Компании">
