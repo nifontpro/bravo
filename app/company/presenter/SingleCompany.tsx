@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {companyActions} from "@/company/data/company.slice";
 import Button from "@/core/presenter/ui/form/Button";
 import styles from '@/core/presenter/ui/form/form.module.scss';
+import {saveCompanyToStorage} from "@/auth/data/auth.helper";
 
 const SingleCompany: FC<{ company: ICompany }> = ({company}) => {
 
@@ -13,6 +14,7 @@ const SingleCompany: FC<{ company: ICompany }> = ({company}) => {
 
 	const handleClick = () => {
 		dispatch(companyActions.setState(company))
+		saveCompanyToStorage(company)
 	}
 
 	return <Meta title={company.name} description={`Просмотр компании ${company.name}`}>

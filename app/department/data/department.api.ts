@@ -23,8 +23,15 @@ export const departmentApi = createApi({
 				params: {departmentId}
 			}),
 			providesTags: ['Department']
+		}),
+
+		getByIdParams: build.mutation<IDepartment, string>({
+			query: (departmentId) => ({
+				method: 'GET',
+				url: getDepartmentUrl(),
+				params: {departmentId}
+			}),
+			invalidatesTags: ['Department']
 		})
-
 	})
-
 })

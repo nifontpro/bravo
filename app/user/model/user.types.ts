@@ -3,10 +3,10 @@ import {TypeRoles} from "@/auth/model/auth.roles";
 export interface IUser {
 	id: string
 	email: string
-	login: string | null
+	login?: string
 	name: string
-	lastname: string | null
+	lastname?: string
 	role: TypeRoles
-	imageUrl: string | null
+	imageUrl?: string
 	bio: string | null
 }

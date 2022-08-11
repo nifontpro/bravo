@@ -65,6 +65,15 @@ export const companyApi = createApi({
 			providesTags: (result, error, id) => [{type: 'Company', id}]
 		}),
 
+		getByIdParams: build.mutation<ICompany, string>({
+			query: (companyId) => ({
+				method: 'GET',
+				url: getCompanyUrl(),
+				params: {companyId}
+			}),
+			invalidatesTags: (result, error, id) => [{type: 'Company', id}]
+		}),
+
 		update: build.mutation<void, ICompany>({
 			query: (company) => ({
 				method: 'PUT',

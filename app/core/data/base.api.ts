@@ -1,9 +1,8 @@
 import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {API_SERVER_URL} from "../config/api.config";
-import {TypeRootState} from "@/core/data/store";
 import {IAuthResponse} from "@/auth/model/auth.types";
 import {authActions} from "@/auth/data/auth.slice";
-import {getRefreshCookie} from "@/auth/data/auth.helper";
+import {getAccessCookie, getRefreshCookie} from "@/auth/data/auth.helper";
 
 export const baseQuery = fetchBaseQuery({
 	baseUrl: API_SERVER_URL,
@@ -11,8 +10,9 @@ export const baseQuery = fetchBaseQuery({
 
 const accessQuery = fetchBaseQuery({
 	baseUrl: API_SERVER_URL,
-	prepareHeaders: (headers, {getState}) => {
-		const token = (getState() as TypeRootState).auth.accessToken
+	prepareHeaders: (headers) => {
+		// const token = (getState() as TypeRootState).auth.accessToken
+		const token = getAccessCookie()
 		if (token) {
 			headers.set("authorization", `Bearer ${token}`)
 		}

@@ -2,16 +2,16 @@ import {FC} from 'react';
 import Meta from "@/core/utils/meta/Meta";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import Catalog from "@/core/presenter/ui/catalog/Catalog";
-import {useAppSelector} from "@/core/data/store";
 import {IUser} from "@/user/model/user.types";
 import {userApi} from "@/user/data/user.api";
+import {useDepartmentState} from "@/department/data/department.slice";
 
 const Users: FC = () => {
 
 	let users: IUser[] | undefined = undefined
 	let loading = false
 
-	const {currentDepartment} = useAppSelector(state => state.department)
+	const {currentDepartment} = useDepartmentState()
 	if (currentDepartment) {
 		const {data: getUsers, isLoading} = userApi.useGetByDepartmentQuery(currentDepartment.id)
 		users = getUsers
@@ -20,7 +20,7 @@ const Users: FC = () => {
 
 	const departmentName = currentDepartment?.name || ''
 
-	return (
+	return currentDepartment ? (
 		<Meta title="Сотрудники отдела">
 			<Heading title={`Сотрудники отдела ${departmentName}`}/>
 
@@ -34,7 +34,7 @@ const Users: FC = () => {
 				/>
 			}
 		</Meta>
-	);
+	) : null
 };
 
 export default Users;
