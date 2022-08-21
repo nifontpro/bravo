@@ -1,7 +1,7 @@
 export interface IDepartment {
 	name: string
-	description: string | null
-	imageUrl: string | null
+	description?: string
+	imageUrl?: string
 	companyId: string
 	id: string
 }

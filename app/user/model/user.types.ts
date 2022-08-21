@@ -2,11 +2,19 @@ import {TypeRoles} from "@/auth/model/auth.roles";
 
 export interface IUser {
 	id: string
-	email: string
-	login: string | null
+	email?: string
+	login?: string
+	password?: string
 	name: string
-	lastname: string | null
+	patronymic?: string
+	lastname?: string
 	role: TypeRoles
-	imageUrl: string | null
-	bio: string | null
+	imageUrl?: string
+	bio?: string
+	companyId?: string
+	departmentId?: string
+}
+
+export interface IUserCreate extends Omit<IUser, 'id' | 'name' | 'imageUrl'> {
+	firstname: string
 }

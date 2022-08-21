@@ -1,7 +1,6 @@
 import {FC, PropsWithChildren} from 'react';
 import {checkRole, TypeRoles} from "@/auth/model/auth.roles";
 import {useAuthState} from "@/auth/data/auth.slice";
-import Error401 from "../../../../pages/401";
 
 const AuthPage: FC<PropsWithChildren<{ minRole: TypeRoles }>> = ({children, minRole}) => {
 	const {user} = useAuthState()
@@ -9,7 +8,8 @@ const AuthPage: FC<PropsWithChildren<{ minRole: TypeRoles }>> = ({children, minR
 	return checkRole(user?.role, minRole) ?
 		<>{children}</>
 		:
-		<Error401/>
+		// <Error401/>
+		null
 }
 
 export default AuthPage;

@@ -1,10 +1,10 @@
 import {FC} from 'react'
 import AuthVerify from "@/core/providers/AuthProvider/AuthPage";
-import CompanyList from "../../../app/admin/presenter/company/CompanyList";
+import AdminCompanyList from "@/company/presenter/admin/AdminCompanyList";
 
 const Index: FC = () => {
 	return <AuthVerify minRole={"owner"}>
-		<CompanyList/>
+		<AdminCompanyList/>
 	</AuthVerify>
 }
 

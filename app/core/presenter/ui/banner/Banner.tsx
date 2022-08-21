@@ -3,7 +3,7 @@ import styles from '@/core/presenter/ui/banner/Banner.module.scss'
 import {ImageDefault} from "@/core/presenter/ui/icons/ImageDefault";
 
 interface IBanner {
-	imagePath: string | null
+	imagePath?: string
 	Detail?: FC | null
 }
 
@@ -15,7 +15,7 @@ const Banner: FC<IBanner> = ({ imagePath, Detail }) => {
 				src={imagePath}
 				draggable={false}
 				layout="fill"
-				className="image-like-bg object-top"
+				className="image-like-bg"
 				unoptimized
 				priority
 			/>

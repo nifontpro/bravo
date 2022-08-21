@@ -1,13 +1,14 @@
 import {ICompany} from "@/company/model/company.types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {useTypedSelector} from "@/core/hooks/useTypedSelector";
+import {getCompanyByStorage} from "@/auth/data/auth.helper";
 
 interface ICompanyState {
 	currentCompany: ICompany | null
 }
 
 const initialState: ICompanyState = {
-	currentCompany: null
+	currentCompany: getCompanyByStorage()
 }
 
 export const companySlice = createSlice({

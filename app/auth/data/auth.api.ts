@@ -25,6 +25,23 @@ export const authApi = createApi({
 				}
 			},
 		}),
+
+		register: build.mutation<IAuthResponse, { email: string, password: string }>({
+			query: (body) => ({
+				url: getAuthUrl('/register'),
+				method: 'POST',
+				body: body
+			}),
+			invalidatesTags: ['Auth'],
+			async onQueryStarted(args, {dispatch, queryFulfilled}) {
+				try {
+					const {data} = await queryFulfilled;
+					await dispatch(authActions.setState(data));
+				} catch (error) {
+					console.error(`REGISTER ERROR!`, error)
+				}
+			},
+		}),
 	})
 })
 

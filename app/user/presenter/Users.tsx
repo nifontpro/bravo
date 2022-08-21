@@ -2,39 +2,25 @@ import {FC} from 'react';
 import Meta from "@/core/utils/meta/Meta";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import Catalog from "@/core/presenter/ui/catalog/Catalog";
-import {useAppSelector} from "@/core/data/store";
-import {IUser} from "@/user/model/user.types";
-import {userApi} from "@/user/data/user.api";
+import {useMyUser} from "@/user/presenter/useMyUsers";
 
 const Users: FC = () => {
 
-	let users: IUser[] | undefined = undefined
-	let loading = false
+	const {users, isLoading} = useMyUser()
 
-	const {currentDepartment} = useAppSelector(state => state.department)
-	if (currentDepartment) {
-		const {data: getUsers, isLoading} = userApi.useGetByDepartmentQuery(currentDepartment.id)
-		users = getUsers
-		loading = isLoading
-	}
+	return <Meta title="Сотрудники">
+		<Heading title={`Вы и Ваши сотрудники`}/>
 
-	const departmentName = currentDepartment?.name || ''
-
-	return (
-		<Meta title="Сотрудники отдела">
-			<Heading title={`Сотрудники отдела ${departmentName}`}/>
-
-			{loading ? <p>Загрузка...</p>
-				:
-				<Catalog
-					data={users || []}
-					prefix='/users'
-					title="Сотрудники"
-					description={`В этом списке находятся сотрудники отдела ${departmentName}`}
-				/>
-			}
-		</Meta>
-	);
-};
+		{isLoading ? <p>Загрузка...</p>
+			:
+			<Catalog
+				data={users || []}
+				prefix='/user'
+				title="Сотрудники"
+				description={`Список сотрудников`}
+			/>
+		}
+	</Meta>
+}
 
 export default Users;

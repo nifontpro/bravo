@@ -21,6 +21,7 @@
       "@/company/*": ["company/*"],
       "@/department/*": ["department/*"],
       "@/user/*": ["user/*"],
+      "@/admin/*": ["admin/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

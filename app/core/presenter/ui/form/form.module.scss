@@ -1,3 +1,15 @@
+.singleEntity {
+  > h1 {
+    @apply text-2xl p-2;
+  }
+  > h2 {
+    @apply text-xl px-2 pb-4;
+  }
+  > button {
+    @apply mx-2;
+  }
+}
+
 .button {
   @apply btn-primary py-2 px-10;
 }
