@@ -1,14 +1,14 @@
 import {GetServerSideProps, NextPage} from "next";
 import {errorCatch} from "@/core/utils/api.helpers";
-import {departmentApi} from "@/department/data/department.api";
-import SingleDepartment from "@/department/presenter/SingleDepartment";
 import Error404 from "../404";
+import {userApi} from "@/user/data/user.api";
+import SingleUser from "@/user/presenter/SingleUser";
 
-const SingleDepartmentPage: NextPage<{ id: string | undefined }> = ({id}) => {
+const SingleUserPage: NextPage<{ id: string | undefined }> = ({id}) => {
 
-	const {data: department} = departmentApi.useGetByIdQuery(id || '')
-	return department ?
-		<SingleDepartment department={department}/>
+	const {data: user} = userApi.useGetByIdQuery(id || '')
+	return user ?
+		<SingleUser user={user}/>
 		:
 		<Error404/>
 }
@@ -25,4 +25,4 @@ export const getServerSideProps: GetServerSideProps = async ({params}) => {
 	}
 }
 
-export default SingleDepartmentPage
+export default SingleUserPage

@@ -1,6 +1,6 @@
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {queryWithReauth} from "@/core/data/base.api";
-import {IDepartment} from "./department.types";
+import {IDepartment} from "../model/department.types";
 import {getDepartmentUrl} from "@/core/config/api.config";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {getAdminUrl} from "@/core/config/url.config";
@@ -24,7 +24,8 @@ export const departmentApi = createApi({
 				url: getDepartmentUrl(),
 				params: {departmentId}
 			}),
-			providesTags: (result, error, id) => [{type: 'Department', id}]
+			providesTags: [{type: 'Department'}]
+			// providesTags: (result, error, id) => [{type: 'Department', id}]
 		}),
 
 		getAllAdmin: build.query<ITableItem[], string>({
@@ -58,7 +59,8 @@ export const departmentApi = createApi({
 				url: getDepartmentUrl(),
 				params: {departmentId}
 			}),
-			invalidatesTags: (result, error, id) => [{type: 'Department', id}]
+			invalidatesTags: [{type: 'Department'}]
+			// invalidatesTags: (result, error, id) => [{type: 'Department', id}]
 		}),
 
 		update: build.mutation<void, IDepartment>({
@@ -67,7 +69,8 @@ export const departmentApi = createApi({
 				url: getDepartmentUrl('/update'),
 				body: department
 			}),
-			invalidatesTags: (result, error, department) => [{type: 'Department', id: department.id}]
+			// invalidatesTags: (result, error, department) => [{type: 'Department', id: department.id}]
+			invalidatesTags: [{type: 'Department'}]
 		}),
 
 		updateImage: build.mutation<void, { departmentId: string, formData: FormData }>({
@@ -77,7 +80,8 @@ export const departmentApi = createApi({
 				params: {departmentId: arg.departmentId},
 				body: arg.formData
 			}),
-			invalidatesTags: (result, error, arg) => [{type: 'Department', id: arg.departmentId}]
+			invalidatesTags: [{type: 'Department'}]
+			// invalidatesTags: (result, error, arg) => [{type: 'Department', id: arg.departmentId}]
 		}),
 	})
 })

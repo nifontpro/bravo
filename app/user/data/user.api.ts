@@ -1,6 +1,9 @@
 import {queryWithReauth} from "@/core/data/base.api";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
-import {IUser} from "@/user/model/user.types";
+import {IUser, IUserCreate} from "@/user/model/user.types";
+import {getUserUrl} from "@/core/config/api.config";
+import {IdResponse} from "@/core/model/idResponse.types";
+import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
@@ -10,19 +13,63 @@ export const userApi = createApi({
 
 		getByDepartment: build.query<IUser[], string>({
 			query: (departmentId) => ({
-				url: '/user/department',
+				url: getUserUrl('/department'),
 				params: {departmentId}
 			}),
 			providesTags: ['User']
 		}),
 
-		createUser: build.mutation<void , {name: string, description: string}> ({
-			query: (company) => ({
-				url: '/user/create',
+		getBosses: build.query<IUser[], string | undefined>({
+			query: (companyId) => ({
+				url: getUserUrl('/bosses'),
+				params: {companyId}
+			}),
+			providesTags: ['User']
+		}),
+
+		getById: build.query<IUser, string>({
+			query: (userId) => ({
+				url: getUserUrl(),
+				params: {userId}
+			}),
+			providesTags: ['User']
+		}),
+
+		create: build.mutation<IdResponse, IUserCreate>({
+			query: (user) => ({
 				method: 'POST',
-				body: company
+				url: getUserUrl('/create'),
+				body: user
 			}),
 			invalidatesTags: ['User']
-		})
+		}),
+
+		delete: build.mutation<void, string>({
+			query: userId => ({
+				method: 'DELETE',
+				url: getUserUrl(),
+				params: {userId}
+			}),
+			invalidatesTags: ['User']
+		}),
+
+		update: build.mutation<void, IUserUpdateRequest>({
+			query: (user) => ({
+				method: 'PUT',
+				url: getUserUrl('/update'),
+				body: user
+			}),
+			invalidatesTags: ['User']
+		}),
+
+		updateImage: build.mutation<void, { userId: string, formData: FormData }>({
+			query: (arg) => ({
+				method: 'PUT',
+				url: getUserUrl('/image/update'),
+				params: {userId: arg.userId},
+				body: arg.formData
+			}),
+			invalidatesTags: [{type: 'User'}]
+		}),
 	})
 })

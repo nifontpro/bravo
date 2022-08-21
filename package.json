@@ -24,7 +24,9 @@
     "react-loading-skeleton": "^3.1.0",
     "react-query": "^3.39.1",
     "react-redux": "^8.0.2",
-    "react-toastify": "^9.0.7"
+    "react-select": "^5.4.0",
+    "react-toastify": "^9.0.7",
+    "sharp": "^0.30.7"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",

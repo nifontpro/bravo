@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IDepartment} from "@/department/data/department.types";
+import {IDepartment} from "@/department/model/department.types";
 import {useTypedSelector} from "@/core/hooks/useTypedSelector";
 import {getDepartmentByStorage} from "@/auth/data/auth.helper";
 

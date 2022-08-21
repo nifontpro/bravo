@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import {IAuthResponse} from "@/auth/model/auth.types";
 import {REFRESH_TOKEN_LIFE} from "@/core/config/api.config";
 import {ICompany} from "@/company/model/company.types";
-import {IDepartment} from "@/department/data/department.types";
+import {IDepartment} from "@/department/model/department.types";
 
 const REFRESH_TOKEN = "refreshToken"
 const ACCESS_TOKEN = "accessToken"

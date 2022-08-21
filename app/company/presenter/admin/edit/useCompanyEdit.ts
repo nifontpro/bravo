@@ -25,14 +25,14 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyEditInput>) => 
 
 		let isError = false
 
-		update({id: companyId, name: data.name, description: data.description})
+		await update({id: companyId, name: data.name, description: data.description})
 			.unwrap()
-			.then(() => {
+			.then(async () => {
 				const fileData = data.file[0]
 				if (fileData) {
 					const formData = new FormData()
 					formData.append("imageUrl", fileData)
-					updateImage({companyId, formData})
+					await updateImage({companyId, formData})
 						.unwrap()
 						.catch(() => {
 							isError = true

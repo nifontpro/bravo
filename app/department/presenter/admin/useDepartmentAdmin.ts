@@ -1,12 +1,11 @@
-import {ChangeEvent, useEffect, useMemo, useState} from "react";
+import {ChangeEvent, useMemo, useState} from "react";
 // import {useDebounce} from "@/core/hooks/useDebounce";
-import {toast} from "react-toastify";
 import {departmentApi} from "@/department/data/department.api";
-import {useCompanyState} from "@/company/data/company.slice";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
+import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
 
-export const useDepartmentAdmin = () => {
+export const useDepartmentAdmin = (companyId?: string) => {
 	const [searchTerm, setSearchTerm] = useState('')
 	// const debouncedSearch = useDebounce(searchTerm, 1000)
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -15,44 +14,50 @@ export const useDepartmentAdmin = () => {
 
 	let departments: ITableItem[] | undefined = undefined
 	let isLoading = false
-	let isLoadingError = false
 
-	const {currentCompany} = useCompanyState()
-	if (currentCompany) {
-		const {isLoading: loading, isError, data} = departmentApi.useGetAllAdminQuery(currentCompany.id)
+	if (companyId) {
+		const {isLoading: loading, data} = departmentApi.useGetAllAdminQuery(companyId)
 		departments = data
 		isLoading = loading
-		isLoadingError = isError
 	}
 
-	const [createAsync, {isError: isCreateError, error: createError}] = departmentApi.useCreateMutation()
-	const [deleteAsync, {isError: isDeleteError, error: deleteError}] = departmentApi.useDeleteMutation()
-
-	useEffect(() => {
-		if (isCreateError) {
-			toastError(createError, "Ошибка при создании отдела")
-		}
-
-		if (isLoadingError) {
-			toast.error("Ошибка загрузки отделов")
-		}
-
-		if (isDeleteError) {
-			toast.error("Ошибка при удалении отдела")
-		}
-
-	}, [isLoadingError, isCreateError, isDeleteError, createError])
+	const [createDepartment] = departmentApi.useCreateMutation()
+	const [deleteDepartment] = departmentApi.useDeleteMutation()
 
 	return useMemo(
-		() => ({
-			isLoading,
-			departments,
-			handleSearch,
-			searchTerm,
-			createAsync,
-			deleteAsync
-		}),
-		[isLoading, departments, searchTerm, createAsync, deleteAsync]
-	)
+		() => {
 
+			const createAsync = async () => {
+				if (companyId) await createDepartment(companyId)
+					.unwrap()
+					.then(() => {
+						toast.success("Отдел успешно создан")
+					})
+					.catch(e => {
+						toastError(e, "Ошибка при создании отдела")
+					})
+			}
+
+			const deleteAsync = async (id: string) => {
+				await deleteDepartment(id)
+					.unwrap()
+					.then(() => {
+						toast.success("Отдел успешно удален")
+					})
+					.catch(e => {
+						toastError(e, "Ошибка при удалении отдела")
+					})
+			}
+
+			return {
+				isLoading,
+				departments,
+				handleSearch,
+				searchTerm,
+				createAsync,
+				deleteAsync
+			}
+		},
+		[isLoading, departments, searchTerm, createDepartment, companyId, deleteDepartment]
+	)
 }

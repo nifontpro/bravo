@@ -14,16 +14,17 @@ const Auth: FC = () => {
 	useAuthRedirect()
 
 	const [login, {isLoading}] = authApi.useLoginMutation()
+	const [register] = authApi.useRegisterMutation()
 
 	const [type, setType] = useState<'login' | 'register'>('login')
-	const {register: registerInput, handleSubmit, formState, reset} = useForm<IAuthInput>({
+	const {register: registerInput, handleSubmit, formState} = useForm<IAuthInput>({
 		mode: 'onChange'
 	})
 
 	const onSubmit: SubmitHandler<IAuthInput> = (data) => {
 		if (type === 'login') login(data)
-		// else if (type === 'register') register(data)
-		reset()
+		else if (type === 'register') register(data)
+		// reset()
 	}
 
 	return (

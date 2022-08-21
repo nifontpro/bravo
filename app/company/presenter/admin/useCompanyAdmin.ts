@@ -1,8 +1,10 @@
-import {ChangeEvent, useEffect, useMemo, useState} from "react";
+import {ChangeEvent, useMemo, useState} from "react";
 // import {useDebounce} from "@/core/hooks/useDebounce";
 import {companyApi} from "@/company/data/company.api";
 import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
+import {useRouter} from "next/router";
+import {getAdminUrl} from "@/core/config/url.config";
 
 export const useCompanyAdmin = () => {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -11,52 +13,48 @@ export const useCompanyAdmin = () => {
 		setSearchTerm(e.target.value)
 	}
 
-	const {isLoading, isError: isLoadingError, data: companies} = companyApi.useGetAllAdminQuery()
-	const [createAsync, {isError: isCreateError}] = companyApi.useCreateMutation()
+	const {isLoading, data: companies} = companyApi.useGetOwnerAdminQuery()
+	const [createCompany] = companyApi.useCreateMutation()
+	const [deleteCompany] = companyApi.useDeleteMutation()
 
-	const [deleteAsync, {
-		isError: isDeleteError,
-		error: deleteError,
-		isSuccess: isDeleteSuccess
-	}] = companyApi.useDeleteMutation()
-
-	useEffect(() => {
-		if (isCreateError) {
-			toast.error("Ошибка при создании компании")
-		}
-
-		if (isLoadingError) {
-			toast.error("Ошибка загрузки компаний")
-		}
-
-	}, [isLoadingError, isCreateError])
-
-	useEffect(() => {
-
-		if (isDeleteSuccess) {
-			toast.success("Компания успешно удалена")
-		}
-/*		if (deleteError !== undefined) {
-
-			toastError(deleteError, "Ошибка при удалении компании")
-		}*/
-
-		if (isDeleteError) {
-			toastError(deleteError, "Ошибка при удалении компании")
-		}
-
-	}, [isDeleteSuccess, isDeleteError, deleteError])
+	const {push} = useRouter()
 
 	return useMemo(
-		() => ({
-			isLoading,
-			companies,
-			handleSearch,
-			searchTerm,
-			createAsync,
-			deleteAsync
-		}),
-		[isLoading, companies, searchTerm, createAsync, deleteAsync]
-	)
+		() => {
 
+			const createAsync = async () => {
+				await createCompany()
+					.unwrap()
+					.then(response => {
+						toast.success("Компания успешно создана")
+						console.log(response.id)
+						push(getAdminUrl(`company/edit/${response.id}`))
+					})
+					.catch(e => {
+						toastError(e, "Ошибка при создании компании")
+					})
+			}
+
+			const deleteAsync = async (id: string) => {
+				await deleteCompany(id)
+					.unwrap()
+					.then(() => {
+						toast.success("Компания успешно удалена")
+					})
+					.catch(e => {
+						toastError(e, "Ошибка при удалении компании")
+					})
+			}
+
+			return {
+				isLoading,
+				companies,
+				handleSearch,
+				searchTerm,
+				createAsync,
+				deleteAsync
+			}
+		},
+		[isLoading, companies, searchTerm, createCompany, deleteCompany, push]
+	)
 }

@@ -3,7 +3,7 @@ import Meta from "@/core/utils/meta/Meta";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import Catalog from "@/core/presenter/ui/catalog/Catalog";
 import {departmentApi} from "@/department/data/department.api";
-import {IDepartment} from "@/department/data/department.types";
+import {IDepartment} from "@/department/model/department.types";
 import {useCompanyState} from "@/company/data/company.slice";
 
 const Departments: FC = () => {

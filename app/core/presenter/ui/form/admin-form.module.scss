@@ -1,9 +1,9 @@
 .form {
   @apply mt-12;
   .fields {
-    @apply items-center flex-wrap;
+    @apply flex items-center flex-wrap justify-between;
     > div {
-      width: 80%;
+      width: 48%;
     }
   }
 
