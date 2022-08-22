@@ -24,29 +24,33 @@ export const useUserCreate = (
 
 		let isError = false
 
-		if (companyId) await create({
-			email: data.email, login: data.login, password: data.password,
-			lastname: data.lastname, patronymic: data.patronymic, firstname: data.firstname,
-			role: data.role, companyId: companyId, departmentId: departmentId
-		}).unwrap()
-			.then(async ({id: userId}) => {
-				const fileData = data.file[0]
-				if (fileData) {
-					const formData = new FormData()
-					formData.append("imageUrl", fileData)
-					await updateImage({userId, formData})
-						.unwrap()
-						.catch(() => {
-							isError = true
-							toast.error("Ошибка обновления фото сотрудника")
-						})
-				}
-			})
-			.catch((e) => {
-				isError = true
-				toastError(e, "Ошибка создания профиля сотрудника")
-			})
-
+		if (companyId) {
+			await create({
+				email: data.email, login: data.login, password: data.password,
+				lastname: data.lastname, patronymic: data.patronymic, firstname: data.firstname,
+				role: data.role, companyId: companyId, departmentId: departmentId
+			}).unwrap()
+				.then(async ({id: userId}) => {
+					const fileData = data.file[0]
+					if (fileData) {
+						const formData = new FormData()
+						formData.append("imageUrl", fileData)
+						await updateImage({userId, formData})
+							.unwrap()
+							.catch(() => {
+								isError = true
+								toast.error("Ошибка обновления фото сотрудника")
+							})
+					}
+				})
+				.catch((e) => {
+					isError = true
+					toastError(e, "Ошибка создания профиля сотрудника")
+				})
+		} else {
+			isError = true
+			toast.error('Необходимо выбрать компанию')
+		}
 		if (!isError) {
 			toast.success('Профиль сотрудника успешно создан')
 			push(getAdminUrl('user')).then()
