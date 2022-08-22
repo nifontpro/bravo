@@ -5,13 +5,13 @@ import Catalog from "@/core/presenter/ui/catalog/Catalog";
 import {CompanyService} from "@/company/data/company.service";
 import {errorCatch} from "@/core/utils/api.helpers";
 
-const Home: NextPage<{ companies: ICompany[] | undefined}> = ({companies}) => {
+const Home: NextPage<{ companies: ICompany[] | undefined }> = ({companies}) => {
 	return (
 		<Catalog
 			data={companies || []}
 			prefix='/company'
 			title="Компании"
-			description="Компании, зарегестрированные в приложении"
+			description="Компании, зарегистрированные в приложении"
 		/>
 	);
 };

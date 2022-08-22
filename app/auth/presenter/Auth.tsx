@@ -8,6 +8,8 @@ import AuthFields from "@/auth/presenter/AuthFields";
 import Button from "@/core/presenter/ui/form/Button";
 import {authApi} from "@/auth/data/auth.api";
 import Heading from "@/core/presenter/ui/heading/Heading";
+import {toast} from "react-toastify";
+import {toastError} from "@/core/utils/toast-error";
 
 const Auth: FC = () => {
 
@@ -22,8 +24,24 @@ const Auth: FC = () => {
 	})
 
 	const onSubmit: SubmitHandler<IAuthInput> = (data) => {
-		if (type === 'login') login(data)
-		else if (type === 'register') register(data)
+		if (type === 'login') {
+			login(data).unwrap()
+				.then(() => {
+					toast.success("Добро пожаловать!")
+				})
+				.catch(e => {
+					toastError(e, "Ошибка входа")
+				})
+		}
+		else if (type === 'register') {
+			register(data).unwrap()
+				.then(() => {
+					toast.success("Вы успешно зарегистрированы!")
+				})
+				.catch(e => {
+					toastError(e, "Ошибка регистрации")
+				})
+		}
 		// reset()
 	}
 
@@ -36,10 +54,10 @@ const Auth: FC = () => {
 
 					<div className={styles.buttons}>
 						<Button type='submit' onClick={() => setType('login')} disabled={isLoading}>
-							Login
+							Войти
 						</Button>
 						<Button type='submit' onClick={() => setType('register')} disabled={isLoading}>
-							Register
+							Регистрация
 						</Button>
 					</div>
 				</form>
