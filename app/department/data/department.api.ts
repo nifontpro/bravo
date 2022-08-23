@@ -4,6 +4,7 @@ import {IDepartment} from "../model/department.types";
 import {getDepartmentUrl} from "@/core/config/api.config";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {getAdminUrl} from "@/core/config/url.config";
+import {departmentActions} from "@/department/data/department.slice";
 
 export const departmentApi = createApi({
 	reducerPath: 'departmentApi',
@@ -26,6 +27,23 @@ export const departmentApi = createApi({
 			}),
 			providesTags: [{type: 'Department'}]
 			// providesTags: (result, error, id) => [{type: 'Department', id}]
+		}),
+
+		setById: build.mutation<IDepartment, string>({
+			query: (departmentId) => ({
+				method: 'GET',
+				url: getDepartmentUrl(),
+				params: {companyId: departmentId}
+			}),
+			invalidatesTags: [{type: 'Department'}],
+			async onQueryStarted(args, {dispatch, queryFulfilled}) {
+				try {
+					const {data: department} = await queryFulfilled;
+					await dispatch(departmentActions.setState(department));
+				} catch (error) {
+					console.error(`Error set department by Id!`, error)
+				}
+			},
 		}),
 
 		getAllAdmin: build.query<ITableItem[], string>({

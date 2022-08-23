@@ -76,10 +76,10 @@ export const companyApi = createApi({
 			invalidatesTags: [{type: 'Company'}],
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {
 				try {
-					const {data} = await queryFulfilled;
-					await dispatch(companyActions.setState(data));
+					const {data: company} = await queryFulfilled;
+					await dispatch(companyActions.setState(company));
 				} catch (error) {
-					console.error(`ERROR SET COMPANY BY ADMIN!`, error)
+					console.error(`ERROR SET COMPANY BY Id!`, error)
 				}
 			},
 		}),
