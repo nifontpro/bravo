@@ -5,33 +5,24 @@ import AdminNavigation from "@/admin/presenter/admin-navigation/AdminNavigation"
 import AdminHeader from "@/core/presenter/ui/admin-table/AdminHeader/AdminHeader";
 import AdminTable from "@/core/presenter/ui/admin-table/AdminTable/AdminTable";
 import {useDepartmentAdmin} from "@/department/presenter/admin/useDepartmentAdmin";
-import {useCompanyState} from "@/company/data/company.slice";
+import {ICompany} from "@/company/model/company.types";
 
-const AdminDepartmentList: FC = () => {
-
-	const {currentCompany} = useCompanyState()
+const AdminDepartmentList: FC<{ company: ICompany }> = ({company}) => {
 
 	const {departments, isLoading, handleSearch, searchTerm, createAsync, deleteAsync} =
-		useDepartmentAdmin(currentCompany?.id)
+		useDepartmentAdmin(company.id)
 
 	return (
 		<Meta title="Отделы">
 			<AdminNavigation/>
 			<Heading title="Отделы"/>
-			{currentCompany ? <>
-					<AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} onClick={createAsync}/>
-					<AdminTable
-						tableItems={departments || []}
-						headerItems={['Название', 'Описание', 'Id']}
-						isLoading={isLoading}
-						removeHandler={deleteAsync}
-					/>
-				</>
-				:
-				<div className="@apply text-2xl">
-					Выберите компанию, список отделов которой должен быть отображен
-				</div>
-			}
+			<AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} onClick={createAsync}/>
+			<AdminTable
+				tableItems={departments || []}
+				headerItems={['Название', 'Описание', 'Id']}
+				isLoading={isLoading}
+				removeHandler={deleteAsync}
+			/>
 		</Meta>
 	)
 }

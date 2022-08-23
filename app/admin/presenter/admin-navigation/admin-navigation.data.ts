@@ -1,10 +1,25 @@
 import {getAdminHomeUrl, getAdminUrl} from "@/core/config/url.config";
 import {INavItem} from "./admin-navigation.types";
+import {TypeRoles} from "@/auth/model/auth.roles";
 
-export const navItems: INavItem[] = [
-	{title: 'Статистика', link: getAdminHomeUrl()},
-	{title: 'Компании', link: getAdminUrl('company'),},
-	{title: 'Отделы', link: getAdminUrl('department'),},
-	{title: 'Пользователи', link: getAdminUrl('user'),},
-	{title: 'Награды', link: getAdminUrl('medal'),},
-]
+const mStat: INavItem = {title: 'Статистика', link: getAdminHomeUrl()}
+const mCompany: INavItem = {title: 'Компании', link: getAdminUrl('company')}
+const mDepartment: INavItem = {title: 'Отделы', link: getAdminUrl('department')}
+const mUser: INavItem = {title: 'Пользователи', link: getAdminUrl('user')}
+const mMedal: INavItem = {title: 'Награды', link: getAdminUrl('medal')}
+
+
+export const navItems = (role?: TypeRoles): INavItem[] => {
+	switch (role) {
+		case "owner":
+			return [mStat, mCompany, mDepartment, mUser, mMedal]
+		case "admin":
+			return [mStat, mDepartment, mUser, mMedal]
+		case "director":
+			return [mStat, mUser, mMedal]
+		case "user":
+			return [mStat, mMedal]
+		default:
+			return [mStat]
+	}
+}

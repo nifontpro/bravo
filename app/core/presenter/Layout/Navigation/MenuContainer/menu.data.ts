@@ -30,8 +30,6 @@ export const firstMenu: IMenu = {
 	title: menuTitle,
 	items: [
 		itemHome,
-		itemDepartment,
-		itemUser,
 	],
 }
 

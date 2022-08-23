@@ -6,7 +6,9 @@ import {IDepartment} from "@/department/model/department.types";
 
 const REFRESH_TOKEN = "refreshToken"
 const ACCESS_TOKEN = "accessToken"
+const COMPANY_ID = 'companyId'
 const COMPANY = 'company'
+const DEPARTMENT_ID = "departmentId"
 const DEPARTMENT = "department"
 
 export const removeLocalData = () => {
@@ -23,6 +25,14 @@ export const saveTokensToCookie = (data: IAuthResponse) => {
 
 export const saveCompanyToStorage = (company: ICompany) => {
 	localStorage.setItem(COMPANY, JSON.stringify(company))
+}
+
+export const saveCompanyIdToStorage = (companyId: string) => {
+	localStorage.setItem(COMPANY_ID, companyId)
+}
+
+export const saveDepartmentIdToStorage = (departmentId: string) => {
+	localStorage.setItem(DEPARTMENT_ID, departmentId)
 }
 
 export const saveDepartmentToStorage = (department: IDepartment) => {

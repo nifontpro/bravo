@@ -1,25 +1,17 @@
 import {ChangeEvent, useMemo, useState} from "react";
 // import {useDebounce} from "@/core/hooks/useDebounce";
 import {departmentApi} from "@/department/data/department.api";
-import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
 
-export const useDepartmentAdmin = (companyId?: string) => {
+export const useDepartmentAdmin = (companyId: string) => {
 	const [searchTerm, setSearchTerm] = useState('')
 	// const debouncedSearch = useDebounce(searchTerm, 1000)
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
 
-	let departments: ITableItem[] | undefined = undefined
-	let isLoading = false
-
-	if (companyId) {
-		const {isLoading: loading, data} = departmentApi.useGetAllAdminQuery(companyId)
-		departments = data
-		isLoading = loading
-	}
+	const {isLoading, data: departments} = departmentApi.useGetAllAdminQuery(companyId)
 
 	const [createDepartment] = departmentApi.useCreateMutation()
 	const [deleteDepartment] = departmentApi.useDeleteMutation()

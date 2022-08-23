@@ -5,6 +5,7 @@ import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table
 import {getAdminUrl} from "@/core/config/url.config";
 import {getCompanyUrl} from "@/core/config/api.config";
 import {IdResponse} from "@/core/model/idResponse.types";
+import {companyActions} from "@/company/data/company.slice";
 
 export const companyApi = createApi({
 	reducerPath: 'companyApi',
@@ -64,6 +65,23 @@ export const companyApi = createApi({
 				params: {companyId}
 			}),
 			providesTags: (result, error, id) => [{type: 'Company', id}]
+		}),
+
+		setById: build.mutation<ICompany, string>({
+			query: (companyId) => ({
+				method: 'GET',
+				url: getCompanyUrl(),
+				params: {companyId}
+			}),
+			invalidatesTags: [{type: 'Company'}],
+			async onQueryStarted(args, {dispatch, queryFulfilled}) {
+				try {
+					const {data} = await queryFulfilled;
+					await dispatch(companyActions.setState(data));
+				} catch (error) {
+					console.error(`ERROR SET COMPANY BY ADMIN!`, error)
+				}
+			},
 		}),
 
 		update: build.mutation<void, ICompany>({

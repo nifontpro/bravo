@@ -5,12 +5,10 @@ import {useTypedSelector} from "@/core/hooks/useTypedSelector";
 import {IUser} from "@/user/model/user.types";
 
 interface IAuthState {
-	user: IUser | null
+	user?: IUser
 }
 
-const initialState: IAuthState = {
-	user: null,
-}
+const initialState: IAuthState = {}
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -21,7 +19,7 @@ export const authSlice = createSlice({
 			saveTokensToCookie(action.payload)
 		},
 		logout: (state) => {
-			state.user = null
+			state.user = undefined
 			removeLocalData()
 		}
 	}

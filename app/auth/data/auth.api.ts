@@ -58,7 +58,7 @@ export const refreshApi = createApi({
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {
 				try {
 					const {data} = await queryFulfilled;
-					await dispatch(authActions.setState(data));
+					await dispatch(authActions.setState(data))
 				} catch (error) {
 					console.error(`ERROR refresh!`, error)
 				}
