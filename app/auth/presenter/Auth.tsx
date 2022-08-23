@@ -10,10 +10,12 @@ import {authApi} from "@/auth/data/auth.api";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
+import {useSetAuthData} from "@/auth/presenter/useSetAuthData";
 
 const Auth: FC = () => {
 
 	useAuthRedirect()
+	const {setAuthData} = useSetAuthData()
 
 	const [login, {isLoading}] = authApi.useLoginMutation()
 	const [register] = authApi.useRegisterMutation()
@@ -26,16 +28,17 @@ const Auth: FC = () => {
 	const onSubmit: SubmitHandler<IAuthInput> = (data) => {
 		if (type === 'login') {
 			login(data).unwrap()
-				.then(() => {
+				.then((d) => {
+					setAuthData(d)
 					toast.success("Добро пожаловать!")
 				})
 				.catch(e => {
 					toastError(e, "Ошибка входа")
 				})
-		}
-		else if (type === 'register') {
+		} else if (type === 'register') {
 			register(data).unwrap()
-				.then(() => {
+				.then((d) => {
+					setAuthData(d)
 					toast.success("Вы успешно зарегистрированы!")
 				})
 				.catch(e => {

@@ -3,34 +3,23 @@ import Meta from "@/core/utils/meta/Meta";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import Catalog from "@/core/presenter/ui/catalog/Catalog";
 import {departmentApi} from "@/department/data/department.api";
-import {IDepartment} from "@/department/model/department.types";
-import {useCompanyState} from "@/company/data/company.slice";
+import {ICompany} from "@/company/model/company.types";
 
-const Departments: FC = () => {
+const Departments: FC<{ company: ICompany }> = ({company}) => {
 
-	let departments: IDepartment[] | undefined = undefined
-	let loading = false
-
-	const {currentCompany} = useCompanyState()
-	if (currentCompany) {
-		const {data: getDepartments, isLoading} = departmentApi.useGetByCompanyQuery(currentCompany.id)
-		departments = getDepartments
-		loading = isLoading
-	}
-
-	const companyName = currentCompany?.name || ''
+	const {data: departments, isLoading} = departmentApi.useGetByCompanyQuery(company.id)
 
 	return (
 		<Meta title="Отделы компании">
-			<Heading title={`Отделы компании ${companyName}`}/>
+			<Heading title={`Отделы компании ${company.name}`}/>
 
-			{loading ? <p>Загрузка...</p>
+			{isLoading ? <p>Загрузка...</p>
 				:
 				<Catalog
 					data={departments || []}
 					prefix='/department'
 					title="Отделы"
-					description={`В этом списке находятся отделы компании ${companyName}`}
+					description={`В этом списке находятся отделы компании ${company.name}`}
 				/>
 			}
 		</Meta>
