@@ -43,7 +43,7 @@ export const useDepartmentAdmin = (companyId: string) => {
 
 			return {
 				isLoading,
-				departments,
+				medals: departments,
 				handleSearch,
 				searchTerm,
 				createAsync,

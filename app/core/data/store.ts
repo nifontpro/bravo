@@ -5,9 +5,9 @@ import {combineReducers} from "redux";
 import {authApi, refreshApi} from "@/auth/data/auth.api";
 import {companySlice} from "@/company/data/company.slice";
 import {departmentApi} from "@/department/data/department.api";
-import {TypedUseSelectorHook, useSelector} from "react-redux";
 import {departmentSlice} from "@/department/data/department.slice";
 import {userApi} from "@/user/data/user.api";
+import {medalApi} from "@/medal/data/medal.api";
 
 const rootReducer = combineReducers({
 	auth: authSlice.reducer,
@@ -17,7 +17,8 @@ const rootReducer = combineReducers({
 	[refreshApi.reducerPath]: refreshApi.reducer,
 	[companyApi.reducerPath]: companyApi.reducer,
 	[departmentApi.reducerPath]: departmentApi.reducer,
-	[userApi.reducerPath]: userApi.reducer
+	[userApi.reducerPath]: userApi.reducer,
+	[medalApi.reducerPath]: medalApi.reducer
 })
 
 export const store = configureStore({
@@ -29,9 +30,10 @@ export const store = configureStore({
 			refreshApi.middleware,
 			companyApi.middleware,
 			departmentApi.middleware,
-			userApi.middleware
+			medalApi.middleware,
+			userApi.middleware,
 		),
 })
 
 export type TypeRootState = ReturnType<typeof store.getState>
-export const useAppSelector: TypedUseSelectorHook<TypeRootState> = useSelector
+// export const useAppSelector: TypedUseSelectorHook<TypeRootState> = useSelector

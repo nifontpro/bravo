@@ -12,7 +12,7 @@ const SidebarItem: FC<SidebarItemProps> = (
 	{classname, imageUrl, text}) => {
 	return <div>
 		<ImageDefault
-			className={classname}
+			className={classname || "rounded-xl"}
 			src={imageUrl}
 			alt={text}
 			layout="fixed"
@@ -20,8 +20,9 @@ const SidebarItem: FC<SidebarItemProps> = (
 			height={150}
 			draggable={false}
 			objectFit="cover"
+			priority
 		/>
-		<h2 className="@apply text-xl py-3">{text}</h2>
+		<h2 className="text-xl py-3">{text}</h2>
 	</div>
 }
 

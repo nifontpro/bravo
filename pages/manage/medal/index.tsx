@@ -1,24 +1,25 @@
 import {FC} from 'react'
 import AuthPage from "@/core/providers/AuthProvider/AuthPage";
-import AdminDepartmentList from "@/department/presenter/admin/AdminDepartmentList";
 import {useCompanyState} from "@/company/data/company.slice";
+import AdminMedalList from "@/medal/presenter/admin/AdminMedalList";
 import AdminMetaNavigation from "@/medal/presenter/admin/AdminMetaNavigation";
 
 const Index: FC = () => {
 
 	const {currentCompany} = useCompanyState()
 
-	return <AuthPage minRole={"admin"}>
-		<AdminMetaNavigation title="Отделы">
+	return <AuthPage minRole={"director"}>
+		<AdminMetaNavigation title="Награды">
 			{currentCompany ?
-				<AdminDepartmentList company={currentCompany}/>
+				<AdminMedalList company={currentCompany}/>
 				:
 				<div className="text-2xl">
-					Выберите компанию, список отделов которой должен быть отображен
+					Выберите компанию, список наград которой должен быть отображен
 				</div>
 			}
 		</AdminMetaNavigation>
 	</AuthPage>
+
 }
 
-export default Index
+export default Index;

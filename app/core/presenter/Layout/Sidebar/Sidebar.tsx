@@ -14,7 +14,7 @@ const Sidebar: FC = () => {
 
 	return <div className={styles.sidebar}>
 		{user && <SidebarItem
-			classname="@apply rounded-full"
+			classname="rounded-full"
 			imageUrl={user.imageUrl}
 			text={user.name}
 		/>}

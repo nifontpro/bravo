@@ -1,7 +1,4 @@
 import {FC} from 'react'
-import Meta from "@/core/utils/meta/Meta";
-import Heading from "@/core/presenter/ui/heading/Heading";
-import AdminNavigation from "@/admin/presenter/admin-navigation/AdminNavigation";
 import AdminHeader from "@/core/presenter/ui/admin-table/AdminHeader/AdminHeader";
 import AdminTable from "@/core/presenter/ui/admin-table/AdminTable/AdminTable";
 import {useUserAdmin} from "@/user/presenter/admin/useUserAdmin";
@@ -15,19 +12,15 @@ const DepartmentList: FC = () => {
 		await push('/manage/user/create')
 	}
 
-	return (
-		<Meta title="Сотрудники">
-			<AdminNavigation/>
-			<Heading title="Сотрудники"/>
-			<AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} onClick={createAsync}/>
-			<AdminTable
-				tableItems={tableUsers}
-				headerItems={['Фамилия', 'Имя Отчество', 'Роль']}
-				isLoading={isLoading}
-				removeHandler={deleteAsync}
-			/>
-		</Meta>
-	)
+	return <div>
+		<AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} onClick={createAsync}/>
+		<AdminTable
+			tableItems={tableUsers}
+			headerItems={['Фамилия', 'Имя Отчество', 'Роль']}
+			isLoading={isLoading}
+			removeHandler={deleteAsync}
+		/>
+	</div>
 }
 
 export default DepartmentList

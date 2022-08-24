@@ -21,6 +21,7 @@
       "@/company/*": ["company/*"],
       "@/department/*": ["department/*"],
       "@/user/*": ["user/*"],
+      "@/medal/*": ["medal/*"],
       "@/admin/*": ["admin/*"],
     }
   },
