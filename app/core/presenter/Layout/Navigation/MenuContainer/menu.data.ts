@@ -26,6 +26,12 @@ const itemUser: IMenuItem = {
 	title: 'Мои сотрудники',
 }
 
+const itemMedals: IMenuItem = {
+	icon: 'MdHotelClass',
+	link: '/medal',
+	title: 'Награды в компании',
+}
+
 export const firstMenu: IMenu = {
 	title: menuTitle,
 	items: [
@@ -40,6 +46,7 @@ export const firstMenuOwner: IMenu = {
 		itemCompany,
 		itemDepartment,
 		itemUser,
+		itemMedals
 	],
 }
 
@@ -49,6 +56,7 @@ export const firstMenuAdmin: IMenu = {
 		itemHome,
 		itemDepartment,
 		itemUser,
+		itemMedals
 	],
 }
 
@@ -57,6 +65,7 @@ export const firstMenuDirector: IMenu = {
 	items: [
 		itemHome,
 		itemUser,
+		itemMedals
 	],
 }
 

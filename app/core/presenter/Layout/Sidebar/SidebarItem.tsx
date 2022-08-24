@@ -21,7 +21,7 @@ const SidebarItem: FC<SidebarItemProps> = (
 			draggable={false}
 			objectFit="cover"
 		/>
-		<h2 className="@apply text-2xl py-3">{text}</h2>
+		<h2 className="@apply text-xl py-3">{text}</h2>
 	</div>
 }
 
