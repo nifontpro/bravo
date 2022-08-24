@@ -1,10 +1,10 @@
 import {FC} from 'react'
 
 import styles from '@/core/presenter/Layout/Sidebar/Sidebar.module.scss'
-import {ImageDefault} from "@/core/presenter/ui/icons/ImageDefault";
 import {useAuthState} from "@/auth/data/auth.slice";
 import {useCompanyState} from "@/company/data/company.slice";
 import {useDepartmentState} from "@/department/data/department.slice";
+import SidebarItem from "@/core/presenter/Layout/Sidebar/SidebarItem";
 
 const Sidebar: FC = () => {
 
@@ -13,46 +13,21 @@ const Sidebar: FC = () => {
 	const {currentDepartment} = useDepartmentState()
 
 	return <div className={styles.sidebar}>
-		{user && <div>
-			<ImageDefault
-				className="@apply rounded-full w-full mx-auto"
-				src={user?.imageUrl}
-				alt={user?.name}
-				layout="intrinsic"
-				width={150}
-				height={150}
-				draggable={false}
-				objectFit="cover"
-			/>
-			<h2 className="@apply text-2xl py-3">{user.name}</h2>
-		</div>}
+		{user && <SidebarItem
+			classname="@apply rounded-full"
+			imageUrl={user.imageUrl}
+			text={user.name}
+		/>}
 
-		{currentCompany && <div>
-			<ImageDefault
-				src={currentCompany?.imageUrl}
-				alt={currentCompany?.name}
-				layout="fixed"
-				width={150}
-				height={150}
-				draggable={false}
-				objectFit="cover"
-			/>
-			<h2 className="text-2xl py-3">{currentCompany.name}</h2>
-		</div>}
+		{currentCompany && <SidebarItem
+			imageUrl={currentCompany.imageUrl}
+			text={currentCompany.name}
+		/>}
 
-		{currentDepartment && <div>
-			<ImageDefault
-				src={currentDepartment?.imageUrl}
-				alt={currentDepartment?.name}
-				layout="fixed"
-				width={150}
-				height={150}
-				draggable={false}
-				objectFit="cover"
-			/>
-			<h2 className="text-2xl py-3">{currentDepartment.name}</h2>
-		</div>}
-
+		{currentDepartment && <SidebarItem
+			imageUrl={currentDepartment.imageUrl}
+			text={currentDepartment.name}
+		/>}
 	</div>
 }
 
