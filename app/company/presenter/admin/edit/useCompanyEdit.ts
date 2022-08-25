@@ -52,5 +52,5 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyEditInput>) => 
 		push(getAdminUrl('company')).then()
 	}
 
-	return {onSubmit, isLoading}
+	return {company, onSubmit, isLoading}
 }

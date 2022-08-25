@@ -58,5 +58,5 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 		}
 	}
 
-	return {onSubmit, isLoading}
+	return {onSubmit, isLoading, user}
 }

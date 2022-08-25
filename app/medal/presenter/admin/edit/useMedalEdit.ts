@@ -61,5 +61,5 @@ export const useMedalEdit = (setValue: UseFormSetValue<IMedalEditInput>) => {
 		}
 	}
 
-	return {onSubmit, isLoading}
+	return {onSubmit, isLoading, medal}
 }

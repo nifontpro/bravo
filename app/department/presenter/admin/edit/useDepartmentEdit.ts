@@ -55,5 +55,5 @@ export const useDepartmentEdit = (setValue: UseFormSetValue<IDepartmentEditInput
 		push(getAdminUrl('department')).then()
 	}
 
-	return {onSubmit, isLoading}
+	return {department, onSubmit, isLoading}
 }
