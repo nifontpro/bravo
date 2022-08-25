@@ -3,7 +3,6 @@ import {FC, PropsWithChildren} from 'react'
 import styles from '@/core/presenter/Layout/Layout.module.scss'
 import Navigation from '@/core/presenter/Layout/Navigation/Navigation'
 import Sidebar from "@/core/presenter/Layout/Sidebar/Sidebar";
-import AuthComponent from "@/core/providers/AuthProvider/AuthComponent";
 import {useAuthState} from "@/auth/data/auth.slice";
 
 const Layout: FC<PropsWithChildren> = ({children}) => {
@@ -23,4 +22,4 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 	)
 }
 
-export default Layout
+export default Layout;
