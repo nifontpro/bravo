@@ -1,18 +1,21 @@
 import Departments from "@/department/presenter/Departments";
 import {NextPage} from "next";
-import AuthPage from "@/core/providers/AuthProvider/AuthPage";
+import AuthComponent from "@/core/providers/AuthProvider/AuthComponent";
 import {useCompanyState} from "@/company/data/company.slice";
 
 const DepartmentsPage: NextPage = () => {
 
 	const {currentCompany} = useCompanyState()
 
-	return currentCompany ? <AuthPage minRole={"admin"}>
+	return <AuthComponent minRole={"admin"}>
+		{currentCompany ?
 			<Departments company={currentCompany}/>
-		</AuthPage> :
-		<div className="@apply text-2xl">
-			Выберите компанию, список отделов которой должен быть отображен
-		</div>
+			:
+			<div className="@apply text-2xl">
+				Выберите компанию, список отделов которой должен быть отображен
+			</div>
+		}
+	</AuthComponent>
 }
 
 export default DepartmentsPage;

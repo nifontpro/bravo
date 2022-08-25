@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import AuthPage from "@/core/providers/AuthProvider/AuthPage";
+import AuthComponent from "@/core/providers/AuthProvider/AuthComponent";
 import {useCompanyState} from "@/company/data/company.slice";
 import AdminMedalList from "@/medal/presenter/admin/AdminMedalList";
 import AdminMetaNavigation from "@/medal/presenter/admin/AdminMetaNavigation";
@@ -8,7 +8,7 @@ const Index: FC = () => {
 
 	const {currentCompany} = useCompanyState()
 
-	return <AuthPage minRole={"director"}>
+	return <AuthComponent minRole={"director"}>
 		<AdminMetaNavigation title="Награды">
 			{currentCompany ?
 				<AdminMedalList company={currentCompany}/>
@@ -18,7 +18,7 @@ const Index: FC = () => {
 				</div>
 			}
 		</AdminMetaNavigation>
-	</AuthPage>
+	</AuthComponent>
 
 }
 

@@ -1,11 +1,11 @@
 import {NextPage} from "next";
-import AuthPage from "@/core/providers/AuthProvider/AuthPage";
+import AuthComponent from "@/core/providers/AuthProvider/AuthComponent";
 import UserEdit from "@/user/presenter/admin/edit/UserEdit";
 
 const DepartmentEditPage: NextPage = () => {
-	return <AuthPage minRole={"director"}>
+	return <AuthComponent minRole={"director"}>
 		<UserEdit/>
-	</AuthPage>
+	</AuthComponent>
 }
 
 export default DepartmentEditPage

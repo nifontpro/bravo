@@ -1,12 +1,12 @@
 import OwnerCompany from "@/company/presenter/OwnerCompany";
 import {NextPage} from "next";
-import AuthPage from "@/core/providers/AuthProvider/AuthPage";
+import AuthComponent from "@/core/providers/AuthProvider/AuthComponent";
 
 const CompaniesPage: NextPage = () => {
 
-	return <AuthPage minRole={"owner"}>
+	return <AuthComponent minRole={"owner"}>
 		<OwnerCompany/>
-	</AuthPage>
+	</AuthComponent>
 }
 
 export default CompaniesPage

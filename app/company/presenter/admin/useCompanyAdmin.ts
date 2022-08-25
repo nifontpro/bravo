@@ -27,7 +27,6 @@ export const useCompanyAdmin = () => {
 					.unwrap()
 					.then(response => {
 						toast.success("Компания успешно создана")
-						console.log(response.id)
 						push(getAdminUrl(`company/edit/${response.id}`))
 					})
 					.catch(e => {

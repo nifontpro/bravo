@@ -2,6 +2,8 @@ import {ChangeEvent, useMemo, useState} from "react";
 import {medalApi} from "@/medal/data/medal.api";
 import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
+import {getAdminUrl} from "@/core/config/url.config";
+import {useRouter} from "next/router";
 // import {useDebounce} from "@/core/hooks/useDebounce";
 
 export const useMedalAdmin = (companyId: string) => {
@@ -12,9 +14,10 @@ export const useMedalAdmin = (companyId: string) => {
 	}
 
 	const {isLoading, data: medals} = medalApi.useGetByCompanyAdminQuery(companyId)
-
 	const [createMedal] = medalApi.useCreateMutation()
 	const [deleteMedal] = medalApi.useDeleteMutation()
+
+	const {push} = useRouter()
 
 	return useMemo(
 		() => {
@@ -22,8 +25,9 @@ export const useMedalAdmin = (companyId: string) => {
 			const createAsync = async () => {
 				if (companyId) await createMedal(companyId)
 					.unwrap()
-					.then(() => {
+					.then((response) => {
 						toast.success("Награда успешно создана")
+						push(getAdminUrl(`medal/edit/${response.id}`))
 					})
 					.catch(e => {
 						toastError(e, "Ошибка при создании награды")
@@ -50,6 +54,6 @@ export const useMedalAdmin = (companyId: string) => {
 				deleteAsync
 			}
 		},
-		[isLoading, medals, searchTerm, companyId, createMedal, deleteMedal]
+		[isLoading, medals, searchTerm, companyId, createMedal, deleteMedal, push]
 	)
 }

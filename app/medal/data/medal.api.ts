@@ -5,6 +5,7 @@ import {getAdminUrl} from "@/core/config/url.config";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IMedal} from "@/medal/model/medal.types";
 import {IdResponse} from "@/core/model/idResponse.types";
+import {IMedalUpdate} from "@/medal/presenter/admin/edit/medal-edit.type";
 
 export const medalApi = createApi({
 	reducerPath: 'medalApi',
@@ -14,7 +15,7 @@ export const medalApi = createApi({
 
 		getByCompany: build.query<IMedal[], string>({
 			query: (companyId) => ({
-				url: getMedalUrl('/list'),
+				url: getMedalUrl("/list"),
 				params: {companyId}
 			}),
 			providesTags: ['Medal']
@@ -31,7 +32,7 @@ export const medalApi = createApi({
 
 		getByCompanyAdmin: build.query<ITableItem[], string>({
 			query: (companyId) => ({
-				url: getMedalUrl(),
+				url: getMedalUrl("/list"),
 				params: {companyId}
 			}),
 			providesTags: ['Medal'],
@@ -64,11 +65,11 @@ export const medalApi = createApi({
 			// invalidatesTags: (result, error, id) => [{type: 'Medal', id}]
 		}),
 
-		update: build.mutation<void, IMedal>({
-			query: (department) => ({
+		update: build.mutation<void, IMedalUpdate>({
+			query: (medal) => ({
 				method: 'PUT',
-				url: getMedalUrl('/update'),
-				body: department
+				url: getMedalUrl(),
+				body: medal
 			}),
 			// invalidatesTags: (result, error, department) => [{type: 'Medal', id: department.id}]
 			invalidatesTags: [{type: 'Medal'}]
@@ -77,7 +78,7 @@ export const medalApi = createApi({
 		updateImage: build.mutation<void, { medalId: string, formData: FormData }>({
 			query: (arg) => ({
 				method: 'PUT',
-				url: getMedalUrl('/image/update'),
+				url: getMedalUrl('/image'),
 				params: {medalId: arg.medalId},
 				body: arg.formData
 			}),

@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import AuthVerify from "@/core/providers/AuthProvider/AuthPage";
+import AuthVerify from "@/core/providers/AuthProvider/AuthComponent";
 import AdminCompanyList from "@/company/presenter/admin/AdminCompanyList";
 import AdminMetaNavigation from "@/medal/presenter/admin/AdminMetaNavigation";
 

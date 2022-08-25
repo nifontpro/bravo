@@ -20,6 +20,7 @@ const LogoutButton: FC = () => {
 		dispatch(companyApi.util.resetApiState())
 		dispatch(departmentApi.util.resetApiState())
 		dispatch(userApi.util.resetApiState())
+		// dispatch(userApi.util.invalidateTags(['User']))
 	}
 
 	return <li>
