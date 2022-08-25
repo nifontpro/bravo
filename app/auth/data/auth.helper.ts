@@ -17,7 +17,9 @@ export const removeLocalData = () => {
 }
 
 export const saveTokensToCookie = (data: IAuthResponse) => {
-	Cookies.set(REFRESH_TOKEN, data.refreshToken, {expires: REFRESH_TOKEN_LIFE, sameSite: "Strict", secure: true})
+	Cookies.set(REFRESH_TOKEN, data.refreshToken, {
+		expires: REFRESH_TOKEN_LIFE, sameSite: "Strict", secure: true}
+	)
 	Cookies.set(ACCESS_TOKEN, data.accessToken, {sameSite: "Strict", secure: true})
 }
 
