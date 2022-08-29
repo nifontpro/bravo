@@ -12,6 +12,7 @@ const SingleUser: FC<{ user: IUser }> = ({user}) => {
 			Detail={() => null}
 		/>
 		<div className={styles.singleEntity}>
+			<h1>{user.login}</h1>
 			<h1>ФИО сотрудника: {user.lastname} {user.name} {user.patronymic}</h1>
 			<h2>Роль: {user.role}</h2>
 		</div>

@@ -11,7 +11,7 @@ const Catalog: FC<ICatalog> = ({title, description, prefix, data}) => {
 		<Meta title={title} description={description}>
 			<Heading title={title} className={styles.heading}/>
 			{description && (
-				<Description text={description} className={styles.description}/>
+				<Description text={description}/>
 			)}
 
 			<section className={styles.movies}>

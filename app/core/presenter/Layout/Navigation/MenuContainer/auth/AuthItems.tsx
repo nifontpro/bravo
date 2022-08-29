@@ -9,7 +9,7 @@ const AuthItems: FC = () => {
 	const {user} = useAuthState()
 	return <>
 		{user ? (<>
-			<MenuItem item={{icon: 'MdSettings', link: '/profile', title: 'Профиль'}}/>
+			<MenuItem item={{icon: 'MdSettings', link: `/user/${user.id}`, title: 'Профиль'}}/>
 			<LogoutButton/>
 		</>) : (
 			<MenuItem item={{icon: 'MdLogin', link: '/auth', title: 'Войти'}}/>

@@ -11,18 +11,20 @@ interface SidebarItemProps {
 const SidebarItem: FC<SidebarItemProps> = (
 	{classname, imageUrl, text}) => {
 	return <div>
-		<ImageDefault
-			className={classname || "rounded-xl"}
-			src={imageUrl}
-			alt={text}
-			layout="fixed"
-			width={150}
-			height={150}
-			draggable={false}
-			objectFit="cover"
-			unoptimized
-			priority
-		/>
+		<a>
+			<ImageDefault
+				className={classname}
+				src={imageUrl}
+				alt={text}
+				layout="fill"
+				// width={150}
+				// height={150}
+				draggable={false}
+				objectFit="cover"
+				unoptimized
+				priority
+			/>
+		</a>
 		<h2 className="text-xl py-3">{text}</h2>
 	</div>
 }

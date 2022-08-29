@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 
-import logoImage from '@/core/presenter/images/bravo.webp'
+import logoImage from '@/core/presenter/images/logo.svg'
 
 const Logo: FC = () => {
 	return (
@@ -12,7 +12,7 @@ const Logo: FC = () => {
 					src={logoImage}
 					width={300}
 					height={80}
-					alt="Браво"
+					alt="Медалист"
 					draggable={false}
 				/>
 			</a>

@@ -4,7 +4,7 @@
 const plugin = require('tailwindcss/plugin')
 const colors = require('tailwindcss/colors')
 
-const primary = '#E30B13'
+const primary = '#22EAEF'
 
 module.exports = {
   content: [
@@ -17,10 +17,13 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       transparent: colors.transparent,
-      yellow: {
-        700: '#F5C521',
-      },
+      green: '#43EFAD',
+      yellow: '#ECEF81',
+      brown: '#D6BE47',
+
       gray: {
+        100: '#F0F0F0',
+        200: '#E5E5E5',
         300: '#d9dae8',
         500: '#999AA5',
         600: '#66676E',
@@ -29,6 +32,7 @@ module.exports = {
         900: '#191B1F',
         950: '#101215',
       },
+      orange: '#F2977E'
     },
 
     extend: {
@@ -101,7 +105,7 @@ module.exports = {
         '.btn-primary': {
           // backgroundColor: theme('colors.orange.500'),
           backgroundColor: primary,
-          color: '#fff',
+          color: '#000000',
           borderRadius: '0.65rem',
           transition: 'background-color .3s ease-in-out',
           // padding: '10px 0',
@@ -110,7 +114,7 @@ module.exports = {
           // fontSize: 18,
           // fontWeight: 'bold',
           '&:hover': {
-            backgroundColor: '#ff0009',
+            backgroundColor: '#12DADF',
           },
         },
         '.text-link': {

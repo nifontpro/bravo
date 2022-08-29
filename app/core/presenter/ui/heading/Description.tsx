@@ -8,7 +8,7 @@ const Description: FC<{ text: string; className?: string }> = (
 		className = '',
 	}) => {
 	return (
-		<div className={cn(`text-lg font-light text-white text-opacity-60`, className)}>
+		<div className={cn(`text-lg font-light text-opacity-60`, className)}>
 			{parse(text)}
 		</div>
 	)

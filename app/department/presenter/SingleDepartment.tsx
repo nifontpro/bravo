@@ -6,6 +6,7 @@ import {departmentActions} from "@/department/data/department.slice";
 import {useDispatch} from "react-redux";
 import {saveDepartmentToStorage} from "@/auth/data/auth.helper";
 import Button from "@/core/presenter/ui/form/Button";
+import styles from '@/core/presenter/ui/form/form.module.scss';
 
 const SingleDepartment: FC<{ department: IDepartment }> = ({department}) => {
 
@@ -21,11 +22,13 @@ const SingleDepartment: FC<{ department: IDepartment }> = ({department}) => {
 			imagePath={department.imageUrl}
 			Detail={() => null}
 		/>
-		<h1>Наименование отдела: {department.name}</h1>
-		<h2>Описание: {department.description}</h2>
-		<Button onClick={handleClick}>
-			Выбрать по умолчанию
-		</Button>
+		<div className={styles.singleEntity}>
+			<h1>Наименование отдела: {department.name}</h1>
+			<h2>Описание: {department.description}</h2>
+			<Button onClick={handleClick}>
+				Выбрать по умолчанию
+			</Button>
+		</div>
 	</Meta>
 }
 

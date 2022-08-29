@@ -2,6 +2,7 @@ import {FC} from "react";
 import {ImageProps} from "next/dist/client/image";
 import Image, {ImageLoaderProps} from "next/image";
 import {BASE_URL} from "@/core/config/api.config";
+import defaultImage from '@/core/presenter/images/default.jpg'
 
 type ImageDefaultProps = Omit<ImageProps, "src"> & {
 	src?: string
@@ -13,18 +14,34 @@ const imageLoader = ({src}: ImageLoaderProps) => {
 }
 
 export const ImageDefault: FC<ImageDefaultProps> = (
-	{src, alt,  layout, draggable, priority,
-	width, height, objectFit, className}
+	{
+		src, alt, layout, draggable, priority,
+		width, height, objectFit, className
+	}
 ) => {
-	return <Image
-		className={className}
-		src={src ? src : 'profile_pictures/default.jpg'}
-		alt={alt}
-		width={width}
-		height={height}
-		layout={layout}
-		draggable={draggable}
-		priority={priority}
-		objectFit={objectFit}
-		loader={imageLoader}/>
+	return src ?
+		<Image
+			className={className}
+			// src={src ? src : 'profile_pictures/default.jpg'}
+			src={src ? src : 'profile_pictures/default.jpg'}
+			alt={alt}
+			width={width}
+			height={height}
+			layout={layout}
+			draggable={draggable}
+			priority={priority}
+			objectFit={objectFit}
+			loader={imageLoader}/>
+		:
+		<Image
+			src={defaultImage}
+			width={height}
+			height={80}
+			alt="Нет"
+			draggable={false}
+			layout={layout}
+			priority={priority}
+			objectFit={objectFit}
+		/>
+
 }

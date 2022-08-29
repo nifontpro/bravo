@@ -2,6 +2,7 @@ import {FC} from 'react';
 import Meta from "@/core/utils/meta/Meta";
 import Banner from "@/core/presenter/ui/banner/Banner";
 import {IMedal} from "@/medal/model/medal.types";
+import styles from "@/core/presenter/ui/form/form.module.scss";
 
 const SingleMedal: FC<{ medal: IMedal }> = ({medal}) => {
 
@@ -10,9 +11,11 @@ const SingleMedal: FC<{ medal: IMedal }> = ({medal}) => {
 			imagePath={medal.imageUrl}
 			Detail={() => null}
 		/>
-		<h1>Название награды: {medal.name}</h1>
-		<h2>Описание: {medal.description}</h2>
-		<h2>Ценность: {medal.score}</h2>
+		<div className={styles.singleEntity}>
+			<h1>Наименование награды: {medal.name}</h1>
+			<h2>Описание: {medal.description}</h2>
+			<h2>Ценность: {medal.score}</h2>
+		</div>
 
 	</Meta>
 }
