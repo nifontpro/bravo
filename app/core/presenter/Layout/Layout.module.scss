@@ -3,7 +3,7 @@ $bar-width: 20%;
 .layout {
 	@apply relative;
 	> div:nth-child(1), > div:nth-child(3) {
-		@apply fixed top-0 bottom-0 overflow-y-auto;
+		@apply hidden lg:flex fixed top-0 bottom-0 overflow-y-auto;
 		width: $bar-width;
 		max-width: 350px;
 	}
@@ -13,11 +13,15 @@ $bar-width: 20%;
 	}
 
 	> .center {
-		@apply min-h-screen p-layout;
-		margin: 0 $bar-width;
+		@apply min-h-screen p-layout lg:mx-3;
+		//margin: 0 $bar-width;
+		@media (min-width: 1024px) {
+			margin-left: $bar-width;
+			margin-right: $bar-width;
+		}
 	}
 
 	> div:nth-child(3) {
-		@apply bg-gray-300 text-center right-0 border-l border-l-gray-800;
+		@apply flex-col h-full justify-center bg-gray-300 text-center right-0 border-l border-l-gray-800;
 	}
 }
