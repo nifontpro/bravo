@@ -8,18 +8,19 @@ import {userMenuTitle} from "@/core/presenter/Layout/Navigation/MenuContainer/me
 const DynamicAuthItems = dynamic(() =>
 	import ('@/core/presenter/Layout/Navigation/MenuContainer/auth/AuthItems'), {ssr: false})
 
-const Menu: FC<{ menu: IMenu }> = ({menu: {items, title}}) => {
-	return (
-		<div className={styles.menu}>
-			<div className={styles.heading}>{title}</div>
-			<ul className={styles.ul}>
-				{items.map((item) => (
-					<MenuItem item={item} key={item.link}/>
-				))}
-				{title === userMenuTitle ? <DynamicAuthItems/> : null}
-			</ul>
-		</div>
-	)
-}
+const Menu: FC<{ menu: IMenu}> =
+	({menu: {items, title}}) => {
+		return (
+			<div className={styles.menu}>
+				<div className={styles.heading}>{title}</div>
+				<ul className={styles.ul}>
+					{items.map((item) => (
+						<MenuItem item={item} key={item.link}/>
+					))}
+					{title === userMenuTitle ? <DynamicAuthItems/> : null}
+				</ul>
+			</div>
+		)
+	}
 
 export default Menu

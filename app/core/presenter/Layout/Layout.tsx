@@ -1,18 +1,17 @@
-import {FC, PropsWithChildren, useState} from 'react'
+import {FC, PropsWithChildren} from 'react'
 import styles from '@/core/presenter/Layout/Layout.module.scss'
 import Navigation from '@/core/presenter/Layout/Navigation/Navigation'
 import Sidebar from "@/core/presenter/Layout/Sidebar/Sidebar";
 import {useAuthState} from "@/auth/data/auth.slice";
 import MaterialIcon from "@/core/presenter/ui/icons/MaterialIcon";
+import Link from "next/link";
+import {useRouter} from "next/router";
 
 const Layout: FC<PropsWithChildren> = ({children}) => {
 
 	const {user} = useAuthState()
-
-	const [nav, setNav] = useState(false)
-	const handleClick = () => {
-		setNav(!nav)
-	}
+	const {asPath} = useRouter()
+	const isnMenu = asPath != '/menu'
 
 	return (
 		<div className={styles.layout}>
@@ -20,27 +19,22 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 			<Navigation/>
 
 			{/*---------------------------------------------------------*/}
-			{/*Адаптивный средний элемент с меню*/}
-
 			<div className={styles.center}>
 
-				{/* До размера lg */}
-				<div className="lg:hidden" onClick={handleClick}>
-					{nav ?
-						<div className="flex-col">
-							<MaterialIcon name="MdClose" classname="w-10 h-10"/>
-							<Navigation/>
-						</div>
-						:
-						<div className="flex-col">
-							<MaterialIcon name="MdMenu" classname="w-10 h-10 mb-1"/>
-							{children}
-						</div>
-					}
+				{/* До размера md */}
+				<div className="my:hidden">
+					<div className="flex-col">
+						{isnMenu && <Link href="/menu">
+							<a>
+								<MaterialIcon name="MdMenu" classname="w-10 h-10 m-3"/>
+							</a>
+						</Link>}
+						{children}
+					</div>
 				</div>
 
-				{/* После размера lg */}
-				<div className="hidden lg:flex lg:flex-col">
+				{/* После размера md */}
+				<div className="hidden my:flex my:flex-col">
 					{children}
 				</div>
 

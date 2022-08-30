@@ -1,10 +1,10 @@
-$bar-width: 20%;
+//$bar-width: 20%;
 
 .layout {
 	@apply relative;
 	> div:nth-child(1), > div:nth-child(3) {
-		@apply hidden lg:flex lg:flex-col fixed top-0 bottom-0 overflow-y-auto;
-		width: $bar-width;
+		@apply hidden my:flex my:flex-col fixed top-0 bottom-0 overflow-y-auto w-72;
+		//width: $bar-width;
 		max-width: 350px;
 	}
 
@@ -13,12 +13,12 @@ $bar-width: 20%;
 	}
 
 	> .center {
-		@apply p-3 lg:p-layout lg:mx-3 text-center;
+		@apply my:p-layout my:mx-3 text-center my:mx-72;
 		//margin: 0 $bar-width;
-		@media (min-width: 1024px) {
+/*		@media (min-width: 768px) {
 			margin-left: $bar-width;
 			margin-right: $bar-width;
-		}
+		}*/
 	}
 
 	> div:nth-child(3) {

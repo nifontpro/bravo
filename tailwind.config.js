@@ -12,6 +12,9 @@ module.exports = {
 		'./app/**/*.{js,jsx,ts,tsx}',
 	],
 	theme: {
+		screens: {
+			'my': '900px'
+		},
 		colors: {
 			primary,
 			black: colors.black,
