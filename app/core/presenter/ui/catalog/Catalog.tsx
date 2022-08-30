@@ -14,7 +14,7 @@ const Catalog: FC<ICatalog> = ({title, description, prefix, data}) => {
 				<Description text={description}/>
 			)}
 
-			<section className={styles.movies}>
+			<section className={styles.elements}>
 				{data.map((d) => (
 					<GalleryItem
 						key={d.id}

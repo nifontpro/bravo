@@ -2,8 +2,8 @@
 	@apply mb-3;
 }
 
-.movies {
-	@apply flex flex-wrap mt-8;
+.elements {
+	@apply flex flex-wrap justify-around mt-8;
 
 	> a {
 		@apply mr-8 animate-fade;

@@ -1,5 +1,4 @@
 import {FC, PropsWithChildren, useState} from 'react'
-
 import styles from '@/core/presenter/Layout/Layout.module.scss'
 import Navigation from '@/core/presenter/Layout/Navigation/Navigation'
 import Sidebar from "@/core/presenter/Layout/Sidebar/Sidebar";
@@ -14,18 +13,6 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 	const handleClick = () => {
 		setNav(!nav)
 	}
-
-	/*	const [width, setWidth] = useState(window.innerWidth);
-		const breakpoint = 1024;
-		useEffect(() => {
-			const handleResizeWindow = () => setWidth(window.innerWidth);
-			// subscribe to window resize event "onComponentDidMount"
-			window.addEventListener("resize", handleResizeWindow);
-			return () => {
-				// unsubscribe "onComponentDestroy"
-				window.removeEventListener("resize", handleResizeWindow);
-			};
-		}, []);*/
 
 	return (
 		<div className={styles.layout}>
@@ -46,7 +33,7 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 						</div>
 						:
 						<div className="flex-col">
-							<MaterialIcon name="MdMenu" classname="w-10 h-10"/>
+							<MaterialIcon name="MdMenu" classname="w-10 h-10 mb-1"/>
 							{children}
 						</div>
 					}
@@ -72,3 +59,16 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 }
 
 export default Layout;
+
+
+/*	const [width, setWidth] = useState(window.innerWidth);
+	const breakpoint = 1024;
+	useEffect(() => {
+		const handleResizeWindow = () => setWidth(window.innerWidth);
+		// subscribe to window resize event "onComponentDidMount"
+		window.addEventListener("resize", handleResizeWindow);
+		return () => {
+			// unsubscribe "onComponentDestroy"
+			window.removeEventListener("resize", handleResizeWindow);
+		};
+	}, []);*/
