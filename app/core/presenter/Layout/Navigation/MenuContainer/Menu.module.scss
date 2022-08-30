@@ -21,18 +21,18 @@
 
 				> span,
 				> svg {
-					@apply transition-colors;
+					@apply transition-all;
 				}
 			}
 
 			&.active {
-				@apply border-r-green;
+				@apply border-r-yellow;
 				> a > span {
-					@apply text-gray-900;
+					@apply text-gray-800;
 				}
 
 				> a > svg {
-					@apply fill-green;
+					@apply p-0.5 bg-yellow rounded-full border border-black;
 				}
 			}
 		}

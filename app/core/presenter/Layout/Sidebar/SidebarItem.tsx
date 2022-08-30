@@ -17,8 +17,6 @@ const SidebarItem: FC<SidebarItemProps> = (
 				src={imageUrl}
 				alt={text}
 				layout="fill"
-				// width={150}
-				// height={150}
 				draggable={false}
 				objectFit="cover"
 				unoptimized
