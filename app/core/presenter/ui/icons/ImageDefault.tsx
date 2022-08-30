@@ -35,9 +35,9 @@ export const ImageDefault: FC<ImageDefaultProps> = (
 		:
 		<Image
 			src={defaultImage}
-			width={height}
-			height={80}
-			alt="Нет"
+			width={width}
+			height={height}
+			alt="Default"
 			draggable={false}
 			layout={layout}
 			priority={priority}

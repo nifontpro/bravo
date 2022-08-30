@@ -2,7 +2,7 @@ $bar-width: 20%;
 
 .layout {
 	@apply relative;
-	> div:first-child, > div:last-child {
+	> div:nth-child(1), > div:nth-child(3) {
 		@apply fixed top-0 bottom-0 overflow-y-auto;
 		width: $bar-width;
 		max-width: 350px;
@@ -17,7 +17,7 @@ $bar-width: 20%;
 		margin: 0 $bar-width;
 	}
 
-	> div:last-child {
+	> div:nth-child(3) {
 		@apply bg-gray-300 text-center right-0 border-l border-l-gray-800;
 	}
 }
