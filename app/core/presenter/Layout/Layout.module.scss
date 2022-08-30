@@ -3,7 +3,7 @@ $bar-width: 20%;
 .layout {
 	@apply relative;
 	> div:nth-child(1), > div:nth-child(3) {
-		@apply hidden lg:flex fixed top-0 bottom-0 overflow-y-auto;
+		@apply hidden lg:flex lg:flex-col fixed top-0 bottom-0 overflow-y-auto;
 		width: $bar-width;
 		max-width: 350px;
 	}
@@ -13,7 +13,7 @@ $bar-width: 20%;
 	}
 
 	> .center {
-		@apply min-h-screen p-layout lg:mx-3;
+		@apply p-layout lg:mx-3;
 		//margin: 0 $bar-width;
 		@media (min-width: 1024px) {
 			margin-left: $bar-width;

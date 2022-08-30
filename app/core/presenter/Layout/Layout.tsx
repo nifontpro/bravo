@@ -15,11 +15,29 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 		setNav(!nav)
 	}
 
+	/*	const [width, setWidth] = useState(window.innerWidth);
+		const breakpoint = 1024;
+		useEffect(() => {
+			const handleResizeWindow = () => setWidth(window.innerWidth);
+			// subscribe to window resize event "onComponentDidMount"
+			window.addEventListener("resize", handleResizeWindow);
+			return () => {
+				// unsubscribe "onComponentDestroy"
+				window.removeEventListener("resize", handleResizeWindow);
+			};
+		}, []);*/
+
 	return (
 		<div className={styles.layout}>
-			<Navigation className="hidden sm:flex-col"/>
+
+			<Navigation/>
+
+			{/*---------------------------------------------------------*/}
+			{/*Адаптивный средний элемент с меню*/}
+
 			<div className={styles.center}>
 
+				{/* До размера lg */}
 				<div className="lg:hidden" onClick={handleClick}>
 					{nav ?
 						<div className="flex-col">
@@ -27,15 +45,27 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 							<Navigation/>
 						</div>
 						:
-						<MaterialIcon name="MdMenu" classname="w-10 h-10"/>}
+						<div className="flex-col">
+							<MaterialIcon name="MdMenu" classname="w-10 h-10"/>
+							{children}
+						</div>
+					}
 				</div>
 
-				{children}
+				{/* После размера lg */}
+				<div className="hidden lg:flex lg:flex-col">
+					{children}
+				</div>
+
 			</div>
-			{user ?
-				<Sidebar/>
-				:
-				null
+
+			{/*---------------------------------------------------------*/}
+
+			{
+				user ?
+					<Sidebar/>
+					:
+					null
 			}
 		</div>
 	)
