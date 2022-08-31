@@ -30,16 +30,22 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 				{/* До размера md */}
 				<div className="my:hidden">
 					<div className="flex-col">
-						{!isOpen &&
+
+						<div
+							className='mx-1 h-14 z-10 bg-opacity-60 bg-cyan-100 hover:bg-opacity-90 transition-colors fixed shadow-lg rounded-xl'>
 							<MaterialIcon onClick={() => handleClick(true)} name="MdMenu" classname="w-10 h-10 m-3"/>
+						</div>
+
+						{isOpen &&
+							<MyModal>
+								<MaterialIcon name="MdClose" classname="w-10 h-10 m-3" onClick={() => handleClick(false)}/>
+								<Navigation/>
+							</MyModal>
 						}
-						{/*{isnMenu && <Link href="/menu">
-							<a>
-								<MaterialIcon name="MdMenu" classname="w-10 h-10 m-3"/>
-							</a>
-						</Link>}*/}
-						{isOpen && <MyModal hideModal={() => handleClick(false)}/>}
-						{children}
+
+						<div className={cn({["blur-sm"]: isOpen})}>
+							{children}
+						</div>
 					</div>
 				</div>
 

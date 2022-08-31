@@ -7,7 +7,7 @@ import logoImage from '@/core/presenter/images/logo.svg'
 const Logo: FC = () => {
 	return (
 		<Link href="/">
-			<a className="px-layout mb-10 block">
+			<a className="px-layout mb-10">
 				<Image
 					src={logoImage}
 					width={300}
