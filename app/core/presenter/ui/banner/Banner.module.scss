@@ -1,7 +1,7 @@
 @import 'app/core/presenter/styles/variables';
 
 .banner {
-	@apply relative overflow-hidden w-3/4 h-80 rounded-layout shadow-lg;
+	@apply relative overflow-hidden h-80 mx-10 rounded-layout shadow-lg;
 
-	@include fade-bg-gradient();
+	//@include fade-bg-gradient(-45deg);
 }

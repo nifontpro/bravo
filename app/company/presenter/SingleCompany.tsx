@@ -18,16 +18,18 @@ const SingleCompany: FC<{ company: ICompany }> = ({company}) => {
 	}
 
 	return <Meta title={company.name} description={`Просмотр компании ${company.name}`}>
-		<Banner
-			imagePath={company.imageUrl}
-			Detail={() => null}
-		/>
-		<div className={styles.singleEntity}>
-			<h1>Наименование компании: {company.name}</h1>
-			<h2>Описание: {company.description}</h2>
-			<Button onClick={handleClick}>
-				Выбрать по умолчанию
-			</Button>
+		<div>
+			<Banner
+				imagePath={company.imageUrl}
+				Detail={() => null}
+			/>
+			<div className={styles.singleEntity}>
+				<h1>Наименование компании: {company.name}</h1>
+				<h2>Описание: {company.description}</h2>
+				<Button onClick={handleClick}>
+					Выбрать по умолчанию
+				</Button>
+			</div>
 		</div>
 	</Meta>
 }

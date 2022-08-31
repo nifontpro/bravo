@@ -6,7 +6,7 @@
 	@apply flex flex-wrap justify-around mt-8;
 
 	> a {
-		@apply mr-8 animate-fade;
+		@apply animate-fade;
 	}
 
 /*	> a:nth-child(3n) {

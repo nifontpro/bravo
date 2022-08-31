@@ -22,7 +22,6 @@ const GalleryItem: FC<IGalleryItemProps> = ({item, variant}) => {
 					alt={item.name}
 					layout="fill"
 					draggable={false}
-					priority
 				/>
 
 				{item.content && (

@@ -16,8 +16,7 @@ const Banner: FC<IBanner> = ({ imagePath, Detail }) => {
 				draggable={false}
 				layout="fill"
 				className="image-like-bg"
-				unoptimized
-				priority
+				objectFit="contain"
 			/>
 			{Detail && <Detail />}
 		</div>
