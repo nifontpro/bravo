@@ -3,16 +3,21 @@ import styles from '@/core/presenter/Layout/Layout.module.scss'
 import Navigation from '@/core/presenter/Layout/Navigation/Navigation'
 import Sidebar from "@/core/presenter/Layout/Sidebar/Sidebar";
 import {useAuthState} from "@/auth/data/auth.slice";
-import MaterialIcon from "@/core/presenter/ui/icons/MaterialIcon";
-import Link from "next/link";
-import {useRouter} from "next/router";
 import cn from 'classnames'
+import MyModal from "@/core/presenter/Layout/MyModal";
+import {useDispatch} from "react-redux";
+import {modalActions, useModalState} from "@/core/store/modal.slice";
+import MaterialIcon from "@/core/presenter/ui/icons/MaterialIcon";
 
 const Layout: FC<PropsWithChildren> = ({children}) => {
 
 	const {user} = useAuthState()
-	const {asPath} = useRouter()
-	const isnMenu = asPath != '/menu'
+	const {isOpen} = useModalState()
+
+	const dispatch = useDispatch()
+	const handleClick = (state: boolean) => {
+		dispatch(modalActions.setState(state))
+	}
 
 	return (
 		<div className={styles.layout}>
@@ -25,11 +30,15 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 				{/* До размера md */}
 				<div className="my:hidden">
 					<div className="flex-col">
-						{isnMenu && <Link href="/menu">
+						{!isOpen &&
+							<MaterialIcon onClick={() => handleClick(true)} name="MdMenu" classname="w-10 h-10 m-3"/>
+						}
+						{/*{isnMenu && <Link href="/menu">
 							<a>
 								<MaterialIcon name="MdMenu" classname="w-10 h-10 m-3"/>
 							</a>
-						</Link>}
+						</Link>}*/}
+						{isOpen && <MyModal hideModal={() => handleClick(false)}/>}
 						{children}
 					</div>
 				</div>
