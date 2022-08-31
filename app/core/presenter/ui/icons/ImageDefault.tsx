@@ -2,7 +2,7 @@ import {FC} from "react";
 import {ImageProps} from "next/dist/client/image";
 import Image, {ImageLoaderProps} from "next/image";
 import {BASE_URL} from "@/core/config/api.config";
-import defaultImage from '@/core/presenter/images/default.jpg'
+import defaultImage from '@/core/presenter/images/defSvg.svg'
 
 type ImageDefaultProps = Omit<ImageProps, "src"> & {
 	src?: string
@@ -43,5 +43,4 @@ export const ImageDefault: FC<ImageDefaultProps> = (
 			priority={priority}
 			objectFit={objectFit}
 		/>
-
 }
