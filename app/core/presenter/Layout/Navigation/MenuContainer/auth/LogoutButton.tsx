@@ -7,12 +7,14 @@ import {departmentApi} from "@/department/data/department.api";
 import {userApi} from "@/user/data/user.api";
 import {companyActions} from "@/company/data/company.slice";
 import {departmentActions} from "@/department/data/department.slice";
+import {useRouter} from "next/router";
 
 const LogoutButton: FC = () => {
 
 	const dispatch = useDispatch()
+	const {push} = useRouter()
 
-	const handleLogout = (e: MouseEvent<HTMLAnchorElement>) => {
+	const handleLogout = async (e: MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault()
 		dispatch(authActions.logout())
 		dispatch(companyActions.clear())
@@ -21,6 +23,7 @@ const LogoutButton: FC = () => {
 		dispatch(departmentApi.util.resetApiState())
 		dispatch(userApi.util.resetApiState())
 		// dispatch(userApi.util.invalidateTags(['User']))
+		await push('/')
 	}
 
 	return <li>

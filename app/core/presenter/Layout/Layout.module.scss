@@ -12,8 +12,13 @@
 		@apply bg-brown left-0 border-r border-r-gray-800;
 	}
 
+	//Если авторизованный пользователь
+	> .auth {
+		@apply my:mr-72;
+	}
+
 	> .center {
-		@apply my:p-layout my:mx-3 text-center my:mx-72;
+		@apply my:p-layout text-center my:ml-72;
 		//margin: 0 $bar-width;
 /*		@media (min-width: 768px) {
 			margin-left: $bar-width;

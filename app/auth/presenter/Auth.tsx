@@ -15,6 +15,7 @@ import {useSetAuthData} from "@/auth/presenter/useSetAuthData";
 const Auth: FC = () => {
 
 	useAuthRedirect()
+
 	const {setAuthData} = useSetAuthData()
 
 	const [login, {isLoading}] = authApi.useLoginMutation()

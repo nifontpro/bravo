@@ -3,7 +3,7 @@ import Navigation from "@/core/presenter/Layout/Navigation/Navigation";
 
 const MenuPage: NextPage = () => {
 	return <>
-		<div className="my:hidden bg-brown">
+		<div className="my:hidden bg-brown" >
 			<Navigation/>
 		</div>
 	</>

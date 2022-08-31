@@ -6,6 +6,7 @@ import {useAuthState} from "@/auth/data/auth.slice";
 import MaterialIcon from "@/core/presenter/ui/icons/MaterialIcon";
 import Link from "next/link";
 import {useRouter} from "next/router";
+import cn from 'classnames'
 
 const Layout: FC<PropsWithChildren> = ({children}) => {
 
@@ -19,7 +20,7 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 			<Navigation/>
 
 			{/*---------------------------------------------------------*/}
-			<div className={styles.center}>
+			<div className={cn(styles.center, {[styles.auth]: user})}>
 
 				{/* До размера md */}
 				<div className="my:hidden">
