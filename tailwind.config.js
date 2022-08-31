@@ -12,9 +12,6 @@ module.exports = {
 		'./app/**/*.{js,jsx,ts,tsx}',
 	],
 	theme: {
-		screens: {
-			'my': '900px'
-		},
 		colors: {
 			primary,
 			black: colors.black,
@@ -40,6 +37,9 @@ module.exports = {
 		},
 
 		extend: {
+			screens: {
+				'my': '900px'
+			},
 			spacing: {
 				0.5: '0.12rem',
 				layout: '2.75rem',
@@ -133,11 +133,12 @@ module.exports = {
 				},
 				'.air-block': {
 					borderRadius: theme('borderRadius.layout'),
-					backgroundColor: theme('colors.gray.950'),
+					backgroundColor: theme('colors.white'),
 					color: theme('colors.white'),
-					boxShadow: theme('boxShadow.lg'),
-				},
+					boxShadow: theme('boxShadow.xl'),
+				}
 			})
+
 			addUtilities({
 				'.text-shadow': {
 					textShadow: '1px 1px rgba(0, 0, 0, 0.4)',

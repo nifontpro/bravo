@@ -1,22 +1,20 @@
 .wrapper {
-  @apply mt-32;
+	@apply mt-32;
 
-  > form {
-    @apply mx-auto w-1/2 air-block bg-opacity-80  p-7 text-center;
+	> form {
+		@apply mx-auto w-4/5 my:w-2/3 xl:w-1/2 air-block bg-opacity-80 p-6 text-center;
 
-    .buttons {
-      @apply mt-12 shadow-lg;
+		.buttons {
+			@apply m-3 flex flex-col;
 
-      > button {
-        &:first-child {
-          @apply rounded-r-none;
-        }
+			> button {
 
-        &:last-child {
-          @apply rounded-l-none opacity-80 hover:opacity-100 transition-opacity;
-          background-color: #8f050b;
-        }
-      }
-    }
-  }
+				@apply my-2;
+
+				&:last-child {
+					@apply bg-opacity-70 hover:bg-opacity-100 bg-green text-black transition-all;
+				}
+			}
+		}
+	}
 }
