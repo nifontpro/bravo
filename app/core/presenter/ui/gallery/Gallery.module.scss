@@ -11,7 +11,7 @@
 
 .item {
 	@apply relative transition-transform flex items-end shadow-lg rounded-full overflow-hidden
-	border-2 border-green;
+	border-2 border-primary;
 	//flex: 0 0 auto;
 
 	&:hover {

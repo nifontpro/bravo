@@ -26,13 +26,13 @@
 			}
 
 			&.active {
-				@apply border-r-yellow;
+				@apply border-r-variant;
 				> a > span {
 					@apply text-gray-800;
 				}
 
 				> a > svg {
-					@apply p-0.5 bg-yellow rounded-full border border-black;
+					@apply p-0.5 bg-variant rounded-full border border-black;
 				}
 			}
 		}

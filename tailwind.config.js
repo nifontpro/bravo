@@ -12,31 +12,17 @@ module.exports = {
 		'./app/**/*.{js,jsx,ts,tsx}',
 	],
 	theme: {
-		colors: {
-			primary,
-			black: colors.black,
-			white: colors.white,
-			transparent: colors.transparent,
-			green: '#43EFAD',
-			blue: '#22EAEF',
-			yellow: '#ECEF81',
-			brown: '#D6BE47',
-			red: '#F2977E',
-
-			gray: {
-				100: '#F0F0F0',
-				200: '#E5E5E5',
-				300: '#d9dae8',
-				500: '#999AA5',
-				600: '#66676E',
-				700: '#39393F',
-				800: '#242529',
-				900: '#191B1F',
-				950: '#101215',
-			},
-		},
-
 		extend: {
+			colors: {
+				primary,
+				black: colors.black,
+				white: colors.white,
+				transparent: colors.transparent,
+				secondary: '#43EFAD',
+				variant: '#ECEF81',
+				brown: '#D6BE47',
+				rosy: '#F2977E',
+			},
 			screens: {
 				'my': '900px'
 			},
