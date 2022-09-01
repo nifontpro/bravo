@@ -7,7 +7,7 @@
       @apply inline-block;
 
       > a {
-        @apply block px-5 py-4 text-lg transition-colors relative text-white text-opacity-60 hover:text-opacity-100;
+        @apply block px-5 py-4 text-lg transition-colors relative text-black text-opacity-60 hover:text-opacity-100;
 
         &::before {
           @apply absolute w-full h-0.5 bg-transparent transition-colors left-0 bottom-0 rounded-md;

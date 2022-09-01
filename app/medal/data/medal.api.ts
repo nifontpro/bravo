@@ -30,6 +30,14 @@ export const medalApi = createApi({
 			// providesTags: (result, error, id) => [{type: 'Medal', id}]
 		}),
 
+		getByUserId: build.query<IMedal[], string>({
+			query: (userId) => ({
+				url: getMedalUrl("/user"),
+				params: {userId}
+			}),
+			providesTags: ['Medal']
+		}),
+
 		getByCompanyAdmin: build.query<ITableItem[], string>({
 			query: (companyId) => ({
 				url: getMedalUrl("/list"),
@@ -84,6 +92,14 @@ export const medalApi = createApi({
 			}),
 			invalidatesTags: [{type: 'Medal'}]
 			// invalidatesTags: (result, error, arg) => [{type: 'Medal', id: arg.departmentId}]
+		}),
+
+		assign: build.mutation<void, { userId: string, medalId: string }>({
+			query: ({medalId, userId}) => ({
+				method: 'POST',
+				url: getMedalUrl('/assign'),
+				params: {userId, medalId}
+			}),
 		}),
 	})
 })
