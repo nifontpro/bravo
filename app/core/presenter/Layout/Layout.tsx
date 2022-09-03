@@ -4,7 +4,7 @@ import Navigation from '@/core/presenter/Layout/Navigation/Navigation'
 import Sidebar from "@/core/presenter/Layout/Sidebar/Sidebar";
 import {useAuthState} from "@/auth/data/auth.slice";
 import cn from 'classnames'
-import MyModal from "@/core/presenter/Layout/MyModal";
+import Modal from "@/core/presenter/Layout/Modal";
 import {useDispatch} from "react-redux";
 import {modalActions, useModalState} from "@/core/store/modal.slice";
 import MaterialIcon from "@/core/presenter/ui/icons/MaterialIcon";
@@ -37,10 +37,10 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 						</div>
 
 						{isOpen &&
-							<MyModal>
+							<Modal>
 								<MaterialIcon name="MdClose" classname="w-10 h-10 m-3" onClick={() => handleClick(false)}/>
 								<Navigation/>
-							</MyModal>
+							</Modal>
 						}
 
 						<div className={cn({["blur-sm"]: isOpen})}>

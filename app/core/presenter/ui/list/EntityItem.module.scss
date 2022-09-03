@@ -1,37 +1,17 @@
 @import 'app/core/presenter/styles/variables';
 
-.gallery {
-	@apply flex items-center overflow-x-auto flex-nowrap py-3;
-	-webkit-overflow-scrolling: touch;
-
-	&::-webkit-scrollbar {
-		display: none;
-	}
-}
-
 .item {
-	@apply relative transition-transform flex items-end shadow-lg rounded-2xl overflow-hidden
-	border-2 border-primary;
+	@apply relative transition-transform flex items-end shadow-xl rounded-2xl	border-2 border-primary mb-8 w-52 h-52;
 	//flex: 0 0 auto;
 
 	&:hover {
 		transform: translateY(-5px);
 	}
 
-	&.vertical {
-		@apply mr-4 last:mr-0 w-1/5 h-72;
-		max-width: 200px;
-	}
-
-	&.horizontal {
-		@apply mb-8 w-52 h-52;
-		//width: 31%;
-	}
-
 	&.withText {
 		@include fade-bg-gradient(0deg);/* Затемнение снизу вверх */
 		&::before {
-			@apply rounded-layout;
+			@apply rounded-2xl;
 		}
 	}
 

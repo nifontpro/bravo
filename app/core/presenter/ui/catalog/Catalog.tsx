@@ -7,6 +7,7 @@ import Description from "@/core/presenter/ui/heading/Description";
 import GalleryItem from "@/core/presenter/ui/gallery/GalleryItem";
 
 const Catalog: FC<ICatalog> = ({title, description, prefix, data}) => {
+
 	return (
 		<Meta title={title} description={description}>
 			<Heading title={title} className={styles.heading}/>
@@ -15,9 +16,11 @@ const Catalog: FC<ICatalog> = ({title, description, prefix, data}) => {
 			)}
 
 			<section className={styles.elements}>
-				{data.map((d) => (
-					<GalleryItem
-						key={d.id}
+				{data.map((d, index) => {
+
+					return <GalleryItem
+						// key={d.id}
+						key={index}
 						variant="horizontal"
 						item={{
 							name: d.name,
@@ -28,7 +31,7 @@ const Catalog: FC<ICatalog> = ({title, description, prefix, data}) => {
 							},
 						}}
 					/>
-				))}
+				})}
 			</section>
 
 			{/* <div className="text-center">
