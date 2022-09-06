@@ -16,6 +16,7 @@ const Select: FC<ISelect> = (
 		field,
 		isLoading,
 	}) => {
+
 	const onChange = (newValue: unknown | OnChangeValue<IOption, boolean>) => {
 		field.onChange(
 			isMulti

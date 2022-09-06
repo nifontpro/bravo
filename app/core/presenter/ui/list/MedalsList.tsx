@@ -2,7 +2,7 @@ import {FC} from 'react'
 import EntityItem from "@/core/presenter/ui/list/EntityItem";
 import {IMedal} from "@/medal/model/medal.types";
 
-const EntityList: FC<{ medals: IMedal[], onClick: (medal: IMedal) => void }> = ({medals, onClick}) => {
+const MedalsList: FC<{ medals: IMedal[], onClick: (medal: IMedal) => void }> = ({medals, onClick}) => {
 	return (
 
 		<div
@@ -18,4 +18,4 @@ const EntityList: FC<{ medals: IMedal[], onClick: (medal: IMedal) => void }> = (
 	)
 }
 
-export default EntityList
+export default MedalsList

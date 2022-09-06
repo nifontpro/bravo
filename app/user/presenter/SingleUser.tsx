@@ -3,16 +3,25 @@ import {IUser} from "@/user/model/user.types";
 import Meta from "@/core/utils/meta/Meta";
 import Banner from "@/core/presenter/ui/banner/Banner";
 import styles from '@/core/presenter/ui/form/form.module.scss';
-import {medalApi} from "@/medal/data/medal.api";
 import Catalog from "@/core/presenter/ui/catalog/Catalog";
 import Button from "@/core/presenter/ui/form/Button";
 import {useRouter} from "next/router";
+import {userApi} from "@/user/data/user.api";
+import {ICatalogData} from "@/core/presenter/ui/catalog/catalog.types";
 
 const SingleUser: FC<{ user: IUser }> = ({user}) => {
 
 	const {push} = useRouter()
+	const {data: rewards, isLoading} = userApi.useGetRewardsQuery(user.id)
 
-	const {data: medals, isLoading} = medalApi.useGetByUserIdQuery(user.id)
+	const rewardToCatalog = (): ICatalogData[] => {
+		if (!rewards) return []
+		return rewards.map((r) => ({
+			id: r.id,
+			name: r.name,
+			imageUrl: r.medal.imageUrl
+		}))
+	}
 
 	return <Meta title={user.name} description={`Профиль сотрудника ${user.name}`}>
 		<Banner
@@ -37,13 +46,14 @@ const SingleUser: FC<{ user: IUser }> = ({user}) => {
 			Наградить
 		</Button>
 
-		{isLoading ? <p>Загрузка списка наград...</p>
+		{isLoading ?
+			<p>Загрузка списка наград...</p>
 			:
-			<Catalog
-				data={medals || []}
-				prefix='/medal'
-				title={medals?.length ? "Награды сотрудника:" : ""}
-			/>
+			rewards?.length ? <Catalog
+				data={rewardToCatalog()}
+				prefix='/reward'
+				title={"Награды сотрудника:"}
+			/> : null
 		}
 	</Meta>
 }

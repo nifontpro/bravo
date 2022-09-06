@@ -13,7 +13,6 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 
 	const {user} = useAuthState()
 	const {isOpen} = useModalState()
-
 	const dispatch = useDispatch()
 	const handleClick = (state: boolean) => {
 		dispatch(modalActions.setState(state))

@@ -1,14 +1,15 @@
 import {queryWithReauth} from "@/core/data/base.api";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IUser, IUserCreate} from "@/user/model/user.types";
-import {getUserUrl} from "@/core/config/api.config";
+import {getRewardUrl, getUserUrl} from "@/core/config/api.config";
 import {IdResponse} from "@/core/model/idResponse.types";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
+import {IRewardRequest, IUserRewardsResponse} from "@/user/model/reward.types";
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['User'],
+	tagTypes: ['User', 'Reward'],
 	endpoints: (build) => ({
 
 		getByDepartment: build.query<IUser[], string>({
@@ -71,5 +72,23 @@ export const userApi = createApi({
 			}),
 			invalidatesTags: [{type: 'User'}]
 		}),
+
+		reward: build.mutation<void, IRewardRequest>({
+			query: (request) => ({
+				method: 'POST',
+				url: getRewardUrl(),
+				body: request
+			}),
+			invalidatesTags: [{type: 'Reward'}]
+		}),
+
+		getRewards: build.query<IUserRewardsResponse[], string>({
+			query: (userId) => ({
+				url: getRewardUrl(),
+				params: {userId}
+			}),
+			providesTags: ['Reward']
+		}),
+
 	})
 })
