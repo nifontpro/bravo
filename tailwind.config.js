@@ -4,7 +4,7 @@
 const plugin = require('tailwindcss/plugin')
 const colors = require('tailwindcss/colors')
 
-const primary = '#22EAEF'
+const primary = '#43EFAD'
 
 module.exports = {
 	content: [
@@ -18,7 +18,7 @@ module.exports = {
 				black: colors.black,
 				white: colors.white,
 				transparent: colors.transparent,
-				secondary: '#43EFAD',
+				secondary: '#22EAEF',
 				variant: '#ECEF81',
 				brown: '#D6BE47',
 				rosy: '#F2977E',
@@ -104,7 +104,7 @@ module.exports = {
 					// fontSize: 18,
 					// fontWeight: 'bold',
 					'&:hover': {
-						backgroundColor: '#12DADF',
+						backgroundColor: '#33DF9D',
 					},
 				},
 				'.text-link': {

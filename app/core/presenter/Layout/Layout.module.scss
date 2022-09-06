@@ -18,7 +18,7 @@
 	}
 
 	> .center {
-		@apply my:p-layout text-center my:ml-72;
+		@apply p-4 my:p-layout text-center my:ml-72;
 		//margin: 0 $bar-width;
 /*		@media (min-width: 768px) {
 			margin-left: $bar-width;

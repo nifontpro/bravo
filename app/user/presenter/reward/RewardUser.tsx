@@ -1,82 +1,91 @@
-import {FC, useState} from 'react'
+import React, {FC} from 'react'
 import {medalApi} from "@/medal/data/medal.api";
 import {useCompanyState} from "@/company/data/company.slice";
 import {useRouter} from "next/router";
 import Meta from "@/core/utils/meta/Meta";
 import {userApi} from "@/user/data/user.api";
-import MedalsList from "@/core/presenter/ui/list/MedalsList";
-import {IMedal} from "@/medal/model/medal.types";
-import {ImageDefault} from "@/core/presenter/ui/icons/ImageDefault";
+import SelectMedal from "@/core/presenter/ui/list/SelectMedal";
 import Button from "@/core/presenter/ui/form/Button";
-import {toast} from "react-toastify";
-import {toastError} from "@/core/utils/toast-error";
+import {useUserReward} from "@/user/presenter/reward/useUserReward";
+import {Controller, useForm} from "react-hook-form";
+import {IUserRewardInput} from "@/user/presenter/reward/user-reward.type";
+import Heading from "@/core/presenter/ui/heading/Heading";
+import formStyles from "@/core/presenter/ui/form/admin-form.module.scss";
+import Field from "@/core/presenter/ui/form/Field";
 
 const RewardUser: FC = () => {
 
-	const {query, back} = useRouter()
+	const {query} = useRouter()
 	const userId = String(query.userId)
-	const [medal, setMedal] = useState<IMedal | undefined>(undefined)
+
 	const {data: user} = userApi.useGetByIdQuery(userId, {skip: !(query.userId)})
 	const {currentCompany} = useCompanyState()
 	const {data: medals} = medalApi.useGetByCompanyQuery(currentCompany?.id || '', {skip: !currentCompany})
-	const [rewardUser] = userApi.useRewardMutation()
 
-	const handleClick = () => {
-		if (!medal) return
-		rewardUser({name: medal.name, score: medal.score || 0, userId, medalId: medal.id}).unwrap()
-			.then(() => {
-				toast.success("Сотрудник успешно награждён!")
-				back()
-			})
-			.catch(e => {
-				toastError(e, "Ошибка награждения сотрудника")
-			})
-	}
+	const {handleSubmit, register, formState: {errors}, setValue, control} =
+		useForm<IUserRewardInput>({mode: 'onChange'})
+
+	const {onSubmit} = useUserReward(setValue, userId)
 
 	return user ?
 		<Meta title={user.name} description={`Награждение сотрудника ${user.name}`}>
-			<div className="text-2xl font-bold">
-				Награждение сотрудника: {user.lastname} {user.name} {user.patronymic}
-				{currentCompany ?
-					<div className="text-xl mt-3 font-medium">
-						Выберите медаль из списка
-						<MedalsList
-							medals={medals || []}
-							onClick={(medal) => {
-								setMedal(medal)
-							}}
-						/>
-						{medal ?
-							<div className="flex flex-col items-center gap-4">
-								Выбранная медаль: {medal?.name}
-								<ImageDefault
-									className="rounded-full animate-fade"
-									src={medal.imageUrl}
-									alt={medal.name}
-									layout="fixed"
-									width={120}
-									height={120}
-									objectFit="cover"
-									draggable={false}
-								/>
-								Ценность: {medal.score}
-								<Button onClick={handleClick}>
-									Наградить
-								</Button>
-							</div>
-							:
-							<div>
-								Медаль не выбрана
-							</div>
-						}
+			<Heading title={`Награждение сотрудника: ${user.lastname} ${user.name} ${user.patronymic}`}/>
 
+			{currentCompany ?
+				<form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
+					<div className={formStyles.fields}>
+
+						<Field
+							{...register('name', {required: 'Наименование обязательно!'})}
+							placeholder='Наименование'
+							error={errors.name}
+							className="w-full my:w-[77%]"
+						/>
+
+						<Field
+							{...register('score', {required: 'Необходима!'})}
+							placeholder='Ценность'
+							error={errors.score}
+							className="w-full my:w-[20%]"
+						/>
+
+						<Field
+							{...register('description')}
+							placeholder='Описание награждения'
+							error={errors.description}
+							className="w-full"
+						/>
+
+						<div className="w-full">
+							<Controller
+								name="medalId"
+								control={control}
+								rules={{
+									required: 'Необходимо выбрать медаль!',
+								}}
+								render={({field, fieldState: {error}}) => (
+									<div>
+										<SelectMedal
+											medals={medals || []}
+											onClick={(medal) => {
+												field.onChange(medal.id)
+											}}
+										/>
+										{error && <div className="text-red-600 pt-3">{error.message}</div>}
+									</div>
+								)}
+							/>
+						</div>
+						<div className="w-full mx-auto">
+						<Button className="mt-5">Наградить</Button>
+						</div>
 					</div>
-					:
-					<div>
-						Необходимо выбрать компанию для получения списка наград!
-					</div>
-				}
-			</div>
+				</form>
+				:
+				<div>
+					Необходимо выбрать компанию для получения списка наград!
+				</div>
+			}
 		</Meta>
 		:
 		<div>

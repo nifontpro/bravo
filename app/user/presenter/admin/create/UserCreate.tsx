@@ -21,9 +21,7 @@ const UserCreate: FC = () => {
 	const {currentDepartment} = useDepartmentState()
 
 	const {handleSubmit, register, formState: {errors}, setValue, control} =
-		useForm<IUserCreateInput>({
-			mode: 'onChange'
-		})
+		useForm<IUserCreateInput>({mode: 'onChange'})
 
 	const {onSubmit} = useUserCreate(setValue, currentCompany?.id, currentDepartment?.id)
 

@@ -2,7 +2,7 @@ import {FC} from 'react'
 import {ImageDefault} from "@/core/presenter/ui/icons/ImageDefault";
 import {IMedal} from "@/medal/model/medal.types";
 
-const EntityItem: FC<{ medal: IMedal }> = ({medal}) => {
+const MedalItem: FC<{ medal: IMedal }> = ({medal}) => {
 
 	return (
 		<div className="flex w-80 h-40 rounded-xl bg-white shadow-lg my-3 overflow-hidden m-2">
@@ -13,7 +13,7 @@ const EntityItem: FC<{ medal: IMedal }> = ({medal}) => {
 				layout="intrinsic"
 				width={120}
 				height={120}
-				objectFit="cover"
+				objectFit="contain"
 				draggable={false}
 			/>
 			<div className="w-2/3 p-6 flex flex-col text-center">
@@ -27,4 +27,4 @@ const EntityItem: FC<{ medal: IMedal }> = ({medal}) => {
 	)
 }
 
-export default EntityItem
+export default MedalItem
