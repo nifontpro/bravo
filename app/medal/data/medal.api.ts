@@ -10,7 +10,7 @@ import {IMedalUpdate} from "@/medal/presenter/admin/edit/medal-edit.type";
 export const medalApi = createApi({
 	reducerPath: 'medalApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['Medal'],
+	tagTypes: ['Medal','Count'],
 	endpoints: (build) => ({
 
 		getByCompany: build.query<IMedal[], string>({
@@ -59,7 +59,7 @@ export const medalApi = createApi({
 					url: getMedalUrl('/create'),
 					body: {companyId, isSystem: false}
 				}),
-				invalidatesTags: ['Medal']
+				invalidatesTags: ['Medal','Count']
 			}
 		),
 
@@ -69,7 +69,7 @@ export const medalApi = createApi({
 				url: getMedalUrl(),
 				params: {medalId}
 			}),
-			invalidatesTags: [{type: 'Medal'}]
+			invalidatesTags: ['Medal','Count']
 			// invalidatesTags: (result, error, id) => [{type: 'Medal', id}]
 		}),
 
@@ -94,12 +94,13 @@ export const medalApi = createApi({
 			// invalidatesTags: (result, error, arg) => [{type: 'Medal', id: arg.departmentId}]
 		}),
 
-		assign: build.mutation<void, { userId: string, medalId: string }>({
-			query: ({medalId, userId}) => ({
-				method: 'POST',
-				url: getMedalUrl('/assign'),
-				params: {userId, medalId}
+		getCountByCompany: build.query<number, string>({
+			query: (companyId) => ({
+				url: getMedalUrl("/count"),
+				params: {companyId}
 			}),
+			providesTags: ['Count'],
 		}),
+
 	})
 })

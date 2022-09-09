@@ -7,6 +7,7 @@ import {useCompanyState} from "@/company/data/company.slice";
 import styles from "./Statistic.module.scss"
 import {userApi} from "@/user/data/user.api";
 import {useDepartmentState} from "@/department/data/department.slice";
+import {medalApi} from "@/medal/data/medal.api";
 
 const Statistic: FC = () => {
 
@@ -24,6 +25,12 @@ const Statistic: FC = () => {
 	const {data: userDepartmentCount} = userApi.useGetCountByDepartmentQuery(
 		currentDepartment?.id || '', {skip: !currentDepartment}
 	)
+	const {data: medalCount} = medalApi.useGetCountByCompanyQuery(
+		currentCompany?.id || '', {skip: !currentCompany}
+	)
+	const {data: rewardCount} = userApi.useGetRewardCountByCompanyQuery(
+		currentCompany?.id || '', {skip: !currentCompany}
+	)
 
 	return <div className={styles.main}>
 		<div className={styles.card}>
@@ -37,6 +44,7 @@ const Statistic: FC = () => {
 			</div>}
 
 			<div className={styles.divider}/>
+
 			{currentCompany && (userCompanyCount != undefined) && <div>
 				Количество сотрудников в компании: <span>{userCompanyCount}</span>
 			</div>}
@@ -44,6 +52,17 @@ const Statistic: FC = () => {
 			{(currentDepartment && (userDepartmentCount != undefined)) && <div>
 				Количество сотрудников в отделе {currentDepartment.name}: <span>{userDepartmentCount}</span>
 			</div>}
+
+			<div className={styles.divider}/>
+
+			{currentCompany && (medalCount != undefined) && <div>
+				Количество медалей в компании: <span>{medalCount}</span>
+			</div>}
+
+			{currentCompany && (rewardCount != undefined) && <div>
+				Количество награждений в компании: <span>{rewardCount}</span>
+			</div>}
+
 		</div>
 	</div>
 }

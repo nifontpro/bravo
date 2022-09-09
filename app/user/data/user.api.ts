@@ -90,6 +90,14 @@ export const userApi = createApi({
 			providesTags: ['Reward']
 		}),
 
+		getRewardCountByCompany: build.query<number, string>({
+			query: (companyId) => ({
+				url: getRewardUrl("/count_c"),
+				params: {companyId}
+			}),
+			providesTags: ['Reward']
+		}),
+
 		getCountByCompany: build.query<number, string>({
 			query: (companyId) => ({
 				url: getUserUrl("/count_c"),
