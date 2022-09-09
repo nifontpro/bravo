@@ -10,7 +10,7 @@ const AdminTableHeader: FC<{ headerItems: string[] }> = ({ headerItems }) => {
 				<div key={value}>{value}</div>
 			))}
 
-			<div>Actions</div>
+			<div>Действия</div>
 		</div>
 	)
 }

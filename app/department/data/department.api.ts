@@ -5,11 +5,12 @@ import {getDepartmentUrl} from "@/core/config/api.config";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {getAdminUrl} from "@/core/config/url.config";
 import {departmentActions} from "@/department/data/department.slice";
+import {IdResponse} from "@/core/model/idResponse.types";
 
 export const departmentApi = createApi({
 	reducerPath: 'departmentApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['Department'],
+	tagTypes: ['Department', 'Count'],
 	endpoints: (build) => ({
 
 		getByCompany: build.query<IDepartment[], string>({
@@ -25,7 +26,7 @@ export const departmentApi = createApi({
 				url: getDepartmentUrl(),
 				params: {departmentId}
 			}),
-			providesTags: [{type: 'Department'}]
+			providesTags: ['Department']
 			// providesTags: (result, error, id) => [{type: 'Department', id}]
 		}),
 
@@ -35,7 +36,7 @@ export const departmentApi = createApi({
 				url: getDepartmentUrl(),
 				params: {companyId: departmentId}
 			}),
-			invalidatesTags: [{type: 'Department'}],
+			invalidatesTags: ['Department'],
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {
 				try {
 					const {data: department} = await queryFulfilled;
@@ -61,13 +62,13 @@ export const departmentApi = createApi({
 				)
 		}),
 
-		create: build.mutation<string, string>({
+		create: build.mutation<IdResponse, string>({
 				query: (companyId) => ({
 					method: 'POST',
 					url: getDepartmentUrl('/create'),
 					params: {companyId}
 				}),
-				invalidatesTags: ['Department']
+				invalidatesTags: ['Department', 'Count']
 			}
 		),
 
@@ -77,7 +78,7 @@ export const departmentApi = createApi({
 				url: getDepartmentUrl(),
 				params: {departmentId}
 			}),
-			invalidatesTags: [{type: 'Department'}]
+			invalidatesTags: ['Department', 'Count']
 			// invalidatesTags: (result, error, id) => [{type: 'Department', id}]
 		}),
 
@@ -88,7 +89,7 @@ export const departmentApi = createApi({
 				body: department
 			}),
 			// invalidatesTags: (result, error, department) => [{type: 'Department', id: department.id}]
-			invalidatesTags: [{type: 'Department'}]
+			invalidatesTags: ['Department']
 		}),
 
 		updateImage: build.mutation<void, { departmentId: string, formData: FormData }>({
@@ -100,6 +101,18 @@ export const departmentApi = createApi({
 			}),
 			invalidatesTags: [{type: 'Department'}]
 			// invalidatesTags: (result, error, arg) => [{type: 'Department', id: arg.departmentId}]
+		}),
+
+		/**
+		 * Количество отделов в компании
+		 */
+		getCount: build.query<number, string>({
+			query: (companyId) => ({
+				url: getDepartmentUrl("/count"),
+				params: {companyId}
+			}),
+			providesTags: ['Department']
+			// providesTags: (result, error, id) => [{type: 'Department', id}]
 		}),
 	})
 })

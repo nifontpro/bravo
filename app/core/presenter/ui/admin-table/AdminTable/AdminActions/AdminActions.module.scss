@@ -2,7 +2,7 @@
 	@apply flex items-center;
 
 	> button {
-		@apply outline-border-none bg-transparent text-xl text-primary opacity-80 transition-opacity hover:opacity-100;
+		@apply outline-border-none bg-transparent text-xl text-red-800 opacity-80 transition-opacity hover:opacity-100;
 
 		&:first-child {
 			@apply mr-4;

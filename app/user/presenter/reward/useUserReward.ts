@@ -18,8 +18,8 @@ export const useUserReward = (
 
 	const onSubmit: SubmitHandler<IUserRewardInput> = async (data) => {
 
-		await reward({...data, userId}).unwrap()
-			.then(async () => {
+		await reward({userId, ...data}).unwrap()
+			.then(async (_) => {
 				toast.success('Сотрудник успешно награжден')
 				back()
 			})

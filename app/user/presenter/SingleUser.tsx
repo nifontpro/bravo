@@ -49,11 +49,11 @@ const SingleUser: FC<{ user: IUser }> = ({user}) => {
 		{isLoading ?
 			<p>Загрузка списка наград...</p>
 			:
-			rewards?.length ? <Catalog
+			rewards?.length && <Catalog
 				data={rewardToCatalog()}
 				prefix='/reward'
 				title={"Награды сотрудника:"}
-			/> : null
+			/>
 		}
 	</Meta>
 }

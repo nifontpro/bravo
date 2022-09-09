@@ -18,7 +18,7 @@ export const navItems = (role?: TypeRoles): INavItem[] => {
 		case "director":
 			return [mStat, mUser, mMedal]
 		case "user":
-			return [mStat, mMedal]
+			return [mStat]
 		default:
 			return [mStat]
 	}

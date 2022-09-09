@@ -4,7 +4,6 @@ import styles from './AdminTable.module.scss'
 import AdminTableHeader from './AdminTableHeader'
 import AdminTableItem from './AdminTableItem'
 import {ITableItem} from './admin-table.types'
-import SkeletonLoader from "@/core/presenter/ui/sceleton-loader/SkeletonLoader";
 
 interface IAdminTable {
 	tableItems: ITableItem[]
@@ -25,7 +24,8 @@ const AdminTable: FC<IAdminTable> =
 				<AdminTableHeader headerItems={headerItems}/>
 
 				{isLoading ? (
-					<SkeletonLoader count={1} height={48} className="mt-4"/>
+					// <SkeletonLoader count={1} height={48} className="mt-4"/>
+					<div>Загрузка...</div>
 				) : tableItems.length ? (
 					tableItems.map((tableItem) => (
 						<AdminTableItem
@@ -35,7 +35,7 @@ const AdminTable: FC<IAdminTable> =
 						/>
 					))
 				) : (
-					<div className={styles.notFound}>Elements not found</div>
+					<div className={styles.notFound}>Нет данных</div>
 				)}
 			</div>
 		)

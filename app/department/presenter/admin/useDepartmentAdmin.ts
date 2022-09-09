@@ -3,6 +3,8 @@ import {ChangeEvent, useMemo, useState} from "react";
 import {departmentApi} from "@/department/data/department.api";
 import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
+import {getAdminUrl} from "@/core/config/url.config";
+import {useRouter} from "next/router";
 
 export const useDepartmentAdmin = (companyId: string) => {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -16,14 +18,17 @@ export const useDepartmentAdmin = (companyId: string) => {
 	const [createDepartment] = departmentApi.useCreateMutation()
 	const [deleteDepartment] = departmentApi.useDeleteMutation()
 
+	const {push} = useRouter()
+
 	return useMemo(
 		() => {
 
 			const createAsync = async () => {
-				if (companyId) await createDepartment(companyId)
+				await createDepartment(companyId)
 					.unwrap()
-					.then(() => {
+					.then((response) => {
 						toast.success("Отдел успешно создан")
+						push(getAdminUrl(`department/edit/${response.id}`))
 					})
 					.catch(e => {
 						toastError(e, "Ошибка при создании отдела")
@@ -50,6 +55,6 @@ export const useDepartmentAdmin = (companyId: string) => {
 				deleteAsync
 			}
 		},
-		[isLoading, departments, searchTerm, createDepartment, companyId, deleteDepartment]
+		[isLoading, departments, searchTerm, createDepartment, companyId, push, deleteDepartment]
 	)
 }

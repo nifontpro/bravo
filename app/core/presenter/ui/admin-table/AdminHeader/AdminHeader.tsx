@@ -1,7 +1,7 @@
 import {ChangeEvent, FC} from 'react';
 import styles from './AdminHeader.module.scss'
 import AdminCreateButton from "@/core/presenter/ui/admin-table/AdminHeader/AdminCreateButton";
-import SearchField from "@/core/presenter/ui/search-field/SearchField";
+// import SearchField from "@/core/presenter/ui/search-field/SearchField";
 
 interface IAdminHeader {
 	onClick?: () => void
@@ -12,12 +12,12 @@ interface IAdminHeader {
 const AdminHeader: FC<IAdminHeader> =
 	({
 		 onClick,
-		 handleSearch,
-		 searchTerm,
+		 // handleSearch,
+		 // searchTerm,
 	 }) => {
 		return (
 			<div className={styles.header}>
-				<SearchField handleSearch={handleSearch} searchTerm={searchTerm}/>
+				{/*<SearchField handleSearch={handleSearch} searchTerm={searchTerm}/>*/}
 				{onClick && <AdminCreateButton onClick={onClick}/>}
 			</div>
 		)

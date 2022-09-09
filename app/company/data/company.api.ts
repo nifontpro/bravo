@@ -10,7 +10,7 @@ import {companyActions} from "@/company/data/company.slice";
 export const companyApi = createApi({
 	reducerPath: 'companyApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['Company'],
+	tagTypes: ['Company', 'Count'],
 	endpoints: (build) => ({
 
 		getAll: build.query<ICompany[], void>({
@@ -46,7 +46,7 @@ export const companyApi = createApi({
 					method: 'POST',
 					url: getCompanyUrl('/create')
 				}),
-				invalidatesTags: ['Company']
+				invalidatesTags: ['Company', 'Count']
 			}
 		),
 
@@ -56,7 +56,7 @@ export const companyApi = createApi({
 				url: getCompanyUrl(),
 				params: {companyId}
 			}),
-			invalidatesTags: [{type: 'Company'}]
+			invalidatesTags: ['Company', 'Count']
 		}),
 
 		getById: build.query<ICompany, string>({
@@ -103,6 +103,13 @@ export const companyApi = createApi({
 			}),
 			// invalidatesTags: (result, error, arg) => [{type: 'Company', id: arg.companyId}]
 			invalidatesTags: [{type: 'Company'}]
+		}),
+
+		getCount: build.query<number, undefined>({
+			query: () => ({
+				url: getCompanyUrl('/count'),
+			}),
+			providesTags: ['Count']
 		}),
 	})
 })

@@ -9,7 +9,7 @@ import {IRewardRequest, IUserRewardsResponse} from "@/user/model/reward.types";
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['User', 'Reward'],
+	tagTypes: ['User', 'Reward', 'Count'],
 	endpoints: (build) => ({
 
 		getByDepartment: build.query<IUser[], string>({
@@ -42,7 +42,7 @@ export const userApi = createApi({
 				url: getUserUrl('/create'),
 				body: user
 			}),
-			invalidatesTags: ['User']
+			invalidatesTags: ['User', 'Count']
 		}),
 
 		delete: build.mutation<void, string>({
@@ -51,7 +51,7 @@ export const userApi = createApi({
 				url: getUserUrl(),
 				params: {userId}
 			}),
-			invalidatesTags: ['User']
+			invalidatesTags: ['User', 'Count']
 		}),
 
 		update: build.mutation<void, IUserUpdateRequest>({
@@ -73,7 +73,7 @@ export const userApi = createApi({
 			invalidatesTags: [{type: 'User'}]
 		}),
 
-		reward: build.mutation<void, IRewardRequest>({
+		reward: build.mutation<IdResponse, IRewardRequest>({
 			query: (request) => ({
 				method: 'POST',
 				url: getRewardUrl(),
@@ -88,6 +88,22 @@ export const userApi = createApi({
 				params: {userId}
 			}),
 			providesTags: ['Reward']
+		}),
+
+		getCountByCompany: build.query<number, string>({
+			query: (companyId) => ({
+				url: getUserUrl("/count_c"),
+				params: {companyId}
+			}),
+			providesTags: ['Count']
+		}),
+
+		getCountByDepartment: build.query<number, string>({
+			query: (departmentId) => ({
+				url: getUserUrl("/count_d"),
+				params: {departmentId}
+			}),
+			providesTags: ['Count']
 		}),
 
 	})

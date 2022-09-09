@@ -24,7 +24,8 @@ module.exports = {
 				rosy: '#F2977E',
 			},
 			screens: {
-				'my': '900px'
+				'my': '900px',
+				'big': '2000px'
 			},
 			spacing: {
 				0.5: '0.12rem',
