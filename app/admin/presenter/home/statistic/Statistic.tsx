@@ -8,6 +8,7 @@ import styles from "./Statistic.module.scss"
 import {userApi} from "@/user/data/user.api";
 import {useDepartmentState} from "@/department/data/department.slice";
 import {medalApi} from "@/medal/data/medal.api";
+import {rewardApi} from "../../../../reward/data/reward.api";
 
 const Statistic: FC = () => {
 
@@ -28,7 +29,7 @@ const Statistic: FC = () => {
 	const {data: medalCount} = medalApi.useGetCountByCompanyQuery(
 		currentCompany?.id || '', {skip: !currentCompany}
 	)
-	const {data: rewardCount} = userApi.useGetRewardCountByCompanyQuery(
+	const {data: rewardCount} = rewardApi.useGetRewardCountByCompanyQuery(
 		currentCompany?.id || '', {skip: !currentCompany}
 	)
 

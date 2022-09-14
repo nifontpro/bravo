@@ -97,6 +97,15 @@ const UserEdit: FC = () => {
 						error={errors.email}
 						style={{width: '31%'}}
 					/>
+
+					<div className={formStyles.checkbox}>
+						Член номинационной комиссии
+						<input
+							type="checkbox"
+							{...register('isMNC')}
+						/>
+					</div>
+
 				</div>
 				<Button className="">Обновить</Button>
 			</>}

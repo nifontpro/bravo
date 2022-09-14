@@ -18,6 +18,7 @@ export const useUserCreate = (
 
 	useEffect(() => {
 		setValue('role', 'user')
+		setValue('isMNC', false)
 	}, [setValue])
 
 	const onSubmit: SubmitHandler<IUserCreateInput> = async (data) => {
@@ -25,11 +26,7 @@ export const useUserCreate = (
 		let isError = false
 
 		if (companyId) {
-			await create({
-				email: data.email, login: data.login, password: data.password,
-				lastname: data.lastname, patronymic: data.patronymic, firstname: data.firstname,
-				role: data.role, companyId: companyId, departmentId: departmentId
-			}).unwrap()
+			await create({...data, companyId: companyId, departmentId: departmentId}).unwrap()
 				.then(async ({id: userId}) => {
 					const fileData = data.file[0]
 					if (fileData) {
@@ -39,7 +36,7 @@ export const useUserCreate = (
 							.unwrap()
 							.catch(() => {
 								isError = true
-								toast.error("Ошибка обновления фото сотрудника")
+								toast.error("Ошибка добавления фото сотрудника")
 							})
 					}
 				})

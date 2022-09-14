@@ -6,7 +6,7 @@ import SingleUser from "@/user/presenter/SingleUser";
 
 const SingleUserPage: NextPage<{ id: string | undefined }> = ({id}) => {
 
-	const {data: user} = userApi.useGetByIdQuery(id || '')
+	const {data: user} = userApi.useGetByIdQuery(id || '', {skip: !id})
 	return user ?
 		<SingleUser user={user}/>
 		:

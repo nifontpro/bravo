@@ -6,14 +6,14 @@ import Meta from "@/core/utils/meta/Meta";
 import {userApi} from "@/user/data/user.api";
 import SelectMedal from "@/core/presenter/ui/list/SelectMedal";
 import Button from "@/core/presenter/ui/form/Button";
-import {useUserReward} from "@/user/presenter/reward/useUserReward";
+import {useUserNominee} from "./useUserNominee";
 import {Controller, useForm} from "react-hook-form";
-import {IUserRewardInput} from "@/user/presenter/reward/user-reward.type";
+import {IUserNomineeInput} from "./user-nominee.type";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import formStyles from "@/core/presenter/ui/form/admin-form.module.scss";
 import Field from "@/core/presenter/ui/form/Field";
 
-const RewardUser: FC = () => {
+const NomineeUser: FC = () => {
 
 	const {query} = useRouter()
 	const userId = String(query.userId)
@@ -23,13 +23,13 @@ const RewardUser: FC = () => {
 	const {data: medals} = medalApi.useGetByCompanyQuery(currentCompany?.id || '', {skip: !currentCompany})
 
 	const {handleSubmit, register, formState: {errors}, setValue, control} =
-		useForm<IUserRewardInput>({mode: 'onChange'})
+		useForm<IUserNomineeInput>({mode: 'onChange'})
 
-	const {onSubmit} = useUserReward(setValue, userId)
+	const {onSubmit} = useUserNominee(setValue, userId, currentCompany?.id)
 
 	return user ?
-		<Meta title={user.name} description={`Награждение сотрудника ${user.name}`}>
-			<Heading title={`Награждение сотрудника: ${user.lastname} ${user.name} ${user.patronymic}`}/>
+		<Meta title={user.name} description={`Номинация сотрудника ${user.name} на премию`}>
+			<Heading title={`Номинация сотрудника: ${user.lastname} ${user.name} ${user.patronymic}`}/>
 
 			{currentCompany ?
 				<form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
@@ -93,4 +93,4 @@ const RewardUser: FC = () => {
 		</div>
 }
 
-export default RewardUser
+export default NomineeUser

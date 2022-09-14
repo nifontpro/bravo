@@ -9,6 +9,7 @@ import {departmentSlice} from "@/department/data/department.slice";
 import {userApi} from "@/user/data/user.api";
 import {medalApi} from "@/medal/data/medal.api";
 import {modalSlice} from "@/core/store/modal.slice";
+import {rewardApi} from "../../reward/data/reward.api";
 
 const rootReducer = combineReducers({
 	auth: authSlice.reducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
 	[companyApi.reducerPath]: companyApi.reducer,
 	[departmentApi.reducerPath]: departmentApi.reducer,
 	[userApi.reducerPath]: userApi.reducer,
-	[medalApi.reducerPath]: medalApi.reducer
+	[medalApi.reducerPath]: medalApi.reducer,
+	[rewardApi.reducerPath]: rewardApi.reducer
 })
 
 export const store = configureStore({
@@ -34,6 +36,7 @@ export const store = configureStore({
 			departmentApi.middleware,
 			medalApi.middleware,
 			userApi.middleware,
+			rewardApi.middleware,
 		),
 })
 

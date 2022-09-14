@@ -1,10 +1,10 @@
 import {NextPage} from "next";
 import AuthComponent from "@/core/providers/AuthProvider/AuthComponent";
-import RewardUser from "@/user/presenter/reward/RewardUser";
+import NomineeUser from "../../../app/reward/presenter/nominee/NomineeUser";
 
 const Index: NextPage = () => {
 	return <AuthComponent minRole={"director"}>
-		<RewardUser/>
+		<NomineeUser/>
 	</AuthComponent>
 };
 

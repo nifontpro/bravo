@@ -6,19 +6,20 @@ import styles from '@/core/presenter/ui/form/form.module.scss';
 import Catalog from "@/core/presenter/ui/catalog/Catalog";
 import Button from "@/core/presenter/ui/form/Button";
 import {useRouter} from "next/router";
-import {userApi} from "@/user/data/user.api";
 import {ICatalogData} from "@/core/presenter/ui/catalog/catalog.types";
+import {rewardApi} from "../../reward/data/reward.api";
+import {getRewardState} from "../../reward/model/reward.types";
 
 const SingleUser: FC<{ user: IUser }> = ({user}) => {
 
 	const {push} = useRouter()
-	const {data: rewards, isLoading} = userApi.useGetRewardsQuery(user.id)
+	const {data: rewards, isLoading} = rewardApi.useGetUserRewardsQuery(user.id)
 
 	const rewardToCatalog = (): ICatalogData[] => {
 		if (!rewards) return []
 		return rewards.map((r) => ({
 			id: r.id,
-			name: r.name,
+			name: `${getRewardState(r.state)} ${r.name}`,
 			imageUrl: r.medal.imageUrl
 		}))
 	}
@@ -38,12 +39,12 @@ const SingleUser: FC<{ user: IUser }> = ({user}) => {
 			className="w-1/2 mx-auto my-3"
 			onClick={() =>
 				push({
-					pathname: '/user/reward',
+					pathname: '/reward/nominee',
 					query: {userId: user.id}
 				})
 			}
 		>
-			Наградить
+			Номинировать на премию
 		</Button>
 
 		{isLoading ?

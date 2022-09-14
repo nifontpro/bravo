@@ -10,7 +10,8 @@ export interface IUser {
 	lastname?: string
 	role: TypeRoles
 	imageUrl?: string
-	bio?: string
+	bio?: string,
+	isMNC: boolean,
 	companyId?: string
 	departmentId?: string
 }

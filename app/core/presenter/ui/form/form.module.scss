@@ -65,8 +65,8 @@
 			}
 
 			> div > input {
-				@apply text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full
-				file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
+				@apply text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:shadow-lg
+				file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-black transition-opacity;
 			}
 
 			&:hover > div> input {

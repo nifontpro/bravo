@@ -1,10 +1,9 @@
 import {queryWithReauth} from "@/core/data/base.api";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IUser, IUserCreate} from "@/user/model/user.types";
-import {getRewardUrl, getUserUrl} from "@/core/config/api.config";
+import {getUserUrl} from "@/core/config/api.config";
 import {IdResponse} from "@/core/model/idResponse.types";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
-import {IRewardRequest, IUserRewardsResponse} from "@/user/model/reward.types";
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
@@ -71,31 +70,6 @@ export const userApi = createApi({
 				body: arg.formData
 			}),
 			invalidatesTags: [{type: 'User'}]
-		}),
-
-		reward: build.mutation<IdResponse, IRewardRequest>({
-			query: (request) => ({
-				method: 'POST',
-				url: getRewardUrl(),
-				body: request
-			}),
-			invalidatesTags: [{type: 'Reward'}]
-		}),
-
-		getRewards: build.query<IUserRewardsResponse[], string>({
-			query: (userId) => ({
-				url: getRewardUrl(),
-				params: {userId}
-			}),
-			providesTags: ['Reward']
-		}),
-
-		getRewardCountByCompany: build.query<number, string>({
-			query: (companyId) => ({
-				url: getRewardUrl("/count_c"),
-				params: {companyId}
-			}),
-			providesTags: ['Reward']
 		}),
 
 		getCountByCompany: build.query<number, string>({

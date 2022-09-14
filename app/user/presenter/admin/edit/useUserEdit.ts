@@ -22,6 +22,7 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 			setValue('login', user.login)
 			setValue('password', user.password || '')
 			setValue('email', user.email)
+			setValue('isMNC', user.isMNC)
 		}
 	}, [user, isGetSuccess, setValue])
 
@@ -29,10 +30,7 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 
 		let isError = false
 
-		await update({
-			id: userId, firstname: data.firstname, lastname: data.lastname, patronymic: data.patronymic,
-			login: data.login, email: data.email, password: data.password
-		})
+		await update({id: userId, ...data})
 			.unwrap()
 			.then(async () => {
 				const fileData = data.file[0]
