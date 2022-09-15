@@ -38,7 +38,7 @@ const SingleReward: FC<{ rewardInfo: IRewardInfo }> = ({rewardInfo}) => {
 				return <h5 key={m.mncId} className="flex items-center">
 					{index + 1}. {m.lastname} {m.name} {m.patronymic}:
 					<span className="px-3">{m.sign ? "Подписано" : "Не подписано"}</span>
-					{(m.mncId == user?.id) &&
+					{(m.mncId == user?.id && !m.sign) &&
 						<button
 							className="btn-second"
 							onClick={() => putSignature(reward.id)}
