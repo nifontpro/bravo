@@ -3,6 +3,7 @@ import Meta from "@/core/utils/meta/Meta";
 import {IRewardInfo} from "../model/rewardInfo";
 import MedalCard from "./MedalCard";
 import {useAuthState} from "@/auth/data/auth.slice";
+import {rewardApi} from "../data/reward.api";
 
 export function formatTime(s: number): string {
 	const date = new Date(s)
@@ -17,6 +18,8 @@ const SingleReward: FC<{ rewardInfo: IRewardInfo }> = ({rewardInfo}) => {
 
 	const {reward, mncSignatures, allSignatures} = rewardInfo
 	const {user} = useAuthState()
+
+	const [putSignature] = rewardApi.usePutSignatureMutation()
 
 	return <Meta title={`Награждение ${reward.name}`} description={`Подробности награждения`}>
 		<div className="flex flex-col gap-4">
@@ -35,10 +38,16 @@ const SingleReward: FC<{ rewardInfo: IRewardInfo }> = ({rewardInfo}) => {
 				return <h5 key={m.mncId} className="flex items-center">
 					{index + 1}. {m.lastname} {m.name} {m.patronymic}:
 					<span className="px-3">{m.sign ? "Подписано" : "Не подписано"}</span>
-					{(m.mncId==user?.id) && <button className="btn-second">Подписать</button>}
+					{(m.mncId == user?.id) &&
+						<button
+							className="btn-second"
+							onClick={() => putSignature(reward.id)}
+						>
+							Подписать
+						</button>}
 				</h5>
 			})}
-
+			<h5>{allSignatures ? "Все подписи поставлены!" : "Не все подписали номинацию!"}</h5>
 		</div>
 	</Meta>
 }

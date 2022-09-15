@@ -20,6 +20,15 @@ export const rewardApi = createApi({
 			invalidatesTags: ['Reward']
 		}),
 
+		putSignature: build.mutation<void, string>({
+			query: (rewardId) => ({
+				method: 'PUT',
+				url: getRewardUrl("/signature"),
+				params: {rewardId}
+			}),
+			invalidatesTags: ['Reward']
+		}),
+
 		getUserRewards: build.query<IReward[], string>({
 			query: (userId) => ({
 				url: getRewardUrl("/user"),
