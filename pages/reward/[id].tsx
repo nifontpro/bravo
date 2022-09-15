@@ -6,10 +6,10 @@ import {errorCatch} from "@/core/utils/api.helpers";
 
 const SingleRewardPage: NextPage<{ id: string | undefined }> = ({id}) => {
 
-	const {data: reward} = rewardApi.useGetRewardByIdQuery(id || '', {skip: !id})
+	const {data: rewardInfo} = rewardApi.useGetRewardInfoQuery(id || '', {skip: !id})
 
-	return reward ?
-		<SingleReward reward={reward}/>
+	return rewardInfo ?
+		<SingleReward rewardInfo={rewardInfo}/>
 		:
 		<Error404/>
 }

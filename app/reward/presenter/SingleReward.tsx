@@ -1,18 +1,45 @@
 import {FC} from 'react'
-import {IReward} from "../model/reward.types";
 import Meta from "@/core/utils/meta/Meta";
-import Banner from "@/core/presenter/ui/banner/Banner";
+import {IRewardInfo} from "../model/rewardInfo";
+import MedalCard from "./MedalCard";
+import {useAuthState} from "@/auth/data/auth.slice";
 
-const SingleReward: FC<{ reward: IReward }> = ({reward}) => {
+export function formatTime(s: number): string {
+	const date = new Date(s)
+	return new Intl.DateTimeFormat('ru-RU',
+		{
+			year: 'numeric', month: 'long', day: 'numeric',
+			hour: "numeric", minute: "numeric"
+		}).format(date)
+}
+
+const SingleReward: FC<{ rewardInfo: IRewardInfo }> = ({rewardInfo}) => {
+
+	const {reward, mncSignatures, allSignatures} = rewardInfo
+	const {user} = useAuthState()
 
 	return <Meta title={`Награждение ${reward.name}`} description={`Подробности награждения`}>
-		Награждение: {reward.name}
-		<Banner
-			imagePath={reward.medal.imageUrl}
-			Detail={() => <div className="">
-				Детали награды
-			</div>}
-		/>
+		<div className="flex flex-col gap-4">
+			<h1>Награждение: {reward.name}</h1>
+			<MedalCard medal={reward.medal}/>
+			{reward.description &&
+				<h2>Описание: {rewardInfo.reward.description}</h2>
+			}
+			{reward.score &&
+				<h2>Ценность: {rewardInfo.reward.score}</h2>
+			}
+			<h5>Дата номинирования: <span>{formatTime(reward.dateNominee)}</span></h5>
+
+			Подписи членов номинационной комиссии:
+			{mncSignatures.map((m, index) => {
+				return <h5 key={m.mncId} className="flex items-center">
+					{index + 1}. {m.lastname} {m.name} {m.patronymic}:
+					<span className="px-3">{m.sign ? "Подписано" : "Не подписано"}</span>
+					{(m.mncId==user?.id) && <button className="btn-second">Подписать</button>}
+				</h5>
+			})}
+
+		</div>
 	</Meta>
 }
 

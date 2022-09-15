@@ -4,6 +4,35 @@
 
 @import 'app/core/presenter/styles/react-select';
 
+@layer base {
+	h1 {
+		@apply text-3xl font-extrabold;
+	}
+
+	h2 {
+		@apply text-2xl font-bold;
+	}
+
+	h3 {
+		@apply text-2xl font-semibold;
+	}
+
+	h4 {
+		@apply text-2xl font-normal;
+	}
+
+	h5 {
+		@apply text-2lg font-normal;
+	}
+
+	h6 {
+		@apply text-lg font-medium;
+	}
+	span {
+		@apply font-semibold;
+	}
+}
+
 html,
 body {
 	padding: 0;
@@ -21,6 +50,7 @@ body {
 		&:hover {
 			@apply hover:bg-opacity-90;
 		}
+
 		&:active {
 			@apply translate-y-[2px] translate-x-[2px];
 			//transform: translateY(2px)  translateX(2px);

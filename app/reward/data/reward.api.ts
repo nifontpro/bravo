@@ -3,6 +3,7 @@ import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {getRewardUrl} from "@/core/config/api.config";
 import {IdResponse} from "@/core/model/idResponse.types";
 import {INomineeRequest, IReward} from "../model/reward.types";
+import {IRewardInfo} from "../model/rewardInfo";
 
 export const rewardApi = createApi({
 	reducerPath: 'rewardApi',
@@ -30,6 +31,14 @@ export const rewardApi = createApi({
 		getRewardById: build.query<IReward, string>({
 			query: (rewardId) => ({
 				url: getRewardUrl(),
+				params: {rewardId}
+			}),
+			providesTags: ['Reward']
+		}),
+
+		getRewardInfo: build.query<IRewardInfo, string>({
+			query: (rewardId) => ({
+				url: getRewardUrl("/info"),
 				params: {rewardId}
 			}),
 			providesTags: ['Reward']

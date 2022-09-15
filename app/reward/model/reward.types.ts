@@ -12,11 +12,12 @@ export interface INomineeRequest {
 export interface IReward {
 	id: string
 	name: string
+	description?: string
 	score: number
 	dateNominee: number
-	dateActive: number
-	dateInactive: number
-	state: rewardState
+	dateActive?: number
+	dateInactive?: number
+	state: RewardState
 	userId: string
 	sourceId: string
 	companyId: string
@@ -25,19 +26,19 @@ export interface IReward {
 	medal: IMedal
 }
 
-export type rewardState = "NOMINEE" | "ACTIVE" | "INACTIVE"
+export type RewardState = "NOMINEE" | "ACTIVE" | "INACTIVE"
 
 interface ISignature {
 	mncId: string
 	date: number
 }
 
-export const getRewardState = (state: rewardState): string => {
+export const getRewardState = (state: RewardState): string => {
 	switch (state) {
 		case "NOMINEE":
 			return "Номинант: ";
 		case "ACTIVE":
-			return "";
+			return "Награжден: ";
 		case "INACTIVE":
 			return "Лишен: ";
 	}
