@@ -7,7 +7,7 @@ let x = 0
 
 const Chat: FC = () => {
 
-	const socketUrl = 'ws://localhost:8080/chat'
+	const socketUrl = 'ws://85.237.34.95:8080/chat'
 	const token = getAccessCookie()
 
 	const {
