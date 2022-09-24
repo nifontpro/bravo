@@ -5,7 +5,7 @@ import {API_SERVER_URL} from "@/core/config/api.config";
 
 let x = 0
 
-const Chat: FC = () => {
+const Chat2: FC = () => {
 	const socketUrl = `ws://85.237.34.95:8080/chat`
 	const token = getAccessCookie()
 	const ws = useRef<WebSocket>()
@@ -42,4 +42,4 @@ const Chat: FC = () => {
 	</div>
 }
 
-export default Chat
+export default Chat2

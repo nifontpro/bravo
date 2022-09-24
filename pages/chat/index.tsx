@@ -1,11 +1,11 @@
 import {NextPage} from "next";
 import AuthComponent from "@/core/providers/AuthProvider/AuthComponent";
-import Chat2 from "@/user/presenter/Chat2";
+import Chat from "@/user/presenter/Chat";
 
 const ChatPage: NextPage = () => {
 
 	return <AuthComponent minRole={"user"}>
-		<Chat2/>
+		<Chat/>
 	</AuthComponent>
 }
 
