@@ -29,6 +29,15 @@ export const rewardApi = createApi({
 			invalidatesTags: ['Reward']
 		}),
 
+		active: build.mutation<void, string>({
+			query: (rewardId) => ({
+				method: 'POST',
+				url: getRewardUrl("/active"),
+				params: {rewardId}
+			}),
+			invalidatesTags: ['Reward']
+		}),
+
 		getUserRewards: build.query<IReward[], string>({
 			query: (userId) => ({
 				url: getRewardUrl("/user"),
