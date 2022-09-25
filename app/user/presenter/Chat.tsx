@@ -1,31 +1,20 @@
 import React, {FC, useEffect, useState} from 'react'
-import useWebSocket from "react-use-websocket";
 import Button from "@/core/presenter/ui/form/Button";
-import {getAccessCookie} from "@/auth/data/auth.helper";
-
-let x = 0
+import {useAuthState} from "@/auth/data/auth.slice";
+// https://stackoverflow.com/questions/68263036/using-websockets-with-next-js
 
 const Chat: FC = () => {
 
-	const socketUrl = 'ws://85.237.34.95:8080/chat'
-	const token = getAccessCookie()
+	const {ws} = useAuthState()
 
-	const {
-		sendMessage,
-		sendJsonMessage,
-		lastMessage,
-		lastJsonMessage,
-		readyState,
-		getWebSocket,
-	} = useWebSocket(socketUrl, {
-		onOpen: () => {
-			console.log(`Client ${x++}: send token...`)
-			sendMessage(token || '-')
-		},
-		//Will attempt to reconnect on all close events, such as server shutting down
-		shouldReconnect: () => true,
-		share: false
-	})
+	useEffect(() => {
+		if (ws != null) {
+
+			ws.onmessage = (event) => {
+				console.log(event.data)
+			}
+		}
+	}, [ws])
 
 	const [text, setText] = useState("")
 
@@ -34,17 +23,10 @@ const Chat: FC = () => {
 		setText(value)
 	}
 
-	useEffect(() => {
-		console.log(lastMessage?.data)
-	}, [lastMessage])
-
-	useEffect(() => {
-	}, [])
-
 	return <div>
 		<input type="text" value={text} onChange={inputHandler} placeholder="message"/>
 		<Button onClick={() => {
-			sendMessage(text)
+			ws?.send(text)
 			setText("")
 		}
 		}>
