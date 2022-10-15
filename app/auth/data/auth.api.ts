@@ -52,8 +52,9 @@ export const refreshApi = createApi({
 	endpoints: (build) => ({
 		refresh: build.mutation<IAuthResponse, void>({
 			query: () => ({
+				method: 'POST',
 				url: getAuthUrl('/refresh'),
-				method: 'GET'
+				body: {filter: ""}
 			}),
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {
 				try {

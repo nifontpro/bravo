@@ -40,32 +40,36 @@ export const rewardApi = createApi({
 
 		getUserRewards: build.query<IReward[], string>({
 			query: (userId) => ({
+				method: 'POST',
 				url: getRewardUrl("/user"),
-				params: {userId}
+				body: {userId}
 			}),
 			providesTags: ['Reward']
 		}),
 
 		getRewardById: build.query<IReward, string>({
 			query: (rewardId) => ({
+				method: 'POST',
 				url: getRewardUrl(),
-				params: {rewardId}
+				body: {rewardId}
 			}),
 			providesTags: ['Reward']
 		}),
 
 		getRewardInfo: build.query<IRewardInfo, string>({
 			query: (rewardId) => ({
+				method: 'POST',
 				url: getRewardUrl("/info"),
-				params: {rewardId}
+				body: {rewardId}
 			}),
 			providesTags: ['Reward']
 		}),
 
 		getRewardCountByCompany: build.query<number, string>({
 			query: (companyId) => ({
+				method: 'POST',
 				url: getRewardUrl("/count_c"),
-				params: {companyId}
+				body: {companyId}
 			}),
 			providesTags: ['Reward']
 		}),

@@ -39,7 +39,7 @@ export const getRefreshCookie = () => {
 	return Cookies.get(REFRESH_TOKEN)
 }
 
-export const getAccessCookie = () => {
+export const getAccessTokenFromCookie = () => {
 	return Cookies.get(ACCESS_TOKEN)
 }
 

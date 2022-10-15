@@ -13,24 +13,27 @@ export const userApi = createApi({
 
 		getByDepartment: build.query<IUser[], string>({
 			query: (departmentId) => ({
+				method: 'POST',
 				url: getUserUrl('/department'),
-				params: {departmentId}
+				body: {departmentId}
 			}),
 			providesTags: ['User']
 		}),
 
 		getBosses: build.query<IUser[], string | undefined>({
 			query: (companyId) => ({
+				method: 'POST',
 				url: getUserUrl('/bosses'),
-				params: {companyId}
+				body: {companyId}
 			}),
 			providesTags: ['User']
 		}),
 
 		getById: build.query<IUser, string>({
 			query: (userId) => ({
+				method: 'POST',
 				url: getUserUrl(),
-				params: {userId}
+				body: {userId}
 			}),
 			providesTags: ['User']
 		}),
@@ -48,7 +51,7 @@ export const userApi = createApi({
 			query: userId => ({
 				method: 'DELETE',
 				url: getUserUrl(),
-				params: {userId}
+				body: {userId}
 			}),
 			invalidatesTags: ['User', 'Count']
 		}),
@@ -66,7 +69,7 @@ export const userApi = createApi({
 			query: (arg) => ({
 				method: 'PUT',
 				url: getUserUrl('/image/update'),
-				params: {userId: arg.userId},
+				params: {id: arg.userId},
 				body: arg.formData
 			}),
 			invalidatesTags: [{type: 'User'}]
@@ -74,16 +77,18 @@ export const userApi = createApi({
 
 		getCountByCompany: build.query<number, string>({
 			query: (companyId) => ({
+				method: 'POST',
 				url: getUserUrl("/count_c"),
-				params: {companyId}
+				body: {companyId}
 			}),
 			providesTags: ['Count']
 		}),
 
 		getCountByDepartment: build.query<number, string>({
 			query: (departmentId) => ({
+				method: 'POST',
 				url: getUserUrl("/count_d"),
-				params: {departmentId}
+				body: {departmentId}
 			}),
 			providesTags: ['Count']
 		}),

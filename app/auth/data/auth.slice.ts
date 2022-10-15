@@ -22,19 +22,9 @@ export const authSlice = createSlice({
 			state.user = action.payload.user
 			saveTokensToCookie(action.payload)
 		},
-		setWs: (state, action: PayloadAction<string>) => {
+		setWs: (state) => {
 			if (isBrowser) {
 				state.ws = new WebSocket(SOCKET_URL)
-				if (state.ws && isBrowser) {
-					state.ws.onopen = () => {
-						console.log("WS Connected!")
-						state.ws.send(action.payload)
-					}
-					/*ws.addEventListener('open', () => {
-						console.log("WS Connected!")
-						state.ws?.send(action.payload)
-					})*/
-				}
 			}
 		},
 		logout: (state) => {

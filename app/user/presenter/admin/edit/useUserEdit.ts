@@ -16,11 +16,11 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 
 	useEffect(() => {
 		if (isGetSuccess && user) {
-			setValue('firstname', user.name)
+			setValue('name', user.name)
 			setValue('patronymic', user.patronymic)
 			setValue('lastname', user.lastname)
 			setValue('login', user.login)
-			setValue('password', user.password || '')
+			setValue('password', user.password)
 			setValue('email', user.email)
 			setValue('isMNC', user.isMNC)
 		}

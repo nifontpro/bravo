@@ -10,21 +10,23 @@ import {IMedalUpdate} from "@/medal/presenter/admin/edit/medal-edit.type";
 export const medalApi = createApi({
 	reducerPath: 'medalApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['Medal','Count'],
+	tagTypes: ['Medal', 'Count'],
 	endpoints: (build) => ({
 
 		getByCompany: build.query<IMedal[], string>({
 			query: (companyId) => ({
-				url: getMedalUrl("/list"),
-				params: {companyId}
+				method: 'POST',
+				url: getMedalUrl("/get_company"),
+				body: {companyId}
 			}),
 			providesTags: ['Medal']
 		}),
 
 		getById: build.query<IMedal, string>({
 			query: (medalId) => ({
-				url: getMedalUrl(),
-				params: {medalId}
+				method: 'POST',
+				url: getMedalUrl("/get_id"),
+				body: {medalId}
 			}),
 			providesTags: [{type: 'Medal'}]
 			// providesTags: (result, error, id) => [{type: 'Medal', id}]
@@ -40,8 +42,9 @@ export const medalApi = createApi({
 
 		getByCompanyAdmin: build.query<ITableItem[], string>({
 			query: (companyId) => ({
-				url: getMedalUrl("/list"),
-				params: {companyId}
+				method: 'POST',
+				url: getMedalUrl("/get_company"),
+				body: {companyId}
 			}),
 			providesTags: ['Medal'],
 			transformResponse: (response: IMedal[]) =>
@@ -59,7 +62,7 @@ export const medalApi = createApi({
 					url: getMedalUrl('/create'),
 					body: {companyId, isSystem: false}
 				}),
-				invalidatesTags: ['Medal','Count']
+				invalidatesTags: ['Medal', 'Count']
 			}
 		),
 
@@ -67,16 +70,16 @@ export const medalApi = createApi({
 			query: medalId => ({
 				method: 'DELETE',
 				url: getMedalUrl(),
-				params: {medalId}
+				body: {medalId}
 			}),
-			invalidatesTags: ['Medal','Count']
+			invalidatesTags: ['Medal', 'Count']
 			// invalidatesTags: (result, error, id) => [{type: 'Medal', id}]
 		}),
 
 		update: build.mutation<void, IMedalUpdate>({
 			query: (medal) => ({
 				method: 'PUT',
-				url: getMedalUrl(),
+				url: getMedalUrl("/update"),
 				body: medal
 			}),
 			// invalidatesTags: (result, error, department) => [{type: 'Medal', id: department.id}]
@@ -86,8 +89,8 @@ export const medalApi = createApi({
 		updateImage: build.mutation<void, { medalId: string, formData: FormData }>({
 			query: (arg) => ({
 				method: 'PUT',
-				url: getMedalUrl('/image'),
-				params: {medalId: arg.medalId},
+				url: getMedalUrl('/update/image'),
+				params: {id: arg.medalId},
 				body: arg.formData
 			}),
 			invalidatesTags: [{type: 'Medal'}]
@@ -96,8 +99,9 @@ export const medalApi = createApi({
 
 		getCountByCompany: build.query<number, string>({
 			query: (companyId) => ({
-				url: getMedalUrl("/count"),
-				params: {companyId}
+				method: 'POST',
+				url: getMedalUrl("/count_c"),
+				body: {companyId}
 			}),
 			providesTags: ['Count'],
 		}),

@@ -15,21 +15,27 @@ export const companyApi = createApi({
 
 		getAll: build.query<ICompany[], void>({
 			query: () => ({
-				url: getCompanyUrl('/all')
+				method: 'POST',
+				url: getCompanyUrl('/all'),
+				body: {filter: ""}
 			}),
 			providesTags: [{type: 'Company'}]
 		}),
 
 		getByOwner: build.query<ICompany[], void>({
 			query: () => ({
-				url: getCompanyUrl('/owner')
+				method: 'POST',
+				url: getCompanyUrl('/owner'),
+				body: {filter: ""}
 			}),
 			providesTags: [{type: 'Company'}]
 		}),
 
 		getOwnerAdmin: build.query<ITableItem[], void>({
 			query: () => ({
-				url: getCompanyUrl('/owner')
+				method: 'POST',
+				url: getCompanyUrl('/owner'),
+				body: {filter: ""}
 			}),
 			providesTags: [{type: 'Company'}],
 			transformResponse: (response: ICompany[]) =>
@@ -44,6 +50,7 @@ export const companyApi = createApi({
 		create: build.mutation<IdResponse, void>({
 				query: () => ({
 					method: 'POST',
+					body: {ownerId: ""},
 					url: getCompanyUrl('/create')
 				}),
 				invalidatesTags: ['Company', 'Count']
@@ -54,15 +61,16 @@ export const companyApi = createApi({
 			query: companyId => ({
 				method: 'DELETE',
 				url: getCompanyUrl(),
-				params: {companyId}
+				body: {companyId}
 			}),
 			invalidatesTags: ['Company', 'Count']
 		}),
 
 		getById: build.query<ICompany, string>({
 			query: (companyId) => ({
-				url: getCompanyUrl(),
-				params: {companyId}
+				method: 'POST',
+				url: getCompanyUrl("/get_id"),
+				body: {companyId}
 			}),
 			providesTags: (result, error, id) => [{type: 'Company', id}]
 		}),
@@ -98,7 +106,7 @@ export const companyApi = createApi({
 			query: (arg) => ({
 				method: 'PUT',
 				url: getCompanyUrl('/image/update'),
-				params: {companyId: arg.companyId},
+				params: {id: arg.companyId},
 				body: arg.formData
 			}),
 			// invalidatesTags: (result, error, arg) => [{type: 'Company', id: arg.companyId}]
@@ -107,7 +115,9 @@ export const companyApi = createApi({
 
 		getCount: build.query<number, undefined>({
 			query: () => ({
+				method: 'POST',
 				url: getCompanyUrl('/count'),
+				body: {filter: ""}
 			}),
 			providesTags: ['Count']
 		}),

@@ -1,20 +1,11 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, useState} from 'react'
 import Button from "@/core/presenter/ui/form/Button";
-import {useAuthState} from "@/auth/data/auth.slice";
+import {useWebSocket} from "@/user/presenter/useWebSocket";
 // https://stackoverflow.com/questions/68263036/using-websockets-with-next-js
 
 const Chat: FC = () => {
 
-	const {ws} = useAuthState()
-
-	useEffect(() => {
-		if (ws != null) {
-
-			ws.onmessage = (event) => {
-				console.log(event.data)
-			}
-		}
-	}, [ws])
+	const {sendMessage} = useWebSocket()
 
 	const [text, setText] = useState("")
 
@@ -26,7 +17,7 @@ const Chat: FC = () => {
 	return <div>
 		<input type="text" value={text} onChange={inputHandler} placeholder="message"/>
 		<Button onClick={() => {
-			ws?.send(text)
+			sendMessage(text)
 			setText("")
 		}
 		}>

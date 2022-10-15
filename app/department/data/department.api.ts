@@ -15,16 +15,18 @@ export const departmentApi = createApi({
 
 		getByCompany: build.query<IDepartment[], string>({
 			query: (companyId) => ({
+				method: 'POST',
 				url: getDepartmentUrl('/list'),
-				params: {companyId}
+				body: {companyId}
 			}),
 			providesTags: ['Department']
 		}),
 
 		getById: build.query<IDepartment, string>({
 			query: (departmentId) => ({
-				url: getDepartmentUrl(),
-				params: {departmentId}
+				method: 'POST',
+				url: getDepartmentUrl("/get_id"),
+				body: {departmentId}
 			}),
 			providesTags: ['Department']
 			// providesTags: (result, error, id) => [{type: 'Department', id}]
@@ -32,8 +34,8 @@ export const departmentApi = createApi({
 
 		setById: build.mutation<IDepartment, string>({
 			query: (departmentId) => ({
-				method: 'GET',
-				url: getDepartmentUrl(),
+				method: 'POST',
+				url: getDepartmentUrl("/get_id"),
 				params: {companyId: departmentId}
 			}),
 			invalidatesTags: ['Department'],
@@ -49,8 +51,9 @@ export const departmentApi = createApi({
 
 		getAllAdmin: build.query<ITableItem[], string>({
 			query: (companyId) => ({
+				method: 'POST',
 				url: getDepartmentUrl('/list'),
-				params: {companyId}
+				body: {companyId}
 			}),
 			providesTags: ['Department'],
 			transformResponse: (response: IDepartment[]) =>
@@ -66,17 +69,18 @@ export const departmentApi = createApi({
 				query: (companyId) => ({
 					method: 'POST',
 					url: getDepartmentUrl('/create'),
-					params: {companyId}
+					body: {companyId}
 				}),
 				invalidatesTags: ['Department', 'Count']
 			}
 		),
 
+		// Ошибка: При удалении отдела, он остается выбранным по умолчанию
 		delete: build.mutation<void, string>({
 			query: departmentId => ({
 				method: 'DELETE',
 				url: getDepartmentUrl(),
-				params: {departmentId}
+				body: {departmentId}
 			}),
 			invalidatesTags: ['Department', 'Count']
 			// invalidatesTags: (result, error, id) => [{type: 'Department', id}]
@@ -96,7 +100,7 @@ export const departmentApi = createApi({
 			query: (arg) => ({
 				method: 'PUT',
 				url: getDepartmentUrl('/image/update'),
-				params: {departmentId: arg.departmentId},
+				params: {id: arg.departmentId},
 				body: arg.formData
 			}),
 			invalidatesTags: [{type: 'Department'}]
@@ -108,8 +112,9 @@ export const departmentApi = createApi({
 		 */
 		getCount: build.query<number, string>({
 			query: (companyId) => ({
+				method: 'POST',
 				url: getDepartmentUrl("/count"),
-				params: {companyId}
+				body: {companyId}
 			}),
 			providesTags: ['Department']
 			// providesTags: (result, error, id) => [{type: 'Department', id}]

@@ -5,14 +5,13 @@ import {getCompanyUrl} from "@/core/config/api.config";
 export const CompanyService = {
 
 	async getAll() {
-		return await axiosCore.get<ICompany[]>(getCompanyUrl('/all'))
+		return await axiosCore.post<ICompany[]>(getCompanyUrl('/all'),
+			{filter: ""})
 	},
 
 	async getById(id: string) {
-		return axiosCore.get<ICompany>(getCompanyUrl(), {
-			params: {
-				companyId: id
-			}
+		return axiosCore.post<ICompany>(getCompanyUrl("/get_id"), {
+			companyId: id
 		})
 	}
 }

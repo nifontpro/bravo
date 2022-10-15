@@ -1,14 +1,29 @@
 import {toast} from "react-toastify";
 
+export interface IContextError {
+	code: string
+	group: string
+	field: string
+	message: string
+}
+
+export const listError = (error: any): string[] => {
+	if (typeof error?.data === 'object' && error?.data?.type == "multiError") {
+		const errors = error.data.errors as IContextError[]
+		return errors.map((error) => (
+			error.message
+		))
+	}
+	return ["Неизвестная ошибка"]
+}
 export const toastError = (error: any, title?: string) => {
 
-
-	const message = error?.data?.message
-	const msg = message ? `: ${message}` : ''
-
+	const messages = listError(error)
 	const ttl = title || 'Ошибка запроса'
-	toast.error(`${ttl} ${msg}`)
-	// throw message
+	messages.map(message => {
+			toast.error(`${ttl} ${message}`)
+		}
+	)
 }
 
 /*

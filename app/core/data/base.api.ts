@@ -2,7 +2,7 @@ import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@redu
 import {API_SERVER_URL} from "../config/api.config";
 import {IAuthResponse} from "@/auth/model/auth.types";
 import {authActions} from "@/auth/data/auth.slice";
-import {getAccessCookie, getRefreshCookie} from "@/auth/data/auth.helper";
+import {getAccessTokenFromCookie, getRefreshCookie} from "@/auth/data/auth.helper";
 
 export const baseQuery = fetchBaseQuery({
 	baseUrl: API_SERVER_URL,
@@ -12,7 +12,7 @@ const accessQuery = fetchBaseQuery({
 	baseUrl: API_SERVER_URL,
 	prepareHeaders: (headers) => {
 		// const token = (getState() as TypeRootState).auth.accessToken
-		const token = getAccessCookie()
+		const token = getAccessTokenFromCookie()
 		if (token) {
 			headers.set("authorization", `Bearer ${token}`)
 		}
@@ -37,7 +37,9 @@ export const queryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBase
 
 		if (result.error && result.error.status === 401) {
 
-			const refreshResult = await refreshQuery('/auth/refresh', api, extraOptions)
+			const refreshResult = await refreshQuery(
+				{method: 'POST', url: '/auth/refresh', body: {filter: ""}}, api, extraOptions
+			)
 			if (refreshResult?.data) {
 				const refreshResponse = refreshResult.data as IAuthResponse
 				api.dispatch(authActions.setState(refreshResponse))
