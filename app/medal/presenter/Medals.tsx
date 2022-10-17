@@ -10,16 +10,16 @@ const Medals: FC<{ company: ICompany }> = ({company}) => {
 	const {data: medals, isLoading} = medalApi.useGetByCompanyQuery(company.id)
 
 	return (
-		<Meta title="Награды">
-			<Heading title={`Все награды компании ${company.name}`}/>
+		<Meta title="Медали">
+			<Heading title={`Компания ${company.name}`}/>
 
 			{isLoading ? <p>Загрузка...</p>
 				:
 				<Catalog
 					data={medals || []}
 					prefix='/medal'
-					title="Награды сотрудников"
-					description={`Награды, созданные в компании ${company.name}`}
+					title="Медали"
+					description={`Медали, созданные в компании ${company.name}`}
 				/>
 			}
 		</Meta>

@@ -5,8 +5,8 @@ import {TypeRoles} from "@/auth/model/auth.roles";
 const mStat: INavItem = {title: 'Статистика', link: getAdminHomeUrl()}
 const mCompany: INavItem = {title: 'Компании', link: getAdminUrl('company')}
 const mDepartment: INavItem = {title: 'Отделы', link: getAdminUrl('department')}
-const mUser: INavItem = {title: 'Пользователи', link: getAdminUrl('user')}
-const mMedal: INavItem = {title: 'Награды', link: getAdminUrl('medal')}
+const mUser: INavItem = {title: 'Сотрудники', link: getAdminUrl('user')}
+const mMedal: INavItem = {title: 'Медали', link: getAdminUrl('medal')}
 
 
 export const navItems = (role?: TypeRoles): INavItem[] => {

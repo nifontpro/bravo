@@ -6,13 +6,13 @@ import styles from "@/core/presenter/ui/form/form.module.scss";
 
 const SingleMedal: FC<{ medal: IMedal }> = ({medal}) => {
 
-	return <Meta title={medal.name} description={`Награда ${medal.name}`}>
+	return <Meta title={medal.name} description={`Медаль ${medal.name}`}>
 		<Banner
 			imagePath={medal.imageUrl}
 			Detail={() => null}
 		/>
 		<div className={styles.singleEntity}>
-			<h1>Наименование награды: {medal.name}</h1>
+			<h1>Наименование: {medal.name}</h1>
 			<h2>Описание: {medal.description}</h2>
 			<h2>Ценность: {medal.score}</h2>
 		</div>

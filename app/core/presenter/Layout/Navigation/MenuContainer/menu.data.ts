@@ -29,7 +29,7 @@ const itemUser: IMenuItem = {
 const itemMedals: IMenuItem = {
 	icon: 'MdHotelClass',
 	link: '/medal',
-	title: 'Награды в компании',
+	title: 'Медали',
 }
 
 export const firstMenu: IMenu = {

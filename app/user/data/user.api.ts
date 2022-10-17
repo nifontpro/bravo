@@ -38,6 +38,15 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
+		getBests: build.query<IUser[], { companyId: string, limit: number }>({
+			query: (body) => ({
+				method: 'POST',
+				url: getUserUrl('/best'),
+				body: body
+			}),
+			providesTags: ['User']
+		}),
+
 		create: build.mutation<IdResponse, IUserCreate>({
 			query: (user) => ({
 				method: 'POST',
