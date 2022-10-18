@@ -6,7 +6,7 @@ import {useMyUser} from "@/user/presenter/useMyUsers";
 
 const Users: FC = () => {
 
-	const {users, isLoading} = useMyUser()
+	const {users, isLoading} = useMyUser("")
 
 	return <Meta title="Сотрудники">
 		<Heading title={`Вы и Ваши сотрудники`}/>

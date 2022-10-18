@@ -4,16 +4,16 @@ import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
 import {getAdminUrl} from "@/core/config/url.config";
 import {useRouter} from "next/router";
-// import {useDebounce} from "@/core/hooks/useDebounce";
+import {useDebounce} from "@/core/hooks/useDebounce";
 
 export const useMedalAdmin = (companyId: string) => {
 	const [searchTerm, setSearchTerm] = useState('')
-	// const debouncedSearch = useDebounce(searchTerm, 1000)
+	const filter = useDebounce(searchTerm, 1000)
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
 
-	const {isLoading, data: medals} = medalApi.useGetByCompanyAdminQuery(companyId)
+	const {isLoading, data: medals} = medalApi.useGetByCompanyAdminQuery({companyId, filter})
 	const [createMedal] = medalApi.useCreateMutation()
 	const [deleteMedal] = medalApi.useDeleteMutation()
 

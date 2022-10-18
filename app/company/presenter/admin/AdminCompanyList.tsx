@@ -11,7 +11,7 @@ const AdminCompanyList: FC = () => {
 		<AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} onClick={createAsync}/>
 		<AdminTable
 			tableItems={companies || []}
-			headerItems={['Название', 'Информация', 'Рейтинг']}
+			headerItems={['Название', 'Информация', 'Id']}
 			isLoading={isLoading}
 			removeHandler={deleteAsync}
 		/>

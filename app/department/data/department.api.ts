@@ -16,7 +16,7 @@ export const departmentApi = createApi({
 		getByCompany: build.query<IDepartment[], string>({
 			query: (companyId) => ({
 				method: 'POST',
-				url: getDepartmentUrl('/list'),
+				url: getDepartmentUrl('/get_company'),
 				body: {companyId}
 			}),
 			providesTags: ['Department']
@@ -49,11 +49,11 @@ export const departmentApi = createApi({
 			},
 		}),
 
-		getAllAdmin: build.query<ITableItem[], string>({
-			query: (companyId) => ({
+		getByCompanyAdmin: build.query<ITableItem[], { companyId: string, filter: string }>({
+			query: (body) => ({
 				method: 'POST',
-				url: getDepartmentUrl('/list'),
-				body: {companyId}
+				url: getDepartmentUrl('/get_company'),
+				body: body
 			}),
 			providesTags: ['Department'],
 			transformResponse: (response: IDepartment[]) =>

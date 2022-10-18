@@ -6,7 +6,7 @@ import {userApi} from "@/user/data/user.api";
 import {getAdminUrl} from "@/core/config/url.config";
 import {useMyUser} from "@/user/presenter/useMyUsers";
 import {IUser} from "@/user/model/user.types";
-// import {useDebounce} from "@/core/hooks/useDebounce";
+import {useDebounce} from "@/core/hooks/useDebounce";
 
 function usersToTable(data: IUser[]): ITableItem[] {
 	return data?.map(user => ({
@@ -22,14 +22,14 @@ function usersToTable(data: IUser[]): ITableItem[] {
 
 export const useUserAdmin = () => {
 	const [searchTerm, setSearchTerm] = useState('')
-	// const debouncedSearch = useDebounce(searchTerm, 1000)
+	const debouncedSearch = useDebounce(searchTerm, 1000)
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
-	
-	const {users, isLoading} = useMyUser()
+
+	const {users, isLoading} = useMyUser(debouncedSearch)
 	const tableUsers = usersToTable(users)
-	
+
 	const [deleteUser] = userApi.useDeleteMutation()
 
 	return useMemo(

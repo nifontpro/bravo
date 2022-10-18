@@ -1,5 +1,5 @@
 import {ChangeEvent, useMemo, useState} from "react";
-// import {useDebounce} from "@/core/hooks/useDebounce";
+import {useDebounce} from "@/core/hooks/useDebounce";
 import {departmentApi} from "@/department/data/department.api";
 import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
@@ -8,13 +8,12 @@ import {useRouter} from "next/router";
 
 export const useDepartmentAdmin = (companyId: string) => {
 	const [searchTerm, setSearchTerm] = useState('')
-	// const debouncedSearch = useDebounce(searchTerm, 1000)
+	const filter = useDebounce(searchTerm, 1000)
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
 
-	const {isLoading, data: departments} = departmentApi.useGetAllAdminQuery(companyId)
-
+	const {isLoading, data: departments} = departmentApi.useGetByCompanyAdminQuery({companyId, filter})
 	const [createDepartment] = departmentApi.useCreateMutation()
 	const [deleteDepartment] = departmentApi.useDeleteMutation()
 

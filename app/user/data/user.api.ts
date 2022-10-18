@@ -11,20 +11,20 @@ export const userApi = createApi({
 	tagTypes: ['User', 'Reward', 'Count'],
 	endpoints: (build) => ({
 
-		getByDepartment: build.query<IUser[], string>({
-			query: (departmentId) => ({
+		getByDepartment: build.query<IUser[], { departmentId: string, filter: string }>({
+			query: (body) => ({
 				method: 'POST',
-				url: getUserUrl('/department'),
-				body: {departmentId}
+				url: getUserUrl('/get_department'),
+				body: body
 			}),
 			providesTags: ['User']
 		}),
 
-		getBosses: build.query<IUser[], string | undefined>({
-			query: (companyId) => ({
+		getBosses: build.query<IUser[], { companyId: string | undefined, filter: string }>({
+			query: (body) => ({
 				method: 'POST',
-				url: getUserUrl('/bosses'),
-				body: {companyId}
+				url: getUserUrl('/get_bosses'),
+				body: body
 			}),
 			providesTags: ['User']
 		}),
@@ -32,7 +32,7 @@ export const userApi = createApi({
 		getById: build.query<IUser, string>({
 			query: (userId) => ({
 				method: 'POST',
-				url: getUserUrl(),
+				url: getUserUrl('get_id'),
 				body: {userId}
 			}),
 			providesTags: ['User']
@@ -41,7 +41,7 @@ export const userApi = createApi({
 		getBests: build.query<IUser[], { companyId: string, limit: number }>({
 			query: (body) => ({
 				method: 'POST',
-				url: getUserUrl('/best'),
+				url: getUserUrl('/get_best'),
 				body: body
 			}),
 			providesTags: ['User']

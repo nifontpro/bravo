@@ -40,11 +40,11 @@ export const medalApi = createApi({
 			providesTags: ['Medal']
 		}),
 
-		getByCompanyAdmin: build.query<ITableItem[], string>({
-			query: (companyId) => ({
+		getByCompanyAdmin: build.query<ITableItem[], { companyId: string, filter: string }>({
+			query: (body) => ({
 				method: 'POST',
 				url: getMedalUrl("/get_company"),
-				body: {companyId}
+				body: body
 			}),
 			providesTags: ['Medal'],
 			transformResponse: (response: IMedal[]) =>

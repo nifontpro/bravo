@@ -31,11 +31,11 @@ export const companyApi = createApi({
 			providesTags: [{type: 'Company'}]
 		}),
 
-		getOwnerAdmin: build.query<ITableItem[], void>({
-			query: () => ({
+		getOwnerAdmin: build.query<ITableItem[], string | undefined>({
+			query: (filter) => ({
 				method: 'POST',
 				url: getCompanyUrl('/owner'),
-				body: {filter: ""}
+				body: {filter}
 			}),
 			providesTags: [{type: 'Company'}],
 			transformResponse: (response: ICompany[]) =>

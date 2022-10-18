@@ -1,19 +1,19 @@
 import {ChangeEvent, useMemo, useState} from "react";
-// import {useDebounce} from "@/core/hooks/useDebounce";
 import {companyApi} from "@/company/data/company.api";
 import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
 import {useRouter} from "next/router";
 import {getAdminUrl} from "@/core/config/url.config";
+import {useDebounce} from "@/core/hooks/useDebounce";
 
 export const useCompanyAdmin = () => {
 	const [searchTerm, setSearchTerm] = useState('')
-	// const debouncedSearch = useDebounce(searchTerm, 1000)
+	const debouncedSearch = useDebounce(searchTerm, 1000)
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
 
-	const {isLoading, data: companies} = companyApi.useGetOwnerAdminQuery()
+	const {isLoading, data: companies} = companyApi.useGetOwnerAdminQuery(debouncedSearch)
 	const [createCompany] = companyApi.useCreateMutation()
 	const [deleteCompany] = companyApi.useDeleteMutation()
 

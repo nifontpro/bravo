@@ -7,18 +7,18 @@ import {IUser} from "@/user/model/user.types";
 /**
  * Возвращает список руководителей компаний и сотрудников отдела
  */
-export const useMyUser = () => {
+export const useMyUser = (filter: string) => {
 
 	const {currentCompany} = useCompanyState()
 	const {currentDepartment} = useDepartmentState()
 	let depUsers: IUser[] = []
 
 	if (currentDepartment) {
-		const {data: _depUsers} = userApi.useGetByDepartmentQuery(currentDepartment.id)
+		const {data: _depUsers} = userApi.useGetByDepartmentQuery({departmentId: currentDepartment.id, filter})
 		depUsers = _depUsers || []
 	}
 
-	const {isLoading, data: _bosses} = userApi.useGetBossesQuery(currentCompany?.id)
+	const {isLoading, data: _bosses} = userApi.useGetBossesQuery({companyId: currentCompany?.id, filter})
 	const bosses = _bosses || []
 	const users = bosses.concat(depUsers)
 
