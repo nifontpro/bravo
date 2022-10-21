@@ -32,7 +32,7 @@ export const userApi = createApi({
 		getById: build.query<IUser, string>({
 			query: (userId) => ({
 				method: 'POST',
-				url: getUserUrl('get_id'),
+				url: getUserUrl('/get_id'),
 				body: {userId}
 			}),
 			providesTags: ['User']
@@ -74,16 +74,6 @@ export const userApi = createApi({
 			invalidatesTags: ['User']
 		}),
 
-		updateImage: build.mutation<void, { userId: string, formData: FormData }>({
-			query: (arg) => ({
-				method: 'PUT',
-				url: getUserUrl('/image/update'),
-				params: {id: arg.userId},
-				body: arg.formData
-			}),
-			invalidatesTags: [{type: 'User'}]
-		}),
-
 		getCountByCompany: build.query<number, string>({
 			query: (companyId) => ({
 				method: 'POST',
@@ -100,6 +90,16 @@ export const userApi = createApi({
 				body: {departmentId}
 			}),
 			providesTags: ['Count']
+		}),
+
+		updateImage: build.mutation<void, { userId: string, formData: FormData }>({
+			query: (arg) => ({
+				method: 'PUT',
+				url: getUserUrl('/image/update'),
+				params: {id: arg.userId},
+				body: arg.formData
+			}),
+			invalidatesTags: [{type: 'User'}]
 		}),
 
 	})
