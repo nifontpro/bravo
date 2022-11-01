@@ -92,6 +92,7 @@ export const userApi = createApi({
 			providesTags: ['Count']
 		}),
 
+		// Удалить в будущем
 		updateImage: build.mutation<void, { userId: string, formData: FormData }>({
 			query: (arg) => ({
 				method: 'PUT',
@@ -102,5 +103,48 @@ export const userApi = createApi({
 			invalidatesTags: [{type: 'User'}]
 		}),
 
+		/**
+		 * Обновленная версия работы со множеством изображений сущности
+		 */
+
+		/**
+		 * Добавление изображения
+		 * @param: formData: imageUrl:file, userId, description
+		 */
+		imageAdd: build.mutation<void, FormData>({
+			query: (formData) => ({
+				method: 'POST',
+				url: getUserUrl('/image'),
+				body: formData
+			}),
+			invalidatesTags: [{type: 'User'}]
+		}),
+
+		/**
+		 * Обновление изображения
+		 * @param: formData: imageUrl:file, userId, imageId, description
+		 */
+		imageUpdate: build.mutation<void, { userId: string, imageId: string, formData: FormData }>({
+			query: (arg) => ({
+				method: 'PUT',
+				url: getUserUrl('/image'),
+				params: {entityId: arg.userId, imageId: arg.imageId},
+				body: arg.formData
+			}),
+			invalidatesTags: [{type: 'User'}]
+		}),
+
+		/**
+		 * Удаление изображения
+		 * @param: userId, imageId
+		 */
+		imageDelete: build.mutation<void, { userId: string, imageId: string }>({
+			query: (arg) => ({
+				method: 'DELETE',
+				url: getUserUrl('/image'),
+				body: {entityId: arg.userId, imageId: arg.imageId},
+			}),
+			invalidatesTags: [{type: 'User'}]
+		}),
 	})
 })

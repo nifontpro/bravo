@@ -9,8 +9,10 @@ type ImageDefaultProps = Omit<ImageProps, "src"> & {
 }
 
 const imageLoader = ({src}: ImageLoaderProps) => {
-	return `${BASE_URL}/${src}`
-	// return `https://medals.nifontbus.keenetic.pro/${src}`
+	return src.split(":")[0] == 'https' ?
+		src
+		:
+		`${BASE_URL}/${src}`
 }
 
 export const ImageDefault: FC<ImageDefaultProps> = (
@@ -22,8 +24,7 @@ export const ImageDefault: FC<ImageDefaultProps> = (
 	return src ?
 		<Image
 			className={className}
-			// src={src ? src : 'profile_pictures/default.jpg'}
-			src={src ? src : 'profile_pictures/default.jpg'}
+			src={src}
 			alt={alt}
 			width={width}
 			height={height}
