@@ -11,8 +11,8 @@ const Home: NextPage<{ companies: ICompany[] | undefined }> = ({companies}) => {
 		<Catalog
 			data={companies || []}
 			prefix='/company'
-			title="Компании ${APP_SERVER_URL}"
-			description={`Компании, зарегистрированные в приложении`}
+			title="Компании"
+			description='Компании, зарегистрированные в приложении'
 		/>
 	);
 };
