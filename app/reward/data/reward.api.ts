@@ -24,7 +24,7 @@ export const rewardApi = createApi({
 			query: (rewardId) => ({
 				method: 'PUT',
 				url: getRewardUrl("/signature"),
-				params: {rewardId}
+				body: {rewardId}
 			}),
 			invalidatesTags: ['Reward']
 		}),
@@ -33,7 +33,7 @@ export const rewardApi = createApi({
 			query: (rewardId) => ({
 				method: 'POST',
 				url: getRewardUrl("/active"),
-				params: {rewardId}
+				body: {rewardId}
 			}),
 			invalidatesTags: ['Reward']
 		}),

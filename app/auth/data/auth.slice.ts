@@ -3,7 +3,6 @@ import {IAuthResponse} from "@/auth/model/auth.types";
 import {removeLocalData, saveTokensToCookie} from "@/auth/data/auth.helper";
 import {useTypedSelector} from "@/core/hooks/useTypedSelector";
 import {IUser} from "@/user/model/user.types";
-import {SOCKET_URL} from "@/core/config/api.config";
 
 interface IAuthState {
 	user?: IUser
