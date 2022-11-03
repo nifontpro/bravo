@@ -1,19 +1,18 @@
 import {FC} from "react";
 import {ImageProps} from "next/dist/client/image";
-import Image, {ImageLoaderProps} from "next/image";
-import {BASE_URL} from "@/core/config/api.config";
+import Image from "next/image";
 import defaultImage from '@/core/presenter/images/defSvg.svg'
 
 type ImageDefaultProps = Omit<ImageProps, "src"> & {
 	src?: string
 }
 
-const imageLoader = ({src}: ImageLoaderProps) => {
+/*const imageLoader = ({src}: ImageLoaderProps) => {
 	return src.split(":")[0] == 'https' ?
 		src
 		:
 		`${BASE_URL}/${src}`
-}
+}*/
 
 export const ImageDefault: FC<ImageDefaultProps> = (
 	{
@@ -32,7 +31,8 @@ export const ImageDefault: FC<ImageDefaultProps> = (
 			draggable={draggable}
 			priority={priority}
 			objectFit={objectFit}
-			loader={imageLoader}/>
+			// loader={imageLoader}
+		/>
 		:
 		<Image
 			src={defaultImage}
