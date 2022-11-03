@@ -10,7 +10,7 @@ const nextConfig = {
     APP_SERVER_URL: process.env.REACT_APP_SERVER_URL
   },
   images : {
-    domains: ['192.168.1.106', 'https://medals.nifontbus.keenetic.pro/']
+    domains: ['https://medalist.storage.yandexcloud.net/']
   }
 }
 
