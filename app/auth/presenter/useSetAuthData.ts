@@ -24,7 +24,7 @@ export const useSetAuthData = () => {
 				if ((user.role == "director" || user.role == "user") && user.departmentId) {
 					setDepartment(user.departmentId)
 				}
-				dispatch(authSlice.actions.setWs()) // Открываем сокет
+				// dispatch(authSlice.actions.setWs()) // Открываем сокет
 			}
 			return {setAuthData}
 		}, [dispatch, setCompany, setDepartment]

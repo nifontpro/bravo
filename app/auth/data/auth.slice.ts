@@ -22,11 +22,11 @@ export const authSlice = createSlice({
 			state.user = action.payload.user
 			saveTokensToCookie(action.payload)
 		},
-		setWs: (state) => {
-			if (isBrowser) {
-				state.ws = new WebSocket(SOCKET_URL)
-			}
-		},
+		// setWs: (state) => {
+		// 	if (isBrowser) {
+		// 		state.ws = new WebSocket(SOCKET_URL)
+		// 	}
+		// },
 		logout: (state) => {
 			state.user = undefined
 			if (state.ws?.readyState != 3) {
