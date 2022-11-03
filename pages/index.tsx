@@ -12,7 +12,7 @@ const Home: NextPage<{ companies: ICompany[] | undefined }> = ({companies}) => {
 			data={companies || []}
 			prefix='/company'
 			title="Компании ${APP_SERVER_URL}"
-			description={`Компании, зарегистрированные в приложении ${process.env.APP_SERVER_URL}`}
+			description={`Компании, зарегистрированные в приложении`}
 		/>
 	);
 };
