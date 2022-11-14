@@ -1,4 +1,5 @@
 import {TypeRoles} from "@/auth/model/auth.roles";
+import {ImageRef} from "@/core/model/image.types";
 
 export interface IUser {
 	id: string
@@ -10,6 +11,7 @@ export interface IUser {
 	lastname?: string
 	role: TypeRoles
 	imageUrl?: string
+	images? : ImageRef[]
 	bio?: string,
 	isMNC: boolean,
 	companyId?: string

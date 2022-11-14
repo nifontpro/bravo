@@ -92,6 +92,7 @@ export const companyApi = createApi({
 			},
 		}),
 
+
 		update: build.mutation<void, ICompany>({
 			query: (company) => ({
 				method: 'PUT',
