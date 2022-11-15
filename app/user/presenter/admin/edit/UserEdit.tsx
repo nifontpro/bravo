@@ -168,7 +168,7 @@ const UserEdit: FC = () => {
                   <label>
                     <div>
                       <span>Добавить изображение</span>
-                      <input type='file' onChange={onImageAdd} />
+                      <input type="file" {...register("file")} onChange={onImageAdd} />
                     </div>
                   </label>
                 </div>
