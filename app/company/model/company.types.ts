@@ -5,5 +5,5 @@ export interface ICompany {
 	name: string
 	description?: string
 	imageUrl?: string
-	images? : ImageRef[]
+	images : ImageRef[]
 }

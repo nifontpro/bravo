@@ -106,5 +106,48 @@ export const medalApi = createApi({
 			providesTags: ['Count'],
 		}),
 
+		/**
+		 * Обновленная версия работы со множеством изображений сущности
+		 */
+
+		/**
+		 * Добавление изображения
+		 * @param: formData: imageUrl:file, medalId, description
+		 */
+		imageAdd: build.mutation<void, FormData>({
+			query: (formData) => ({
+				method: 'POST',
+				url: getMedalUrl('/image'),
+				body: formData
+			}),
+			invalidatesTags: [{type: 'Medal'}]
+		}),
+
+		/**
+		 * Обновление изображения
+		 * @param: formData: imageUrl:file, medalId, imageKey, description
+		 */
+		imageUpdate: build.mutation<void, FormData>({
+			query: (formData) => ({
+				method: 'PUT',
+				url: getMedalUrl('/image'),
+				body: formData
+			}),
+			invalidatesTags: [{type: 'Medal'}]
+		}),
+
+		/**
+		 * Удаление изображения
+		 * @param: medalId, imageKey
+		 */
+		imageDelete: build.mutation<void, { medalId: string, imageKey: string }>({
+			query: (body) => ({
+				method: 'DELETE',
+				url: getMedalUrl('/image'),
+				body: body
+			}),
+			invalidatesTags: [{type: 'Medal'}]
+		}),
+
 	})
 })
