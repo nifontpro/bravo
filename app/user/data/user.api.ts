@@ -4,6 +4,7 @@ import {IUser, IUserCreate} from "@/user/model/user.types";
 import {getUserUrl} from "@/core/config/api.config";
 import {IdResponse} from "@/core/model/idResponse.types";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
+import { ImageRef } from "@/core/model/image.types";
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
@@ -119,6 +120,22 @@ export const userApi = createApi({
 			}),
 			invalidatesTags: [{type: 'User'}]
 		}),
+
+		/**
+		 * Обновление изображения АРТЕМ ! ! !
+		 * @param: formData: imageUrl:file, userId, imageId, description
+		 */
+
+		 imagesAdd: build.mutation<void, ImageRef>({
+			query: (formData) => ({
+				method: 'POST',
+				url: getUserUrl('/images'),
+				body: formData
+			}),
+			invalidatesTags: [{type: 'User'}]
+		}),
+
+
 
 		/**
 		 * Обновление изображения

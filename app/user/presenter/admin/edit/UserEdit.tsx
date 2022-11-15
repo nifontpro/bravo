@@ -25,6 +25,7 @@ const UserEdit: FC = () => {
     mode: 'onChange',
   });
 
+  const [image, setImage] = useState<string | undefined>(undefined);
   const [imagesArtem, setImageArtem] = useState<ImageRef[] | undefined>(
     undefined
   );
@@ -54,8 +55,8 @@ const UserEdit: FC = () => {
 
   const handleRemove = () => {
     if (imagesArtem !== undefined) {
-      if (imagesArtem.length == 1) {
-        console.log('Нельзя удалить последнее изображение');
+      if (imagesArtem.length < 1) {
+        console.log('Вернулось к старому');
       } else {
         imagesArtem.splice(numberUrl, 1);
         setImageArtem(imagesArtem);
@@ -74,6 +75,7 @@ const UserEdit: FC = () => {
         let arr = [...imagesArtem];
         arr?.unshift(obj);
         setImageArtem(arr);
+		console.log(arr)
         setNumberUrl(0);
       }
     }
@@ -83,9 +85,11 @@ const UserEdit: FC = () => {
 
   useEffect(() => {
     setImageArtem(user?.images);
+	setImage(user?.imageUrl);
   }, [user]);
 
-  console.log(user)
+//   console.log(user);
+//   console.log(imagesArtem);
 
   return (
     <Meta title='Редактирование профиля сотрудника'>
@@ -99,33 +103,47 @@ const UserEdit: FC = () => {
           <>
             <div className='flex justify-center items-center my-10'>
               <div className='mr-10 relative'>
-                {imagesArtem && <ImageDefault
-                  src={imagesArtem[numberUrl].imageUrl}
-                  width={150}
-                  height={150}
-                  alt='preview image'
-                  objectFit='cover'
-                  className='rounded-[10px]'
-                /> }
-
-                <div
-                  onClick={handleNext}
-                  className='absolute right-0 top-[45%] cursor-pointer bg-black text-white'
-                >
-                  Next
-                </div>
-                <div
-                  onClick={handlePrev}
-                  className='absolute left-0 top-[45%] cursor-pointer bg-black text-white'
-                >
-                  Prev
-                </div>
-                <div
-                  onClick={handleRemove}
-                  className='absolute right-0 top-0 cursor-pointer bg-black text-white'
-                >
-                  Remove
-                </div>
+                {imagesArtem && imagesArtem.length > 0 ? (
+                  <>
+                    <ImageDefault
+                      src={imagesArtem[numberUrl].imageUrl}
+                      // src={image}
+                      width={150}
+                      height={150}
+                      alt='preview image'
+                      objectFit='cover'
+                      className='rounded-[10px]'
+                    />
+                    <div
+                      onClick={handleNext}
+                      className='absolute right-0 top-[45%] cursor-pointer bg-black text-white'
+                    >
+                      Next
+                    </div>
+                    <div
+                      onClick={handlePrev}
+                      className='absolute left-0 top-[45%] cursor-pointer bg-black text-white'
+                    >
+                      Prev
+                    </div>
+                    <div
+                      onClick={handleRemove}
+                      className='absolute right-0 top-0 cursor-pointer bg-black text-white'
+                    >
+                      Remove
+                    </div>
+                  </>
+                ) : (
+                  <ImageDefault
+                    //   src={imagesArtem[numberUrl].imageUrl}
+                    src={image}
+                    width={150}
+                    height={150}
+                    alt='preview image'
+                    objectFit='cover'
+                    className='rounded-[10px]'
+                  />
+                )}
               </div>
 
               <div className={cn(styles.field, styles.uploadField)}>
@@ -133,7 +151,11 @@ const UserEdit: FC = () => {
                   <label>
                     <div>
                       <span>Добавить изображение</span>
-                      <input type="file" {...register("file")} onChange={onImageAdd} />
+                      <input
+                        type='file'
+                        {...register('images')}
+                        onChange={onImageAdd}
+                      />
                     </div>
                   </label>
                 </div>
