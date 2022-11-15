@@ -126,14 +126,14 @@ export const userApi = createApi({
 		 * @param: formData: imageUrl:file, userId, imageId, description
 		 */
 
-		 imagesAdd: build.mutation<void, ImageRef>({
-			query: (formData) => ({
-				method: 'POST',
-				url: getUserUrl('/images'),
-				body: formData
-			}),
-			invalidatesTags: [{type: 'User'}]
-		}),
+		//  imagesAdd: build.mutation<void, ImageRef>({
+		// 	query: (formData) => ({
+		// 		method: 'POST',
+		// 		url: getUserUrl('/images'),
+		// 		body: formData
+		// 	}),
+		// 	invalidatesTags: [{type: 'User'}]
+		// }),
 
 
 

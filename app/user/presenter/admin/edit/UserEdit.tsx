@@ -66,18 +66,18 @@ const UserEdit: FC = () => {
   };
 
   const onImageAdd = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      let obj: ImageRef = {
-        imageUrl: URL.createObjectURL(event.target.files[0]),
-        imageKey: uniqid(),
-      };
-      if (imagesArtem !== undefined) {
-        let arr = [...imagesArtem];
-        arr?.unshift(obj);
-        setImageArtem(arr);
-		console.log(arr)
-        setNumberUrl(0);
+    if (event.target.files != undefined && imagesArtem !== undefined) {
+      let arr = [...imagesArtem];
+      for (let i = 0; i < event.target.files.length; i++) {
+        let obj: ImageRef = {
+          imageUrl: URL.createObjectURL(event.target.files.item(i)!),
+          imageKey: uniqid(),
+          description: event.target.files.item(i)!.type,
+        };
+        arr.unshift(obj);
       }
+      setImageArtem(arr);
+      setNumberUrl(0);
     }
   };
 
@@ -85,11 +85,11 @@ const UserEdit: FC = () => {
 
   useEffect(() => {
     setImageArtem(user?.images);
-	setImage(user?.imageUrl);
+    setImage(user?.imageUrl);
   }, [user]);
 
-//   console.log(user);
-//   console.log(imagesArtem);
+    // console.log(user);
+  //   console.log(imagesArtem);
 
   return (
     <Meta title='Редактирование профиля сотрудника'>
@@ -152,8 +152,9 @@ const UserEdit: FC = () => {
                     <div>
                       <span>Добавить изображение</span>
                       <input
+                        multiple
                         type='file'
-                        {...register('images')}
+                        {...register('file')}
                         onChange={onImageAdd}
                       />
                     </div>
