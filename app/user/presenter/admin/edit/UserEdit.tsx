@@ -25,25 +25,6 @@ const UserEdit: FC = () => {
     mode: 'onChange',
   });
 
-  // Слайдер фото для фото профиля НАЧАЛО
-
-//   const exampleImages: ImageRef[] = [
-//     {
-//       imageUrl:
-//         'https://fanibani.ru/images/wp-content/uploads/2021/01/image181-15-960x720.jpg',
-//       imageKey: '1-1-1',
-//     },
-//     {
-//       imageUrl: 'https://coolsen.ru/wp-content/uploads/2021/06/15-8.jpg',
-//       imageKey: '2-2-2',
-//     },
-//     {
-//       imageUrl:
-//         'https://pixelbox.ru/wp-content/uploads/2020/12/ava-vk-cats-76.jpg',
-//       imageKey: '2-2-2',
-//     },
-//   ];
-
   const [imagesArtem, setImageArtem] = useState<ImageRef[] | undefined>(
     undefined
   );
@@ -97,26 +78,11 @@ const UserEdit: FC = () => {
       }
     }
   };
-  // Слайдер фото для фото профиля КОНЕЦ
 
   const { user, isLoading, onSubmit } = useUserEdit(setValue);
-//   const images = { ...user };
-
-//   const [image, setImage] = useState<string | undefined>(undefined);
-
-//   const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-//     if (event.target.files && event.target.files[0]) {
-//       setImage(URL.createObjectURL(event.target.files[0]));
-//     }
-//   };
-
-//   useEffect(() => {
-//     setImage(user?.imageUrl);
-//   }, [user]);
 
   useEffect(() => {
     setImageArtem(user?.images);
-    // console.log('useEffect')
   }, [user]);
 
   console.log(user)
@@ -134,7 +100,6 @@ const UserEdit: FC = () => {
             <div className='flex justify-center items-center my-10'>
               <div className='mr-10 relative'>
                 {imagesArtem && <ImageDefault
-				{...register('images', {required: 'Ajn необходимо!'})}
                   src={imagesArtem[numberUrl].imageUrl}
                   width={150}
                   height={150}
