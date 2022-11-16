@@ -1,0 +1,12 @@
+.editPhoto {
+    @apply flex justify-center mt-10
+
+}
+
+.photos {
+    @apply mr-10 relative w-[300px] h-[300px]
+}
+
+.input {
+    @apply flex justify-center items-center my-10
+}

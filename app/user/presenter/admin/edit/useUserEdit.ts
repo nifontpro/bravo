@@ -32,40 +32,39 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 
   const onSubmit: SubmitHandler<IUserEditInput> = async (data) => {
     let isError = false;
-    console.log(data);
 
-    // const fileData = data.file[0]
-    // 		if (fileData) {
-    // 			const formData = new FormData()
-    // 			formData.append("imageUrl", fileData)
-    // 			console.log(formData)
-    // 		}
+    const fileData = data.file[0];
+    if (fileData) {
+      const formData = new FormData();
+      formData.append('imageUrl', fileData);
+      console.log(formData);
+    }
 
-    // await update({ id: userId, ...data })
-    //   .unwrap()
-    //   .then(async () => {
-    //     const fileData = data.file[0];
-    //     if (fileData) {
-    //       const formData = new FormData();
-    //       formData.append('imageUrl', fileData);
-    //       console.log(formData);
-    //       await updateImage({ userId, formData })
-    //         .unwrap()
-    //         .catch(() => {
-    //           isError = true;
-    //           toast.error('Ошибка обновления фото сотрудника');
-    //         });
-    //     }
-    //   })
-    //   .catch(() => {
-    //     isError = true;
-    //     toast.error('Ошибка обновления профиля сотрудника');
-    //   });
+    await update({ id: userId, ...data })
+      .unwrap()
+      .then(async () => {
+        const fileData = data.file[0];
+        if (fileData) {
+          const formData = new FormData();
+          formData.append('imageUrl', fileData);
+          console.log(formData);
+          await updateImage({ userId, formData })
+            .unwrap()
+            .catch(() => {
+              isError = true;
+              toast.error('Ошибка обновления фото сотрудника');
+            });
+        }
+      })
+      .catch(() => {
+        isError = true;
+        toast.error('Ошибка обновления профиля сотрудника');
+      });
 
-    // if (!isError) {
-    //   toast.success('Профиль сотрудника успешно обновлен');
-    //   await push(getAdminUrl('user'));
-    // }
+    if (!isError) {
+      toast.success('Профиль сотрудника успешно обновлен');
+      await push(getAdminUrl('user'));
+    }
   };
 
   return { onSubmit, isLoading, user };
