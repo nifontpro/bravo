@@ -10,13 +10,14 @@ export interface IUser {
 	patronymic?: string
 	lastname?: string
 	role: TypeRoles
-	imageUrl?: string
-	imageKey?: string
-	images: ImageRef[]
 	bio?: string,
 	isMNC: boolean,
 	companyId?: string
 	departmentId?: string
+
+	imageUrl?: string
+	imageKey?: string
+	images: ImageRef[]
 }
 
 export interface IUserCreate extends Omit<IUser, 'id' | 'imageUrl' | 'imageKey' | 'images'> {
