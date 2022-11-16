@@ -75,6 +75,7 @@ const UserEdit: FC = () => {
           description: event.target.files.item(i)!.type,
         };
         arr.unshift(obj);
+		console.log(arr)
       }
       setImageArtem(arr);
       setNumberUrl(0);
