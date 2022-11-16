@@ -51,9 +51,9 @@ const UserCreate: FC = () => {
 				/>
 
 				<Field
-					{...register('firstname', {required: 'Имя необходимо!'})}
+					{...register('name', {required: 'Имя необходимо!'})}
 					placeholder='Имя'
-					error={errors.firstname}
+					error={errors.name}
 					style={{width: '31%'}}
 				/>
 

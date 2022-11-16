@@ -11,13 +11,13 @@ export interface IUser {
 	lastname?: string
 	role: TypeRoles
 	imageUrl?: string
-	images : ImageRef[]
+	imageKey?: string
+	images: ImageRef[]
 	bio?: string,
 	isMNC: boolean,
 	companyId?: string
 	departmentId?: string
 }
 
-export interface IUserCreate extends Omit<IUser, 'id' | 'name' | 'imageUrl'> {
-	firstname: string
+export interface IUserCreate extends Omit<IUser, 'id' | 'imageUrl' | 'imageKey' | 'images'> {
 }
