@@ -139,27 +139,26 @@ export const userApi = createApi({
 
 		/**
 		 * Обновление изображения
-		 * @param: formData: imageUrl:file, userId, imageId, description
+		 * @param: formData: imageUrl:file, userId, imageKey, description
 		 */
-		imageUpdate: build.mutation<void, { userId: string, imageId: string, formData: FormData }>({
-			query: (arg) => ({
+		imageUpdate: build.mutation<void, FormData>({
+			query: (formData) => ({
 				method: 'PUT',
 				url: getUserUrl('/image'),
-				params: {entityId: arg.userId, imageId: arg.imageId},
-				body: arg.formData
+				body: formData
 			}),
 			invalidatesTags: [{type: 'User'}]
 		}),
 
 		/**
 		 * Удаление изображения
-		 * @param: userId, imageId
+		 * @param: userId, imageKey
 		 */
-		imageDelete: build.mutation<void, { userId: string, imageId: string }>({
-			query: (arg) => ({
+		imageDelete: build.mutation<void, { userId: string, imageKey: string }>({
+			query: (body) => ({
 				method: 'DELETE',
 				url: getUserUrl('/image'),
-				body: {entityId: arg.userId, imageId: arg.imageId},
+				body: body
 			}),
 			invalidatesTags: [{type: 'User'}]
 		}),

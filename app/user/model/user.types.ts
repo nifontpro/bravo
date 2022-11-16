@@ -11,7 +11,7 @@ export interface IUser {
 	lastname?: string
 	role: TypeRoles
 	imageUrl?: string
-	images? : ImageRef[] 
+	images : ImageRef[]
 	bio?: string,
 	isMNC: boolean,
 	companyId?: string

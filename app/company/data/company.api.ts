@@ -122,5 +122,48 @@ export const companyApi = createApi({
 			}),
 			providesTags: ['Count']
 		}),
+
+		/**
+		 * Обновленная версия работы со множеством изображений сущности
+		 */
+
+		/**
+		 * Добавление изображения
+		 * @param: formData: imageUrl:file, companyId, description
+		 */
+		imageAdd: build.mutation<void, FormData>({
+			query: (formData) => ({
+				method: 'POST',
+				url: getCompanyUrl('/image'),
+				body: formData
+			}),
+			invalidatesTags: [{type: 'Company'}]
+		}),
+
+		/**
+		 * Обновление изображения
+		 * @param: formData: imageUrl:file, companyId, imageKey, description
+		 */
+		imageUpdate: build.mutation<void, FormData>({
+			query: (formData) => ({
+				method: 'PUT',
+				url: getCompanyUrl('/image'),
+				body: formData
+			}),
+			invalidatesTags: [{type: 'Company'}]
+		}),
+
+		/**
+		 * Удаление изображения
+		 * @param: companyId, imageKey
+		 */
+		imageDelete: build.mutation<void, { companyId: string, imageKey: string }>({
+			query: (body) => ({
+				method: 'DELETE',
+				url: getCompanyUrl('/image'),
+				body: body
+			}),
+			invalidatesTags: [{type: 'Company'}]
+		}),
 	})
 })

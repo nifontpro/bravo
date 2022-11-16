@@ -4,7 +4,7 @@ export interface IMedal {
 	name: string
 	description?: string
 	imageUrl?: string
-	images? : ImageRef[]
+	images : ImageRef[]
 	score?: number
 	companyId?: string
 	isSystem: boolean

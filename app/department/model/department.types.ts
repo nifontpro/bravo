@@ -4,7 +4,7 @@ export interface IDepartment {
 	name: string
 	description?: string
 	imageUrl?: string
-	images? : ImageRef[]
+	images : ImageRef[]
 	companyId: string
 	id: string
 }

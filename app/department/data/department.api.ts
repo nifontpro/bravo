@@ -119,5 +119,49 @@ export const departmentApi = createApi({
 			providesTags: ['Department']
 			// providesTags: (result, error, id) => [{type: 'Department', id}]
 		}),
+
+		/**
+		 * Обновленная версия работы со множеством изображений сущности
+		 */
+
+		/**
+		 * Добавление изображения
+		 * @param: formData: imageUrl:file, departmentId, description
+		 */
+		imageAdd: build.mutation<void, FormData>({
+			query: (formData) => ({
+				method: 'POST',
+				url: getDepartmentUrl('/image'),
+				body: formData
+			}),
+			invalidatesTags: [{type: 'Department'}]
+		}),
+
+		/**
+		 * Обновление изображения
+		 * @param: formData: imageUrl:file, departmentId, imageKey, description
+		 */
+		imageUpdate: build.mutation<void, FormData>({
+			query: (formData) => ({
+				method: 'PUT',
+				url: getDepartmentUrl('/image'),
+				body: formData
+			}),
+			invalidatesTags: [{type: 'Department'}]
+		}),
+
+		/**
+		 * Удаление изображения
+		 * @param: departmentId, imageKey
+		 */
+		imageDelete: build.mutation<void, { departmentId: string, imageKey: string }>({
+			query: (body) => ({
+				method: 'DELETE',
+				url: getDepartmentUrl('/image'),
+				body: body
+			}),
+			invalidatesTags: [{type: 'Department'}]
+		}),
+
 	})
 })
