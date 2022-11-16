@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { ImageProps } from 'next/dist/client/image';
 import Image from 'next/image';
-import defaultImage from '@/core/presenter/images/defSvg.svg';
+import DefaultImage from '@/core/presenter/images/defSvg.svg';
 
 type ImageDefaultProps = Omit<ImageProps, 'src'> & {
-  src?: string;
+  src?: string ;
 };
 
 /*const imageLoader = ({src}: ImageLoaderProps) => {
@@ -39,15 +39,16 @@ export const ImageDefault: FC<ImageDefaultProps> = ({
       // loader={imageLoader}
     />
   ) : (
-    <Image
-      src={defaultImage}
-      width={width}
-      height={height}
-      alt='Default'
-      draggable={false}
-      layout={layout}
-      priority={priority}
-      objectFit={objectFit}
-    />
+    // <Image
+    //   src={DefaultImage}
+    //   width={width}
+    //   height={height}
+    //   alt='Default'
+    //   draggable={false}
+    //   layout={layout}
+    //   priority={priority}
+    //   objectFit={objectFit}
+    // />
+    <DefaultImage className={`w-[${width}] h-[${height}]`}/>
   );
 };

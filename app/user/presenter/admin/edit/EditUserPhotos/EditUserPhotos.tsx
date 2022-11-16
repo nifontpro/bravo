@@ -57,18 +57,15 @@ const EditUserPhotos = ({
 
   const onImageAdd = async (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files != undefined && imagesArtem !== undefined) {
-      // let imageUrl: string = URL.createObjectURL(event.target.files[0]!);
-      // console.log(event.target.files[0]);
-      // console.log(imageUrl);
+      const formData = new FormData();
       let description: string = event.target.files[0]!.type;
-      setNumberUrl(0);
-      await addImage({
-        userId: userId,
-        imageUrl: event.target.files[0],
-        description: description,
-      }).unwrap();
+      formData.append('imageUrl', event.target.files[0]);
+      formData.append('userId', userId);
+      formData.append('description', description);
+      await addImage(formData).unwrap()
+      ;
     }
-  };
+  }
 
   return (
     <div className={cn(className, styles.editPhoto)} {...props}>
@@ -77,7 +74,6 @@ const EditUserPhotos = ({
           <>
             <ImageDefault
               src={imagesArtem[numberUrl].imageUrl}
-              // src={image}
               width={300}
               height={300}
               alt='preview image'
@@ -105,7 +101,6 @@ const EditUserPhotos = ({
           </>
         ) : (
           <ImageDefault
-            //   src={imagesArtem[numberUrl].imageUrl}
             src={image}
             width={300}
             height={300}
