@@ -25,7 +25,7 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyEditInput>) => 
 
 		let isError = false
 
-		await update({id: companyId, name: data.name, description: data.description})
+		await update({id: companyId, ...data})
 			.unwrap()
 			.then(async () => {
 				const fileData = data.file[0]

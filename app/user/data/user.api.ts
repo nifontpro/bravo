@@ -57,7 +57,7 @@ export const userApi = createApi({
 			invalidatesTags: ['User', 'Count']
 		}),
 
-		delete: build.mutation<void, string>({
+		delete: build.mutation<IUser, string>({
 			query: userId => ({
 				method: 'DELETE',
 				url: getUserUrl(),

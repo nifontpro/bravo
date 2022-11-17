@@ -28,7 +28,7 @@ export const useMedalEdit = (setValue: UseFormSetValue<IMedalEditInput>) => {
 			let isError = false
 			const medalUpdate: IMedalUpdate = {
 				id: medal.id,
-				companyId: medal.companyId+'08',
+				companyId: medal.companyId,
 				name: data.name,
 				description: data.description,
 				score: data.score

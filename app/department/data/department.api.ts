@@ -6,6 +6,7 @@ import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table
 import {getAdminUrl} from "@/core/config/url.config";
 import {departmentActions} from "@/department/data/department.slice";
 import {IdResponse} from "@/core/model/idResponse.types";
+import {IDepartmentUpdateRequest} from "@/department/presenter/admin/edit/department-edit.type";
 
 export const departmentApi = createApi({
 	reducerPath: 'departmentApi',
@@ -86,7 +87,7 @@ export const departmentApi = createApi({
 			// invalidatesTags: (result, error, id) => [{type: 'Department', id}]
 		}),
 
-		update: build.mutation<void, IDepartment>({
+		update: build.mutation<void, IDepartmentUpdateRequest>({
 			query: (department) => ({
 				method: 'PUT',
 				url: getDepartmentUrl('/update'),
