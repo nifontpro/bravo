@@ -13,7 +13,11 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
         <LogoIcon className={styles.logo} />
       </Link>
       <Search className={styles.search} />
-      <div className={styles.user}>Меню пользователя</div>
+      <div className={styles.user}>
+        <div className={styles.userComponent}></div>
+        <div className={styles.userComponent}></div>
+        <div className={styles.userComponent}></div>
+      </div>
     </header>
   );
 };

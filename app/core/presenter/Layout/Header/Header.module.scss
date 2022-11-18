@@ -14,5 +14,16 @@
 
   > .user {
     grid-column: startUser / endUser;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+
+    > .userComponent {
+        border-radius: 10px;
+        width: 64px;
+        height: 64px;
+        background: var(--gray-light);
+    }
   }
 }
