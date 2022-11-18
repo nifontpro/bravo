@@ -3,7 +3,6 @@ import cn from 'classnames';
 import { HeaderProps } from './Header.props';
 import LogoIcon from './logo.svg';
 import Link from 'next/link';
-import Input from '../../ui/Input/Input';
 import Search from '../../ui/Search/Search';
 
 const Header = ({ className, ...props }: HeaderProps): JSX.Element => {

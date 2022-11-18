@@ -40,8 +40,8 @@ body {
 	//font-family: 'Comfortaa', sans-serif !important;
 	//font-family: 'Philosopher', sans-serif !important;
 	font-family: 'Manrope', sans-serif !important;
-
-	@apply bg-gray-200 text-black;
+	background: var(--gray);
+	@apply  text-black;
 }
 
 @layer components {

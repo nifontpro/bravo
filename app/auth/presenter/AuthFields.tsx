@@ -9,7 +9,7 @@ interface IAuthFields {
 	formState: FormState<IAuthInput>
 	isPasswordRequired?: boolean
 }
-
+ 
 const AuthFields: FC<IAuthFields> =
 	({register, formState: {errors}, isPasswordRequired = false}) => {
 		return (
@@ -22,11 +22,11 @@ const AuthFields: FC<IAuthFields> =
 							message: 'Please enter a valid email address'
 						}
 					})}
-					placeholder='E-mail'
+					placeholder='Ваш email'
 					error={errors.email}
 				/>
 
-				<Field
+				{/* <Field
 					{...register('password', isPasswordRequired ? {
 						required: 'Password is required',
 						minLength: {
@@ -37,7 +37,7 @@ const AuthFields: FC<IAuthFields> =
 					placeholder='Password'
 					type='password'
 					error={errors.password}
-				/>
+				/> */}
 			</>
 		);
 	};
