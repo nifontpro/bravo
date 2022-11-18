@@ -1,0 +1,54 @@
+.button {
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  border-radius: 12px;
+
+  font-weight: 700;
+  font-size: 14.8307px;
+  line-height: 20px;
+
+  cursor: pointer;
+  @apply py-[18px];
+}
+
+.white {
+  border: 1px solid #000000;
+  color: var(--gray-dark);
+  background: var(--white);
+  opacity: 0.3;
+}
+
+.gray {
+  color: var(--gray-light);
+  background: var(--gray-dark);
+  opacity: 0.3;
+}
+
+.blackWhite {
+  color: var(--gray-light);
+  background: var(--gray-dark);
+}
+
+.blackGray {
+  color: var(--gray-light);
+  background: var(--gray-dark);
+  border: 1px solid #F6F6F6;
+}
+
+.s {
+  @apply px-[40px];
+}
+
+.m {
+  @apply px-[50px];
+}
+
+.l {
+  @apply px-[80px];
+}
+
+.x {
+  @apply px-[110px];
+}

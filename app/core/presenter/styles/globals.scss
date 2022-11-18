@@ -39,7 +39,7 @@ body {
 	margin: 0;
 	//font-family: 'Comfortaa', sans-serif !important;
 	//font-family: 'Philosopher', sans-serif !important;
-	font-family: 'Montserrat', sans-serif !important;
+	font-family: 'Manrope', sans-serif !important;
 
 	@apply bg-gray-200 text-black;
 }
@@ -69,7 +69,10 @@ a {
 
 :root {
 	--black: #101010;
+	--white: #FFFFFF;
 	--gray: #D8D8D8;
+	--gray-light: #F6F6F6;
+	--gray-dark: #101010;
 	// --gray-light: #EBEBEB;
 	// --gray-dark: #787D85;
 	// --gray: #A4A4A4;
@@ -80,7 +83,7 @@ a {
 	// --red-light: #fea291;
 	// --green: #1DC37E;
 	// --green-light: #C8F8E4;
-	// --font-family: "Noto Sans", sans-serif;
+	--font-family: 'Manrope', sans-serif;
 	--primary-color: #22EAEF;
 }
 

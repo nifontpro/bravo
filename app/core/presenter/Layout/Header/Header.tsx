@@ -3,6 +3,8 @@ import cn from 'classnames';
 import { HeaderProps } from './Header.props';
 import LogoIcon from './logo.svg';
 import Link from 'next/link';
+import Input from '../../ui/Input/Input';
+import Search from '../../ui/Search/Search';
 
 const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   return (
@@ -10,7 +12,7 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
       <Link href='/'>
         <LogoIcon className={styles.logo} />
       </Link>
-      <div className={styles.search}>Поиск</div>
+      <Search className={styles.search} />
       <div className={styles.user}>Меню пользователя</div>
     </header>
   );
