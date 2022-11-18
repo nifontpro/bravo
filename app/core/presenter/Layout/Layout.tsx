@@ -8,6 +8,7 @@ import Modal from "@/core/presenter/Layout/Modal";
 import {useDispatch} from "react-redux";
 import {modalActions, useModalState} from "@/core/store/modal.slice";
 import MaterialIcon from "@/core/presenter/ui/icons/MaterialIcon";
+import Header from './Header/Header';
 
 const Layout: FC<PropsWithChildren> = ({children}) => {
 
@@ -21,7 +22,8 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 	return (
 		<div className={styles.layout}>
 
-			<Navigation/>
+			<Header className={styles.header}/> 
+			<Navigation className={styles.navigation}/>
 
 			{/*---------------------------------------------------------*/}
 			<div className={cn(styles.center, {[styles.auth]: user})}>
@@ -55,12 +57,12 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
 
 			{/*---------------------------------------------------------*/}
 
-			{
+			{/* {
 				user ?
 					<Sidebar/>
 					:
 					null
-			}
+			} */}
 		</div>
 	)
 }

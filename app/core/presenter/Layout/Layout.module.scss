@@ -1,32 +1,27 @@
 //$bar-width: 20%;
 
 .layout {
-	@apply relative;
-	> div:nth-child(1), > div:nth-child(3) {
-		@apply hidden my:flex my:flex-col fixed top-0 bottom-0 overflow-y-auto w-72;
-		//width: $bar-width;
-		max-width: 350px;
-	}
+  background: var(--black);
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  //   gap: 40px 30px;
+  grid-template-areas:
+    'header header'
+    'navigation center';
+  //   @apply relative;
 
-	> div:first-child {
-		@apply bg-brown left-0 border-r border-r-gray-800;
-	}
+  > .header {
+    grid-area: header;
+  }
 
-	//Если авторизованный пользователь
-	> .auth {
-		@apply my:mr-72;
-	}
+  > .navigation {
+    grid-area: navigation;
+  }
 
-	> .center {
-		@apply p-4 my:p-layout text-center my:ml-72;
-		//margin: 0 $bar-width;
-/*		@media (min-width: 768px) {
-			margin-left: $bar-width;
-			margin-right: $bar-width;
-		}*/
-	}
-
-	> div:nth-child(3) {
-		@apply flex-col h-full justify-center bg-gray-300 text-center right-0 border-l border-l-gray-800;
-	}
+  > .center {
+    background: var(--gray);
+    grid-area: center;
+  }
 }

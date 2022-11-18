@@ -15,7 +15,7 @@ const Logo: FC = () => {
 					alt="Медалист"
 					draggable={false}
 				/> */}
-				<LogoImage className='w-[300px] h-[80px]'/>
+				<LogoImage className='w-[200px] mt-2'/>
 			</a>
 		</Link>
 	)

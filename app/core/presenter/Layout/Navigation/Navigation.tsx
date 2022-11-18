@@ -8,7 +8,7 @@ const Navigation: FC<{ className?: string}> =
 	({className}) => {
 		return (
 			<div className={cn(styles.navigation, className)}>
-				<Logo/>
+				{/* <Logo/> */}
 				<MenuContainer/>
 			</div>
 		)
