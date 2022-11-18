@@ -1,9 +1,6 @@
 .search {
-  position: relative;
-  display: grid;
   grid-template-columns: 1fr auto;
-  gap: 30px;
-  align-items: center;
+  @apply grid relative gap-[30px] items-center
 }
 
 // .input input {

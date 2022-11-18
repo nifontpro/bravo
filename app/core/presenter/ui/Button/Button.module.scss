@@ -1,16 +1,5 @@
 .button {
-  display: inline-block;
-  box-sizing: border-box;
-  text-align: center;
-  border: none;
-  border-radius: 12px;
-
-  font-weight: 700;
-  font-size: 14.8307px;
-  line-height: 20px;
-
-  cursor: pointer;
-  @apply py-[18px];
+  @apply py-[18px] cursor-pointer text-[15px] font-bold leading-[20px] rounded-[12px] border-none text-center box-border inline-block;
 }
 
 .white {
