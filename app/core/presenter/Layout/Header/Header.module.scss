@@ -5,7 +5,7 @@
 
   > .logo {
     grid-column: start / endNavigation;
-    @apply self-center;
+    @apply self-center cursor-pointer;
   }
 
   > .search {

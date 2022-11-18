@@ -19,7 +19,7 @@ const MenuItem: FC<{ item: IMenuItem }> = ({item}) => {
 	}
 
 	return (
-		<li className={cn({[styles.active]: asPath === item.link})}>
+		<li className={cn(styles.menuItem, {[styles.active]: asPath === item.link})}>
 			<Link href={item.link}>
 				<a onClick={handleClick}>
 					<MaterialIcon name={item.icon}/>

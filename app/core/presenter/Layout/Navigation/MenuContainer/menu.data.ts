@@ -5,7 +5,7 @@ export const menuTitle = 'Меню'
 const itemHome: IMenuItem = {
 	icon: 'MdHome',
 	link: '/',
-	title: 'Главная',
+	title: 'Сводка',
 }
 
 const itemCompany: IMenuItem = {
@@ -29,7 +29,7 @@ const itemUser: IMenuItem = {
 const itemMedals: IMenuItem = {
 	icon: 'MdHotelClass',
 	link: '/medal',
-	title: 'Медали',
+	title: 'Награды',
 }
 
 export const firstMenu: IMenu = {
@@ -43,10 +43,10 @@ export const firstMenuOwner: IMenu = {
 	title: menuTitle,
 	items: [
 		itemHome,
+		itemMedals,
 		itemCompany,
 		itemDepartment,
 		itemUser,
-		itemMedals
 	],
 }
 

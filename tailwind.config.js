@@ -15,13 +15,15 @@ module.exports = {
 		extend: {
 			colors: {
 				primary,
-				black: colors.black,
+				black: '#101010',
 				white: colors.white,
 				transparent: colors.transparent,
 				secondary: '#22EAEF',
 				variant: '#ECEF81',
 				brown: '#D6BE47',
 				rosy: '#F2977E',
+				gray_middle: '#F1F1F1',
+				gray_dark: '#101010',
 			},
 			screens: {
 				'my': '900px',
