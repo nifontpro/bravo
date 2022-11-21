@@ -13,6 +13,8 @@ import { useSetAuthData } from '@/auth/presenter/useSetAuthData';
 import LogoIcon from './logo.svg';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import Button from '@/core/presenter/ui/Button/Button';
+import P from '@/core/presenter/ui/P/P';
+import SendUsIcon from './sendUs.svg';
 
 const Auth: FC = () => {
   useAuthRedirect();
@@ -59,13 +61,14 @@ const Auth: FC = () => {
   return (
     <Meta title='Auth'>
       <section className={styles.wrapper}>
-
         <div className={styles.logo}>
           <LogoIcon />
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <Htag tag='h1' className={styles.title}>Вход</Htag>
+          <Htag tag='h1' className={styles.title}>
+            Вход
+          </Htag>
           <AuthFields
             formState={formState}
             register={registerInput}
@@ -73,15 +76,25 @@ const Auth: FC = () => {
           />
 
           <div className={styles.buttons}>
+            {/* <Button
+              appearance='blackWhite'
+              size='l'
+              onClick={() => setType('login')}
+              disabled={isLoading}
+            >
+              Войти
+            </Button> */}
 
             <Button
               appearance='blackWhite'
-			  size='l'
+              size='l'
               onClick={() => setType('login')}
               disabled={isLoading}
             >
               Продолжить
             </Button>
+
+
             {/* <Button
               type='submit'
               onClick={() => setType('register')}
@@ -91,6 +104,12 @@ const Auth: FC = () => {
             </Button> */}
           </div>
         </form>
+
+        <a href="mailto:example@htmlbook.ru" className={styles.sendUs}>
+          <SendUsIcon className={styles.sendIcon}/>
+          <P>Написать нам</P>
+        </a>
+        
       </section>
     </Meta>
   );
