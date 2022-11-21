@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {FormState, UseFormRegister} from "react-hook-form";
 import {IAuthInput} from "@/auth/model/auth.interface";
-import Field from "@/core/presenter/ui/form/Field";
+import Field from "@/core/presenter/ui/form/Field/Field";
 import {validEmail} from "@/core/utils/regex";
 
 interface IAuthFields {
