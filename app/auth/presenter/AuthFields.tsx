@@ -26,7 +26,7 @@ const AuthFields: FC<IAuthFields> =
 					error={errors.email}
 				/>
 
-				{/* <Field
+				<Field
 					{...register('password', isPasswordRequired ? {
 						required: 'Password is required',
 						minLength: {
@@ -37,7 +37,7 @@ const AuthFields: FC<IAuthFields> =
 					placeholder='Password'
 					type='password'
 					error={errors.password}
-				/> */}
+				/>
 			</>
 		);
 	};

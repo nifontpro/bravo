@@ -11,7 +11,7 @@ const itemHome: IMenuItem = {
 const itemCompany: IMenuItem = {
 	icon: 'MdAccountBalance',
 	link: '/company',
-	title: 'Мои компании',
+	title: 'Отделы и сотрудники',
 }
 
 const itemDepartment: IMenuItem = {

@@ -1,0 +1,47 @@
+.wrapper {
+  margin-top: 90px;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+
+  > .content {
+    grid-column: 2 / 3;
+
+    > .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      align-items: center;
+
+      > .choice {
+        display: flex;
+
+        > .choices {
+          cursor: pointer;
+          padding-bottom: 15px;
+          margin-right: 60px;
+          // border-bottom: 3px solid transparent;
+        }
+
+        > .underline {
+          border-bottom: 3px solid var(--black);
+        }
+      }
+
+      > .new {
+        display: flex;
+
+        > .newDepartment {
+          display: flex;
+          align-items: center;
+          margin-right: 40px;
+        }
+
+        > .newUser {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

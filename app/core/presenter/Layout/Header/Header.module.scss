@@ -16,14 +16,26 @@
     grid-column: startUser / endUser;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr auto;
     gap: 10px;
+    align-items: center;
 
     > .userComponent {
-        border-radius: 10px;
-        width: 64px;
-        height: 64px;
-        background: var(--gray-light);
+      border-radius: 10px;
+      width: 64px;
+      height: 64px;
+      background: var(--gray-light);
+    }
+
+    > a {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      > svg {
+        width: 32px;
+        height: 32px;
+        fill: white;
+      }
     }
   }
 }

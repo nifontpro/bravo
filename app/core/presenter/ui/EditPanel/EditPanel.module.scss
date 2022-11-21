@@ -1,0 +1,13 @@
+.editPanel {
+  z-index: 10;
+  position: absolute;
+  display: none;
+  top: 25px;
+  right: 20px;
+
+  @apply animate-fade;
+}
+
+.visible {
+  display: inline-block;
+}

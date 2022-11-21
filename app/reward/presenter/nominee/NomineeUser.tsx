@@ -11,7 +11,7 @@ import {Controller, useForm} from "react-hook-form";
 import {IUserNomineeInput} from "./user-nominee.type";
 import Heading from "@/core/presenter/ui/heading/Heading";
 import formStyles from "@/core/presenter/ui/form/admin-form.module.scss";
-import Field from "@/core/presenter/ui/form/Field";
+import Field from "@/core/presenter/ui/form/Field/Field";
 
 const NomineeUser: FC = () => {
 

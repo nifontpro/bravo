@@ -7,6 +7,7 @@ import Error404 from "../404";
 const SingleDepartmentPage: NextPage<{ id: string}> = ({id}) => {
 
 	const {data: department} = departmentApi.useGetByIdQuery(id)
+	// console.log(department)
 	return department ?
 		<SingleDepartment department={department}/>
 		:

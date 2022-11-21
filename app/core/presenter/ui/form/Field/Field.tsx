@@ -10,7 +10,7 @@ const Field = forwardRef<HTMLInputElement, IField>(
     return (
       <div className={cn(className, styles.common, styles.field)} style={style}>
         <P className={styles.placeholder}>{placeholder}</P>
-        <Input error={error} ref={ref} type={type} {...rest} className={styles.input} placeholder='yourname@email.com'/>
+        <Input error={error} ref={ref} type={type} {...rest} className={styles.input} placeholder={placeholder}/>
         {/* <input ref={ref} type={type} {...rest}/> */}
         {/* {error && <div className={styles.error}>{error.message}</div>} */}
       </div>

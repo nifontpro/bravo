@@ -1,0 +1,43 @@
+.titleCompany {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+
+  > .companyDescription {
+    background: var(--white);
+    border-radius: 27px;
+    padding: 75px;
+
+    > .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 72px;
+      
+      > .header {
+        font-size: 54px;
+      }
+    }
+
+    > .description {
+      margin-bottom: 30px;
+    }
+
+    > .contacts {
+      display: flex;
+      flex-direction: column;
+    }
+
+    > .colUsers {
+      margin-top: 120px;
+
+      > .numberUsers {
+        opacity: 0.5;
+        color: var(--black);
+        font-weight: 400;
+        font-size: 16.5464px;
+        line-height: 23px;
+      }
+    }
+  }
+}

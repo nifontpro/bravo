@@ -12,6 +12,7 @@ export const userApi = createApi({
 	tagTypes: ['User', 'Reward', 'Count'],
 	endpoints: (build) => ({
 
+		//Получить всех сотрудников по отделу
 		getByDepartment: build.query<IUser[], { departmentId: string, filter: string }>({
 			query: (body) => ({
 				method: 'POST',
@@ -21,6 +22,7 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
+		//Получить всех начальников, которые есть в распоряжении
 		getBosses: build.query<IUser[], { companyId: string | undefined, filter: string }>({
 			query: (body) => ({
 				method: 'POST',

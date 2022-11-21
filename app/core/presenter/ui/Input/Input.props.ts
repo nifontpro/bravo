@@ -3,4 +3,5 @@ import { FieldError } from "react-hook-form"
 
 export type InputProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
     error?: FieldError
+    search?: boolean
 }

@@ -6,7 +6,7 @@ import Heading from "@/core/presenter/ui/heading/Heading";
 import SkeletonLoader from "@/core/presenter/ui/sceleton-loader/SkeletonLoader";
 import formStyles from "@/core/presenter/ui/form/admin-form.module.scss"
 import styles from "@/core/presenter/ui/form/form.module.scss"
-import Field from "@/core/presenter/ui/form/Field";
+import Field from "@/core/presenter/ui/form/Field/Field";
 import Button from "@/core/presenter/ui/form/Button";
 import cn from "classnames";
 import {IDepartmentEditInput} from "@/department/presenter/admin/edit/department-edit.type";

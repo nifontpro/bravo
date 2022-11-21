@@ -5,7 +5,7 @@ import AdminNavigation from '@/admin/presenter/admin-navigation/AdminNavigation'
 import Heading from '@/core/presenter/ui/heading/Heading';
 import SkeletonLoader from '@/core/presenter/ui/sceleton-loader/SkeletonLoader';
 import formStyles from '@/core/presenter/ui/form/admin-form.module.scss';
-import Field from '@/core/presenter/ui/form/Field';
+import Field from '@/core/presenter/ui/form/Field/Field';
 import Button from '@/core/presenter/ui/form/Button';
 import { useUserEdit } from '@/user/presenter/admin/edit/useUserEdit';
 import { IUserEditInput } from '@/user/presenter/admin/edit/user-edit.type';

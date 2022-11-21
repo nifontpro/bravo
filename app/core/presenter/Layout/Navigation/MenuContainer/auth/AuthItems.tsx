@@ -10,7 +10,7 @@ const AuthItems: FC = () => {
 	return <>
 		{user ? (<>
 			<MenuItem item={{icon: 'MdSettings', link: `/user/${user.id}`, title: 'Профиль'}}/>
-			<LogoutButton/>
+			{/* <LogoutButton/> */}
 		</>) : (
 			<MenuItem item={{icon: 'MdLogin', link: '/auth', title: 'Войти'}}/>
 		)}

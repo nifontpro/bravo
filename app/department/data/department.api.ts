@@ -14,6 +14,7 @@ export const departmentApi = createApi({
 	tagTypes: ['Department', 'Count'],
 	endpoints: (build) => ({
 
+		//Получить все отделы из компании
 		getByCompany: build.query<IDepartment[], string>({
 			query: (companyId) => ({
 				method: 'POST',

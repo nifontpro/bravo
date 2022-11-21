@@ -11,6 +11,7 @@ interface IAdminActions {
 
 const AdminActions: FC<IAdminActions> = ({ editUrl, removeHandler }) => {
 	const { push } = useRouter()
+	// console.log(editUrl)
 
 	return (
 		<div className={styles.actions}>
