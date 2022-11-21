@@ -10,7 +10,8 @@
   grid-template-areas:
     'header header'
     'navigation center';
-  //   @apply relative;
+    // @apply relative;
+    @apply animate-fade;
 
   > .header {
     grid-area: header;

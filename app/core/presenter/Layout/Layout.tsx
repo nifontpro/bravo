@@ -1,7 +1,7 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useEffect, useLayoutEffect } from 'react';
 import styles from '@/core/presenter/Layout/Layout.module.scss';
 import Navigation from '@/core/presenter/Layout/Navigation/Navigation';
-import Sidebar from '@/core/presenter/Layout/Sidebar/Sidebar';
+// import Sidebar from '@/core/presenter/Layout/Sidebar/Sidebar';
 import { useAuthState } from '@/auth/data/auth.slice';
 import cn from 'classnames';
 import Modal from '@/core/presenter/Layout/Modal';
@@ -66,7 +66,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       </div>
     );
   } else {
-    return <Auth />;
+      return <Auth />
   }
 };
 
