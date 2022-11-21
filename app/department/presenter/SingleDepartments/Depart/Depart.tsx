@@ -7,6 +7,7 @@ import ButtonIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useDepartmentAdmin } from '../../admin/useDepartmentAdmin';
 import { useState } from 'react';
 import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
+import ListUser from './ListUsers/ListUser';
 
 const Depart = ({
   data,
@@ -16,9 +17,7 @@ const Depart = ({
 }: DepartProps): JSX.Element => {
   const [visible, setVisible] = useState<boolean>(false);
 
-  const {
-    deleteAsync,
-  } = useDepartmentAdmin(data.companyId);
+  const { deleteAsync } = useDepartmentAdmin(data.companyId);
 
   // console.log(data)
 
@@ -33,12 +32,13 @@ const Depart = ({
             appearance='transparent'
           />
           <EditPanel id={data.id} deleteAsync={deleteAsync} visible={visible} />
-        </div> 
+        </div>
         <P size='m' className={styles.description}>
           {data.description}
         </P>
       </div>
       <div>Колличество сотрудников</div>
+      <ListUser />
     </div>
   );
 };
