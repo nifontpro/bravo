@@ -23,6 +23,8 @@ const Depart = ({
     filter: '',
   });
 
+  let URL = '/manage/department/edit/'
+
   const [visible, setVisible] = useState<boolean>(false);
   const [listUserVisible, setListUserVisible] = useState<boolean>(false);
 
@@ -38,7 +40,8 @@ const Depart = ({
             icon='dots'
             appearance='transparent'
           />
-          <EditPanel
+          <EditPanel 
+            URL={URL}
             onMouseLeave={() => setVisible(!visible)}
             id={data.id}
             deleteAsync={deleteAsync}

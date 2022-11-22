@@ -5,6 +5,10 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import P from '@/core/presenter/ui/P/P';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
+import { useState } from 'react';
+import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
+import { useCompanyAdmin } from '../admin/useCompanyAdmin';
 
 const TitleSingleCompany = ({
   company,
@@ -12,7 +16,12 @@ const TitleSingleCompany = ({
   className,
   ...props
 }: TitleSingleCompanyProps): JSX.Element => {
-  // console.log(company);
+  let URL = '/manage/company/edit/'
+
+  const [visible, setVisible] = useState<boolean>(false);
+
+	const {deleteAsync} = useCompanyAdmin()
+  
   return (
     <div className={styles.titleCompany}>
       <div>
@@ -31,10 +40,14 @@ const TitleSingleCompany = ({
           <Htag tag='h1' className={styles.header}>
             {company.name}
           </Htag>
-          <ButtonCircleIcon
-                icon='dots'
-                appearance='transparent'
-              />
+          <ButtonCircleIcon onClick={() => setVisible(!visible)} icon='dots' appearance='transparent' />
+          <EditPanel
+            URL={URL}
+            onMouseLeave={() => setVisible(!visible)}
+            id={company.id}
+            deleteAsync={deleteAsync}
+            visible={visible}
+          />
         </div>
 
         <P size='s' className={styles.description}>

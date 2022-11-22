@@ -9,6 +9,7 @@
     padding: 75px;
 
     > .title {
+      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -26,6 +27,7 @@
     > .contacts {
       display: flex;
       flex-direction: column;
+      width: fit-content;
     }
 
     > .colUsers {
