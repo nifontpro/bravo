@@ -11,7 +11,7 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   return (
     <button
-      className={cn(styles.button, className, {
+      className={cn(styles.button, {
         [styles.white]: appearance == 'white',
         [styles.gray]: appearance == 'gray',
         [styles.blackWhite]: appearance == 'blackWhite',
@@ -21,7 +21,7 @@ const Button = ({
         [styles.m]: size == 'm',
         [styles.l]: size == 'l',
         [styles.x]: size == 'x',
-      })}
+      }, className)}
       {...props}
     >
       {children}
