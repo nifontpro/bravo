@@ -11,7 +11,7 @@ const UserPreview = ({
   ...props
 }: UserPreviewProps): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} {...props}>
       <div className={cn(className, styles.wrapper)} {...props}>
         <ImageDefault
           src={user.imageUrl}

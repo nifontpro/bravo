@@ -10,6 +10,7 @@ import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
 import ListUser from './ListUsers/ListUser';
 import Button from '@/core/presenter/ui/Button/Button';
 import { userApi } from '@/user/data/user.api';
+import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
 
 const Depart = ({
   data,
@@ -17,11 +18,10 @@ const Depart = ({
   className,
   ...props
 }: DepartProps): JSX.Element => {
-  const {
-    data: usersInDepartment,
-    isLoading,
-    isSuccess: isGetSuccess,
-  } = userApi.useGetByDepartmentQuery({ departmentId: data.id, filter: '' });
+  const { data: usersInDepartment } = userApi.useGetByDepartmentQuery({
+    departmentId: data.id,
+    filter: '',
+  });
 
   const [visible, setVisible] = useState<boolean>(false);
   const [listUserVisible, setListUserVisible] = useState<boolean>(false);
@@ -49,15 +49,17 @@ const Depart = ({
           {data.description}
         </P>
       </div>
-      <div
+
+      <CountUsersPreview
         onClick={() => setListUserVisible(!listUserVisible)}
-        className={cn(styles.colUser, {
-          [styles.colUserVisible]: !listUserVisible,
-          [styles.colUserHidden]: listUserVisible,
-        })}
-      >
-        Всего сотрудников {}
-      </div>
+        // className={cn(styles.colUser, {
+        //   [styles.colUserVisible]: !listUserVisible,
+        //   [styles.colUserHidden]: listUserVisible,
+        // })}
+        listUserVisible={listUserVisible}
+        usersInDepartment={usersInDepartment}
+      />
+
       <div
         className={cn(styles.listUsers, {
           [styles.listUsersVisible]: listUserVisible,
