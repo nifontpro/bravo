@@ -10,6 +10,7 @@ import LogoutButton from '../Navigation/MenuContainer/auth/LogoutButton'
 
 const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const { user } = useAuthState();
+  
   return (
     <header className={cn(className, styles.header)} {...props}>
       <Link href='/'>

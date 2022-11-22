@@ -13,7 +13,7 @@ const AdminActions: FC<IAdminActions> = ({ editUrl, removeHandler }) => {
 	const { push } = useRouter()
 	// console.log(editUrl)
 
-	return (
+	return ( 
 		<div className={styles.actions}>
 			<button onClick={() => push(editUrl)}>
 				<MaterialIcon name="MdEdit" />

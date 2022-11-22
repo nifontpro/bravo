@@ -9,6 +9,6 @@ const AuthComponent: FC<PropsWithChildren<{ minRole: TypeRoles }>> = ({children,
 		<>{children}</>
 		:
 		null
-}
+} 
 
 export default AuthComponent;

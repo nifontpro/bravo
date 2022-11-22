@@ -9,7 +9,7 @@ const OwnerCompany: FC = () => {
 
 	const {data: companies, isLoading} = companyApi.useGetByOwnerQuery()
 
-	console.log(companies)
+	// console.log(companies)
 
 	return (
 		<Meta title="Компании владельца">

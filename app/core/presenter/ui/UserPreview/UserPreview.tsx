@@ -30,14 +30,6 @@ const UserPreview = ({
           </P>
         </div>
       </div>
-      <div>
-        <P color='gray' size='m' fontstyle='thin'>
-          Edit
-        </P>
-        <P color='gray' size='m' fontstyle='thin'>
-          Remove
-        </P>
-      </div>
     </div>
   );
 };

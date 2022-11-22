@@ -15,7 +15,7 @@ import TitleSingleCompany from './TitleSingleCompany/TitleSingleCompany';
 import DepartmentAndUsers from './DepartmentAndUsers/DepartmentAndUsers';
 
 const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
-// console.log(company)
+  // console.log(company)
 
   const dispatch = useDispatch();
 
@@ -24,10 +24,12 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
   //   limit: 5,
   // });
 
+  // То что ниже нужно переделать
   useEffect(() => {
     dispatch(companyActions.setState(company));
     saveCompanyToStorage(company);
   }, []);
+  // То что выше нужно переделать
 
   //   const handleClick = () => {
   //     dispatch(companyActions.setState(company));
@@ -41,7 +43,7 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
     >
       <div className={styles.wrapper}>
         <TitleSingleCompany company={company} />
-        <DepartmentAndUsers company={company}/>
+        <DepartmentAndUsers company={company} />
 
         {/* <Banner
 				imagePath={company.imageUrl}

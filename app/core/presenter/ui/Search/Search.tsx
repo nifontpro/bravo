@@ -9,10 +9,7 @@ const Search = ({ className, ...props }: SearchProps): JSX.Element => {
   return (
     <div className={cn(className, styles.search)} {...props}>
       <div className={styles.window}>
-        <Input
-        search={true}
-          placeholder='Сотрудник, отдел, медаль...'
-        />
+        <Input search={true} placeholder='Сотрудник, отдел, медаль...' />
         <div className={styles.svg}>
           <SearchIcon />
         </div>

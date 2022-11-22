@@ -52,10 +52,6 @@ const Depart = ({
 
       <CountUsersPreview
         onClick={() => setListUserVisible(!listUserVisible)}
-        // className={cn(styles.colUser, {
-        //   [styles.colUserVisible]: !listUserVisible,
-        //   [styles.colUserHidden]: listUserVisible,
-        // })}
         listUserVisible={listUserVisible}
         usersInDepartment={usersInDepartment}
       />
