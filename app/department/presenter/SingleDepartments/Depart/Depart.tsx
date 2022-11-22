@@ -8,6 +8,8 @@ import { useDepartmentAdmin } from '../../admin/useDepartmentAdmin';
 import { useState } from 'react';
 import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
 import ListUser from './ListUsers/ListUser';
+import Button from '@/core/presenter/ui/Button/Button';
+import { userApi } from '@/user/data/user.api';
 
 const Depart = ({
   data,
@@ -15,11 +17,16 @@ const Depart = ({
   className,
   ...props
 }: DepartProps): JSX.Element => {
+  const {
+    data: usersInDepartment,
+    isLoading,
+    isSuccess: isGetSuccess,
+  } = userApi.useGetByDepartmentQuery({ departmentId: data.id, filter: '' });
+
   const [visible, setVisible] = useState<boolean>(false);
+  const [listUserVisible, setListUserVisible] = useState<boolean>(false);
 
   const { deleteAsync } = useDepartmentAdmin(data.companyId);
-
-  // console.log(data)
 
   return (
     <div className={styles.wrapper} {...props}>
@@ -31,14 +38,46 @@ const Depart = ({
             icon='dots'
             appearance='transparent'
           />
-          <EditPanel id={data.id} deleteAsync={deleteAsync} visible={visible} />
+          <EditPanel
+            onMouseLeave={() => setVisible(!visible)}
+            id={data.id}
+            deleteAsync={deleteAsync}
+            visible={visible}
+          />
         </div>
         <P size='m' className={styles.description}>
           {data.description}
         </P>
       </div>
-      <div>Колличество сотрудников</div>
-      <ListUser />
+      <div
+        onClick={() => setListUserVisible(!listUserVisible)}
+        className={cn(styles.colUser, {
+          [styles.colUserVisible]: !listUserVisible,
+          [styles.colUserHidden]: listUserVisible,
+        })}
+      >
+        Всего сотрудников {}
+      </div>
+      <div
+        className={cn(styles.listUsers, {
+          [styles.listUsersVisible]: listUserVisible,
+          [styles.listUsersHidden]: !listUserVisible,
+        })}
+      >
+        <ListUser
+          usersInDepartment={usersInDepartment}
+          listUserVisible={listUserVisible}
+        />
+        <div className={styles.button}>
+          <Button
+            onClick={() => setListUserVisible(!listUserVisible)}
+            appearance='white'
+            size='s'
+          >
+            Свернуть
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -16,6 +16,7 @@ const Button = ({
         [styles.gray]: appearance == 'gray',
         [styles.blackWhite]: appearance == 'blackWhite',
         [styles.blackGray]: appearance == 'blackGray',
+        [styles.thin]: size == 'thin',
         [styles.s]: size == 's',
         [styles.m]: size == 'm',
         [styles.l]: size == 'l',

@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 45px;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+
+    > .info {
+      margin-left: 25px;
+    }
+  }
+}

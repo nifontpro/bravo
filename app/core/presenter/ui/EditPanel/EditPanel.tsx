@@ -1,4 +1,5 @@
-import styles from './EditPanel.module.scss';
+
+import styles from './EditPanel.module.scss'
 import cn from 'classnames';
 import { EditPanelProps } from './EditPanel.props';
 import { useRouter } from 'next/router';

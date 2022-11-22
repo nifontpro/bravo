@@ -19,3 +19,29 @@
     }
   }
 }
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 55px;
+  @apply animate-fade
+}
+
+.colUser {
+  cursor: pointer;
+}
+
+.listUsers {
+  @apply animate-fade
+}
+
+.colUserVisible,
+.listUsersVisible
+ {
+  display: block;
+}
+
+.colUserHidden,
+.listUsersHidden {
+  display: none;
+}
