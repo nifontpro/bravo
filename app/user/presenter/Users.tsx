@@ -5,6 +5,7 @@ import Catalog from '@/core/presenter/ui/catalog/Catalog';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
 import styles from './Users.module.scss'
+import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 
 const Users: FC = () => {
   const { users, isLoading } = useMyUser('');
@@ -25,6 +26,7 @@ const Users: FC = () => {
             button={false}
             placeholder='Сотрудник сотрудника ...'
           />
+		  <SortButton className={styles.filter}>По алфавиту А -- Я</SortButton>
         </div>
 
         // <Catalog
