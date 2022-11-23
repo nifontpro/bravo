@@ -15,6 +15,11 @@ export interface IUser {
 	companyId?: string
 	departmentId?: string
 
+	post?: string
+	phone?: string
+	gender: 'MALE' | 'FEMALE' | 'UNDEFINED'
+	description?: string
+
 	imageUrl?: string
 	imageKey?: string
 	images: ImageRef[]
