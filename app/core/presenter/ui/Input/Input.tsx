@@ -3,13 +3,15 @@ import cn from 'classnames';
 import { InputProps } from './Input.props';
 import { ForwardedRef, forwardRef } from 'react';
 
-const Input = forwardRef(({ search, error, className, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
+const Input = forwardRef(({ color, search, error, className, ...props }: InputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
   return (
     <div className={cn(className, styles.inputWrapper)}>
       <input
         className={cn(styles.input, {
           [styles.error]: error,
           [styles.search]: search,
+          [styles.gray]: color == 'gray',
+          [styles.white]: color == 'white',
         })}
         ref={ref}
         {...props}

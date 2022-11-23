@@ -3,6 +3,10 @@
   @apply grid relative gap-[30px] items-center;
 }
 
+.searchWithoutBtn {
+  gap: 0;
+}
+
  .window {
   position: relative;
 
@@ -17,6 +21,10 @@
   position: absolute;
   top: 17px;
   left: 30px;
+}
+
+.buttonHidden {
+  display: none !important;
 }
 // .input input {
 //   width: 100%;

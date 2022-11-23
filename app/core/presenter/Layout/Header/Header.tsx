@@ -16,7 +16,7 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
       <Link href='/'>
         <LogoIcon className={styles.logo} />
       </Link>
-      <Search className={styles.search} />
+      <Search color='gray' search={true} button={true} placeholder='Сотрудник, отдел, медаль...' className={styles.search} />
       <div className={styles.user}>
         <div className={styles.userComponent}></div>
         <ImageDefault
