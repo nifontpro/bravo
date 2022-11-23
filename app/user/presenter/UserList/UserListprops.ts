@@ -1,5 +1,7 @@
+import { IUser } from '@/user/model/user.types';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react"
 
-export type SortButtonProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
+export type UserListProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     children?: ReactNode;
+    user: IUser
 }

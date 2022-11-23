@@ -1,12 +1,25 @@
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
   align-items: center;
+  margin-bottom: 45px;
 
-  .title {
+  > .title {
     margin-left: 15px;
     font-weight: 700;
     font-size: 15px;
     line-height: 20px;
     color: var(--black);
+  }
+
+  > .department {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+    color: var(--gray-dark);
+  }
+
+  > .editPanel {
+    display: flex;
   }
 }

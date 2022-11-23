@@ -2,10 +2,15 @@
     background: var(--white);
     padding: 80px 95px;
     border-radius: 27px;
+    @apply animate-fade;
 
     > .filter {
         width: fit-content;
-        margin: 40px 0px 40px 0px;
+        margin: 40px 0px 0px 0px;
         cursor: pointer;
+    }
+
+    > .userList{
+        margin-top: 70px;
     }
 }

@@ -6,11 +6,12 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
 import styles from './Users.module.scss'
 import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
+import UserList from './UserList/UserList';
 
 const Users: FC = () => {
   const { users, isLoading } = useMyUser('');
 
-  console.log(users);
+//   console.log(users);
 
   return (
     <Meta title='Сотрудники'>
@@ -27,6 +28,11 @@ const Users: FC = () => {
             placeholder='Сотрудник сотрудника ...'
           />
 		  <SortButton className={styles.filter}>По алфавиту А -- Я</SortButton>
+		  {users.map((user) => {
+			return (
+				<UserList key={user.id} user={user} className={styles.userList}/>
+			)
+		  })}
         </div>
 
         // <Catalog
