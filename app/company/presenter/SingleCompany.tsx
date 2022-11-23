@@ -26,8 +26,8 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
 
   // То что ниже нужно переделать
   useEffect(() => {
-    dispatch(companyActions.setState(company));
-    saveCompanyToStorage(company);
+      dispatch(companyActions.setState(company));
+      saveCompanyToStorage(company);
   }, []);
   // То что выше нужно переделать
 

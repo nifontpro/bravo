@@ -38,7 +38,7 @@ const Auth: FC = () => {
       login(data)
         .unwrap()
         .then((d) => {
-          setAuthData(d);
+          setAuthData(d); 
           toast.success('Добро пожаловать!');
         })
         .catch((e) => {

@@ -8,7 +8,7 @@ import P from '../../P/P';
 const Field = forwardRef(
   ({ placeholder, error, type = 'text', style, className, ...rest }: IField, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
     return (
-      <div className={cn(className, styles.common, styles.field)} style={style}>
+      <div className={cn(styles.common, styles.field, className)} style={style}>
         <P className={styles.placeholder}>{placeholder}</P>
         <Input error={error} ref={ref} type={type} {...rest} className={styles.input} placeholder={placeholder}/>
         {/* <input ref={ref} type={type} {...rest}/> */}

@@ -11,7 +11,7 @@ const Departments: FC<{ company: ICompany }> = ({ company }) => {
     company.id
   );
 
-//   console.log(departments)
+  //   console.log(departments)
 
   return (
     <Meta title='Отделы компании'>
