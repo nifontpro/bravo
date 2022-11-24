@@ -15,19 +15,27 @@
     padding: 80px;
     background: var(--white);
     border-radius: 27px;
-margin-bottom: 30px;
+    margin-bottom: 30px;
     > .title {
       margin-bottom: 80px;
     }
 
-    > .depart {
+    > .group {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-bottom: 60px;
+      align-items: flex-end;
 
-      > .fixed {
-
+      > .currentCompany {
+        font-weight: 500;
+        font-size: 16.5269px;
+        opacity: 0.4;
+        color: var(--gray-dark);
+        padding: 17px 30px;
+        font-family: var(--font-family);
+        border: 1px solid #00000020;
+        border-radius: 12px;
       }
     }
 
@@ -36,6 +44,4 @@ margin-bottom: 30px;
       justify-content: flex-end;
     }
   }
-
-
 }

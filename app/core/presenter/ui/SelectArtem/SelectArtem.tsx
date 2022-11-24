@@ -53,12 +53,12 @@ const SelectArtem: FC<ISelect> = (
 						borderRadius: 5,
 						colors: {
 							...theme.colors,
-							neutral80: '#88AA88'
+							neutral80: '#101010'
 						}
 					})}
 				/>
 			</label>
-			{error && <div className={formStyles.error}>{error.message}</div>}
+			{error && <div className={styles.error}>{error.message}</div>}
 		</div>
 	)
 }

@@ -36,13 +36,13 @@ const UserCreate: FC = () => {
     currentCompany!.id
   );
 
-  let arrDeparts: IOption[] = []
+  let arrDeparts: IOption[] = [];
   departments?.forEach((item) => {
     arrDeparts.push({
       label: item.name,
-      value: item.id
-    })
-  })
+      value: item.id,
+    });
+  });
 
   // console.log(departments)
   // console.log(currentCompany);
@@ -81,8 +81,6 @@ const UserCreate: FC = () => {
   //   { label: 'Обычный сотрудник', value: 'user' },
   // ];
 
-
-
   return (
     <Meta title='Создание профиля сотрудника'>
       {/* <AdminNavigation/>
@@ -108,20 +106,42 @@ const UserCreate: FC = () => {
             Новый сотрудник
           </Htag>
 
-          <Field
-            {...register('lastname', { required: 'ФИО необходимо!' })}
-            placeholder='Фамилия, Имя'
-            error={errors.lastname}
-            className='mb-[60px]'
-          />
+          <div className={styles.groupGender}>
+            <Field
+              {...register('lastname', { required: 'ФИО необходимо!' })}
+              placeholder='Фамилия, Имя'
+              error={errors.lastname}
+              className='mb-[60px]'
+            />
+          </div>
 
-          <div className={styles.depart}>
-            <div className={styles.fixed}>{currentCompany?.name}</div>
+          <div className={styles.group}>
+            <Field
+              {...register('login', { required: 'Логин обязательно!' })}
+              placeholder='Логин'
+              error={errors.login}
+            />
+
+            <Field
+              {...register('password', { required: 'Пароль обязательно!' })}
+              placeholder='Пароль'
+              error={errors.password}
+            />
+          </div>
+
+          <div className={styles.group}>
+            {/* <div className={styles.currentCompany}>{currentCompany?.name}</div> */}
+            <Field
+              {...register('companyId', { required: 'Компания обязательно!' })}
+              placeholder='Компания, отдел'
+              value={currentCompany?.name}
+              error={errors.companyId}
+            />
             <Controller
-              name='role'
+              name='departmentId'
               control={control}
               rules={{
-                required: 'Необходимо выбрать роль!',
+                required: 'Необходимо выбрать отдел!',
               }}
               render={({ field, fieldState: { error } }) => (
                 <SelectArtem
