@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
 import AdminNavigation from '@/admin/presenter/admin-navigation/AdminNavigation';
@@ -17,6 +17,8 @@ import { useRouter } from 'next/router';
 import Button from '@/core/presenter/ui/Button/Button';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
+import Htag from '@/core/presenter/ui/Htag/Htag';
+import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 
 const UserCreate: FC = () => {
   const { push } = useRouter();
@@ -26,9 +28,15 @@ const UserCreate: FC = () => {
   if (currentCompany === null) {
     push('/company');
   }
-  console.log(currentCompany);
+  // console.log(currentCompany);
 
-  const [img, setImg] = useState<string>('')
+  const [img, setImg] = useState<string>('');
+
+  const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files !== null) {
+      setImg(URL.createObjectURL(event.target.files[0]));
+    }
+  };
 
   const {
     handleSubmit,
@@ -40,7 +48,7 @@ const UserCreate: FC = () => {
 
   const { onSubmit } = useUserCreate(
     setValue,
-    currentCompany?.id,
+    currentCompany?.id
     // currentDepartment?.id
   );
 
@@ -61,57 +69,99 @@ const UserCreate: FC = () => {
       {/* <AdminNavigation/>
 		<Heading title="Создание профиля сотрудника"/> */}
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-
         <div className={cn(styles.field, styles.uploadField)}>
-        <ImageDefault
-              src={img}
-              width={300}
-              height={300}
-              alt='preview image'
-              objectFit='cover'
-              className='rounded-[10px]'
-            />
-            <InputFile error={errors.file} {...register('file')}/>
+          <ImageDefault
+            src={img}
+            width={300}
+            height={300}
+            alt='preview image'
+            objectFit='cover'
+            className='rounded-[10px]'
+          />
+          <InputFile
+            error={errors.file}
+            {...register('file', { onChange: changePhoto })}
+          />
         </div>
 
         <div className={styles.fields}>
+          <Htag tag='h2' className={styles.title}>
+            Новый сотрудник
+          </Htag>
+
           <Field
-            {...register('lastname', { required: 'Фамилия необходима!' })}
-            placeholder='Фамилия'
+            {...register('lastname', { required: 'ФИО необходимо!' })}
+            placeholder='Фамилия, Имя'
             error={errors.lastname}
+            className='mb-[60px]'
           />
 
-          <Field
-            {...register('name', { required: 'Имя необходимо!' })}
-            placeholder='Имя'
-            error={errors.name}
-          />
+          <div className={styles.depart}>
+            <div className={styles.fixed}>{currentCompany?.name}</div>
+            <Controller
+              name='role'
+              control={control}
+              rules={{
+                required: 'Необходимо выбрать роль!',
+              }}
+              render={({ field, fieldState: { error } }) => (
+                <Select
+                  error={error}
+                  field={field}
+                  placeholder='Роль'
+                  options={roles || []}
+                  isLoading={false}
+                  isMulti={false}
+                />
+              )}
+            />
+          </div>
 
           <Field
+            {...register('post', { required: 'Должность необходима!' })}
+            placeholder='Должность'
+            error={errors.post}
+            className='mb-[60px]'
+          />
+
+          <TextArea
+            {...register('description', { required: 'Должность необходима!' })}
+            placeholder='О сотруднике'
+            error={errors.description}
+            className='mb-[100px]'
+          />
+
+          {/* <Field
+              {...register('name', { required: 'Имя необходимо!' })}
+              placeholder='Имя'
+              error={errors.name}
+            /> */}
+
+          {/* <Field
             {...register('patronymic')}
             placeholder='Отчество'
             error={errors.patronymic}
-          />
+          /> */}
 
-          <Field
+          {/* <Field
             {...register('login')}
             placeholder='Логин (Уникальный)'
             error={errors.login}
-          />
+          /> */}
 
-          <Field
+          {/* <Field
             {...register('password', { required: 'Пароль обязателен!' })}
             placeholder='Пароль'
             error={errors.password}
-          />
+          /> */}
 
-          <Field
+          {/* <Field
             {...register('email')}
             placeholder='Email'
             error={errors.email}
-          />
+          /> */}
 
-          <Controller
+          {/* <Controller
             name='role'
             control={control}
             rules={{
@@ -127,7 +177,8 @@ const UserCreate: FC = () => {
                 isMulti={false}
               />
             )}
-          />
+          /> */}
+
           <div className={styles.buttons}>
             <Button appearance='white' size='l'>
               Отменить

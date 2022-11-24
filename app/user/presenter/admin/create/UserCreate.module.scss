@@ -15,7 +15,21 @@
     padding: 80px;
     background: var(--white);
     border-radius: 27px;
-    
+margin-bottom: 30px;
+    > .title {
+      margin-bottom: 80px;
+    }
+
+    > .depart {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+
+      > .fixed {
+
+      }
+    }
+
     > .buttons {
       display: flex;
       justify-content: flex-end;

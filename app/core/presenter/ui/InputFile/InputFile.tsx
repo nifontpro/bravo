@@ -8,6 +8,7 @@ const InputFile = forwardRef(
     { error, className, ...props }: InputFileProps,
     ref: ForwardedRef<HTMLInputElement>
   ): JSX.Element => {
+
     return (
       <div className={cn(className, styles.inputWrapper)}>
         <input type='file' className={styles.inputFile} ref={ref} {...props} />
