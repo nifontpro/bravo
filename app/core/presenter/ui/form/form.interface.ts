@@ -9,9 +9,10 @@ export interface IFieldProps {
 	error?: FieldError | undefined
 }
 
-type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps
+type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps & {}
 
 export interface IField extends TypeInputPropsField {
+
 }
 
 export interface IUploadField {

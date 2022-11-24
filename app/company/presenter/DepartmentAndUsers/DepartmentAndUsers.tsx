@@ -7,8 +7,10 @@ import cn from 'classnames';
 import ButtonCircleIcon from '../../../core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { ICompany } from '@/company/model/company.types';
 import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
+import { useRouter } from 'next/router';
 
 const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
+  const { push } = useRouter()
   const [toggle, setToogle] = useState<boolean>(false);
   const { createAsync } = useDepartmentAdmin(company.id);
 
@@ -47,7 +49,8 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
               Отдел
             </div>
             <div className={styles.newUser}>
-              <ButtonCircleIcon
+              <ButtonCircleIcon 
+              onClick={() => push('/manage/user/create')}
                 className='mr-[17px]'
                 icon='plus'
                 appearance='black'

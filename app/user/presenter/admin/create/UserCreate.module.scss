@@ -1,0 +1,26 @@
+.form {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+
+  > .uploadField {
+    border-radius: 27px;
+    width: 400px;
+    height: 450px;
+    background: var(--white);
+    padding: 55px;
+  }
+
+  > .fields {
+    padding: 80px;
+    background: var(--white);
+    border-radius: 27px;
+    
+    > .buttons {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+
+}
