@@ -8,7 +8,7 @@ import styles from './UserCreate.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
 import cn from 'classnames';
 import { IUserCreateInput } from '@/user/presenter/admin/create/user-create.type';
-import Select from '@/core/presenter/ui/select/Select';
+// import Select from '@/core/presenter/ui/select/Select';
 import { IOption } from '@/core/presenter/ui/select/select.interface';
 import { useCompanyState } from '@/company/data/company.slice';
 import { useDepartmentState } from '@/department/data/department.slice';
@@ -19,15 +19,32 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
+import { departmentApi } from '@/department/data/department.api';
+import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 
 const UserCreate: FC = () => {
+  const { currentCompany } = useCompanyState();
   const { push } = useRouter();
 
-  const { currentCompany } = useCompanyState();
-  // const { currentDepartment } = useDepartmentState();
   if (currentCompany === null) {
     push('/company');
   }
+
+  // const { currentDepartment } = useDepartmentState();
+
+  const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
+    currentCompany!.id
+  );
+
+  let arrDeparts: IOption[] = []
+  departments?.forEach((item) => {
+    arrDeparts.push({
+      label: item.name,
+      value: item.id
+    })
+  })
+
+  // console.log(departments)
   // console.log(currentCompany);
 
   const [img, setImg] = useState<string>('');
@@ -58,11 +75,13 @@ const UserCreate: FC = () => {
 		}
 	*/
 
-  const roles: IOption[] = [
-    { label: 'Администратор компании', value: 'admin' },
-    { label: 'Директор отдела', value: 'director' },
-    { label: 'Обычный сотрудник', value: 'user' },
-  ];
+  // const roles: IOption[] = [
+  //   { label: 'Администратор компании', value: 'admin' },
+  //   { label: 'Директор отдела', value: 'director' },
+  //   { label: 'Обычный сотрудник', value: 'user' },
+  // ];
+
+
 
   return (
     <Meta title='Создание профиля сотрудника'>
@@ -105,11 +124,11 @@ const UserCreate: FC = () => {
                 required: 'Необходимо выбрать роль!',
               }}
               render={({ field, fieldState: { error } }) => (
-                <Select
+                <SelectArtem
                   error={error}
                   field={field}
-                  placeholder='Роль'
-                  options={roles || []}
+                  placeholder=''
+                  options={arrDeparts || []}
                   isLoading={false}
                   isMulti={false}
                 />

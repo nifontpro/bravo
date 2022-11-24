@@ -12,20 +12,31 @@ export const useMyUser = (filter: string) => {
   const { currentDepartment } = useDepartmentState();
   let depUsers: IUser[] = [];
 
-  if (currentDepartment) {
-    const { data: _depUsers } = userApi.useGetByDepartmentQuery({
-      departmentId: currentDepartment.id,
+  // if (currentDepartment) {
+  //   const { data: _depUsers } = userApi.useGetByDepartmentQuery({
+  //     departmentId: currentDepartment.id,
+  //     filter,
+  //   });
+  //   depUsers = _depUsers || [];
+  // }
+
+  if (currentCompany) {
+    const { data: _depUsers } = userApi.useGetByCompanyQuery({
+      companyId: currentCompany.id,
       filter,
     });
     depUsers = _depUsers || [];
   }
 
+
   const { isLoading, data: _bosses } = userApi.useGetBossesQuery({
     companyId: currentCompany?.id,
     filter,
   });
-  const bosses = _bosses || [];
-  const users = bosses.concat(depUsers);
+  // const bosses = _bosses || [];
+  // const users = bosses.concat(depUsers);
+
+  const users = depUsers;
 
   return useMemo(() => {
     return {

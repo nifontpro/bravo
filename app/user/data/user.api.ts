@@ -41,6 +41,15 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
+		getByCompany: build.query<IUser[], { companyId: string, filter?: string }>({
+			query: (data) => ({
+				method: 'POST',
+				url: getUserUrl('/get_company'),
+				body: data
+			}),
+			providesTags: ['User']
+		}),
+
 		getBests: build.query<IUser[], { companyId: string, limit: number }>({
 			query: (body) => ({
 				method: 'POST',

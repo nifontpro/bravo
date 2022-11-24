@@ -1,13 +1,13 @@
 import {FC} from 'react'
 import formStyles from '../form/form.module.scss'
-import styles from './Select.module.scss'
-import {IOption, ISelect} from './select.interface'
+import styles from './SelectArtem.module.scss'
+import {IOption, ISelect} from './SelectArtem.interface'
 import ReactSelect, {OnChangeValue} from "react-select";
 import makeAnimated from 'react-select/animated'
 
 const animatedComponents = makeAnimated()
 
-const Select: FC<ISelect> = (
+const SelectArtem: FC<ISelect> = (
 	{
 		placeholder,
 		error,
@@ -63,4 +63,4 @@ const Select: FC<ISelect> = (
 	)
 }
 
-export default Select
+export default SelectArtem

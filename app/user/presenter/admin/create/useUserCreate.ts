@@ -18,40 +18,43 @@ export const useUserCreate = (
 
 	useEffect(() => {
 		setValue('role', 'user')
+		setValue('companyId', companyId)
 		setValue('isMNC', false)
 	}, [setValue])
 
 	const onSubmit: SubmitHandler<IUserCreateInput> = async (data) => {
 
-		let isError = false
+		console.log(data)
 
-		if (companyId) {
-			await create({...data, companyId: companyId, departmentId: departmentId}).unwrap()
-				.then(async ({id: userId}) => {
-					const fileData = data.file[0]
-					if (fileData) {
-						const formData = new FormData()
-						formData.append("imageUrl", fileData)
-						await updateImage({userId, formData})
-							.unwrap()
-							.catch(() => {
-								isError = true
-								toast.error("Ошибка добавления фото сотрудника")
-							})
-					}
-				})
-				.catch((e) => {
-					isError = true
-					toastError(e, "Ошибка создания профиля сотрудника")
-				})
-		} else {
-			isError = true
-			toast.error('Необходимо выбрать компанию')
-		}
-		if (!isError) {
-			toast.success('Профиль сотрудника успешно создан')
-			push(getAdminUrl('user')).then()
-		}
+		// let isError = false
+
+		// if (companyId) {
+		// 	await create({...data, companyId: companyId, departmentId: departmentId}).unwrap()
+		// 		.then(async ({id: userId}) => {
+		// 			const fileData = data.file[0]
+		// 			if (fileData) {
+		// 				const formData = new FormData()
+		// 				formData.append("imageUrl", fileData)
+		// 				await updateImage({userId, formData})
+		// 					.unwrap()
+		// 					.catch(() => {
+		// 						isError = true
+		// 						toast.error("Ошибка добавления фото сотрудника")
+		// 					})
+		// 			}
+		// 		})
+		// 		.catch((e) => {
+		// 			isError = true
+		// 			toastError(e, "Ошибка создания профиля сотрудника")
+		// 		})
+		// } else {
+		// 	isError = true
+		// 	toast.error('Необходимо выбрать компанию')
+		// }
+		// if (!isError) {
+		// 	toast.success('Профиль сотрудника успешно создан')
+		// 	push(getAdminUrl('user')).then()
+		// }
 	}
 
 	return {onSubmit}
