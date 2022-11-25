@@ -9,8 +9,10 @@ import {getAdminUrl} from "@/core/config/url.config";
 
 export const useUserCreate = (
 	setValue: UseFormSetValue<IUserCreateInput>,
+	active: 'MALE' | 'FEMALE',
 	companyId?: string,
-	departmentId?: string
+	// departmentId?: string,
+
 ) => {
 	const {push} = useRouter()
 	const [create] = userApi.useCreateMutation()
@@ -24,7 +26,7 @@ export const useUserCreate = (
 
 	const onSubmit: SubmitHandler<IUserCreateInput> = async (data) => {
 
-		console.log(data)
+		console.log(active)
 
 		// let isError = false
 

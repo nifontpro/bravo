@@ -21,8 +21,10 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { departmentApi } from '@/department/data/department.api';
 import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
+import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
 
 const UserCreate: FC = () => {
+  const [ active, setActive ] = useState<'MALE' | 'FEMALE'>('MALE');
   const { currentCompany } = useCompanyState();
   const { push } = useRouter();
 
@@ -65,7 +67,8 @@ const UserCreate: FC = () => {
 
   const { onSubmit } = useUserCreate(
     setValue,
-    currentCompany?.id
+    active,
+    currentCompany?.id,
     // currentDepartment?.id
   );
 
@@ -111,8 +114,13 @@ const UserCreate: FC = () => {
               {...register('lastname', { required: 'ФИО необходимо!' })}
               placeholder='Фамилия, Имя'
               error={errors.lastname}
-              className='mb-[60px]'
             />
+            <InputRadio 
+            active={active}
+            setActive={setActive}
+            className={styles.gender}
+            />
+
           </div>
 
           <div className={styles.group}>
