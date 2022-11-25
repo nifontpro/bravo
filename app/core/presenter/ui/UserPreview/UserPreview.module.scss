@@ -1,14 +1,9 @@
-.container {
-  display: flex;
+.wrapper {
+  display: grid;
+  grid-template-columns: 76px 1fr;
   align-items: center;
-  justify-content: space-between;
 
-  .wrapper {
-    display: flex;
-    align-items: center;
-
-    > .info {
-      margin-left: 25px;
-    }
+  > .info {
+    margin-left: 25px;
   }
 }

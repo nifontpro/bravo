@@ -1,0 +1,38 @@
+.wrapper {
+  margin-top: 90px;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+}
+.wrapper > .content {
+  grid-column: 2/3;
+}
+.wrapper > .content > .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  align-items: center;
+}
+.wrapper > .content > .header > .choice {
+  display: flex;
+}
+.wrapper > .content > .header > .choice > .choices {
+  cursor: pointer;
+  padding-bottom: 15px;
+  margin-right: 60px;
+}
+.wrapper > .content > .header > .choice > .underline {
+  border-bottom: 3px solid var(--black);
+}
+.wrapper > .content > .header > .new {
+  display: flex;
+}
+.wrapper > .content > .header > .new > .newDepartment {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.wrapper > .content > .header > .new > .newUser {
+  display: flex;
+  align-items: center;
+}/*# sourceMappingURL=DepartmentAndUsers.module.css.map */

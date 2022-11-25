@@ -1,0 +1,32 @@
+.arrow {
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+
+.arrow svg {
+  @apply duration-200;
+}
+
+.arrow:hover svg {
+  fill: white;
+}
+
+.s {
+  @apply w-[20px] h-[20px];
+}
+
+.m {
+  @apply w-[25px] h-[25px];
+}
+
+.l {
+  @apply w-[30px] h-[30px];
+}
+
+.right {
+  transform: rotate(0deg);
+}
+
+.left {
+  transform: rotate(-180deg);
+}/*# sourceMappingURL=ArrowNextPrev.module.css.map */

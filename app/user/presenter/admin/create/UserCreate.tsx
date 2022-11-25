@@ -24,7 +24,7 @@ import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
 
 const UserCreate: FC = () => {
-  const [ active, setActive ] = useState<'MALE' | 'FEMALE'>('MALE');
+  const [active, setActive] = useState<'MALE' | 'FEMALE'>('MALE');
   const { currentCompany } = useCompanyState();
   const { push } = useRouter();
 
@@ -50,6 +50,7 @@ const UserCreate: FC = () => {
   // console.log(currentCompany);
 
   const [img, setImg] = useState<string>('');
+  const [type, setType] = useState<'back' | 'create'>('create');
 
   const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -68,7 +69,8 @@ const UserCreate: FC = () => {
   const { onSubmit } = useUserCreate(
     setValue,
     active,
-    currentCompany?.id,
+    type,
+    currentCompany?.id
     // currentDepartment?.id
   );
 
@@ -111,16 +113,15 @@ const UserCreate: FC = () => {
 
           <div className={styles.groupGender}>
             <Field
-              {...register('lastname', { required: 'ФИО необходимо!' })}
+              {...register('name', { required: 'ФИО необходимо!' })}
               placeholder='Фамилия, Имя'
-              error={errors.lastname}
+              error={errors.name}
             />
-            <InputRadio 
-            active={active}
-            setActive={setActive}
-            className={styles.gender}
+            <InputRadio
+              active={active}
+              setActive={setActive}
+              className={styles.gender}
             />
-
           </div>
 
           <div className={styles.group}>
@@ -164,12 +165,18 @@ const UserCreate: FC = () => {
             />
           </div>
 
-          <Field
-            {...register('post', { required: 'Должность необходима!' })}
-            placeholder='Должность'
-            error={errors.post}
-            className='mb-[60px]'
-          />
+          <div className={styles.group}>
+            <Field
+              {...register('post', { required: 'Должность необходима!' })}
+              placeholder='Должность'
+              error={errors.post}
+            />
+            <Field
+              {...register('phone', { required: 'Телефон необходим!' })}
+              placeholder='Сотовый'
+              error={errors.phone}
+            />
+          </div>
 
           <TextArea
             {...register('description', { required: 'Должность необходима!' })}
@@ -227,10 +234,10 @@ const UserCreate: FC = () => {
           /> */}
 
           <div className={styles.buttons}>
-            <Button appearance='white' size='l'>
+            <Button onClick={() => setType('back')} appearance='white' size='l'>
               Отменить
             </Button>
-            <Button appearance='gray' size='l' className='ml-[15px]'>
+            <Button onClick={() => setType('create')} appearance='gray' size='l' className='ml-[15px]'>
               Добавить
             </Button>
           </div>

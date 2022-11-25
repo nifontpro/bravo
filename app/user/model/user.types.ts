@@ -26,4 +26,5 @@ export interface IUser {
 }
 
 export interface IUserCreate extends Omit<IUser, 'id' | 'imageUrl' | 'imageKey' | 'images'> {
+	password: string
 }

@@ -1,0 +1,35 @@
+.header {
+  padding: 40px 55px 40px 70px;
+  grid-template-columns: [start] 360px [endNavigation] 78px [startSearch] 730px [endSearch] 1fr [startUser] auto [end];
+  @apply pb-[40px] grid items-center;
+}
+.header > .logo {
+  grid-column: start/endNavigation;
+  @apply self-center cursor-pointer;
+}
+.header > .search {
+  grid-column: startSearch/endSearch;
+}
+.header > .user {
+  grid-column: startUser/endUser;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.header > .user > .userComponent {
+  border-radius: 10px;
+  width: 64px;
+  height: 64px;
+  background: var(--gray-light);
+}
+.header > .user > a {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.header > .user > a > svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+}/*# sourceMappingURL=Header.module.css.map */

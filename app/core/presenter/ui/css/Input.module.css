@@ -1,0 +1,51 @@
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  padding: 17px 30px;
+  width: 100%;
+  color: var(--black);
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 15.2338px;
+  line-height: 21px;
+  font-family: var(--font-family);
+}
+
+.gray {
+  background: var(--gray-light);
+  border: none;
+}
+
+.white {
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.1254901961);
+}
+
+.search {
+  padding-left: 70px;
+}
+
+.input ::-moz-placeholder {
+  color: var(--gray);
+}
+
+.input :-ms-input-placeholder {
+  color: var(--gray);
+}
+
+.input ::placeholder {
+  color: var(--gray);
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.errorMessage {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  color: red;
+}/*# sourceMappingURL=Input.module.css.map */

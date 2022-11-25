@@ -98,7 +98,7 @@ const DepartmentEdit: FC = () => {
                 error={errors.description}
               />
             </div>
-
+ 
             <div className={styles.btn}>
               <Button onClick={() => setType('back')} size='m' appearance='white'>
                 Отменить

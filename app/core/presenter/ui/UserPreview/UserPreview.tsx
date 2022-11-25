@@ -11,7 +11,6 @@ const UserPreview = ({
   ...props
 }: UserPreviewProps): JSX.Element => {
   return (
-    <div className={styles.container} {...props}>
       <div className={cn(className, styles.wrapper)} {...props}>
         <ImageDefault
           src={user.imageUrl}
@@ -23,14 +22,13 @@ const UserPreview = ({
         />
         <div className={styles.info}>
           <P size='m' fontstyle='bold'>
-            {user.lastname} {user.name}
+            {user.name}
           </P>
           <P color='gray' size='m' fontstyle='thin'>
-            Должность работника
+            {user.post}
           </P>
         </div>
       </div>
-    </div>
   );
 };
 export default UserPreview;

@@ -1,0 +1,13 @@
+.editPanel {
+  padding: 15px;
+  z-index: 10;
+  position: absolute;
+  display: none;
+  top: 0px;
+  right: 0px;
+  @apply animate-fade;
+}
+
+.visible {
+  display: inline-block;
+}/*# sourceMappingURL=EditPanel.module.css.map */

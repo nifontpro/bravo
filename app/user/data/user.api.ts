@@ -59,7 +59,7 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
-		create: build.mutation<IdResponse, IUserCreate>({
+		create: build.mutation<IUser,  IUserCreate>({
 			query: (user) => ({
 				method: 'POST',
 				url: getUserUrl('/create'),

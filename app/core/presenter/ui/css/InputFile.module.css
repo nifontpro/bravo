@@ -1,0 +1,32 @@
+.inputWrapper {
+  width: 100%;
+  position: relative;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.inputFile {
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  left: 40px;
+  z-index: 100;
+  width: 220px;
+  height: 50px;
+}
+
+.fileButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonText {
+  border: 1px solid var(--gray-dark);
+  padding: 12px 25px;
+  color: var(--gray-dark);
+  font-weight: 500;
+  font-size: 13.5888px;
+  border-radius: 74px;
+  cursor: pointer;
+}/*# sourceMappingURL=InputFile.module.css.map */

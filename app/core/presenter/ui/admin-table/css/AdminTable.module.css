@@ -1,0 +1,21 @@
+.item {
+  @apply animate-fade flex items-center justify-between bg-white mt-4 px-5 rounded-lg transition-colors hover:bg-opacity-50 shadow-lg;
+}
+.item > div {
+  @apply text-opacity-80 py-3;
+  width: 24%;
+}
+.item > div:last-child {
+  @apply text-right justify-end;
+}
+
+.itemHeader {
+  @apply bg-gray-100 shadow-lg mt-8;
+}
+.itemHeader > div {
+  @apply text-opacity-90 font-semibold py-2.5;
+}
+
+.notFound {
+  @apply text-lg text-white text-opacity-60 text-center py-3;
+}/*# sourceMappingURL=AdminTable.module.css.map */

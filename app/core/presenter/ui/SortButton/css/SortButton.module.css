@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+.container .title {
+  margin-left: 15px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--black);
+}/*# sourceMappingURL=SortButton.module.css.map */

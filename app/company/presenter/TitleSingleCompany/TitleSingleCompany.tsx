@@ -9,6 +9,9 @@ import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
 import { useState } from 'react';
 import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
 import { useCompanyAdmin } from '../admin/useCompanyAdmin';
+import { useMyUser } from '@/user/presenter/useMyUsers';
+import { userApi } from '@/user/data/user.api';
+import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
 
 const TitleSingleCompany = ({
   company,
@@ -16,12 +19,16 @@ const TitleSingleCompany = ({
   className,
   ...props
 }: TitleSingleCompanyProps): JSX.Element => {
-  let URL = '/manage/company/edit/'
+  const { data: users } = userApi.useGetByCompanyQuery({
+    companyId: company.id,
+  });
+
+  let URL = '/manage/company/edit/';
 
   const [visible, setVisible] = useState<boolean>(false);
 
-	const {deleteAsync} = useCompanyAdmin()
-  
+  const { deleteAsync } = useCompanyAdmin();
+
   return (
     <div className={styles.titleCompany}>
       <div>
@@ -40,7 +47,11 @@ const TitleSingleCompany = ({
           <Htag tag='h1' className={styles.header}>
             {company.name}
           </Htag>
-          <ButtonCircleIcon onClick={() => setVisible(!visible)} icon='dots' appearance='transparent' />
+          <ButtonCircleIcon
+            onClick={() => setVisible(!visible)}
+            icon='dots'
+            appearance='transparent'
+          />
           <EditPanel
             URL={URL}
             onMouseLeave={() => setVisible(!visible)}
@@ -58,9 +69,7 @@ const TitleSingleCompany = ({
           <a href='mailto:hello@familyagency.ru'>hello@familyagency.ru</a>
         </div>
         <div className={styles.colUsers}>
-          <P className={styles.numberUsers}>
-            Какое то колличество пользователей
-          </P>
+          <CountUsersPreview usersInDepartment={users} />
         </div>
       </div>
     </div>

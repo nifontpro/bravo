@@ -1,0 +1,14 @@
+.selectContainer {
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  bottom: -30px;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.custom-select__control {
+  padding: 20px 20px;
+}/*# sourceMappingURL=SelectArtem.module.css.map */

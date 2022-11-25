@@ -1,0 +1,32 @@
+.menu {
+  @apply mb-14 animate-fade;
+}
+.menu .heading {
+  color: var(--gray-light);
+  @apply uppercase text-sm font-semibold pl-layout;
+}
+.menu .ul > li {
+  @apply mx-[45px];
+}
+.menu .ul > li > a {
+  @apply border-r-4 border-r-transparent transition-colors  py-[17px] px-[30px] flex items-center text-white mt-6 cursor-pointer rounded-[12px] hover:bg-gray_middle hover:text-gray_dark;
+}
+.menu .ul > li > a > span {
+  @apply ml-3 text-lg hover:text-gray-600 text-[16px];
+}
+.menu .ul > li > a > svg {
+  @apply text-2lg;
+}
+.menu .ul > li > a > span,
+.menu .ul > li > a > svg {
+  @apply transition-all;
+}
+.menu .ul > li.active {
+  @apply bg-gray_middle rounded-[12px];
+}
+.menu .ul > li.active > a > span {
+  @apply text-gray_dark;
+}
+.menu .ul > li.active > a > svg {
+  @apply fill-black;
+}/*# sourceMappingURL=Menu.module.css.map */

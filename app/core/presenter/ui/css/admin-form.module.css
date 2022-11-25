@@ -1,0 +1,18 @@
+.form {
+  @apply mt-12;
+}
+.form .fields {
+  @apply flex mx-auto justify-center items-center flex-wrap justify-between;
+}
+.form > button {
+  @apply mt-10 flex;
+}
+
+.checkbox {
+  @apply flex items-center;
+}
+.checkbox > input {
+  @apply m-2 p-2 appearance-none h-4 w-4 border border-gray-300 checked:hover:bg-cyan-700
+		rounded-sm bg-white checked:bg-gray-400 focus:checked:bg-cyan-800 checked:border-gray-600 focus:outline-none
+		transition duration-300 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer;
+}/*# sourceMappingURL=admin-form.module.css.map */

@@ -1,0 +1,15 @@
+.radioButton {
+  display: flex;
+}
+.radioButton .btn {
+  cursor: pointer;
+  padding: 12px 17px;
+  color: var(--gray-dark);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 11px;
+}
+.radioButton .btnActive {
+  background: var(--gray-dark);
+  color: var(--white);
+}/*# sourceMappingURL=InputRadio.module.css.map */

@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  align-items: center;
+  margin-bottom: 45px;
+}
+.container > .title {
+  margin-left: 15px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--black);
+}
+.container > .department {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--gray-dark);
+}
+.container > .editPanel {
+  display: flex;
+}/*# sourceMappingURL=UserList.module.css.map */

@@ -1,0 +1,19 @@
+.wrapper {
+  background: var(--white);
+  border-radius: 27px;
+  padding: 75px;
+  margin-bottom: 30px;
+}
+.wrapper > .header {
+  margin-bottom: 50px;
+}
+.wrapper > .header > .title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.wrapper > .header > .description {
+  font-weight: 400;
+  font-size: 18.3588px;
+  line-height: 25px;
+}/*# sourceMappingURL=SingleDepartments.module.css.map */

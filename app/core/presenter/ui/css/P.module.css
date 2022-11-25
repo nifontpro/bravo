@@ -1,0 +1,38 @@
+.p {
+  font-weight: 700;
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.xs {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.s {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.m {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.l {
+  font-size: 22px;
+  line-height: 29px;
+}
+
+.thin {
+  font-weight: 400;
+}
+
+.bold {
+  font-size: 22px;
+  line-height: 29px;
+}
+
+.gray {
+  opacity: 0.5;
+}/*# sourceMappingURL=P.module.css.map */
