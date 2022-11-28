@@ -69,7 +69,7 @@ const TitleSingleCompany = ({
           <a href='mailto:hello@familyagency.ru'>hello@familyagency.ru</a>
         </div>
         <div className={styles.colUsers}>
-          <CountUsersPreview usersInDepartment={users} className={styles.countUsersPreview}/>
+          <CountUsersPreview usersInDepartment={users}/>
         </div>
       </div>
     </div>

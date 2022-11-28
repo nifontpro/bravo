@@ -84,7 +84,6 @@ const UserCreate: FC = () => {
 
   return (
     <Meta title='Создание профиля сотрудника'>
-
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
@@ -142,12 +141,13 @@ const UserCreate: FC = () => {
           </div>
 
           <div className={styles.group}>
-            <Field
+            <div className={styles.fixedCompanyName}>{currentCompany?.name}</div>
+            {/* <Field
               {...register('companyId', { required: 'Компания обязательно!' })}
               title='Компания, отдел'
               value={currentCompany?.name}
               error={errors.companyId}
-            />
+            /> */}
             <Controller
               name='departmentId'
               control={control}

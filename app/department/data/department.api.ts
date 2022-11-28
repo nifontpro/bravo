@@ -1,6 +1,6 @@
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {queryWithReauth} from "@/core/data/base.api";
-import {IDepartment} from "../model/department.types";
+import {IDepartment, IDepartmentCreate} from "../model/department.types";
 import {getDepartmentUrl} from "@/core/config/api.config";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {getAdminUrl} from "@/core/config/url.config";
@@ -67,7 +67,7 @@ export const departmentApi = createApi({
 				)
 		}),
 
-		create: build.mutation<IDepartment, string>({
+		create: build.mutation<IDepartment, IDepartmentCreate>({
 				query: (companyId) => ({
 					method: 'POST',
 					url: getDepartmentUrl('/create'),
