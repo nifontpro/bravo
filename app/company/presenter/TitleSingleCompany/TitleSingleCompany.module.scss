@@ -20,6 +20,11 @@
       }
     }
 
+    > .address {
+      display: flex;
+      align-items: center;
+    }
+
     > .description {
       margin-bottom: 30px;
     }

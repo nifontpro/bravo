@@ -12,6 +12,7 @@ import { useCompanyAdmin } from '../admin/useCompanyAdmin';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
+import GpsIcon from './gps.svg'
 
 const TitleSingleCompany = ({
   company,
@@ -61,6 +62,13 @@ const TitleSingleCompany = ({
           />
         </div>
 
+        <div className={styles.address}>
+          <GpsIcon className='mr-[10px]'/>
+          <P size='s' className={styles.description}>
+            {company.address}
+          </P>
+        </div>
+
         <P size='s' className={styles.description}>
           {company.description}
         </P>
@@ -69,7 +77,7 @@ const TitleSingleCompany = ({
           <a href='mailto:hello@familyagency.ru'>{company.email}</a>
         </div>
         <div className={styles.colUsers}>
-          <CountUsersPreview usersInDepartment={users}/>
+          <CountUsersPreview usersInDepartment={users} />
         </div>
       </div>
     </div>
