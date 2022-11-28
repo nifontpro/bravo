@@ -67,7 +67,7 @@ export const departmentApi = createApi({
 				)
 		}),
 
-		create: build.mutation<IdResponse, string>({
+		create: build.mutation<IDepartment, string>({
 				query: (companyId) => ({
 					method: 'POST',
 					url: getDepartmentUrl('/create'),

@@ -46,27 +46,6 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
       <div className={styles.wrapper}>
         <TitleSingleCompany company={company} />
         <DepartmentAndUsers company={company} />
-
-        {/* <Banner
-				imagePath={company.imageUrl}
-				Detail={() => null}
-			/>
-			<div className={cn(styles.singleEntity, {"mb-2":true})}>
-				<h1>Наименование компании: {company.name}</h1>
-				<h2>Описание: {company.description}</h2>
-				<Button onClick={handleClick}>
-					Выбрать по умолчанию
-				</Button>
-			</div>
-			{isLoading ? <p>Загрузка...</p>
-				:
-				<Catalog
-					data={bestUsers || []}
-					prefix='/user'
-					title="Доска почета"
-					description={`Список лучших сотрудников`}
-				/>
-			} */}
       </div>
     </Meta>
   );

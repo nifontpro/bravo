@@ -17,8 +17,7 @@ import Button from '@/core/presenter/ui/Button/Button';
 import { useRouter } from 'next/router';
 
 const DepartmentEdit: FC = () => {
-
-  const { back } = useRouter()
+  const { back } = useRouter();
 
   const {
     handleSubmit,
@@ -28,7 +27,6 @@ const DepartmentEdit: FC = () => {
   } = useForm<IDepartmentEditInput>({
     mode: 'onChange',
   });
-
 
   const { department, isLoading, onSubmit } = useDepartmentEdit(setValue);
 
@@ -48,13 +46,12 @@ const DepartmentEdit: FC = () => {
 
   return (
     <Meta title='Редактирование отдела'>
-      {/* <AdminNavigation/>
-		<Heading title="Редактирование отдела"/> */}
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         {isLoading ? (
           <SkeletonLoader count={3} />
         ) : (
           <>
+          
             {/* Скрыто так как нет фото в редактирование */}
             <div className='hidden'>
               <div className={styles.uploadFlex}>
@@ -84,23 +81,23 @@ const DepartmentEdit: FC = () => {
               Отдел
             </Htag>
 
-            <div className={formStyles.fields}>
-              <Field
-                {...register('name', { required: 'Название необходимо!' })}
-                placeholder='Название отдела'
-                error={errors.name}
-                className='mb-[50px]'
-              />
+            <Field
+              {...register('name', { required: 'Название необходимо!' })}
+              title='Название отдела'
+              placeholder={department?.name}
+              error={errors.name}
+              className='mb-[50px]'
+            />
 
-              <Field 
-                {...register('description', {
-                  required: 'Описание необходимо!',
-                })}
-                placeholder='Чем занимается'
-                error={errors.description}
-              />
-            </div>
- 
+            <Field
+              {...register('description', {
+                required: 'Описание необходимо!',
+              })}
+              title='Чем занимается'
+              placeholder={department?.description}
+              error={errors.description}
+            />
+
             <div className={styles.btn}>
               <Button onClick={() => back()} size='m' appearance='white'>
                 Отменить

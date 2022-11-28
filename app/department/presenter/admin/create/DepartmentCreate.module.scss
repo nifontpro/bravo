@@ -1,0 +1,16 @@
+.form {
+    background: var(--white);
+    max-width: 980px;
+    padding: 60px 85px;
+    border-radius: 27px;
+
+    > .title {
+        margin-bottom: 50px;
+    }
+
+    > .btn {
+        display: flex;
+        justify-content: end;
+        margin-top: 90px;
+    }
+}

@@ -41,7 +41,7 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
           <div className={styles.new}>
             <div className={styles.newDepartment}>
               <ButtonCircleIcon
-                onClick={createAsync}
+                onClick={() => push('/manage/department/create')}
                 icon='plus'
                 appearance='black'
               />

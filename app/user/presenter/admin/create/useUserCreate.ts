@@ -1,11 +1,10 @@
-import { SubmitHandler, UseFormReset, UseFormSetValue } from 'react-hook-form';
+import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { IUserCreateInput } from '@/user/presenter/admin/create/user-create.type';
 import { userApi } from '@/user/data/user.api';
 import { toastError } from '@/core/utils/toast-error';
-import { getAdminUrl } from '@/core/config/url.config';
 import { IUser } from '@/user/model/user.types';
 
 export const useUserCreate = (
@@ -19,10 +18,10 @@ export const useUserCreate = (
   const [updateImage] = userApi.useUpdateImageMutation();
 
   useEffect(() => {
+    setValue('role', 'user');
+    setValue('companyId', companyId);
+    // setValue('isMNC', false)
     if (active != undefined) {
-      setValue('role', 'user');
-      setValue('companyId', companyId);
-      // setValue('isMNC', false)
       setValue('gender', active);
     }
   }, [setValue]);
@@ -57,7 +56,7 @@ export const useUserCreate = (
     if (!isError) {
       toast.success('Профиль сотрудника успешно создан');
       // push('/company/' + companyId).then();
-      back()
+      back();
     }
   };
 

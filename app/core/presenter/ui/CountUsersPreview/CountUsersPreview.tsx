@@ -16,10 +16,9 @@ const CountUsersPreview = ({
   // console.log(usersInDepartment);
 
   return (
-    <>
+    <div className={className} {...props}>
       {usersInDepartment && (
         <div
-          {...props}
           className={cn(className, {
             [styles.container]: !listUserVisible,
             [styles.hidden]: listUserVisible,
@@ -48,7 +47,7 @@ const CountUsersPreview = ({
                       className='rounded-full mr-4'
                     />
                   </div>
-                )
+                );
               }
             })}
           </div>
@@ -59,7 +58,7 @@ const CountUsersPreview = ({
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 export default CountUsersPreview;

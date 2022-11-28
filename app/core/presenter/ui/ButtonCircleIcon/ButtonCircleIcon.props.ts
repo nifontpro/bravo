@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react"
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react"
 import plus from './plus.svg'
 import down from './down.svg'
 import dots from './dots.svg'
@@ -11,7 +11,7 @@ export const icons = {
 
 export type IconName = keyof typeof icons
 
-export type ButtonCircleIconProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
+export type ButtonCircleIconProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     appearance: 'black' | 'transparent';
     icon: IconName
     children?: ReactNode

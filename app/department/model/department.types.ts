@@ -8,3 +8,7 @@ export interface IDepartment {
 	companyId: string
 	id: string
 }
+
+export interface IDepartmentCreate extends Omit<IDepartment, 'id' | 'imageUrl' | 'imageKey' | 'images'> {
+	
+}
