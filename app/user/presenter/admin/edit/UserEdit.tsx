@@ -53,6 +53,8 @@ const UserEdit: FC = () => {
     'MALE' | 'FEMALE' | 'UNDEFINED' | undefined
   >(user?.gender);
 
+  console.log(user)
+
   return (
     <Meta title='Редактирование профиля сотрудника'>
       <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>Вернуться назад</ButtonCircleIcon>
@@ -79,10 +81,10 @@ const UserEdit: FC = () => {
 
             <div className={styles.groupGender}>
               <Field
-                {...register('name', { required: 'ФИО необходимо!' })}
-                title='Фамилия, Имя'
-                placeholder={user?.name}
-                error={errors.name}
+                {...register('lastname', { required: 'Фамилия необходима!' })}
+                title='Фамилия'
+                placeholder={user?.lastname}
+                error={errors.lastname}
               />
               <InputRadio
                 active={active}
@@ -90,6 +92,25 @@ const UserEdit: FC = () => {
                 className={styles.gender}
               />
             </div>
+
+            <div className={styles.group}>
+            <Field
+              {...register('name', { required: 'Имя обязательно!' })}
+              title='Имя'
+              placeholder={user?.name}
+              error={errors.name}
+            />
+
+            <Field
+              {...register('patronymic', {
+                required: 'Отчество обязательно!',
+                minLength: 6,
+              })}
+              title='Отчество'
+              placeholder={user?.patronymic}
+              error={errors.patronymic}
+            />
+          </div>
 
             <div className={styles.group}>
               <Field
@@ -108,14 +129,13 @@ const UserEdit: FC = () => {
             </div>
 
             <div className={styles.group}>
-              <Field
-                {...register('companyId', {
-                  required: 'Компания обязательно!',
-                })}
-                title='Компания, отдел'
-                value={currentCompany?.name}
-                error={errors.companyId}
-              />
+            <div className={styles.fixedCompanyName}>{currentCompany?.name}</div>
+            {/* <Field
+              {...register('companyId', { required: 'Компания обязательно!' })}
+              title='Компания, отдел'
+              value={currentCompany?.name}
+              error={errors.companyId}
+            /> */}
               <Controller
                 name='departmentId'
                 control={control}
