@@ -11,6 +11,7 @@ import ListUser from './ListUsers/ListUser';
 import Button from '@/core/presenter/ui/Button/Button';
 import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
+import { IUser } from '@/user/model/user.types';
 
 const Depart = ({
   data,
@@ -23,7 +24,23 @@ const Depart = ({
     filter: '',
   });
 
-  let URL = '/manage/department/edit/'
+  // let arrUser: IUser[] = []
+  // usersInDepartment?.forEach((item) => {
+  //   arrUser.push(item)
+  // })
+
+  // console.log(arrUser)
+
+  // if (usersInDepartment != undefined) {
+  //   usersInDepartment.sort((prev: IUser, next: IUser) => {
+  //     if (prev != undefined && next != undefined) {
+  //       if (prev.lastname < next.lastname) return -1;
+  //       if (prev.lastname < next.lastname) return 1;
+  //     }
+  //   });
+  // }
+
+  let URL = '/manage/department/edit/';
 
   const [visible, setVisible] = useState<boolean>(false);
   const [listUserVisible, setListUserVisible] = useState<boolean>(false);
@@ -40,7 +57,7 @@ const Depart = ({
             icon='dots'
             appearance='transparent'
           />
-          <EditPanel 
+          <EditPanel
             URL={URL}
             onMouseLeave={() => setVisible(!visible)}
             id={data.id}

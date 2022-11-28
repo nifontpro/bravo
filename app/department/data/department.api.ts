@@ -68,10 +68,10 @@ export const departmentApi = createApi({
 		}),
 
 		create: build.mutation<IDepartment, IDepartmentCreate>({
-				query: (companyId) => ({
+				query: (department) => ({
 					method: 'POST',
-					url: getDepartmentUrl('/create'),
-					body: {companyId}
+					url: getDepartmentUrl(),
+					body: department
 				}),
 				invalidatesTags: ['Department', 'Count']
 			}

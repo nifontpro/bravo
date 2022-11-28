@@ -109,15 +109,34 @@ const UserCreate: FC = () => {
 
           <div className={styles.groupGender}>
             <Field
-              {...register('name', { required: 'ФИО необходимо!' })}
-              title='Фамилия, Имя'
-              placeholder='Введите Фамилию и Имя'
-              error={errors.name}
+              {...register('lastname', { required: 'Фамилия необходима!' })}
+              title='Фамилия'
+              placeholder='Введите Фамилию'
+              error={errors.lastname}
             />
             <InputRadio
               active={active}
               setActive={setActive}
               className={styles.gender}
+            />
+          </div>
+
+          <div className={styles.group}>
+            <Field
+              {...register('name', { required: 'Имя обязательно!' })}
+              title='Имя'
+              placeholder='Введите имя'
+              error={errors.name}
+            />
+
+            <Field
+              {...register('patronymic', {
+                required: 'Отчество обязательно!',
+                minLength: 6,
+              })}
+              title='Отчество'
+              placeholder='Отчество пароль'
+              error={errors.patronymic}
             />
           </div>
 

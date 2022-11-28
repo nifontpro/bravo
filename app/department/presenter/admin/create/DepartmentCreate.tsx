@@ -10,6 +10,7 @@ import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { DepartmentCreateProps } from './DepartmentCreate.props';
 import { useDepartmentCreate } from './useDepartmentCreate';
+import { IDepartment, IDepartmentCreate } from '@/department/model/department.types';
 
 const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -24,7 +25,7 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
     register,
     formState: { errors },
     setValue,
-  } = useForm<IUserCreateInput>({ mode: 'onChange' });
+  } = useForm<IDepartmentCreate>({ mode: 'onChange' });
 
   const { onSubmit } = useDepartmentCreate(setValue, currentCompany?.id);
 

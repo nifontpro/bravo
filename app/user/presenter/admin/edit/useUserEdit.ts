@@ -33,6 +33,8 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
       setValue('phone', user.phone);
       setValue('description', user.description);
       setValue('departmentId', user.departmentId);
+      setValue('lastname', user.lastname);
+      setValue('patronymic', user.patronymic);
     }
   }, [user, isGetSuccess, setValue]);
 
