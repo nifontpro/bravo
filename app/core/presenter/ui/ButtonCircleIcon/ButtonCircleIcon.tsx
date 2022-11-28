@@ -12,13 +12,13 @@ const ButtonIcon = ({
   const IconComp = icons[icon];
 
   return (
-    <div className={cn(styles.wrapper ,className)}>
+    <div className={cn(styles.wrapper ,className)}         {...props}>
       <button
         className={cn(styles.button, {
           [styles.black]: appearance == 'black',
           [styles.transparent]: appearance == 'transparent',
         })}
-        {...props}
+
       >
         <IconComp />
       </button>

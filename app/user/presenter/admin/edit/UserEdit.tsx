@@ -55,7 +55,7 @@ const UserEdit: FC = () => {
 
   return (
     <Meta title='Редактирование профиля сотрудника'>
-      <ButtonCircleIcon appearance='black' icon='down'>Вернуться назад</ButtonCircleIcon>
+      <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>Вернуться назад</ButtonCircleIcon>
       <div className={styles.newForm}>
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
