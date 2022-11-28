@@ -13,3 +13,7 @@ export interface ICompany {
   imageKey?: string;
   images: ImageRef[];
 }
+
+export interface ICompanyCreate extends Omit<ICompany, 'id' | 'imageUrl' | 'imageKey' | 'images'> {
+  file: FileList
+}

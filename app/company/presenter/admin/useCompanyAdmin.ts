@@ -17,22 +17,22 @@ export const useCompanyAdmin = () => {
 	const [createCompany] = companyApi.useCreateMutation()
 	const [deleteCompany] = companyApi.useDeleteMutation()
 
-	const {push} = useRouter()
+	const {back, push} = useRouter()
 
 	return useMemo(
 		() => {
 
-			const createAsync = async () => {
-				await createCompany()
-					.unwrap()
-					.then(response => {
-						toast.success("Компания успешно создана")
-						push(getAdminUrl(`company/edit/${response.id}`))
-					})
-					.catch(e => {
-						toastError(e, "Ошибка при создании компании")
-					})
-			}
+			// const createAsync = async () => {
+			// 	await createCompany()
+			// 		.unwrap()
+			// 		.then(response => {
+			// 			toast.success("Компания успешно создана")
+			// 			push(getAdminUrl(`company/edit/${response.id}`))
+			// 		})
+			// 		.catch(e => {
+			// 			toastError(e, "Ошибка при создании компании")
+			// 		})
+			// }
 
 			const deleteAsync = async (id: string) => {
 				await deleteCompany(id)
@@ -43,6 +43,7 @@ export const useCompanyAdmin = () => {
 					.catch(e => {
 						toastError(e, "Ошибка при удалении компании")
 					})
+					back()
 			}
 
 			return {
@@ -50,7 +51,7 @@ export const useCompanyAdmin = () => {
 				companies,
 				handleSearch,
 				searchTerm,
-				createAsync,
+				// createAsync,
 				deleteAsync
 			}
 		},

@@ -65,8 +65,8 @@ const TitleSingleCompany = ({
           {company.description}
         </P>
         <div className={styles.contacts}>
-          <a href='tel:+74999228594'>+74999228594</a>
-          <a href='mailto:hello@familyagency.ru'>hello@familyagency.ru</a>
+          <a href='tel:+74999228594'>{company.phone}</a>
+          <a href='mailto:hello@familyagency.ru'>{company.email}</a>
         </div>
         <div className={styles.colUsers}>
           <CountUsersPreview usersInDepartment={users}/>

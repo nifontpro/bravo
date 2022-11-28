@@ -1,5 +1,5 @@
 import {queryWithReauth} from "@/core/data/base.api";
-import {ICompany} from "@/company/model/company.types";
+import {ICompany, ICompanyCreate} from "@/company/model/company.types";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {getAdminUrl} from "@/core/config/url.config";
@@ -48,11 +48,11 @@ export const companyApi = createApi({
 				)
 		}),
 
-		create: build.mutation<IdResponse, void>({
-				query: () => ({
+		create: build.mutation<ICompany, ICompanyCreate>({
+				query: (company) => ({
 					method: 'POST',
-					body: {ownerId: ""},
-					url: getCompanyUrl('/create')
+					body: company,
+					url: getCompanyUrl()
 				}),
 				invalidatesTags: ['Company', 'Count']
 			}
