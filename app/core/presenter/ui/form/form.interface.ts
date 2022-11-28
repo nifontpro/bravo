@@ -5,7 +5,7 @@ export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export interface IFieldProps {
-	placeholder: string
+	placeholder?: string | undefined
 	error?: FieldError | undefined
 }
 

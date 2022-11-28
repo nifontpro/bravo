@@ -14,8 +14,11 @@ import { useDepartmentEdit } from '@/department/presenter/admin/edit/useDepartme
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import Button from '@/core/presenter/ui/Button/Button';
+import { useRouter } from 'next/router';
 
 const DepartmentEdit: FC = () => {
+
+  const { back } = useRouter()
 
   const {
     handleSubmit,
@@ -26,9 +29,8 @@ const DepartmentEdit: FC = () => {
     mode: 'onChange',
   });
 
-  const [type, setType] = useState<'back' | 'edit'>('edit');
 
-  const { department, isLoading, onSubmit } = useDepartmentEdit(setValue, type);
+  const { department, isLoading, onSubmit } = useDepartmentEdit(setValue);
 
   // console.log(department)
 
@@ -100,10 +102,10 @@ const DepartmentEdit: FC = () => {
             </div>
  
             <div className={styles.btn}>
-              <Button onClick={() => setType('back')} size='m' appearance='white'>
+              <Button onClick={() => back()} size='m' appearance='white'>
                 Отменить
               </Button>
-              <Button onClick={() => setType('edit')} size='m' appearance='gray' className='ml-[15px]'>
+              <Button size='m' appearance='gray' className='ml-[15px]'>
                 Сохранить
               </Button>
             </div>

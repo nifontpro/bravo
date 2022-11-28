@@ -44,7 +44,7 @@ const Depart = ({
             URL={URL}
             onMouseLeave={() => setVisible(!visible)}
             id={data.id}
-            deleteAsync={deleteAsync}
+            deleteAsync={() => deleteAsync(data.id)}
             visible={visible}
           />
         </div>

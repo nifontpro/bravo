@@ -10,7 +10,7 @@ import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAd
 import { useRouter } from 'next/router';
 
 const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
-  const { push } = useRouter()
+  const { push } = useRouter();
   const [toggle, setToogle] = useState<boolean>(false);
   const { createAsync } = useDepartmentAdmin(company.id);
 
@@ -42,16 +42,14 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
             <div className={styles.newDepartment}>
               <ButtonCircleIcon
                 onClick={createAsync}
-                className='mr-[17px]'
                 icon='plus'
                 appearance='black'
               />
               Отдел
             </div>
             <div className={styles.newUser}>
-              <ButtonCircleIcon 
-              onClick={() => push('/manage/user/create')}
-                className='mr-[17px]'
+              <ButtonCircleIcon
+                onClick={() => push('/manage/user/create')}
                 icon='plus'
                 appearance='black'
               />

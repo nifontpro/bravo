@@ -1,6 +1,6 @@
 import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { getAdminUrl } from '@/core/config/url.config';
 import { userApi } from '@/user/data/user.api';
@@ -10,52 +10,38 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
   const { push, query } = useRouter();
   const userId = String(query.id);
 
+  const [updateImg] = userApi.useUpdateImageMutation();
+
   const {
     data: user,
     isLoading,
     isSuccess: isGetSuccess,
   } = userApi.useGetByIdQuery(userId);
   const [update] = userApi.useUpdateMutation();
-  const [updateImage] = userApi.useUpdateImageMutation();
+
+  const [img, setImg] = useState<string | undefined>(user?.imageUrl);
 
   useEffect(() => {
     if (isGetSuccess && user) {
+      setValue('password', undefined);
       setValue('name', user.name);
-      setValue('patronymic', user.patronymic);
-      setValue('lastname', user.lastname);
+      setValue('companyId', user.companyId);
       setValue('login', user.login);
-      setValue('password', user.password);
       setValue('email', user.email);
-      setValue('isMNC', user.isMNC);
+      setValue('post', user.post);
+      setValue('gender', user.gender);
+      setValue('phone', user.phone);
+      setValue('description', user.description);
+      setValue('departmentId', user.departmentId);
     }
   }, [user, isGetSuccess, setValue]);
 
   const onSubmit: SubmitHandler<IUserEditInput> = async (data) => {
+    console.log(data);
     let isError = false;
-
-    const fileData = data.file[0];
-    if (fileData) {
-      const formData = new FormData();
-      formData.append('imageUrl', fileData);
-      console.log(formData);
-    }
 
     await update({ id: userId, ...data })
       .unwrap()
-      .then(async () => {
-        const fileData = data.file[0];
-        if (fileData) {
-          const formData = new FormData();
-          formData.append('imageUrl', fileData);
-          console.log(formData);
-          await updateImage({ userId, formData })
-            .unwrap()
-            .catch(() => {
-              isError = true;
-              toast.error('Ошибка обновления фото сотрудника');
-            });
-        }
-      })
       .catch(() => {
         isError = true;
         toast.error('Ошибка обновления профиля сотрудника');
@@ -63,9 +49,27 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 
     if (!isError) {
       toast.success('Профиль сотрудника успешно обновлен');
-      await push(getAdminUrl('user'));
+      await push('/company/' + data.companyId);
     }
   };
 
-  return { onSubmit, isLoading, user };
+  const changePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
+    let isError = false;
+    if (event.target.files !== null && user != undefined) {
+      setImg(URL.createObjectURL(event.target.files[0]));
+      const formData = new FormData();
+      formData.append('imageUrl', event.target.files[0]);
+      await updateImg({ userId: user.id, formData })
+        .unwrap()
+        .catch(() => {
+          isError = true;
+          toast.error('Ошибка обновления фотографии');
+        });
+      if (!isError) {
+        toast.success('Фото успешно обновлен');
+      }
+    }
+  };
+
+  return { onSubmit, changePhoto, isLoading, user, img };
 };

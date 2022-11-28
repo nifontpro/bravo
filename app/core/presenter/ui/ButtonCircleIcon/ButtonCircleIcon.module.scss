@@ -1,20 +1,24 @@
-.button {
+.wrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 34px;
-  height: 34px;
 
-  border-radius: 100%;
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+margin-right: 10px;
+    border: none;
+    cursor: pointer;
+  }
 
-  border: none;
-  cursor: pointer;
-}
+  .black {
+    background-color: var(--black);
+  }
 
-.black {
-  background-color: var(--black);
-}
-
-.transparent {
-  background-color: none;
+  .transparent {
+    background-color: none;
+  }
 }

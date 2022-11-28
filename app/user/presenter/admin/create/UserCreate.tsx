@@ -24,9 +24,9 @@ import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
 
 const UserCreate: FC = () => {
-  const [active, setActive] = useState<'MALE' | 'FEMALE'>('MALE');
+  const [active, setActive] = useState<'MALE' | 'FEMALE' | 'UNDEFINED' | undefined>('MALE');
   const { currentCompany } = useCompanyState();
-  const { push } = useRouter();
+  const { push, back } = useRouter();
 
   if (currentCompany === null) {
     push('/company');
@@ -50,7 +50,6 @@ const UserCreate: FC = () => {
   // console.log(currentCompany);
 
   const [img, setImg] = useState<string>('');
-  const [type, setType] = useState<'back' | 'create'>('create');
 
   const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -59,6 +58,7 @@ const UserCreate: FC = () => {
   };
 
   const {
+    reset,
     handleSubmit,
     register,
     formState: { errors },
@@ -69,7 +69,6 @@ const UserCreate: FC = () => {
   const { onSubmit } = useUserCreate(
     setValue,
     active,
-    type,
     currentCompany?.id
     // currentDepartment?.id
   );
@@ -85,7 +84,7 @@ const UserCreate: FC = () => {
   //   { label: 'Директор отдела', value: 'director' },
   //   { label: 'Обычный сотрудник', value: 'user' },
   // ];
-
+  
   return (
     <Meta title='Создание профиля сотрудника'>
       {/* <AdminNavigation/>
@@ -103,7 +102,7 @@ const UserCreate: FC = () => {
           <InputFile
             error={errors.file}
             {...register('file', { onChange: changePhoto })}
-          />
+          >Загрузить изображение</InputFile>
         </div>
 
         <div className={styles.fields}>
@@ -114,7 +113,8 @@ const UserCreate: FC = () => {
           <div className={styles.groupGender}>
             <Field
               {...register('name', { required: 'ФИО необходимо!' })}
-              placeholder='Фамилия, Имя'
+              title='Фамилия, Имя'
+              placeholder='Введите Фамилию и Имя'
               error={errors.name}
             />
             <InputRadio
@@ -127,13 +127,15 @@ const UserCreate: FC = () => {
           <div className={styles.group}>
             <Field
               {...register('login', { required: 'Логин обязательно!' })}
-              placeholder='Логин'
+              title='Логин'
+              placeholder='Введите свой логин'
               error={errors.login}
             />
 
             <Field
-              {...register('password', { required: 'Пароль обязательно!' })}
-              placeholder='Пароль'
+              {...register('password', { required: 'Пароль обязательно!', minLength: 6 })}
+              title='Пароль'
+              placeholder='Придумайте пароль'
               error={errors.password}
             />
           </div>
@@ -142,7 +144,8 @@ const UserCreate: FC = () => {
             {/* <div className={styles.currentCompany}>{currentCompany?.name}</div> */}
             <Field
               {...register('companyId', { required: 'Компания обязательно!' })}
-              placeholder='Компания, отдел'
+              title='Компания, отдел'
+              // placeholder='Компания, отдел'
               value={currentCompany?.name}
               error={errors.companyId}
             />
@@ -168,19 +171,22 @@ const UserCreate: FC = () => {
           <div className={styles.group}>
             <Field
               {...register('post', { required: 'Должность необходима!' })}
-              placeholder='Должность'
+              title='Должность'
+              placeholder='Напишите название должности'
               error={errors.post}
             />
             <Field
               {...register('phone', { required: 'Телефон необходим!' })}
-              placeholder='Сотовый'
+              title='Сотовый'
+              placeholder='89211341232'
               error={errors.phone}
             />
           </div>
 
           <TextArea
             {...register('description', { required: 'Должность необходима!' })}
-            placeholder='О сотруднике'
+            title='О сотруднике'
+            placeholder='Введите информацию о сотруднике'
             error={errors.description}
             className='mb-[100px]'
           />
@@ -234,10 +240,10 @@ const UserCreate: FC = () => {
           /> */}
 
           <div className={styles.buttons}>
-            <Button onClick={() => setType('back')} appearance='white' size='l'>
+            <Button onClick={() => back()} appearance='white' size='l'>
               Отменить
             </Button>
-            <Button onClick={() => setType('create')} appearance='gray' size='l' className='ml-[15px]'>
+            <Button appearance='gray' size='l' className='ml-[15px]'>
               Добавить
             </Button>
           </div>

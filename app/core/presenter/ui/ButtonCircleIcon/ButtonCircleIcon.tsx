@@ -2,19 +2,28 @@ import styles from './ButtonCircleIcon.module.scss';
 import cn from 'classnames';
 import { ButtonCircleIconProps, icons } from './ButtonCircleIcon.props';
 
-const ButtonIcon = ({ appearance, icon, className, ...props }: ButtonCircleIconProps): JSX.Element => {
-  const IconComp = icons[icon]
+const ButtonIcon = ({
+  appearance,
+  icon,
+  className,
+  children,
+  ...props
+}: ButtonCircleIconProps): JSX.Element => {
+  const IconComp = icons[icon];
 
   return (
-    <button
-      className={cn(styles.button, className, {
-        [styles.black]: appearance == 'black',
-        [styles.transparent]: appearance == 'transparent',
-      })}
-      {...props}
-    >
-      <IconComp />
-    </button>
+    <div className={cn(styles.wrapper ,className)}>
+      <button
+        className={cn(styles.button, {
+          [styles.black]: appearance == 'black',
+          [styles.transparent]: appearance == 'transparent',
+        })}
+        {...props}
+      >
+        <IconComp />
+      </button>
+      {children}
+    </div>
   );
 };
 

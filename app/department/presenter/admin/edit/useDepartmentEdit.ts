@@ -7,8 +7,7 @@ import { toast } from 'react-toastify';
 import { getAdminUrl } from '@/core/config/url.config';
 
 export const useDepartmentEdit = (
-  setValue: UseFormSetValue<IDepartmentEditInput>,
-  type: 'back' | 'edit'
+  setValue: UseFormSetValue<IDepartmentEditInput>
 ) => {
   const { push, back, query } = useRouter();
   const departmentId = String(query.id);
@@ -29,40 +28,36 @@ export const useDepartmentEdit = (
   }, [department, isGetSuccess, setValue]);
 
   const onSubmit: SubmitHandler<IDepartmentEditInput> = async (data) => {
-    if (type === 'back') {
-      back();
-    } else if (type === 'edit') {
-      let isError = false;
+    let isError = false;
 
-      await update({
-        id: departmentId,
-        ...data,
-        companyId: department?.companyId || '',
+    await update({
+      id: departmentId,
+      ...data,
+      companyId: department?.companyId || '',
+    })
+      .unwrap()
+      .then(async () => {
+        const fileData = data.file[0];
+        if (fileData) {
+          const formData = new FormData();
+          formData.append('imageUrl', fileData);
+          await updateImage({ departmentId, formData })
+            .unwrap()
+            .catch(() => {
+              isError = true;
+              toast.error('Ошибка обновления фото отдела');
+            });
+        }
       })
-        .unwrap()
-        .then(async () => {
-          const fileData = data.file[0];
-          if (fileData) {
-            const formData = new FormData();
-            formData.append('imageUrl', fileData);
-            await updateImage({ departmentId, formData })
-              .unwrap()
-              .catch(() => {
-                isError = true;
-                toast.error('Ошибка обновления фото отдела');
-              });
-          }
-        })
-        .catch(() => {
-          isError = true;
-          toast.error('Ошибка обновления отдела');
-        });
+      .catch(() => {
+        isError = true;
+        toast.error('Ошибка обновления отдела');
+      });
 
-      if (!isError) {
-        toast.success('Отдел успешно обновлен');
-      }
-	  back();
+    if (!isError) {
+      toast.success('Отдел успешно обновлен');
     }
+    back();
   };
 
   return { department, onSubmit, isLoading };

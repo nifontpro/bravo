@@ -5,7 +5,7 @@ import { ForwardedRef, forwardRef } from 'react';
 
 const InputFile = forwardRef(
   (
-    { error, className, ...props }: InputFileProps,
+    { error, className, children, ...props }: InputFileProps,
     ref: ForwardedRef<HTMLInputElement>
   ): JSX.Element => {
 
@@ -13,7 +13,7 @@ const InputFile = forwardRef(
       <div className={cn(className, styles.inputWrapper)}>
         <input type='file' className={styles.inputFile} ref={ref} {...props} />
         <label className={styles.fileButton}>
-          <span className={styles.buttonText}>Загрузить изображение</span>
+          <span className={styles.buttonText}>{children}</span>
         </label>
         {error && <span className={styles.errorMessage}>{error.message}</span>}
       </div>

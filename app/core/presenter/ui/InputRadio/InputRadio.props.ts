@@ -13,7 +13,7 @@ export type InputRadioProps = DetailedHTMLProps<
   error?:
     | Merge<FieldError, FieldErrorsImpl<DeepRequired<FileList>>>
     | undefined;
-  active: 'MALE' | 'FEMALE';
-  setActive: Dispatch<SetStateAction<"MALE" | "FEMALE">>
+  active: 'MALE' | 'FEMALE' | 'UNDEFINED' | undefined;
+  setActive: Dispatch<SetStateAction<'MALE' | 'FEMALE' | 'UNDEFINED' | undefined>>
 
 };

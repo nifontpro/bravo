@@ -3,5 +3,6 @@ import { FieldError } from "react-hook-form"
 
 export type TextAreaProps = DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> & {
     error?: FieldError
-    placeholder: string
+    placeholder: string | undefined
+    title: string
 }

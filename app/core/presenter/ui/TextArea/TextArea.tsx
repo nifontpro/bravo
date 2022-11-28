@@ -6,13 +6,14 @@ import P from '../P/P';
 
 const TextArea = forwardRef(
   (
-    { placeholder, error, className, ...props }: TextAreaProps,
+    { title, placeholder, error, className, ...props }: TextAreaProps,
     ref: ForwardedRef<HTMLTextAreaElement>
   ): JSX.Element => {
     return (
       <div className={cn(className, styles.textareaWrapper)}>
-        <P className={styles.placeholder}>{placeholder}</P>
+        <P className={styles.placeholder}>{title}</P>
         <textarea
+        placeholder={placeholder}
           className={cn(styles.textarea, {
             [styles.error]: error
           })}
