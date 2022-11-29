@@ -6,6 +6,7 @@ import {CompanyService} from "@/company/data/company.service";
 import {errorCatch} from "@/core/utils/api.helpers";
 import {API_SERVER_URL} from "@/core/config/api.config";
 
+
 const Home: NextPage<{ companies: ICompany[] | undefined }> = ({companies}) => {
 	return (
 		<Catalog
