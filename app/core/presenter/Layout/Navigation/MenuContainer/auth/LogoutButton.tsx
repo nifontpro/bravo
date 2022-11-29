@@ -22,7 +22,7 @@ const LogoutButton: FC = () => {
     dispatch(departmentApi.util.resetApiState());
     dispatch(userApi.util.resetApiState());
     // dispatch(userApi.util.invalidateTags(['User']))
-    await push('/');
+    await push('/auth');
   };
 
   return (

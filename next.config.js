@@ -36,6 +36,21 @@ const nextConfig = {
 
     return config;
   },
+
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/',
+  //       destination: '/auth',
+  //       permanent: true,
+  //     },
+  //     {
+  //       source: '/company',
+  //       destination: '/auth',
+  //       permanent: true,
+  //     },
+  //   ]
+  // },
 }
 
 module.exports = nextConfig

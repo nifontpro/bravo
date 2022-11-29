@@ -10,7 +10,7 @@ interface IAuthState {
 }
 
 const initialState: IAuthState = {
-	ws: undefined
+	ws: undefined,
 }
 
 export const authSlice = createSlice({

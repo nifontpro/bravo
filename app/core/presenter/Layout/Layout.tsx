@@ -27,17 +27,12 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     dispatch(modalActions.setState(state));
   };
 
-  // useEffect(() => {
-  //   if (user === undefined) {
-  //     push('/auth');
-  //   }
-  // }, [user]);
-
   if (user != undefined) {
     return (
       <div className={styles.layout}>
         <Header className={styles.header} />
         <Navigation className={styles.navigation} />
+        {/* {children} */}
 
         {/*---------------------------------------------------------*/}
         <div className={cn(styles.center, { [styles.auth]: user })}>
@@ -68,19 +63,10 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
           {/* После размера md */}
           <div className='hidden my:flex my:flex-col'>{children}</div>
         </div>
-
-        {/*---------------------------------------------------------*/}
-
-        {/* {
-				user ?
-					<Sidebar/>
-					:
-					null
-			} */}
       </div>
     );
   } else {
-    return <Auth />;
+    return <>{children}</>;
   }
 };
 export default Layout;
