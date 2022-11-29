@@ -10,8 +10,10 @@ import { modalActions, useModalState } from '@/core/store/modal.slice';
 import MaterialIcon from '@/core/presenter/ui/icons/MaterialIcon';
 import Header from './Header/Header';
 import Auth from '@/auth/presenter/Auth';
+import { useRouter } from 'next/router';
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
+  const { push } = useRouter();
   const { user } = useAuthState();
   const { isOpen } = useModalState();
   const dispatch = useDispatch();
@@ -19,54 +21,60 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     dispatch(modalActions.setState(state));
   };
 
+  // useEffect(() => {
+  //   if (user === undefined) {
+  //     push('/auth');
+  //   }
+  // }, [user]);
+
   if (user != undefined) {
-    return (
-      <div className={styles.layout}>
-        <Header className={styles.header} />
-        <Navigation className={styles.navigation} />
+  return (
+    <div className={styles.layout}>
+      <Header className={styles.header} />
+      <Navigation className={styles.navigation} />
 
-        {/*---------------------------------------------------------*/}
-        <div className={cn(styles.center, { [styles.auth]: user })}>
-          {/* До размера md */}
-          <div className='my:hidden flex-col'>
-            <div className='mx-1 h-14 z-10 bg-opacity-60 bg-cyan-100 hover:bg-opacity-90 transition-colors fixed shadow-lg rounded-xl'>
-              <MaterialIcon
-                onClick={() => handleClick(true)}
-                name='MdMenu'
-                classname='w-10 h-10 m-3'
-              />
-            </div>
-
-            {isOpen && (
-              <Modal>
-                <MaterialIcon
-                  name='MdClose'
-                  classname='w-10 h-10 m-3'
-                  onClick={() => handleClick(false)}
-                />
-                <Navigation />
-              </Modal>
-            )}
-
-            <div className={cn({ ['blur-sm']: isOpen })}>{children}</div>
+      {/*---------------------------------------------------------*/}
+      <div className={cn(styles.center, { [styles.auth]: user })}>
+        {/* До размера md */}
+        <div className='my:hidden flex-col'>
+          <div className='mx-1 h-14 z-10 bg-opacity-60 bg-cyan-100 hover:bg-opacity-90 transition-colors fixed shadow-lg rounded-xl'>
+            <MaterialIcon
+              onClick={() => handleClick(true)}
+              name='MdMenu'
+              classname='w-10 h-10 m-3'
+            />
           </div>
 
-          {/* После размера md */}
-          <div className='hidden my:flex my:flex-col'>{children}</div>
+          {isOpen && (
+            <Modal>
+              <MaterialIcon
+                name='MdClose'
+                classname='w-10 h-10 m-3'
+                onClick={() => handleClick(false)}
+              />
+              <Navigation />
+            </Modal>
+          )}
+
+          <div className={cn({ ['blur-sm']: isOpen })}>{children}</div>
         </div>
 
-        {/*---------------------------------------------------------*/}
+        {/* После размера md */}
+        <div className='hidden my:flex my:flex-col'>{children}</div>
+      </div>
 
-        {/* {
+      {/*---------------------------------------------------------*/}
+
+      {/* {
 				user ?
 					<Sidebar/>
 					:
 					null
 			} */}
-      </div>
-    );
+    </div>
+  );
   } else {
-      return <Auth />
+    return <Auth />;
   }
 };
 

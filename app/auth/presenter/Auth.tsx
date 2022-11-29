@@ -15,6 +15,7 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import Button from '@/core/presenter/ui/Button/Button';
 import P from '@/core/presenter/ui/P/P';
 import SendUsIcon from './sendUs.svg';
+import Link from 'next/link';
 
 const Auth: FC = () => {
   useAuthRedirect();

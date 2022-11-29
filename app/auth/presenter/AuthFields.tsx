@@ -23,7 +23,9 @@ const AuthFields: FC<IAuthFields> =
 						}
 					})}
 					placeholder='Ваш email'
+					title='Email'
 					error={errors.email}
+					className='mb-[50px]'
 				/>
 
 				<Field
@@ -35,6 +37,7 @@ const AuthFields: FC<IAuthFields> =
 						}
 					} : {})}
 					placeholder='Password'
+					title='Password'
 					type='password'
 					error={errors.password}
 				/>
