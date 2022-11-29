@@ -33,7 +33,7 @@ const UserEdit: FC = () => {
   const { currentCompany } = useCompanyState();
   const { back, push } = useRouter();
 
-  if (currentCompany === null) {
+  if (currentCompany === null || currentCompany === undefined) {
     push('/company');
   }
 
@@ -53,7 +53,7 @@ const UserEdit: FC = () => {
     'MALE' | 'FEMALE' | 'UNDEFINED' | undefined
   >(user?.gender);
 
-  console.log(user)
+  // console.log(user)
 
   return (
     <Meta title='Редактирование профиля сотрудника'>
@@ -185,7 +185,7 @@ const UserEdit: FC = () => {
                 Отменить
               </Button>
               <Button appearance='gray' size='l' className='ml-[15px]'>
-                Добавить
+                Изменить
               </Button>
             </div>
           </div>

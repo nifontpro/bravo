@@ -1,46 +1,51 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Meta from '@/core/utils/meta/Meta';
-import Heading from '@/core/presenter/ui/heading/Heading';
-import Catalog from '@/core/presenter/ui/catalog/Catalog';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
-import styles from './Users.module.scss'
+import styles from './Users.module.scss';
 import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import UserList from './UserList/UserList';
 
 const Users: FC = () => {
   const { users, isLoading } = useMyUser('');
+  let arrUsers = [...users];
 
-//   console.log(users);
+  //Сотртировка по фамилии начало
+  const [state, setState] = useState<1 | -1>(1);
+  if (arrUsers !== undefined) {
+    arrUsers.sort((prev, next): number => {
+      if (prev.lastname !== undefined && next.lastname !== undefined) {
+        if (prev?.lastname > next?.lastname) return state; //(-1)
+      }
+      return 1;
+    });
+  }
+  //Сотртировка по фамилии конец
 
   return (
     <Meta title='Сотрудники'>
-      {/* <Heading title={`Вы и Ваши сотрудники`}/> */}
-
       {isLoading ? (
         <p>Загрузка...</p>
       ) : (
         <div className={styles.container}>
           <Search
-		  	color='white'
+            color='white'
             search={true}
             button={false}
             placeholder='Сотрудник сотрудника ...'
           />
-		  <SortButton className={styles.filter}>По алфавиту А -- Я</SortButton>
-		  {users.map((user) => {
-			return (
-				<UserList key={user.id} user={user} className={styles.userList}/>
-			)
-		  })}
+          <SortButton
+            onClick={() => (state == 1 ? setState(-1) : setState(1))}
+            className={styles.filter}
+          >
+            По алфавиту А -- Я
+          </SortButton>
+          {arrUsers.map((user) => {
+            return (
+              <UserList key={user.id} user={user} className={styles.userList} />
+            );
+          })}
         </div>
-
-        // <Catalog
-        //   data={users || []}
-        //   prefix='/user'
-        //   title='Сотрудники'
-        //   description={`Список сотрудников`}
-        // />
       )}
     </Meta>
   );

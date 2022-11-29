@@ -1,56 +1,78 @@
-import {SubmitHandler, UseFormSetValue} from "react-hook-form";
-import {ICompanyEditInput} from "@/company/presenter/admin/edit/company-edit.type";
-import {useRouter} from "next/router";
-import {companyApi} from "@/company/data/company.api";
-import {useEffect} from "react";
-import {toast} from "react-toastify";
-import {getAdminUrl} from "@/core/config/url.config";
+import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
+import { toast } from 'react-toastify';
+import { companyApi } from '@/company/data/company.api';
+import { ICompany, ICompanyCreate } from '@/company/model/company.types';
+import { ICompanyUpdateRequest } from './company-edit.type';
 
-export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyEditInput>) => {
-	const {push, query} = useRouter()
-	const companyId = String(query.id)
+export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>) => {
+  const { push, query } = useRouter();
+  const companyId = String(query.id);
 
-	const {data: company, isLoading, isSuccess: isGetSuccess} = companyApi.useGetByIdQuery(companyId)
-	const [update] = companyApi.useUpdateMutation()
-	const [updateImage] = companyApi.useUpdateImageMutation()
+  const [updateImg] = companyApi.useUpdateImageMutation();
 
-	useEffect(() => {
-		if (isGetSuccess && company) {
-			setValue('name', company.name)
-			setValue('description', company.description)
-		}
-	}, [company, isGetSuccess, setValue])
+  const {
+    data: company,
+    isLoading,
+    isSuccess: isGetSuccess,
+  } = companyApi.useGetByIdQuery(companyId);
+  const [update] = companyApi.useUpdateMutation();
 
-	const onSubmit: SubmitHandler<ICompanyEditInput> = async (data) => {
+  const [img, setImg] = useState<string | undefined>(undefined);
 
-		let isError = false
+  useEffect(() => {
+    if (isGetSuccess && company) {
+      setValue('name', company.name);
+      setValue('email', company.email);
+      setValue('phone', company.phone);
+      setValue('address', company.address);
+	  setImg(company.imageUrl)
+    }
+  }, [isGetSuccess, setValue]);
+//   console.log(company)
 
-		await update({id: companyId, ...data})
-			.unwrap()
-			.then(async () => {
-				const fileData = data.file[0]
-				if (fileData) {
-					const formData = new FormData()
-					formData.append("imageUrl", fileData)
-					await updateImage({companyId, formData})
-						.unwrap()
-						.catch(() => {
-							isError = true
-							toast.error("Ошибка обновления фото компании")
-						})
-				}
+  const onSubmit: SubmitHandler<ICompanyUpdateRequest> = async (data) => {
+    console.log(data);
+    let isError = false;
+    if (company) {
+      await update({...data, id: company.id})
+        .unwrap()
+        .catch(() => {
+          isError = true;
+          toast.error('Ошибка обновления профиля компании');
+        });
 
-			})
-			.catch(() => {
-				isError = true
-				toast.error("Ошибка обновления компании")
-			})
+      if (!isError) {
+        toast.success('Данные компании успешно обновлены');
+        await push('/company');
+      }
+    }
+  };
 
-		if (!isError) {
-			toast.success('Компания успешно обновлена')
-		}
-		push(getAdminUrl('company')).then()
-	}
+  const changePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
+    let isError = false;
+    if (event.target.files !== null && company != undefined) {
+      setImg(URL.createObjectURL(event.target.files[0]));
+      const formData = new FormData();
+      formData.append('imageUrl', event.target.files[0]);
+      await updateImg({ companyId: company.id, formData })
+        .unwrap()
+        .catch(() => {
+          isError = true;
+          toast.error('Ошибка обновления фотографии');
+        });
+      if (!isError) {
+        toast.success('Фото успешно обновлен');
+      }
+    }
+  };
 
-	return {company, onSubmit, isLoading}
-}
+  return { company, onSubmit, changePhoto, isLoading, img };
+};

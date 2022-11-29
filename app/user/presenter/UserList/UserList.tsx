@@ -14,7 +14,6 @@ const UserList = ({
   children,
   ...props
 }: UserListProps): JSX.Element => {
-  // console.log(user);
 
   const { push } = useRouter()
 	const {deleteAsync} = useUserAdmin()

@@ -19,7 +19,7 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
   } = userApi.useGetByIdQuery(userId);
   const [update] = userApi.useUpdateMutation();
 
-  const [img, setImg] = useState<string | undefined>(user?.imageUrl);
+  const [img, setImg] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (isGetSuccess && user) {
@@ -35,6 +35,7 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
       setValue('departmentId', user.departmentId);
       setValue('lastname', user.lastname);
       setValue('patronymic', user.patronymic);
+      setImg(user.imageUrl)
     }
   }, [user, isGetSuccess, setValue]);
 

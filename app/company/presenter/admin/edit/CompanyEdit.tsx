@@ -1,98 +1,119 @@
-import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { ICompanyEditInput } from '@/company/presenter/admin/edit/company-edit.type';
-import { useCompanyEdit } from '@/company/presenter/admin/edit/useCompanyEdit';
+import { FC, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
-import AdminNavigation from '@/admin/presenter/admin-navigation/AdminNavigation';
-import Heading from '@/core/presenter/ui/heading/Heading';
-import SkeletonLoader from '@/core/presenter/ui/sceleton-loader/SkeletonLoader';
-import formStyles from '@/core/presenter/ui/form/admin-form.module.scss';
-import styles from '@/core/presenter/ui/form/form.module.scss';
+import styles from './CompanyEdit.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
-import Button from '@/core/presenter/ui/form/Button';
+import { useUserEdit } from '@/user/presenter/admin/edit/useUserEdit';
+import { IUserEditInput } from '@/user/presenter/admin/edit/user-edit.type';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
+import InputFile from '@/core/presenter/ui/InputFile/InputFile';
+import Htag from '@/core/presenter/ui/Htag/Htag';
+import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
+import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
+import TextArea from '@/core/presenter/ui/TextArea/TextArea';
+import Button from '@/core/presenter/ui/Button/Button';
+import { useRouter } from 'next/router';
+import { useCompanyState } from '@/company/data/company.slice';
+import { departmentApi } from '@/department/data/department.api';
+import { IOption } from '@/core/presenter/ui/select/select.interface';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import { ICompanyCreate } from '@/company/model/company.types';
+import { useCompanyEdit } from './useCompanyEdit';
+import { ICompanyUpdateRequest } from './company-edit.type';
 
-const CompanyEdit: FC = () => {
+const UserEdit: FC = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
     setValue,
-  } = useForm<ICompanyEditInput>({
+    control,
+  } = useForm<ICompanyUpdateRequest>({
     mode: 'onChange',
   });
 
-  const { company, isLoading, onSubmit } = useCompanyEdit(setValue);
+  const { currentCompany } = useCompanyState();
+  const { back, push } = useRouter();
 
-  const [image, setImage] = useState<string | undefined>(undefined);
+  if (currentCompany === null) {
+    push('/company');
+  }
 
-  const onImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(URL.createObjectURL(event.target.files[0]));
-    }
-  };
-
-  useEffect(() => {
-    setImage(company?.imageUrl);
-  }, [company]);
+  const { isLoading, onSubmit, changePhoto, img } = useCompanyEdit(setValue);
 
   return (
     <Meta title='Редактирование компании'>
-      <AdminNavigation />
-      <Heading title='Редактирование компании' />
-      <form onSubmit={handleSubmit(onSubmit)} className={formStyles.form}>
-        {isLoading ? (
-          <SkeletonLoader count={3} />
-        ) : (
-          <>
-            <div className={cn(styles.field, styles.uploadField)}>
-              <div className={styles.uploadFlex}>
-                <label>
-                  <ImageDefault
-                    src={image}
-                    width={150}
-                    height={150}
-                    alt='preview image'
-                    objectFit='cover'
-                    className='rounded-xl'
-                  />
-                  <div>
-                    <span>Выберите новое изображение</span>
-                    <input
-                      type='file'
-                      {...register('file')}
-                      onChange={onImageChange}
-                    />
-                  </div>
-                </label>
-              </div>
-            </div>
+      <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>
+        Вернуться назад
+      </ButtonCircleIcon>
+      <div className={styles.newForm}>
+        <div className={cn(styles.field, styles.uploadField)}>
+          <ImageDefault
+            src={img}
+            width={300}
+            height={300}
+            alt='preview image'
+            objectFit='cover'
+            className='rounded-[10px]'
+          />
+          <InputFile onChange={changePhoto}>
+            Загрузить новое изображение
+          </InputFile>
+        </div>
 
-            <div className={formStyles.fields}>
-              <Field
-                {...register('name', { required: 'Name is required!' })}
-                placeholder='Название компание'
-                error={errors.name}
-                style={{ width: '80%' }}
-              />
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <div className={styles.fields}>
+          <Htag tag='h2' className={styles.title}>
+            Новая компания
+          </Htag>
 
-              <Field
-                {...register('description', {
-                  required: 'Description is required!',
-                })}
-                placeholder='Описание'
-                error={errors.description}
-                style={{ width: '80%' }}
-              />
-            </div>
+          <Field
+            {...register('name', { required: 'Название необходимо!' })}
+            title='Название'
+            placeholder={currentCompany?.name}
+            error={errors.name}
+            className='mb-[60px]'
+          />
 
-            <Button>Обновить</Button>
-          </>
-        )}
-      </form>
+          <div className={styles.group}>
+            <Field
+              {...register('phone', { required: 'Телефон обязательно!' })}
+              title='Телефон'
+              placeholder={currentCompany?.phone}
+              error={errors.phone}
+            />
+            <Field
+              {...register('email', {
+                required: 'Почта обязательна!',
+                minLength: 6,
+              })}
+              title='Почта'
+              placeholder={currentCompany?.email}
+              error={errors.email}
+            />
+          </div>
+
+          <Field
+            {...register('address', { required: 'Адрес обязательно!' })}
+            title='Офис'
+            placeholder={currentCompany?.address}
+            error={errors.address}
+          />
+
+          <div className={styles.buttons}>
+            <Button onClick={() => back()} appearance='white' size='l'>
+              Отменить
+            </Button>
+            <Button appearance='gray' size='l' className='ml-[15px]'>
+              Добавить
+            </Button>
+          </div>
+        </div>
+        </form>
+      </div>
     </Meta>
   );
 };
 
-export default CompanyEdit;
+export default UserEdit;

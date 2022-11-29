@@ -18,6 +18,7 @@ import { ICompanyCreate } from '@/company/model/company.types';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
 import { ChangeEvent, useState } from 'react';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
   const { push, back } = useRouter();
@@ -41,6 +42,14 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
 
   return (
     <Meta title='Создание новой компании'>
+      <ButtonCircleIcon
+        onClick={() => push('/company')}
+        appearance='black'
+        icon='down'
+        className='mb-[50px]'
+      >
+        Вернуться назад
+      </ButtonCircleIcon>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault

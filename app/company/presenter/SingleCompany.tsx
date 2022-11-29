@@ -13,10 +13,12 @@ import { saveCompanyToStorage } from '@/auth/data/auth.helper';
 // import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import TitleSingleCompany from './TitleSingleCompany/TitleSingleCompany';
 import DepartmentAndUsers from './DepartmentAndUsers/DepartmentAndUsers';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import { useRouter } from 'next/router';
 
 const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
   // console.log(company)
-
+  const { push } = useRouter()
   const dispatch = useDispatch();
 
   // const { data: bestUsers, isLoading } = userApi.useGetBestsQuery({
@@ -40,9 +42,12 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
 
   return (
     <Meta
-      title={company.name}
+      title={company.name} 
       description={`Просмотр компании ${company.name}`}
     >
+      <ButtonCircleIcon onClick={() => push('/company')} appearance='black' icon='down' className='mb-[50px]'>
+        Вернуться назад
+      </ButtonCircleIcon>
       <div className={styles.wrapper}>
         <TitleSingleCompany company={company} />
         <DepartmentAndUsers company={company} />
