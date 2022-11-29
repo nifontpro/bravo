@@ -6,17 +6,23 @@ import Link from 'next/link';
 import Search from '../../ui/Search/Search';
 import { useAuthState } from '@/auth/data/auth.slice';
 import { ImageDefault } from '../../ui/icons/ImageDefault';
-import LogoutButton from '../Navigation/MenuContainer/auth/LogoutButton'
+import LogoutButton from '../Navigation/MenuContainer/auth/LogoutButton';
 
 const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const { user } = useAuthState();
-  
+
   return (
     <header className={cn(className, styles.header)} {...props}>
       <Link href='/'>
         <LogoIcon className={styles.logo} />
       </Link>
-      <Search color='gray' search={true} button={true} placeholder='Сотрудник, отдел, медаль...' className={styles.search} />
+      <Search
+        color='gray'
+        search={true}
+        button={true}
+        placeholder='Сотрудник, отдел, медаль...'
+        className={styles.search}
+      />
       <div className={styles.user}>
         <div className={styles.userComponent}></div>
         <ImageDefault

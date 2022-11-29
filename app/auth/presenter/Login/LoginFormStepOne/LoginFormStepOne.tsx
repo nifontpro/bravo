@@ -1,18 +1,19 @@
-import Meta from '@/core/utils/meta/Meta';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './LoginFormStepOne.module.scss';
-import SendUsIcon from '../sendUs.svg';
 import { LoginFormStepOneProps } from './LoginFormStepOne.props';
-import LogoIcon from '../logo.svg';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import Button from '@/core/presenter/ui/Button/Button';
-import P from '@/core/presenter/ui/P/P';
 import Field from '@/core/presenter/ui/form/Field/Field';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IAuthInput, ILoginInput } from '@/auth/model/auth.interface';
+import { ILoginInput } from '@/auth/model/auth.interface';
 import { useAuthRedirect } from '../../useAuthRedirect';
 import { validEmail } from '@/core/utils/regex';
 import cn from 'classnames';
+import { toast } from 'react-toastify';
+import { authApi } from '@/auth/data/auth.api';
+import { loginActions } from '@/auth/data/login.slice';
+import { useDispatch } from 'react-redux';
+import { toastError } from '@/core/utils/toast-error';
 
 const LoginFormStepOne = ({
   visible,
@@ -21,22 +22,34 @@ const LoginFormStepOne = ({
   ...props
 }: LoginFormStepOneProps): JSX.Element => {
   useAuthRedirect();
+  const dispatch = useDispatch();
+
+  const [registerStepOne] = authApi.useRegisterStepOneMutation();
 
   const {
     handleSubmit,
     register,
     formState: { errors },
-    setValue,
   } = useForm<ILoginInput>({ mode: 'onChange' });
 
   const onSubmit: SubmitHandler<ILoginInput> = async (data) => {
-    console.log(data);
-    setVisible(!visible);
+    if (data.password !== data.passwordСheck) {
+      toast.error('Пароли не совпадают!');
+    } else {
+      const { email, login, name, password } = data;
+      registerStepOne({ email, login, name, password })
+        .unwrap()
+        .catch((e) => {
+          toastError(e, 'Ошибка регистрации');
+        });
+      dispatch(loginActions.setEmail(email));
+      setVisible(!visible);
+    }
   };
 
   return (
     <form
-      className={cn(styles.formOne, className, {
+      className={cn(styles.form, className, {
         [styles.hidden]: !visible,
       })}
       {...props}
@@ -66,6 +79,10 @@ const LoginFormStepOne = ({
         <Field
           {...register('password', {
             required: 'Продублируйте пароль!',
+            minLength: {
+              value: 4,
+              message: 'Минимальная длинна пароля 4 символа',
+            },
           })}
           title='Пароль'
           placeholder='Введите пароль'
@@ -74,6 +91,10 @@ const LoginFormStepOne = ({
         <Field
           {...register('passwordСheck', {
             required: 'Продублируйте пароль!',
+            minLength: {
+              value: 4,
+              message: 'Минимальная длинна пароля 4 символа',
+            },
           })}
           title='Повторите пароль'
           placeholder='Продублируйте пароль'
@@ -96,12 +117,7 @@ const LoginFormStepOne = ({
       />
 
       <div className={styles.buttons}>
-        <Button
-          appearance='blackWhite'
-          size='l'
-          // onClick={() => setType('login')}
-          // disabled={isLoading}
-        >
+        <Button appearance='blackWhite' size='l'>
           Продолжить
         </Button>
       </div>

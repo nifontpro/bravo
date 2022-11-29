@@ -10,8 +10,10 @@ import {userApi} from "@/user/data/user.api";
 import {medalApi} from "@/medal/data/medal.api";
 import {modalSlice} from "@/core/store/modal.slice";
 import {rewardApi} from "../../reward/data/reward.api";
+import { loginSlice } from '@/auth/data/login.slice';
 
 const rootReducer = combineReducers({
+	login: loginSlice.reducer,
 	auth: authSlice.reducer,
 	company: companySlice.reducer,
 	department: departmentSlice.reducer,

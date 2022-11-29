@@ -8,14 +8,20 @@ import ButtonIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useRouter } from 'next/router';
 
 const OwnerCompany: FC = () => {
-	const { push } = useRouter()
+  const { push } = useRouter();
   const { data: companies, isLoading } = companyApi.useGetByOwnerQuery();
 
   return (
     <Meta title='Компании владельца'>
       <div className='flex justify-between'>
         <Htag tag='h1'>Ваши компании</Htag>
-		<ButtonIcon onClick={() => push('/manage/company/create')} appearance='black' icon='plus'>Создать компанию</ButtonIcon>
+        <ButtonIcon
+          onClick={() => push('/manage/company/create')}
+          appearance='black'
+          icon='plus'
+        >
+          Создать компанию
+        </ButtonIcon>
       </div>
 
       {isLoading ? (

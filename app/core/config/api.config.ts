@@ -5,6 +5,7 @@ export const API_SERVER_URL = `https://nmedalist.ru/api`
 export const REFRESH_TOKEN_LIFE = 30 // Время жизни локальной куки в днях для RT.
 
 export const getAuthUrl = (string: string) => `/auth${string}`
+export const getRegisterUrl = (string: string) => `/register${string}`
 export const getCompanyUrl = (string: string = '') => `/company${string}`
 export const getDepartmentUrl = (string: string = '') => `/department${string}`
 export const getUserUrl = (string: string = '') => `/user${string}`

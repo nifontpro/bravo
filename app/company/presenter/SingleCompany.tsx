@@ -30,7 +30,7 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
   useEffect(() => {
     // if (company != undefined) {
       dispatch(companyActions.setState(company));
-      saveCompanyToStorage(company);
+      saveCompanyToStorage(company); 
     // }
   }, []);
   // То что выше нужно переделать

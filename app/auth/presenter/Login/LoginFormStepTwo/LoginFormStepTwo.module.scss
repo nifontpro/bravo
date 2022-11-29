@@ -6,7 +6,8 @@
   height: 100vh;
 }
 
-.formOne {
+.form {
+  position: relative;
   width: 956px;
   background: var(--white);
   padding: 110px 100px;
@@ -52,7 +53,13 @@
 }
 
 .hidden {
-    display: none;
+  display: none;
+}
+
+.back {
+  position: absolute;
+  top: 30px;
+  left: 30px;
 }
 
 // .wrapper {

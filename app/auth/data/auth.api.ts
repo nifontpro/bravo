@@ -2,7 +2,8 @@ import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQuery, refreshQuery} from "@/core/data/base.api";
 import {IAuthResponse} from "@/auth/model/auth.types";
 import {authActions} from "@/auth/data/auth.slice";
-import {getAuthUrl} from "@/core/config/api.config";
+import {getAuthUrl, getRegisterUrl} from "@/core/config/api.config";
+import { ILoginInput } from '../model/auth.interface';
 
 export const authApi = createApi({
 	reducerPath: 'authApi',
@@ -24,6 +25,32 @@ export const authApi = createApi({
 					console.error(`ERROR LOGIN!`, error)
 				}
 			},
+		}),
+
+		registerStepOne: build.mutation<void, ILoginInput>({
+			query: (body) => ({
+				url: getRegisterUrl('/owner/temp'),
+				method: 'POST',
+				body: body
+			}),
+			invalidatesTags: ['Auth'],
+		}),
+
+		registerStepTwo: build.mutation<IAuthResponse, {code: string, email: string}>({
+			query: (body) => ({
+				url: getRegisterUrl('/owner/valid'),
+				method: 'POST',
+				body: body
+			}),
+			invalidatesTags: ['Auth'],
+			// async onQueryStarted(args, {dispatch, queryFulfilled}) {
+			// 	try {
+			// 		const {data} = await queryFulfilled;
+			// 		await dispatch(authActions.setState(data));
+			// 	} catch (error) {
+			// 		console.error(`REGISTER ERROR!`, error)
+			// 	}
+			// },
 		}),
 
 		register: build.mutation<IAuthResponse, { email: string, password: string }>({
