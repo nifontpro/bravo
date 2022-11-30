@@ -11,3 +11,4 @@ export const getDepartmentUrl = (string: string = '') => `/department${string}`
 export const getUserUrl = (string: string = '') => `/user${string}`
 export const getMedalUrl = (string: string = '') => `/medal${string}`
 export const getRewardUrl = (string: string = '') => `/reward${string}`
+export const getAwardUrl = (string: string = '') => `/award${string}`

@@ -10,10 +10,11 @@ export interface IUser {
 	patronymic?: string
 	lastname?: string
 	role: TypeRoles
-	bio?: string,
-	isMNC: boolean,
+	bio?: string
+	isMNC: boolean
 	companyId?: string
 	departmentId?: string
+	departmentName?: string
 
 	post?: string
 	phone?: string

@@ -2,9 +2,7 @@ import {queryWithReauth} from "@/core/data/base.api";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IUser, IUserCreate} from "@/user/model/user.types";
 import {getUserUrl} from "@/core/config/api.config";
-import {IdResponse} from "@/core/model/idResponse.types";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
-import { ImageRef } from "@/core/model/image.types";
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
@@ -41,10 +39,31 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
+		getByIdDepName: build.query<IUser, string>({
+			query: (userId) => ({
+				method: 'POST',
+				url: getUserUrl('/get_id_dep'),
+				body: {userId}
+			}),
+			providesTags: ['User']
+		}),
+
 		getByCompany: build.query<IUser[], { companyId: string, filter?: string }>({
 			query: (data) => ({
 				method: 'POST',
 				url: getUserUrl('/get_company'),
+				body: data
+			}),
+			providesTags: ['User']
+		}),
+
+		/**
+		 * Получить сотрудников компании с именами отделов
+		 */
+		getByCompanyDepName: build.query<IUser[], { companyId: string, filter?: string }>({
+			query: (data) => ({
+				method: 'POST',
+				url: getUserUrl('/get_company_dep'),
 				body: data
 			}),
 			providesTags: ['User']
