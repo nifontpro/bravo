@@ -39,6 +39,10 @@
     > .colUsers {
       margin-top: 120px;
 
+      .default {
+        cursor: default;
+      }
+
       > .numberUsers {
         opacity: 0.5;
         color: var(--black);
