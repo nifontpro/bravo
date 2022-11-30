@@ -34,11 +34,12 @@ const Users: FC = () => {
             button={false}
             placeholder='Сотрудник сотрудника ...'
           />
-          <SortButton
+          <SortButton 
+            state={state}
             onClick={() => (state == 1 ? setState(-1) : setState(1))}
             className={styles.filter}
           >
-            По алфавиту А -- Я
+            По алфавиту {state == 1 ? 'А -- Я' : 'Я -- А'}
           </SortButton>
           {arrUsers.map((user) => {
             return (

@@ -32,6 +32,18 @@ const itemMedals: IMenuItem = {
 	title: 'Награды',
 }
 
+const itemRating: IMenuItem = {
+	icon: 'MdHotelClass',
+	link: '/rating',
+	title: 'Рейтинг',
+}
+
+const itemStatistic: IMenuItem = {
+	icon: 'MdHotelClass',
+	link: '/statistic',
+	title: 'Статистика',
+}
+
 export const firstMenu: IMenu = {
 	title: menuTitle,
 	items: [
@@ -45,8 +57,10 @@ export const firstMenuOwner: IMenu = {
 		itemHome,
 		itemMedals,
 		itemCompany,
-		itemDepartment,
-		itemUser,
+		// itemDepartment,
+		// itemUser,
+		itemRating,
+		itemStatistic
 	],
 }
 

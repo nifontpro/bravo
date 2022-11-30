@@ -9,4 +9,8 @@
     line-height: 20px;
     color: var(--black);
   }
+
+  .rotate {
+    transform: rotate(180deg);
+  }
 }

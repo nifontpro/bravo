@@ -5,6 +5,7 @@ import { SortButtonProps } from './SortButton.props';
 import SortIcon from './sort.svg'
 
 const SortButton = ({
+  state,
   className,
   children,
   ...props
@@ -15,7 +16,9 @@ const SortButton = ({
     className={cn(className, styles.container)}
       {...props}
     >
-      <SortIcon />
+      <SortIcon className={cn({
+        [styles.rotate]: state == -1
+      })}/>
       <span className={styles.title}>{children}</span>
     </div>
   );
