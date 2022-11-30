@@ -18,8 +18,10 @@ import { useRouter } from 'next/router';
 
 const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
   // console.log(company)
-  const { push } = useRouter()
+  const { push } = useRouter();
   const dispatch = useDispatch();
+
+  console.log(company)
 
   // const { data: bestUsers, isLoading } = userApi.useGetBestsQuery({
   //   companyId: company.id,
@@ -28,10 +30,10 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
 
   // То что ниже нужно переделать
   useEffect(() => {
-    // if (company != undefined) {
+    if (company != undefined) {
       dispatch(companyActions.setState(company));
-      saveCompanyToStorage(company); 
-    // }
+      saveCompanyToStorage(company);
+    }
   }, []);
   // То что выше нужно переделать
 
@@ -42,10 +44,15 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
 
   return (
     <Meta
-      title={company.name} 
+      title={company.name}
       description={`Просмотр компании ${company.name}`}
     >
-      <ButtonCircleIcon onClick={() => push('/company')} appearance='black' icon='down' className='mb-[50px]'>
+      <ButtonCircleIcon
+        onClick={() => push('/company')}
+        appearance='black'
+        icon='down'
+        className='mb-[50px]'
+      >
         Вернуться назад
       </ButtonCircleIcon>
       <div className={styles.wrapper}>

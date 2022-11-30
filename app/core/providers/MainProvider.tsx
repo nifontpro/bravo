@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
 	},
 })
 
-
+ 
 
 const MainProvider: FC<PropsWithChildren> = ({children}) => {
 	return (
