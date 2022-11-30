@@ -21,10 +21,13 @@
     align-items: center;
 
     > .userComponent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #f6f6f625;
       border-radius: 10px;
       width: 64px;
       height: 64px;
-      background: var(--gray-light);
     }
 
     > a {

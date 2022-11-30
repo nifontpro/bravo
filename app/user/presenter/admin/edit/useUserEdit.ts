@@ -40,7 +40,7 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
   }, [user, isGetSuccess, setValue]);
 
   const onSubmit: SubmitHandler<IUserEditInput> = async (data) => {
-    console.log(data);
+    // console.log(data);
     let isError = false;
 
     await update({ id: userId, ...data })

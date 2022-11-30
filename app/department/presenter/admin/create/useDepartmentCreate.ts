@@ -24,7 +24,7 @@ export const useDepartmentCreate = (
 
   const onSubmit: SubmitHandler<IDepartmentCreate> = async (data) => {
     let isError = false;
-    console.log(data);
+    // console.log(data);
 
     if (companyId) {
       await create({ ...data })

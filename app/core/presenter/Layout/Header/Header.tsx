@@ -2,6 +2,7 @@ import styles from './Header.module.scss';
 import cn from 'classnames';
 import { HeaderProps } from './Header.props';
 import LogoIcon from './logo.svg';
+import NotificationIcon from './notification.svg';
 import Link from 'next/link';
 import Search from '../../ui/Search/Search';
 import { useAuthState } from '@/auth/data/auth.slice';
@@ -24,15 +25,19 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
         className={styles.search}
       />
       <div className={styles.user}>
-        <div className={styles.userComponent}></div>
-        <ImageDefault
-          src={user?.imageUrl}
-          width={64}
-          height={64}
-          alt='preview image'
-          objectFit='cover'
-          className='rounded-[10px]'
-        />
+        <div className={styles.userComponent}>
+          <NotificationIcon className={styles.notification}/>
+        </div>
+        <Link href={'/user/' + user?.id}>
+          <ImageDefault
+            src={user?.imageUrl}
+            width={64}
+            height={64}
+            alt='preview image'
+            objectFit='cover'
+            className='rounded-[10px]'
+          />
+        </Link>
         <LogoutButton />
       </div>
     </header>

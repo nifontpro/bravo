@@ -57,7 +57,9 @@ const UserEdit: FC = () => {
 
   return (
     <Meta title='Редактирование профиля сотрудника'>
-      <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>Вернуться назад</ButtonCircleIcon>
+      <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>
+        Вернуться назад
+      </ButtonCircleIcon>
       <div className={styles.newForm}>
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
@@ -94,23 +96,23 @@ const UserEdit: FC = () => {
             </div>
 
             <div className={styles.group}>
-            <Field
-              {...register('name', { required: 'Имя обязательно!' })}
-              title='Имя'
-              placeholder={user?.name}
-              error={errors.name}
-            />
+              <Field
+                {...register('name', { required: 'Имя обязательно!' })}
+                title='Имя'
+                placeholder={user?.name}
+                error={errors.name}
+              />
 
-            <Field
-              {...register('patronymic', {
-                required: 'Отчество обязательно!',
-                minLength: 6,
-              })}
-              title='Отчество'
-              placeholder={user?.patronymic}
-              error={errors.patronymic}
-            />
-          </div>
+              <Field
+                {...register('patronymic', {
+                  required: 'Отчество обязательно!',
+                  minLength: 6,
+                })}
+                title='Отчество'
+                placeholder={user?.patronymic}
+                error={errors.patronymic}
+              />
+            </div>
 
             <div className={styles.group}>
               <Field
@@ -129,14 +131,19 @@ const UserEdit: FC = () => {
             </div>
 
             <div className={styles.group}>
-            <div className={styles.fixedCompanyName}>{currentCompany?.name}</div>
-            {/* <Field
+              <div className={styles.fixedCompanyName}>
+                {currentCompany?.name}
+              </div>
+              {/* <Field
               {...register('companyId', { required: 'Компания обязательно!' })}
               title='Компания, отдел'
               value={currentCompany?.name}
               error={errors.companyId}
             /> */}
-              <Controller
+              <div className={styles.fixedCompanyName}>
+                {user?.departmentId}
+              </div>
+              {/* <Controller
                 name='departmentId'
                 control={control}
                 rules={{
@@ -152,7 +159,7 @@ const UserEdit: FC = () => {
                     isMulti={false}
                   />
                 )}
-              />
+              /> */}
             </div>
 
             <div className={styles.group}>
