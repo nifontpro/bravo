@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 
 const OwnerCompany: FC = () => {
   const { push } = useRouter();
+  
   const { data: companies, isLoading } = companyApi.useGetByOwnerQuery();
 
   return (
