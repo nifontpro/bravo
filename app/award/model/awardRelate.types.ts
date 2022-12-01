@@ -23,6 +23,6 @@ export interface IAwardRelateUser {
 	state: AwardState
 	nomineeDate: number
 	awardDate: number
-	nomineeUserId?: string
-	awardUserId?: string
+	nomineeUser?: IUser
+	awardUser?: IUser
 }
