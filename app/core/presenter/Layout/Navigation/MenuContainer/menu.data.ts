@@ -28,7 +28,7 @@ const itemUser: IMenuItem = {
 
 const itemMedals: IMenuItem = {
 	icon: 'MdHotelClass',
-	link: '/medal',
+	link: '/award',
 	title: 'Награды',
 }
 

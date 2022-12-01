@@ -7,9 +7,9 @@ import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import UserList from './UserList/UserList';
 
 const Users: FC = () => {
-  const { users, isLoading } = useMyUser('');
+  const { users } = useMyUser('');
   let arrUsers = [...users];
-  console.log(arrUsers)
+  // console.log(arrUsers)
 
   //Сотртировка по фамилии начало
   const [state, setState] = useState<1 | -1>(1);
@@ -25,7 +25,7 @@ const Users: FC = () => {
 
   return (
     <Meta title='Сотрудники'>
-      {isLoading ? (
+      {users == undefined ? (
         <p>Загрузка...</p>
       ) : (
         <div className={styles.container}>

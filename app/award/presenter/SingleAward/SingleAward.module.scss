@@ -1,0 +1,15 @@
+.wrapper {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 15px;
+
+  .img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .name {
+    margin-bottom: 25px;
+  }
+}

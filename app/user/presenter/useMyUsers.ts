@@ -21,7 +21,7 @@ export const useMyUser = (filter: string) => {
   // }
 
   if (currentCompany) {
-    const { data: _depUsers } = userApi.useGetByCompanyQuery({
+    const { data: _depUsers, isLoading } = userApi.useGetByCompanyQuery({
       companyId: currentCompany.id,
       filter,
     });
@@ -52,5 +52,5 @@ export const useMyUser = (filter: string) => {
       users,
     };
   // }, [isLoading, users]);
-}, [ users]);
+}, [users]);
 };
