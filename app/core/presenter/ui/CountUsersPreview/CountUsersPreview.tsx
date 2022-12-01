@@ -7,6 +7,7 @@ import { ImageDefault } from '../icons/ImageDefault';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 
 const CountUsersPreview = ({
+  appearanceBtn,
   usersInDepartment,
   listUserVisible,
   children,
@@ -52,7 +53,7 @@ const CountUsersPreview = ({
             })}
           </div>
           {usersInDepartment.length > 4 && (
-            <ButtonIcon appearance='white'>
+            <ButtonIcon appearance={appearanceBtn}>
               +{usersInDepartment.length - 4}
             </ButtonIcon>
           )}

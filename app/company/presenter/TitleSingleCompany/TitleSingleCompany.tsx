@@ -20,9 +20,11 @@ const TitleSingleCompany = ({
   className,
   ...props
 }: TitleSingleCompanyProps): JSX.Element => {
-  const { data: users } = userApi.useGetByCompanyQuery({
-    companyId: company.id,
-  });
+  // const { data: users } = userApi.useGetByCompanyQuery({
+  //   companyId: company.id,
+  // });
+
+  const { users } = useMyUser('');
 
   let URL = '/manage/company/edit/';
 
@@ -77,7 +79,7 @@ const TitleSingleCompany = ({
           <a href='mailto:hello@familyagency.ru'>{company.email}</a>
         </div>
         <div className={styles.colUsers}>
-          <CountUsersPreview usersInDepartment={users} className={styles.default}/>
+          <CountUsersPreview appearanceBtn='black' usersInDepartment={users} className={styles.default}/>
         </div>
       </div>
     </div>

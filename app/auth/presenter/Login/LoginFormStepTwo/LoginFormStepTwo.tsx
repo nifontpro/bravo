@@ -54,7 +54,6 @@ const LoginFormStepTwo = ({
       .catch((e) => {
         toastError(e, 'Ошибка регистрации');
       });
-    setVisible(!visible);
     push('/auth');
   };
 

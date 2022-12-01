@@ -21,7 +21,7 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
   const { push } = useRouter();
   const dispatch = useDispatch();
 
-  console.log(company)
+  // console.log(company)
 
   // const { data: bestUsers, isLoading } = userApi.useGetBestsQuery({
   //   companyId: company.id,

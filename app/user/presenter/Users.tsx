@@ -9,6 +9,7 @@ import UserList from './UserList/UserList';
 const Users: FC = () => {
   const { users, isLoading } = useMyUser('');
   let arrUsers = [...users];
+  console.log(arrUsers)
 
   //Сотртировка по фамилии начало
   const [state, setState] = useState<1 | -1>(1);

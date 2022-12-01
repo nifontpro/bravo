@@ -72,6 +72,7 @@ const Depart = ({
 
       <CountUsersPreview
         onClick={() => setListUserVisible(!listUserVisible)}
+        appearanceBtn='white'
         listUserVisible={listUserVisible}
         usersInDepartment={usersInDepartment}
       />

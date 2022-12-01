@@ -4,4 +4,5 @@ import { DetailedHTMLProps, HTMLAttributes } from "react"
 export type CountUsersPreviewProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     usersInDepartment: IUser[] | undefined
     listUserVisible?: boolean
+    appearanceBtn: 'black' | 'white'
 }
