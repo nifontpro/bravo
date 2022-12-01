@@ -9,6 +9,7 @@ import cn from 'classnames';
 import Button from '@/core/presenter/ui/Button/Button';
 import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import SingleAward from './SingleAward/SingleAward';
+import Spinner from '@/core/presenter/ui/Spinner/Spinner';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { data: awards, isLoading } = awardApi.useGetAwardsByCompanyQuery({
@@ -61,13 +62,13 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             Сначала новые
           </SortButton>
           <Button appearance='blackWhite' size='m' className={styles.btn}>
-            + Создать
+            +&nbsp;&nbsp;&nbsp;Создать
           </Button>
         </div>
 
         {
           isLoading ? (
-            <p>Загрузка...</p>
+            <Spinner/>
           ) : (
             <div className={styles.cards}>
               {awards?.map((item) => {

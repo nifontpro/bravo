@@ -1,13 +1,6 @@
 import styles from './SingleAward.module.scss';
-import Meta from '@/core/utils/meta/Meta';
-import { awardApi } from 'award/data/award.api';
-import Htag from '@/core/presenter/ui/Htag/Htag';
-import ButtonRadio from '@/core/presenter/ui/ButtonRadio/ButtonRadio';
 import { SingleAwardProps } from './SingleAward.props';
-import { useState } from 'react';
 import cn from 'classnames';
-import Button from '@/core/presenter/ui/Button/Button';
-import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import { timeConverter } from '@/core/utils/timeConverter';
 import P from '@/core/presenter/ui/P/P';
@@ -17,6 +10,12 @@ const SingleAward = ({
   className,
   ...props
 }: SingleAwardProps): JSX.Element => {
+  // if (award.startDate != undefined && award.endDate != undefined) {
+  //   let start: Date = new Date(award.startDate * 1000);
+  //   let end: Date = new Date(award.endDate * 1000);
+
+  //   console.log((end - start)/60000 + ' минут')
+  // }
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>

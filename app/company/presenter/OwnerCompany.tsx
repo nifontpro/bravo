@@ -6,6 +6,7 @@ import { companyApi } from '@/company/data/company.api';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import ButtonIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useRouter } from 'next/router';
+import Spinner from '@/core/presenter/ui/Spinner/Spinner';
 
 const OwnerCompany: FC = () => {
   const { push } = useRouter();
@@ -26,7 +27,7 @@ const OwnerCompany: FC = () => {
       </div>
 
       {isLoading ? (
-        <p>Загрузка...</p>
+        <Spinner />
       ) : (
         <Catalog
           data={companies || []}
