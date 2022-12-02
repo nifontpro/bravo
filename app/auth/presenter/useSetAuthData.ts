@@ -2,8 +2,7 @@ import {companyApi} from "@/company/data/company.api";
 import {departmentApi} from "@/department/data/department.api";
 import {useMemo} from "react";
 import {IAuthResponse} from "@/auth/model/auth.types";
-import {authSlice} from "@/auth/data/auth.slice";
-import {useDispatch} from "react-redux";
+import {ICompany} from "@/company/model/company.types";
 
 /**
  * Хук устанавливает текущую компанию и отдел при входе пользователя
@@ -12,21 +11,32 @@ import {useDispatch} from "react-redux";
 export const useSetAuthData = () => {
 	const [setCompany] = companyApi.useSetByIdMutation()
 	const [setDepartment] = departmentApi.useSetByIdMutation()
-	const dispatch = useDispatch()
+	const [getOwnerCompanies] = companyApi.useGetByOwnerParamMutation()
+	// const dispatch = useDispatch()
 
 	return useMemo(() => {
 
-			const setAuthData = (data: IAuthResponse) => {
+			const setAuthData = async (data: IAuthResponse) => {
 				const user = data.user
+
 				if ((user.role == "admin" || user.role == "director" || user.role == "user") && user.companyId) {
 					setCompany(user.companyId)
 				}
 				if ((user.role == "director" || user.role == "user") && user.departmentId) {
 					setDepartment(user.departmentId)
 				}
+
+				if (user.role == "owner") {
+					await getOwnerCompanies().unwrap().then(async (companies: ICompany[]) => {
+						if (companies.length > 0) {
+							setCompany(companies[0].id)
+						}
+					})
+				}
+
 				// dispatch(authSlice.actions.setWs()) // Открываем сокет
 			}
 			return {setAuthData}
-		}, [dispatch, setCompany, setDepartment]
+		}, [getOwnerCompanies, setCompany, setDepartment]
 	)
 }
