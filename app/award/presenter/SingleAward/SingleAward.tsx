@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import { timeConverter } from '@/core/utils/timeConverter';
 import P from '@/core/presenter/ui/P/P';
+import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
 
 const SingleAward = ({
   award,
@@ -16,6 +17,8 @@ const SingleAward = ({
 
   //   console.log((end - start)/60000 + ' минут')
   // }
+
+  console.log(award);
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
@@ -32,9 +35,19 @@ const SingleAward = ({
       <P size='m' className={styles.name}>
         {award.name}
       </P>
-      <div>{timeConverter(award.startDate)}</div>
-      <div>{timeConverter(award.endDate)}</div>
-      <div>Список юзеров</div>
+
+      {award.relateUsers.length == 0 && (
+        <div>
+          <div>{timeConverter(award.startDate)}</div>
+          <div>{timeConverter(award.endDate)}</div>
+        </div>
+      )}
+
+      <CountUsersPreview
+        appearanceBtn='black'
+        usersAwards={award.relateUsers}
+        className={styles.default}
+      />
     </div>
   );
 };

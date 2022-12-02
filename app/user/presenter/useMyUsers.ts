@@ -21,7 +21,7 @@ export const useMyUser = (filter: string) => {
   // }
 
   if (currentCompany) {
-    const { data: _depUsers, isLoading } = userApi.useGetByCompanyQuery({
+    const { data: _depUsers } = userApi.useGetByCompanyQuery({
       companyId: currentCompany.id,
       filter,
     });

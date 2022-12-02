@@ -19,3 +19,14 @@
 .hidden {
   display: none;
 }
+
+.imgAwards {
+  display: flex;
+  height: 40px;
+
+  > .singleImg {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+}

@@ -10,17 +10,19 @@ import Button from '@/core/presenter/ui/Button/Button';
 import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import SingleAward from './SingleAward/SingleAward';
 import Spinner from '@/core/presenter/ui/Spinner/Spinner';
+import Link from 'next/link';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
-  const { data: awards, isLoading } = awardApi.useGetAwardsByCompanyQuery({
-    companyId: company.id,
-  });
+  const { data: awards, isLoading } =
+    awardApi.useGetAwardsByCompanyWithUserQuery({
+      companyId: company.id,
+    });
 
   const [active, setActive] = useState<'All' | 'Award' | 'Nominee'>('All');
 
   const [state, setState] = useState<1 | -1>(1);
 
-  console.log(awards);
+  // console.log(awards);
 
   return (
     <Meta title='Медали'>
@@ -61,14 +63,18 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
           >
             Сначала новые
           </SortButton>
-          <Button appearance='blackWhite' size='m' className={styles.btn}>
-            +&nbsp;&nbsp;&nbsp;Создать
-          </Button>
+          <Link href='/manage/award/create'>
+            <a>
+              <Button appearance='blackWhite' size='m' className={styles.btn}>
+                +&nbsp;&nbsp;&nbsp;Создать
+              </Button>
+            </a>
+          </Link>
         </div>
 
         {
           isLoading ? (
-            <Spinner/>
+            <Spinner />
           ) : (
             <div className={styles.cards}>
               {awards?.map((item) => {

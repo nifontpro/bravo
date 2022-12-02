@@ -25,7 +25,7 @@ const UserCreate: FC = () => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
 
-  if (currentCompany === null) {
+  if (currentCompany === null) { 
     push('/company');
   }
 

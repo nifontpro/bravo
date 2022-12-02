@@ -7,6 +7,7 @@ import { ImageDefault } from '../icons/ImageDefault';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 
 const CountUsersPreview = ({
+  usersAwards,
   appearanceBtn,
   usersInDepartment,
   listUserVisible,
@@ -55,6 +56,47 @@ const CountUsersPreview = ({
           {usersInDepartment.length > 4 && (
             <ButtonIcon appearance={appearanceBtn}>
               +{usersInDepartment.length - 4}
+            </ButtonIcon>
+          )}
+        </div>
+      )}
+      {usersAwards && (
+        <div
+          className={cn(className, {
+            [styles.container]: !listUserVisible,
+            [styles.hidden]: listUserVisible,
+          })}
+        >
+          {/* <P size='xs' color='gray'>
+            {usersAwards.length}{' '}
+            {declOfNum(usersAwards.length, [
+              'сотрудник',
+              'сотрудника',
+              'сотрудников',
+            ])}
+          </P> */}
+
+          <div className={styles.imgAwards}>
+            {usersAwards.map((item, index) => {
+              if (index < 4) {
+                return (
+                  <div key={item.user.login} className={styles.singleImg}>
+                    <ImageDefault
+                      src={item.user.imageUrl}
+                      width={40}
+                      height={40}
+                      alt={item.user.name}
+                      objectFit='cover'
+                      className='rounded-full mr-4'
+                    />
+                  </div>
+                );
+              }
+            })}
+          </div>
+          {usersAwards.length > 4 && (
+            <ButtonIcon appearance={appearanceBtn}>
+              +{usersAwards.length - 4}
             </ButtonIcon>
           )}
         </div>
