@@ -15,7 +15,9 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   return (
     <header className={cn(className, styles.header)} {...props}>
       <Link href='/'>
-        <LogoIcon className={styles.logo} />
+        <a>
+          <LogoIcon className={styles.logo} />
+        </a>
       </Link>
       <Search
         color='gray'
@@ -26,17 +28,19 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
       />
       <div className={styles.user}>
         <div className={styles.userComponent}>
-          <NotificationIcon className={styles.notification}/>
+          <NotificationIcon className={styles.notification} />
         </div>
         <Link href={'/user/' + user?.id}>
-          <ImageDefault
-            src={user?.imageUrl}
-            width={64}
-            height={64}
-            alt='preview image'
-            objectFit='cover'
-            className='rounded-[10px]'
-          />
+          <a>
+            <ImageDefault
+              src={user?.imageUrl}
+              width={64}
+              height={64}
+              alt='preview image'
+              objectFit='cover'
+              className='rounded-[10px]'
+            />
+          </a>
         </Link>
         <LogoutButton />
       </div>
