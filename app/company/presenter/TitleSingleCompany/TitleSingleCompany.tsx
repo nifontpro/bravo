@@ -34,7 +34,7 @@ const TitleSingleCompany = ({
 
   return (
     <div className={styles.titleCompany}>
-      <div>
+      <div className={styles.img}>
         <ImageDefault
           src={company.imageUrl}
           width={400}
