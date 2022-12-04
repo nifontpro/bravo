@@ -19,6 +19,7 @@ import { departmentApi } from '@/department/data/department.api';
 import { IOption } from '@/core/presenter/ui/select/select.interface';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { IAwardCreate } from 'award/model/api.types';
+import { validDate } from '@/core/utils/regex';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -54,9 +55,10 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     formState: { errors },
     setValue,
     control,
+    reset
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmit } = useAwardCreate(setValue, currentCompany?.id);
+  const { onSubmit } = useAwardCreate(setValue, reset, currentCompany?.id,);
 
   return (
     <Meta title='Создание новой награды'>
@@ -146,14 +148,22 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
 
           <div className={styles.group}>
             <Field
-              {...register('startDate')}
+              {...register('startDate', {
+                pattern: {
+                  value: validDate,
+                  message: 'Пожалуйста введите корректную дату',
+                },})}
               title='Начинается'
               placeholder='ДД.ММ.ГГГГ'
               error={errors.startDate}
             />
 
             <Field
-              {...register('endDate')}
+              {...register('endDate', {
+                pattern: {
+                  value: validDate,
+                  message: 'Пожалуйста введите корректную дату',
+                },})}
               title='Заканчивается'
               placeholder='ДД.ММ.ГГГГ'
               error={errors.endDate}

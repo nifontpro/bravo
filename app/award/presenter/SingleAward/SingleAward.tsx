@@ -19,7 +19,7 @@ const SingleAward = ({
   //   console.log((end - start)/60000 + ' минут')
   // }
 
-  console.log(award);
+  // console.log(award);
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
@@ -37,12 +37,12 @@ const SingleAward = ({
           {award.name}
         </P>
 
-        {award.relateUsers.length == 0 && (
+        {/* {award.relateUsers.length == 0 && (
           <div>
             <div>{timeConverter(award.startDate)}</div>
             <div>{timeConverter(award.endDate)}</div>
           </div>
-        )}
+        )} */}
 
         <CountUsersPreview
           appearanceBtn='black'

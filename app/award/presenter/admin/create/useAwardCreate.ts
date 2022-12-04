@@ -16,15 +16,15 @@ import { IAward } from 'award/model/award.types';
 
 export const useAwardCreate = (
   setValue: UseFormSetValue<IAwardCreate>,
-  companyId?: string
+  reset: UseFormReset<IAwardCreate>,
+  companyId?: string,
 ) => {
   const { back } = useRouter();
 
   useEffect(() => {
     if (companyId) {
+      let currentDate = new Date().getTime();
       setValue('companyId', companyId);
-      setValue('startDate', 0);
-      setValue('endDate', 0);
     }
   }, [companyId, setValue]);
 
@@ -32,38 +32,46 @@ export const useAwardCreate = (
   const [updateImage] = awardApi.useUpdateImageMutation();
 
   const onSubmit: SubmitHandler<IAwardCreate> = async (data) => {
+    if (data.endDate == '') {
+      setValue('endDate', 0);
+    }
+    if (data.startDate == '') {
+      setValue('startDate', 0);
+    }
+
     let isError = false;
     console.log(data);
 
-    if (companyId) {
-      await create({ ...data })
-        .unwrap()
-        .then(async (award: IAward) => {
-          const fileData = data.file[0];
-          if (fileData) {
-            const formData = new FormData();
-            formData.append('imageUrl', fileData);
-            await updateImage({ awardId: award.id, formData })
-              .unwrap()
-              .catch(() => {
-                isError = true;
-                toast.error('Ошибка добавления фото награды');
-              });
-          }
-        })
-        .catch((e) => {
-          isError = true;
-          toastError(e, 'Ошибка создания награды');
-        });
-    } else {
-      isError = true;
-      toast.error('Необходимо выбрать компанию');
-    }
-    if (!isError) {
-      toast.success('Награда успешно создана');
-      // push('/company/' + companyId).then();
-      back();
-    }
+    // if (companyId) {
+    //   await create({ ...data })
+    //     .unwrap()
+    //     .then(async (award: IAward) => {
+    //       const fileData = data.file[0];
+    //       if (fileData) {
+    //         const formData = new FormData();
+    //         formData.append('imageUrl', fileData);
+    //         await updateImage({ awardId: award.id, formData })
+    //           .unwrap()
+    //           .catch(() => {
+    //             isError = true;
+    //             toast.error('Ошибка добавления фото награды');
+    //           });
+    //       }
+    //     })
+    //     .catch((e) => {
+    //       isError = true;
+    //       toastError(e, 'Ошибка создания награды');
+    //     });
+    // } else {
+    //   isError = true;
+    //   toast.error('Необходимо выбрать компанию');
+    // }
+    // if (!isError) {
+    //   toast.success('Награда успешно создана');
+    //   // push('/company/' + companyId).then();
+    //   back();
+    // }
+    reset()
   };
 
   return { onSubmit };
