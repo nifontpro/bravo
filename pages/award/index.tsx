@@ -1,10 +1,9 @@
 import {NextPage} from "next";
 import AuthComponent from "@/core/providers/AuthProvider/AuthComponent";
 import {useCompanyState} from "@/company/data/company.slice";
-import Medals from "../../app/medal/presenter/Medals";
 import Awards from 'award/presenter/Awards';
 
-const MedalsPage: NextPage = () => {
+const AwardsPage: NextPage = () => {
 
 	const {currentCompany} = useCompanyState()
 
@@ -19,4 +18,4 @@ const MedalsPage: NextPage = () => {
 
 }
 
-export default MedalsPage;
+export default AwardsPage;

@@ -20,21 +20,21 @@ export const useMyUser = (filter: string) => {
   //   depUsers = _depUsers || [];
   // }
 
-  if (currentCompany) {
-    const { data: _depUsers } = userApi.useGetByCompanyQuery({
-      companyId: currentCompany.id,
-      filter,
-    });
-    depUsers = _depUsers || [];
-  }
-
   // if (currentCompany) {
-  //   const { data: _depUsers } = userApi.useGetByCompanyDepNameQuery({
+  //   const { data: _depUsers } = userApi.useGetByCompanyQuery({
   //     companyId: currentCompany.id,
   //     filter,
   //   });
   //   depUsers = _depUsers || [];
   // }
+
+  if (currentCompany) {
+    const { data: _depUsers } = userApi.useGetByCompanyDepNameQuery({
+      companyId: currentCompany.id,
+      filter,
+    });
+    depUsers = _depUsers || [];
+  }
 
 
   // const { isLoading, data: _bosses } = userApi.useGetBossesQuery({

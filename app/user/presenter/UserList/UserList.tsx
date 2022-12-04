@@ -21,10 +21,10 @@ const UserList = ({
   return (
     <div className={cn(className, styles.container)} {...props}>
       <UserPreview user={user} />
-      {user.departmentId == undefined ? (
+      {user.departmentName == undefined ? (
         <P className={styles.department}>Отдел не найден</P>
       ) : (
-        <P className={styles.department}>{user.departmentId}</P>
+        <P className={styles.department}>{user.departmentName}</P>
       )}
       <div className={styles.editPanel} {...props}>
         <EditIcon

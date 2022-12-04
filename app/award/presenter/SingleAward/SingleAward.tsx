@@ -5,6 +5,7 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import { timeConverter } from '@/core/utils/timeConverter';
 import P from '@/core/presenter/ui/P/P';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
+import Link from 'next/link';
 
 const SingleAward = ({
   award,
@@ -22,32 +23,32 @@ const SingleAward = ({
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
-      <div className={styles.img}>
-        <ImageDefault
-          src={award.imageUrl}
-          width={165}
-          height={165}
-          alt={award.name}
-          objectFit='cover'
-          className='rounded-full'
-        />
-      </div>
-      <P size='m' className={styles.name}>
-        {award.name}
-      </P>
-
-      {award.relateUsers.length == 0 && (
-        <div>
-          <div>{timeConverter(award.startDate)}</div>
-          <div>{timeConverter(award.endDate)}</div>
+        <div className={styles.img}>
+          <ImageDefault
+            src={award.imageUrl}
+            width={165}
+            height={165}
+            alt={award.name}
+            objectFit='cover'
+            className='rounded-full'
+          />
         </div>
-      )}
+        <P size='m' className={styles.name}>
+          {award.name}
+        </P>
 
-      <CountUsersPreview
-        appearanceBtn='black'
-        usersAwards={award.relateUsers}
-        className={styles.default}
-      />
+        {award.relateUsers.length == 0 && (
+          <div>
+            <div>{timeConverter(award.startDate)}</div>
+            <div>{timeConverter(award.endDate)}</div>
+          </div>
+        )}
+
+        <CountUsersPreview
+          appearanceBtn='black'
+          usersAwards={award.relateUsers}
+          className={styles.default}
+        />
     </div>
   );
 };

@@ -78,7 +78,13 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
           ) : (
             <div className={styles.cards}>
               {awards?.map((item) => {
-                return <SingleAward award={item} key={item.id} />;
+                return (
+                  <Link key={item.id} href={'/award/' + item.id}>
+                    <a>
+                      <SingleAward award={item} />
+                    </a>
+                  </Link>
+                );
               })}
             </div>
           )
