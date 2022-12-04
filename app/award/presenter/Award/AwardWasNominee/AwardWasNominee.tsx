@@ -16,7 +16,7 @@ const AwardWasNominee = ({
         <div className={styles.header}>
           <Htag tag='h3'>Были номинированы</Htag>
         </div>
-        {award.relateUsers.findIndex((item) => item.state === 'NOMINEE') > 0 ? (
+        {award.relateUsers.findIndex((item) => item.state === 'NOMINEE') >= 0 ? (
           <div className={styles.usersAwarded}>
             {award.relateUsers.map((item) => {
               if (item.state === 'NOMINEE') {
