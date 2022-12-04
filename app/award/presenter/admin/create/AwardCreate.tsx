@@ -55,10 +55,10 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     formState: { errors },
     setValue,
     control,
-    reset
+    reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmit } = useAwardCreate(setValue, reset, currentCompany?.id,);
+  const { onSubmit } = useAwardCreate(setValue, reset, currentCompany?.id);
 
   return (
     <Meta title='Создание новой награды'>
@@ -152,7 +152,8 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
                 pattern: {
                   value: validDate,
                   message: 'Пожалуйста введите корректную дату',
-                },})}
+                },
+              })}
               title='Начинается'
               placeholder='ДД.ММ.ГГГГ'
               error={errors.startDate}
@@ -163,7 +164,8 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
                 pattern: {
                   value: validDate,
                   message: 'Пожалуйста введите корректную дату',
-                },})}
+                },
+              })}
               title='Заканчивается'
               placeholder='ДД.ММ.ГГГГ'
               error={errors.endDate}
