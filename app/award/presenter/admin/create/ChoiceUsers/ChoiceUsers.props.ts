@@ -1,6 +1,8 @@
 
-import { IAwardUsers } from 'award/model/award.types'
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react"
+import { IUser } from '@/user/model/user.types'
+import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, ReactNode, SetStateAction } from "react"
 
 export type ChoiceUsersProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
-}
+    arrChoiceUser: string[]
+    setArrChoiceUser: Dispatch<SetStateAction<string[]>>
+}   

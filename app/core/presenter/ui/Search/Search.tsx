@@ -5,13 +5,13 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import SearchIcon from './search.svg';
 
-const Search = ({ color, search, button, placeholder, className, ...props }: SearchProps): JSX.Element => {
+const Search = ({ onChange, color, search, button, placeholder, className, ...props }: SearchProps): JSX.Element => {
   return (
     <div className={cn(className, styles.search, {
       [styles.searchWithoutBtn]: button == false
     })} {...props}>
       <div className={styles.window}>
-        <Input color={color} search={search} placeholder={placeholder} />
+        <Input onChange={onChange} color={color} search={search} placeholder={placeholder} />
         <div className={styles.svg}>
           <SearchIcon />
         </div>

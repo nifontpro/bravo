@@ -19,6 +19,7 @@ import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { IAwardCreate } from 'award/model/api.types';
 import { validDate } from '@/core/utils/regex';
 import ChoiceUsers from './ChoiceUsers/ChoiceUsers';
+import { IUser } from '@/user/model/user.types';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -27,7 +28,9 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   if (currentCompany === null) {
     push('/company');
   }
-
+  const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
+  console.log(arrChoiceUser)
+  
   const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
     currentCompany!.id
   );
@@ -57,7 +60,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmit } = useAwardCreate(setValue, reset, currentCompany?.id);
+  const { onSubmit } = useAwardCreate(setValue, reset, currentCompany?.id, arrChoiceUser);
 
   return (
     <Meta title='Создание новой награды'>
@@ -116,35 +119,6 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
             className='mb-[60px]'
           />
 
-          {/* <div className={styles.group}>
-            <div className={styles.fixedCompanyName}>
-              {currentCompany?.name}
-            </div>
-            <Field
-              {...register('companyId', { required: 'Компания обязательно!' })}
-              title='Компания, отдел'
-              value={currentCompany?.name}
-              error={errors.companyId}
-            />
-            <Controller
-              name='departmentId'
-              control={control}
-              rules={{
-                required: 'Необходимо выбрать отдел!',
-              }}
-              render={({ field, fieldState: { error } }) => (
-                <SelectArtem
-                  error={error}
-                  field={field}
-                  placeholder=''
-                  options={arrDeparts || []}
-                  isLoading={false}
-                  isMulti={false}
-                />
-              )}
-            />
-          </div> */}
-
           <div className={styles.group}>
             <Field
               {...register('startDate', {
@@ -171,7 +145,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
             />
           </div>
 
-          <ChoiceUsers />
+          <ChoiceUsers arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser}/>
 
           <div className={styles.buttons}>
             {/* <Button onClick={() => back()} appearance='white' size='l'>

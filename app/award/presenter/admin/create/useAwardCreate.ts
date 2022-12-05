@@ -10,7 +10,8 @@ import { IAward } from 'award/model/award.types';
 export const useAwardCreate = (
   setValue: UseFormSetValue<IAwardCreate>,
   reset: UseFormReset<IAwardCreate>,
-  companyId?: string
+  companyId?: string,
+  arrChoiceUser? : string[]
 ) => {
   const { back } = useRouter();
 
