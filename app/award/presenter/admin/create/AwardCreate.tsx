@@ -1,4 +1,4 @@
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
 import styles from './AwardCreate.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
@@ -8,18 +8,17 @@ import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { AwardCreateProps } from './AwardCreate.props';
 import { useAwardCreate } from './useAwardCreate';
-import { ICompanyCreate } from '@/company/model/company.types';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
 import { ChangeEvent, useState } from 'react';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useCompanyState } from '@/company/data/company.slice';
-import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import { departmentApi } from '@/department/data/department.api';
 import { IOption } from '@/core/presenter/ui/select/select.interface';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { IAwardCreate } from 'award/model/api.types';
 import { validDate } from '@/core/utils/regex';
+import ChoiceUsers from './ChoiceUsers/ChoiceUsers';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -117,17 +116,17 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
             className='mb-[60px]'
           />
 
-          <div className={styles.group}>
+          {/* <div className={styles.group}>
             <div className={styles.fixedCompanyName}>
               {currentCompany?.name}
             </div>
-            {/* <Field
+            <Field
               {...register('companyId', { required: 'Компания обязательно!' })}
               title='Компания, отдел'
               value={currentCompany?.name}
               error={errors.companyId}
-            /> */}
-            {/* <Controller
+            />
+            <Controller
               name='departmentId'
               control={control}
               rules={{
@@ -143,8 +142,8 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
                   isMulti={false}
                 />
               )}
-            /> */}
-          </div>
+            />
+          </div> */}
 
           <div className={styles.group}>
             <Field
@@ -171,6 +170,8 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
               error={errors.endDate}
             />
           </div>
+
+          <ChoiceUsers />
 
           <div className={styles.buttons}>
             {/* <Button onClick={() => back()} appearance='white' size='l'>
