@@ -23,7 +23,7 @@ import { IUser } from '@/user/model/user.types';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
-  const { push } = useRouter();
+  const { push, back } = useRouter();
 
   if (currentCompany === null) {
     push('/company');
@@ -61,6 +61,11 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
 
   const { onSubmit } = useAwardCreate(setValue, reset, currentCompany?.id, arrChoiceUser);
 
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back()
+  } 
+
   return (
     <Meta title='Создание новой награды'>
       <ButtonCircleIcon
@@ -72,7 +77,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
         Вернуться назад
       </ButtonCircleIcon>
 
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
             src={img}
@@ -147,10 +152,10 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
           <ChoiceUsers arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser}/>
 
           <div className={styles.buttons}>
-            {/* <Button onClick={() => back()} appearance='white' size='l'>
+            <Button onClick={handleClick} appearance='white' size='l'>
               Отменить
-            </Button> */}
-            <Button appearance='gray' size='l' className='ml-[15px]'>
+            </Button>
+            <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
               Создать
             </Button>
           </div>

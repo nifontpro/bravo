@@ -33,6 +33,11 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
 
   const { onSubmit } = useDepartmentCreate(setValue, currentCompany?.id);
 
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back()
+  } 
+
   return (
     <Meta title='Создание нового отдела'>
       <ButtonCircleIcon
@@ -43,7 +48,7 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
       >
         Вернуться назад
       </ButtonCircleIcon>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form className={styles.form}>
         <Htag tag='h2' className={styles.title}>
           Новый отдел
         </Htag>
@@ -66,10 +71,10 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
         />
 
         <div className={styles.btn}>
-          {/* <Button onClick={() => back()} appearance='white' size='l'>
+          <Button onClick={handleClick} appearance='white' size='l'>
             Отменить
-          </Button> */}
-          <Button appearance='gray' size='l' className='ml-[15px]'>
+          </Button> 
+          <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
             Добавить
           </Button>
         </div>

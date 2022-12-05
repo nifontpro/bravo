@@ -83,6 +83,11 @@ const UserCreate: FC = () => {
   //   { label: 'Обычный сотрудник', value: 'user' },
   // ];
 
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back()
+  } 
+
   return (
     <Meta title='Создание профиля сотрудника'>
       <ButtonCircleIcon
@@ -93,7 +98,7 @@ const UserCreate: FC = () => {
       >
         Вернуться назад
       </ButtonCircleIcon>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
             src={img}
@@ -221,10 +226,10 @@ const UserCreate: FC = () => {
           />
 
           <div className={styles.buttons}>
-            {/* <Button onClick={() => back()} appearance='white' size='l'>
+            <Button onClick={handleClick} appearance='white' size='l'>
               Отменить
-            </Button> */}
-            <Button appearance='gray' size='l' className='ml-[15px]'>
+            </Button>
+            <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
               Добавить
             </Button>
           </div>

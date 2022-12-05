@@ -55,6 +55,11 @@ const UserEdit: FC = () => {
 
   // console.log(user)
 
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back()
+  } 
+
   return (
     <Meta title='Редактирование профиля сотрудника'>
       <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>
@@ -75,7 +80,7 @@ const UserEdit: FC = () => {
           </InputFile>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <form className={styles.form}>
           <div className={styles.fields}>
             <Htag tag='h2' className={styles.title}>
               Сотрудник
@@ -188,10 +193,10 @@ const UserEdit: FC = () => {
             />
 
             <div className={styles.buttons}>
-              {/* <Button onClick={() => back()} appearance='white' size='l'>
+              <Button onClick={handleClick} appearance='white' size='l'>
                 Отменить
-              </Button> */}
-              <Button appearance='gray' size='l' className='ml-[15px]'>
+              </Button>
+              <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
                 Изменить
               </Button>
             </div>
