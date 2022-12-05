@@ -86,9 +86,9 @@ export const companyApi = createApi({
 
 		setById: build.mutation<ICompany, string>({
 			query: (companyId) => ({
-				method: 'GET',
-				url: getCompanyUrl(),
-				params: {companyId}
+				method: 'POST',
+				url: getCompanyUrl("/get_id"),
+				body: {companyId}
 			}),
 			invalidatesTags: [{type: 'Company'}],
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {

@@ -5,7 +5,6 @@ import {getDepartmentUrl} from "@/core/config/api.config";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {getAdminUrl} from "@/core/config/url.config";
 import {departmentActions} from "@/department/data/department.slice";
-import {IdResponse} from "@/core/model/idResponse.types";
 import {IDepartmentUpdateRequest} from "@/department/presenter/admin/edit/department-edit.type";
 
 export const departmentApi = createApi({
@@ -38,7 +37,7 @@ export const departmentApi = createApi({
 			query: (departmentId) => ({
 				method: 'POST',
 				url: getDepartmentUrl("/get_id"),
-				params: {companyId: departmentId}
+				body: {departmentId}
 			}),
 			invalidatesTags: ['Department'],
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {

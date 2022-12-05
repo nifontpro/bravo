@@ -27,7 +27,9 @@ export const useSetAuthData = () => {
 				}
 
 				if (user.role == "owner") {
+					console.log("COMPANIES")
 					await getOwnerCompanies().unwrap().then(async (companies: ICompany[]) => {
+						console.log(companies)
 						if (companies.length > 0) {
 							setCompany(companies[0].id)
 						}
