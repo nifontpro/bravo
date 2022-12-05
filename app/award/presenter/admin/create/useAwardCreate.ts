@@ -41,7 +41,6 @@ export const useAwardCreate = (
     }
 
     let isError = false;
-    // console.log(data);
 
     if (companyId) {
       await create({ ...data })
@@ -57,6 +56,16 @@ export const useAwardCreate = (
                 isError = true;
                 toast.error('Ошибка добавления фото награды');
               });
+          }
+          if (arrChoiceUser != undefined && arrChoiceUser?.length > 0) {
+            // const formData = new FormData();
+            // formData.append('imageUrl', fileData);
+            // await updateImage({ awardId: award.id, formData })
+            //   .unwrap()
+            //   .catch(() => {
+            //     isError = true;
+            //     toast.error('Ошибка добавления фото награды');
+            //   });
           }
         })
         .catch((e) => {

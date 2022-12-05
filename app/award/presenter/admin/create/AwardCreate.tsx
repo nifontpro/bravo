@@ -29,7 +29,6 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     push('/company');
   }
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
-  console.log(arrChoiceUser)
   
   const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
     currentCompany!.id
