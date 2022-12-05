@@ -1,24 +1,24 @@
-import { FC, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { FC } from 'react';
+import { useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
 import styles from './CompanyEdit.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
-import { useUserEdit } from '@/user/presenter/admin/edit/useUserEdit';
-import { IUserEditInput } from '@/user/presenter/admin/edit/user-edit.type';
+// import { useUserEdit } from '@/user/presenter/admin/edit/useUserEdit';
+// import { IUserEditInput } from '@/user/presenter/admin/edit/user-edit.type';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
 import Htag from '@/core/presenter/ui/Htag/Htag';
-import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
-import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
-import TextArea from '@/core/presenter/ui/TextArea/TextArea';
+// import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
+// import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
+// import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import Button from '@/core/presenter/ui/Button/Button';
 import { useRouter } from 'next/router';
 import { useCompanyState } from '@/company/data/company.slice';
-import { departmentApi } from '@/department/data/department.api';
-import { IOption } from '@/core/presenter/ui/select/select.interface';
+// import { departmentApi } from '@/department/data/department.api';
+// import { IOption } from '@/core/presenter/ui/select/select.interface';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
-import { ICompanyCreate } from '@/company/model/company.types';
+// import { ICompanyCreate } from '@/company/model/company.types';
 import { useCompanyEdit } from './useCompanyEdit';
 import { ICompanyUpdateRequest } from './company-edit.type';
 
@@ -65,7 +65,7 @@ const UserEdit: FC = () => {
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.fields}>
           <Htag tag='h2' className={styles.title}>
-            Новая компания
+            Компания
           </Htag>
 
           <Field
@@ -102,11 +102,11 @@ const UserEdit: FC = () => {
           />
 
           <div className={styles.buttons}>
-            <Button onClick={() => back()} appearance='white' size='l'>
+            {/* <Button onClick={() => back()} appearance='white' size='l'>
               Отменить
-            </Button>
+            </Button> */}
             <Button appearance='gray' size='l' className='ml-[15px]'>
-              Добавить
+              Изменить
             </Button>
           </div>
         </div>

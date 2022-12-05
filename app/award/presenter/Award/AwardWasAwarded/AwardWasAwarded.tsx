@@ -5,6 +5,7 @@ import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleI
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import CardUserAwarded from '@/core/presenter/ui/CardUserAwarded/CardUserAwarded';
 import P from '@/core/presenter/ui/P/P';
+import uniqid from 'uniqid';
 
 const AwardWasAwarded = ({
   award,
@@ -29,7 +30,7 @@ const AwardWasAwarded = ({
           <div className={styles.usersAwarded}>
             {award.relateUsers.map((item) => {
               if (item.state === 'AWARD') {
-                return <CardUserAwarded user={item} />;
+                return <CardUserAwarded user={item} key={uniqid()}/>;
               }
             })}
           </div>

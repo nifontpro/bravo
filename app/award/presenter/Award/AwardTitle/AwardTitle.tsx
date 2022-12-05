@@ -22,7 +22,7 @@ const AwardTitle = ({
 
   const deleteAsync = () => {};
 
-  console.log(award);
+  // console.log(award);
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>

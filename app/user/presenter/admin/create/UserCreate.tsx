@@ -17,6 +17,7 @@ import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { departmentApi } from '@/department/data/department.api';
 import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const UserCreate: FC = () => {
   const [active, setActive] = useState<
@@ -25,7 +26,7 @@ const UserCreate: FC = () => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
 
-  if (currentCompany === null) { 
+  if (currentCompany === null) {
     push('/company');
   }
 
@@ -84,6 +85,14 @@ const UserCreate: FC = () => {
 
   return (
     <Meta title='Создание профиля сотрудника'>
+      <ButtonCircleIcon
+        onClick={back}
+        appearance='black'
+        icon='down'
+        className='mb-[50px]'
+      >
+        Вернуться назад
+      </ButtonCircleIcon>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
@@ -160,7 +169,9 @@ const UserCreate: FC = () => {
           </div>
 
           <div className={styles.group}>
-            <div className={styles.fixedCompanyName}>{currentCompany?.name}</div>
+            <div className={styles.fixedCompanyName}>
+              {currentCompany?.name}
+            </div>
             {/* <Field
               {...register('companyId', { required: 'Компания обязательно!' })}
               title='Компания, отдел'
@@ -210,9 +221,9 @@ const UserCreate: FC = () => {
           />
 
           <div className={styles.buttons}>
-            <Button onClick={() => back()} appearance='white' size='l'>
+            {/* <Button onClick={() => back()} appearance='white' size='l'>
               Отменить
-            </Button>
+            </Button> */}
             <Button appearance='gray' size='l' className='ml-[15px]'>
               Добавить
             </Button>

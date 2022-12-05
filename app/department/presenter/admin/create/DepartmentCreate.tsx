@@ -10,7 +10,11 @@ import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { DepartmentCreateProps } from './DepartmentCreate.props';
 import { useDepartmentCreate } from './useDepartmentCreate';
-import { IDepartment, IDepartmentCreate } from '@/department/model/department.types';
+import {
+  IDepartment,
+  IDepartmentCreate,
+} from '@/department/model/department.types';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -31,6 +35,14 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
 
   return (
     <Meta title='Создание нового отдела'>
+      <ButtonCircleIcon
+        onClick={back}
+        appearance='black'
+        icon='down'
+        className='mb-[50px]'
+      >
+        Вернуться назад
+      </ButtonCircleIcon>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <Htag tag='h2' className={styles.title}>
           Новый отдел
@@ -54,9 +66,9 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
         />
 
         <div className={styles.btn}>
-          <Button onClick={() => back()} appearance='white' size='l'>
+          {/* <Button onClick={() => back()} appearance='white' size='l'>
             Отменить
-          </Button>
+          </Button> */}
           <Button appearance='gray' size='l' className='ml-[15px]'>
             Добавить
           </Button>

@@ -4,6 +4,7 @@ import cn from 'classnames';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import CardUserNominee from '@/core/presenter/ui/CardUserNominee/CardUserNominee';
 import P from '@/core/presenter/ui/P/P';
+import uniqid from 'uniqid';
 
 const AwardWasNominee = ({
   award,
@@ -20,7 +21,7 @@ const AwardWasNominee = ({
           <div className={styles.usersAwarded}>
             {award.relateUsers.map((item) => {
               if (item.state === 'NOMINEE') {
-                return <CardUserNominee user={item} />;
+                return <CardUserNominee user={item} key={uniqid()}/>;
               }
             })}
           </div>

@@ -15,6 +15,7 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import Button from '@/core/presenter/ui/Button/Button';
 import { useRouter } from 'next/router';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const DepartmentEdit: FC = () => {
   const { back } = useRouter();
@@ -46,12 +47,19 @@ const DepartmentEdit: FC = () => {
 
   return (
     <Meta title='Редактирование отдела'>
+      <ButtonCircleIcon
+        onClick={back}
+        appearance='black'
+        icon='down'
+        className='mb-[50px]'
+      >
+        Вернуться назад
+      </ButtonCircleIcon>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         {isLoading ? (
           <SkeletonLoader count={3} />
         ) : (
           <>
-          
             {/* Скрыто так как нет фото в редактирование */}
             <div className='hidden'>
               <div className={styles.uploadFlex}>
@@ -99,9 +107,9 @@ const DepartmentEdit: FC = () => {
             />
 
             <div className={styles.btn}>
-              <Button onClick={() => back()} size='m' appearance='white'>
+              {/* <Button onClick={() => back()} size='m' appearance='white'>
                 Отменить
-              </Button>
+              </Button> */}
               <Button size='m' appearance='gray' className='ml-[15px]'>
                 Сохранить
               </Button>

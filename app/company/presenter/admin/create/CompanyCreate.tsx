@@ -107,9 +107,9 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
           />
 
           <div className={styles.buttons}>
-            <Button onClick={() => back()} appearance='white' size='l'>
+            {/* <Button onClick={() => back()} appearance='white' size='l'>
               Отменить
-            </Button>
+            </Button> */}
             <Button appearance='gray' size='l' className='ml-[15px]'>
               Добавить
             </Button>

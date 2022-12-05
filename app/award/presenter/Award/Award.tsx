@@ -16,7 +16,7 @@ import AwardWasNominee from './AwardWasNominee/AwardWasNominee';
 const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
   const { push } = useRouter();
 
-  console.log(award);
+  // console.log(award);
 
   return (
     <div {...props} className={cn(className)}>
