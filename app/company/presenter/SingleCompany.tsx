@@ -1,12 +1,11 @@
-import { FC, useEffect } from 'react';
-import { ICompany } from '@/company/model/company.types';
+import {FC, useEffect} from 'react';
+import {ICompany} from '@/company/model/company.types';
 import Meta from '@/core/utils/meta/Meta';
 // import Banner from '@/core/presenter/ui/banner/Banner';
-import { useDispatch } from 'react-redux';
-import { companyActions } from '@/company/data/company.slice';
+import {useDispatch} from 'react-redux';
+import {companyActions} from '@/company/data/company.slice';
 // import Button from '@/core/presenter/ui/form/Button';
 import styles from './SingleCompany.module.scss';
-import { saveCompanyToStorage } from '@/auth/data/auth.helper';
 // import { userApi } from '@/user/data/user.api';
 // import Catalog from '@/core/presenter/ui/catalog/Catalog';
 // import cn from 'classnames';
@@ -14,7 +13,7 @@ import { saveCompanyToStorage } from '@/auth/data/auth.helper';
 import TitleSingleCompany from './TitleSingleCompany/TitleSingleCompany';
 import DepartmentAndUsers from './DepartmentAndUsers/DepartmentAndUsers';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
 const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
   // console.log(company)
@@ -32,9 +31,8 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
   useEffect(() => {
     if (company != undefined) {
       dispatch(companyActions.setState(company));
-      saveCompanyToStorage(company);
     }
-  }, []);
+  }, [company, dispatch]);
   // То что выше нужно переделать
 
   //   const handleClick = () => {
