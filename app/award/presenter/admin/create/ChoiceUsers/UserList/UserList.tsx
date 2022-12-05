@@ -5,7 +5,7 @@ import UserPreview from '@/core/presenter/ui/UserPreview/UserPreview';
 import CheckedIcon from './checked.svg';
 import { useEffect, useState } from 'react';
 
-const UserList = ({ allChecked, setVisibleCheckbox, user, className, ...props }: UserListProps): JSX.Element => {
+const UserList = ({ setArrChoiceUser, arrChoiceUser, allChecked, setVisibleCheckbox, user, className, ...props }: UserListProps): JSX.Element => {
 
 const [visible, setVisible] = useState<boolean>(allChecked)
 
@@ -16,6 +16,14 @@ useEffect(() => {
 const handleClick = () => {
   setVisible(!visible)
   setVisibleCheckbox(false)
+  let arr = [...arrChoiceUser]
+  if (arrChoiceUser.findIndex(item => item == user.id) >= 0) {
+    arr.splice(arr.findIndex(item => item == user.id), 1)
+    setArrChoiceUser(arr)
+  } else if (arrChoiceUser.findIndex(item => item == user.id) < 0) {
+    arr.push(user.id)
+    setArrChoiceUser(arr)
+  }
 }
 
   return (

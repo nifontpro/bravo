@@ -9,6 +9,8 @@ import UserPreview from '@/core/presenter/ui/UserPreview/UserPreview';
 import CheckedIcon from './checked.svg';
 import UserList from './UserList/UserList';
 import { useState } from 'react';
+import { IUser } from '@/user/model/user.types';
+import { declOfNum } from '@/core/utils/declOfNum';
 
 const ChoiceUsers = ({
   className,
@@ -17,9 +19,25 @@ const ChoiceUsers = ({
 
   const [allChecked, setAllChecked] = useState<boolean>(false)
   const [visibleCheckbox, setVisibleCheckbox] = useState<boolean>(false)
+  const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([])
 
   const { users } = useMyUser('');
   let arrUsers = [...users];
+
+  const handleChoiceAllUsers = () => {
+    setAllChecked(!allChecked)
+    setVisibleCheckbox(!visibleCheckbox)
+    if (!allChecked && arrChoiceUser.length != users.length) {
+      let arr: string[] = []
+      users.forEach(item => arr.push(item.id))
+      setArrChoiceUser(arr)
+    }
+    if (allChecked) {
+      setArrChoiceUser([])
+    }
+  }
+
+  console.log(arrChoiceUser)
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
@@ -32,9 +50,15 @@ const ChoiceUsers = ({
       />
       <div className={styles.searchPanel}>
         <P size='s' fontstyle='thin' color='gray'>
-          Выбрано 2 сотрудника
-        </P>
-        <Checkbox setVisibleCheckbox={setVisibleCheckbox} visibleCheckbox={visibleCheckbox} icon='check' onClick={() => setAllChecked(!allChecked)}>
+            Выбрано {arrChoiceUser.length}{' '}
+            {declOfNum(arrChoiceUser.length, [
+              'сотрудник',
+              'сотрудника',
+              'сотрудников',
+            ])}
+          </P>
+
+        <Checkbox setVisibleCheckbox={setVisibleCheckbox} visibleCheckbox={visibleCheckbox} icon='check' onClick={handleChoiceAllUsers}>
           <P size='s' fontstyle='thin'>
             Выбрать всех
           </P>
@@ -42,7 +66,7 @@ const ChoiceUsers = ({
       </div>
       <div className={styles.searchUsers}>
         {arrUsers.map((user) => {
-          return <UserList key={user.id} user={user} setVisibleCheckbox={setVisibleCheckbox} allChecked={allChecked}/>;
+          return <UserList arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser} key={user.id} user={user} setVisibleCheckbox={setVisibleCheckbox} allChecked={allChecked}/>;
         })}
       </div>
     </div>

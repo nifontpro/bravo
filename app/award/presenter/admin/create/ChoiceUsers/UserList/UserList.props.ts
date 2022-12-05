@@ -7,4 +7,6 @@ export type UserListProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElemen
     allChecked: boolean
     user: IUser
     setVisibleCheckbox: Dispatch<SetStateAction<boolean>>
+    setArrChoiceUser: Dispatch<SetStateAction<string[]>>
+    arrChoiceUser: string[]
 }

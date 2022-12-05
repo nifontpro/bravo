@@ -14,8 +14,8 @@ const Checkbox = ({
   const IconComp = icons[icon];
 
   return (
-    <div className={cn(styles.wrapper, className)} {...props}>
-      <div onClick={() => setVisibleCheckbox(!visibleCheckbox)} className={cn(styles.checkbox)}>
+    <div onClick={() => setVisibleCheckbox(!visibleCheckbox)} className={cn(styles.wrapper, className)} {...props}>
+      <div className={cn(styles.checkbox)}>
         <IconComp
           className={cn(styles.check, {
             [styles.hidden]: !visibleCheckbox,
