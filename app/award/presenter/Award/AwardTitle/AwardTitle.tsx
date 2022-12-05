@@ -8,6 +8,7 @@ import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleI
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
 import { useState } from 'react';
+import { useAwardAdmin } from '../useAwardAdmin';
 
 const AwardTitle = ({
   award,
@@ -20,7 +21,7 @@ const AwardTitle = ({
 
   const [visible, setVisible] = useState<boolean>(false);
 
-  const deleteAsync = () => {};
+  const { deleteAsync } = useAwardAdmin(award.id);
 
   // console.log(award);
 

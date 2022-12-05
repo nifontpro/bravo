@@ -3,7 +3,7 @@ import {useDebounce} from "@/core/hooks/useDebounce";
 import {departmentApi} from "@/department/data/department.api";
 import {toast} from "react-toastify";
 import {toastError} from "@/core/utils/toast-error";
-import {getAdminUrl} from "@/core/config/url.config";
+// import {getAdminUrl} from "@/core/config/url.config";
 import {useRouter} from "next/router";
 
 export const useDepartmentAdmin = (companyId: string) => {
@@ -22,17 +22,17 @@ export const useDepartmentAdmin = (companyId: string) => {
 	return useMemo(
 		() => {
 
-			const createAsync = async () => {
-				await createDepartment(companyId)
-					.unwrap()
-					.then((response) => {
-						toast.success("Отдел успешно создан")
-						push(getAdminUrl(`department/edit/${response.id}`))
-					})
-					.catch(e => {
-						toastError(e, "Ошибка при создании отдела")
-					})
-			}
+			// const createAsync = async () => {
+			// 	await createDepartment(companyId)
+			// 		.unwrap()
+			// 		.then((response) => {
+			// 			toast.success("Отдел успешно создан")
+			// 			push(getAdminUrl(`department/edit/${response.id}`))
+			// 		})
+			// 		.catch(e => {
+			// 			toastError(e, "Ошибка при создании отдела")
+			// 		})
+			// }
 
 			const deleteAsync = async (id: string) => {
 				await deleteDepartment(id)
@@ -50,7 +50,7 @@ export const useDepartmentAdmin = (companyId: string) => {
 				medals: departments,
 				handleSearch,
 				searchTerm,
-				createAsync,
+				// createAsync,
 				deleteAsync
 			}
 		},
