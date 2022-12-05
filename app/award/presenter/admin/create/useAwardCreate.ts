@@ -11,7 +11,7 @@ export const useAwardCreate = (
   setValue: UseFormSetValue<IAwardCreate>,
   reset: UseFormReset<IAwardCreate>,
   companyId?: string,
-  arrChoiceUser? : string[]
+  arrChoiceUser?: string[]
 ) => {
   const { back } = useRouter();
 
@@ -23,11 +23,12 @@ export const useAwardCreate = (
 
   const [create] = awardApi.useCreateMutation();
   const [updateImage] = awardApi.useUpdateImageMutation();
+  const [reward] = awardApi.useAwardUserMutation();
 
   const onSubmit: SubmitHandler<IAwardCreate> = async (data) => {
     if (data.endDate != undefined && data.startDate != undefined) {
       if (data.endDate == 0) {
-        data.endDate = 0;
+        data.endDate = Math.floor(new Date().getTime() / 1000);
       } else {
         let newDate = new Date(data.endDate).getTime() / 1000;
         data.endDate = newDate;
@@ -58,14 +59,18 @@ export const useAwardCreate = (
               });
           }
           if (arrChoiceUser != undefined && arrChoiceUser?.length > 0) {
-            // const formData = new FormData();
-            // formData.append('imageUrl', fileData);
-            // await updateImage({ awardId: award.id, formData })
-            //   .unwrap()
-            //   .catch(() => {
-            //     isError = true;
-            //     toast.error('Ошибка добавления фото награды');
-            //   });
+            arrChoiceUser.forEach((user) => {
+              reward({
+                awardId: award.id,
+                userId: user,
+                awardState: 'AWARD',
+              })
+                .unwrap()
+                .catch(() => {
+                  isError = true;
+                  toast.error(`Ошибка награждения ${user}`);
+                });
+            });
           }
         })
         .catch((e) => {
