@@ -16,7 +16,7 @@ import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import { departmentApi } from '@/department/data/department.api';
 import { IOption } from '@/core/presenter/ui/select/select.interface';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
-import { IAwardCreate } from 'award/model/api.types';
+import { IAwardCreate, IAwardUpdate } from 'award/model/api.types';
 import { validDate } from '@/core/utils/regex';
 import { IAward } from 'award/model/award.types';
 import { useAwardEdit } from './useAwardEdit';
@@ -29,14 +29,6 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
     push('/company');
   }
 
-  const [img, setImg] = useState<string>('');
-
-  const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files !== null) {
-      setImg(URL.createObjectURL(event.target.files[0]));
-    }
-  };
-
   const {
     handleSubmit,
     register,
@@ -44,9 +36,9 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
     setValue,
     control,
     reset,
-  } = useForm<IAward>({ mode: 'onChange' });
+  } = useForm<IAwardUpdate>({ mode: 'onChange' });
 
-  const { onSubmit } = useAwardEdit(setValue);
+  const { onSubmit, changePhoto, img } = useAwardEdit(setValue);
 
   return (
     <Meta title='Редактирование компании'>

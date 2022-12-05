@@ -10,8 +10,9 @@ import {
 import { toast } from 'react-toastify';
 import { IAward } from 'award/model/award.types';
 import { awardApi } from 'award/data/award.api';
+import { IAwardUpdate } from 'award/model/api.types';
 
-export const useAwardEdit = (setValue: UseFormSetValue<IAward>) => {
+export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
   const { push, query } = useRouter();
   const awardId = String(query.id);
 
@@ -37,40 +38,39 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAward>) => {
   }, [isGetSuccess, setValue]);
   //   console.log(award)
 
-  const onSubmit: SubmitHandler<IAward> = async (data) => {
+  const onSubmit: SubmitHandler<IAwardUpdate> = async (data) => {
     console.log(data);
     let isError = false;
-    // if (award) {
-    //   await update({ ...data, id: company.id })
-    //     .unwrap()
-    //     .catch(() => {
-    //       isError = true;
-    //       toast.error('Ошибка обновления профиля компании');
-    //     });
+    if (award) {
+      await update({ ...data, id: award.id })
+        .unwrap()
+        .catch(() => {
+          isError = true;
+          toast.error('Ошибка обновления награды');
+        });
 
-    //   if (!isError) {
-    //     toast.success('Данные компании успешно обновлены');
-    //     await push('/company');
-    //   }
-    // }
+      if (!isError) {
+        toast.success('Данные награды успешно обновлены');
+        await push('/award/' + award.id);
+      }
+    }
   };
 
   const changePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
     let isError = false;
     if (event.target.files !== null && award != undefined) {
-      console.log(event.target.files[0]);
-      //   setImg(URL.createObjectURL(event.target.files[0]));
-      //   const formData = new FormData();
-      //   formData.append('imageUrl', event.target.files[0]);
-      //   await updateImg({ companyId: company.id, formData })
-      //     .unwrap()
-      //     .catch(() => {
-      //       isError = true;
-      //       toast.error('Ошибка обновления фотографии');
-      //     });
-      //   if (!isError) {
-      //     toast.success('Фото успешно обновлен');
-      //   }
+      setImg(URL.createObjectURL(event.target.files[0]));
+      const formData = new FormData();
+      formData.append('imageUrl', event.target.files[0]);
+      await updateImg({ awardId: award.id, formData })
+        .unwrap()
+        .catch(() => {
+          isError = true;
+          toast.error('Ошибка обновления фотографии');
+        });
+      if (!isError) {
+        toast.success('Фото успешно обновлено');
+      }
     }
   };
 
