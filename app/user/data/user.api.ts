@@ -1,6 +1,6 @@
 import {queryWithReauth} from "@/core/data/base.api";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
-import {IUser, IUserCreate} from "@/user/model/user.types";
+import {IUser, IUserAwards, IUserCreate} from "@/user/model/user.types";
 import {getUserUrl} from "@/core/config/api.config";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
 
@@ -69,6 +69,21 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
+		/**
+		 * Получить сотрудников компании с присвоенными наградами (облегченными)
+		 * Сортировка по
+		 *  -количеству наград по убыванию
+		 *  -фамилии по возрастанию
+		 */
+		getByCompanyWithAwards: build.query<IUserAwards[], { companyId: string, filter?: string }>({
+			query: (data) => ({
+				method: 'POST',
+				url: getUserUrl('/get_awards'),
+				body: data
+			}),
+			providesTags: ['User']
+		}),
+
 		getBests: build.query<IUser[], { companyId: string, limit: number }>({
 			query: (body) => ({
 				method: 'POST',
@@ -78,7 +93,7 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
-		create: build.mutation<IUser,  IUserCreate>({
+		create: build.mutation<IUser, IUserCreate>({
 			query: (user) => ({
 				method: 'POST',
 				url: getUserUrl('/create'),
