@@ -5,6 +5,7 @@ import P from '../P/P';
 import { declOfNum } from '@/core/utils/declOfNum';
 import { ImageDefault } from '../icons/ImageDefault';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
+import uniqid from 'uniqid';
 
 const CountUsersPreview = ({
   usersAwards,
@@ -39,7 +40,7 @@ const CountUsersPreview = ({
             {usersInDepartment.map((user, index) => {
               if (index < 4) {
                 return (
-                  <div key={user.login} className={styles.singleImg}>
+                  <div key={uniqid()} className={styles.singleImg}>
                     <ImageDefault
                       src={user.imageUrl}
                       width={40}
