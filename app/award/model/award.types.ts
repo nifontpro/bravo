@@ -1,4 +1,4 @@
-import {IAwardRelate, IAwardRelateUser} from "./awardRelate.types";
+import {AwardState, IAwardRelate, IAwardRelateUser} from "./awardRelate.types";
 
 /**
  * Тип "Награда"
@@ -9,6 +9,7 @@ export interface IAward {
 	criteria?: string
 	startDate?: number
 	endDate?: number
+	state: AwardState
 	score?: number
 	companyId: string
 	relations: IAwardRelate[]
@@ -29,6 +30,7 @@ export interface IAwardUsers {
 	criteria?: string
 	startDate?: number
 	endDate?: number
+	state: AwardState
 	score?: number
 	companyId: string
 	relateUsers: IAwardRelateUser[]
