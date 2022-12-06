@@ -153,7 +153,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
 
           <div className={styles.buttons}>
             <Button onClick={handleSubmit(onSubmit)} appearance='whiteBlack' size='l' >
-              Выдать сразу
+              Выдать сразу и закрыть
             </Button>
             <Button onClick={handleClick} appearance='blackWhite' size='l' className='ml-[15px]'>
               Номинировать

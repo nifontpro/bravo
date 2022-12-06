@@ -5,6 +5,10 @@ import {toastError} from "@/core/utils/toast-error";
 import {useRouter} from "next/router";
 import {getAdminUrl} from "@/core/config/url.config";
 import {useDebounce} from "@/core/hooks/useDebounce";
+import { useDispatch } from 'react-redux';
+import { companyActions } from '@/company/data/company.slice';
+import { departmentActions } from '@/department/data/department.slice';
+import { departmentApi } from '@/department/data/department.api';
 
 export const useCompanyAdmin = () => {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -12,6 +16,7 @@ export const useCompanyAdmin = () => {
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
+	const dispatch = useDispatch()
 
 	const {isLoading, data: companies} = companyApi.useGetOwnerAdminQuery(debouncedSearch)
 	const [createCompany] = companyApi.useCreateMutation()
@@ -38,12 +43,16 @@ export const useCompanyAdmin = () => {
 				await deleteCompany(id)
 					.unwrap()
 					.then(() => {
+						dispatch(companyActions.clear());
+						dispatch(departmentActions.clear());
+						// dispatch(companyApi.util.resetApiState());
+						// dispatch(departmentApi.util.resetApiState());
 						toast.success("Компания успешно удалена")
 					})
 					.catch(e => {
 						toastError(e, "Ошибка при удалении компании")
 					})
-					back()
+					back() 
 			}
 
 			return {

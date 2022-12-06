@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 // import { IUser } from '@/user/model/user.types';
 import { declOfNum } from '@/core/utils/declOfNum';
 import { IUser } from '@/user/model/user.types';
+import { useCompanyState } from '@/company/data/company.slice';
 
 const ChoiceUsers = ({
   arrChoiceUser,
@@ -21,14 +22,17 @@ const ChoiceUsers = ({
 }: ChoiceUsersProps): JSX.Element => {
   const [allChecked, setAllChecked] = useState<boolean>(false);
   const [visibleCheckbox, setVisibleCheckbox] = useState<boolean>(false);
+  // const { currentCompany } = useCompanyState();
 
+
+  // console.log(currentCompany)
   const { users } = useMyUser('');
 
   const [arrUsers, setArrUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
     setArrUsers([...users]);
-  }, []);
+  }, [users]);
 
   const handleChoiceAllUsers = () => {
     setAllChecked(!allChecked);

@@ -34,7 +34,7 @@ const CardUserAwarded = ({
       </div>
       <P size='l'>{user.user.lastname} {user.user.name}</P>
       <P size='s' fontstyle='thin' color='gray' className={styles.post}>{user.user.post}</P>
-      <P size='s' fontstyle='thin' color='gray' className={styles.post}>{convertDate}</P>
+      <P size='s' fontstyle='thin' color='gray' className={styles.date}>{convertDate}</P>
     </div>
   );
 };
