@@ -26,19 +26,24 @@ export const useAwardCreate = (
   const [reward] = awardApi.useAwardUserMutation();
 
   const onSubmit: SubmitHandler<IAwardCreate> = async (data) => {
+    // if (data.endDate != undefined && data.startDate != undefined) {
+    //   if (data.endDate == 0) {
+    //     data.endDate = Math.floor(new Date().getTime() / 1000);
+    //   } else {
+    //     let newDate = new Date(data.endDate).getTime() / 1000;
+    //     data.endDate = newDate;
+    //   }
+    //   if (data.startDate == 0) {
+    //     data.startDate = 0;
+    //   } else {
+    //     let newDate = new Date(data.startDate).getTime() / 1000;
+    //     data.startDate = newDate;
+    //   }
+    // }
+
     if (data.endDate != undefined && data.startDate != undefined) {
-      if (data.endDate == 0) {
-        data.endDate = Math.floor(new Date().getTime() / 1000);
-      } else {
-        let newDate = new Date(data.endDate).getTime() / 1000;
-        data.endDate = newDate;
-      }
-      if (data.startDate == 0) {
-        data.startDate = 0;
-      } else {
-        let newDate = new Date(data.startDate).getTime() / 1000;
-        data.startDate = newDate;
-      }
+      data.endDate = Math.floor(new Date().getTime() / 1000);
+      data.startDate = Math.floor(new Date().getTime() / 1000);
     }
 
     let isError = false;
@@ -88,5 +93,10 @@ export const useAwardCreate = (
     reset();
   };
 
-  return { onSubmit };
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back();
+  };
+
+  return { onSubmit, handleClick };
 };

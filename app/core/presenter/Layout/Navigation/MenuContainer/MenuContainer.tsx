@@ -35,7 +35,7 @@ const MenuContainer: FC = () => {
 	return (
 		<div>
 			<Menu menu={menu}/>
-			<Menu menu={userMenu}/>
+			{/* <Menu menu={userMenu}/> */}
 		</div>
 	)
 }

@@ -81,7 +81,7 @@ const CountUsersPreview = ({
             {usersAwards.map((item, index) => {
               if (index < 4) {
                 return (
-                  <div key={item.user.login} className={styles.singleImg}>
+                  <div key={uniqid()} className={styles.singleImg}>
                     <ImageDefault
                       src={item.user.imageUrl}
                       width={40}

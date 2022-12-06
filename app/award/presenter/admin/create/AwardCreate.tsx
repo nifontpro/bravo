@@ -59,12 +59,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmit } = useAwardCreate(setValue, reset, currentCompany?.id, arrChoiceUser);
-
-  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    back()
-  } 
+  const { onSubmit, handleClick } = useAwardCreate(setValue, reset, currentCompany?.id, arrChoiceUser);
 
   return (
     <Meta title='Создание новой награды'>

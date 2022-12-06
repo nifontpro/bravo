@@ -29,7 +29,8 @@ const ChoiceUsers = ({
   const [arrUsers, setArrUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
-    setArrUsers([...users]);
+    let arr = [...users]
+    setArrUsers([...arr]);
   }, [users]);
 
   const handleChoiceAllUsers = () => {
@@ -50,7 +51,7 @@ const ChoiceUsers = ({
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.value.length == 0) {
       setArrUsers([...users]);
-      console.log(arrUsers);
+      // console.log(arrUsers);
     } else {
       let arr = arrUsers.filter((item) => {
         if (
