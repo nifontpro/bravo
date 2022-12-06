@@ -23,8 +23,6 @@ const ChoiceUsers = ({
   const [allChecked, setAllChecked] = useState<boolean>(false);
   const [visibleCheckbox, setVisibleCheckbox] = useState<boolean>(false);
   // const { currentCompany } = useCompanyState();
-
-
   // console.log(currentCompany)
   const { users } = useMyUser('');
 

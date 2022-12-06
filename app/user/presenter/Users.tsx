@@ -1,17 +1,21 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Meta from '@/core/utils/meta/Meta';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
 import styles from './Users.module.scss';
 import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import UserList from './UserList/UserList';
+import { IUser } from '../model/user.types';
 
 const Users: FC = () => {
   const { users } = useMyUser('');
-  let arrUsers = [...users];
-  // console.log(arrUsers)
+  const [arrUsers, setArrUsers] = useState<IUser[]>([]);
 
-  //Сотртировка по фамилии начало
+  useEffect(() => {
+    setArrUsers([...users]);
+  }, [users]);
+
+  //Сотртировка по фамилии
   const [state, setState] = useState<1 | -1>(1);
   if (arrUsers !== undefined) {
     arrUsers.sort((prev, next): number => {
@@ -21,7 +25,21 @@ const Users: FC = () => {
       return 1;
     });
   }
-  //Сотртировка по фамилии конец
+
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    if (event.currentTarget.value.length == 0) {
+      setArrUsers([...users]);
+    } else {
+      let arr = arrUsers.filter((item) => {
+        if (
+          item.lastname?.toLowerCase().includes(`${event.currentTarget.value}`)
+        ) {
+          return item;
+        }
+      });
+      setArrUsers(arr);
+    }
+  };
 
   return (
     <Meta title='Сотрудники'>
@@ -30,12 +48,13 @@ const Users: FC = () => {
       ) : (
         <div className={styles.container}>
           <Search
+            onChange={handleChange}
             color='white'
             search={true}
             button={false}
             placeholder='Сотрудник сотрудника ...'
           />
-          <SortButton 
+          <SortButton
             state={state}
             onClick={() => (state == 1 ? setState(-1) : setState(1))}
             className={styles.filter}
