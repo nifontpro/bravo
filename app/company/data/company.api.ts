@@ -32,6 +32,15 @@ export const companyApi = createApi({
 			providesTags: [{type: 'Company'}]
 		}),
 
+		getByOwnerParam: build.mutation<ICompany[], void>({
+			query: () => ({
+				method: 'POST',
+				url: getCompanyUrl('/owner'),
+				body: {filter: ""}
+			}),
+			invalidatesTags: [{type: 'Company'}]
+		}),
+
 		getOwnerAdmin: build.query<ITableItem[], string | undefined>({
 			query: (filter) => ({
 				method: 'POST',

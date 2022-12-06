@@ -87,6 +87,7 @@ export const refreshApi = createApi({
 				try {
 					const {data} = await queryFulfilled;
 					await dispatch(authActions.setState(data))
+					
 				} catch (error) {
 					console.error(`ERROR refresh!`, error)
 				}

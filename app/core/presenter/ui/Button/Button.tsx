@@ -13,6 +13,7 @@ const Button = ({
     <button
       className={cn(styles.button, {
         [styles.white]: appearance == 'white',
+        [styles.whiteBlack]: appearance == 'whiteBlack',
         [styles.gray]: appearance == 'gray',
         [styles.blackWhite]: appearance == 'blackWhite',
         [styles.blackGray]: appearance == 'blackGray',

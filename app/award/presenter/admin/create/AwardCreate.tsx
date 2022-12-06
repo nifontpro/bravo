@@ -152,11 +152,11 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
           <ChoiceUsers arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser}/>
 
           <div className={styles.buttons}>
-            <Button onClick={handleClick} appearance='white' size='l'>
-              Отменить
+            <Button onClick={handleSubmit(onSubmit)} appearance='whiteBlack' size='l' >
+              Выдать сразу
             </Button>
-            <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
-              Создать
+            <Button onClick={handleClick} appearance='blackWhite' size='l' className='ml-[15px]'>
+              Номинировать
             </Button>
           </div>
         </div>

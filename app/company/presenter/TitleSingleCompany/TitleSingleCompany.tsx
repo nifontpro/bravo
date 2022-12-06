@@ -20,11 +20,11 @@ const TitleSingleCompany = ({
   className,
   ...props
 }: TitleSingleCompanyProps): JSX.Element => {
-  // const { data: users } = userApi.useGetByCompanyQuery({
-  //   companyId: company.id,
-  // });
+  const { data: users } = userApi.useGetByCompanyDepNameQuery({
+    companyId: company.id,
+  });
 
-  const { users } = useMyUser('');
+  // const { users } = useMyUser('');
 
   let URL = '/manage/company/edit/';
 
@@ -33,7 +33,7 @@ const TitleSingleCompany = ({
   const { deleteAsync } = useCompanyAdmin();
 
   return (
-    <div className={styles.titleCompany}>
+    <div className={styles.titleCompany} {...props}>
       <div className={styles.img}>
         <ImageDefault
           src={company.imageUrl}
