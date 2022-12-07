@@ -9,16 +9,17 @@ import { IUser } from '../model/user.types';
 
 const Users: FC = () => {
   const { users } = useMyUser('');
-  const [arrUsers, setArrUsers] = useState<IUser[]>([]);
 
-  useEffect(() => {
-    setArrUsers([...users]);
-  }, [users]);
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  const filteredValue = users.filter((item) =>
+    item.lastname?.toLowerCase().includes(searchValue)
+  );
 
   //Сотртировка по фамилии
   const [state, setState] = useState<1 | -1>(1);
-  if (arrUsers !== undefined) {
-    arrUsers.sort((prev, next): number => {
+  if (filteredValue !== undefined) {
+    filteredValue.sort((prev, next): number => {
       if (prev.lastname !== undefined && next.lastname !== undefined) {
         if (prev?.lastname > next?.lastname) return state; //(-1)
       }
@@ -27,18 +28,7 @@ const Users: FC = () => {
   }
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    if (event.currentTarget.value.length == 0) {
-      setArrUsers([...users]);
-    } else {
-      let arr = arrUsers.filter((item) => {
-        if (
-          item.lastname?.toLowerCase().includes(`${event.currentTarget.value}`)
-        ) {
-          return item;
-        }
-      });
-      setArrUsers(arr);
-    }
+    setSearchValue(event.currentTarget.value);
   };
 
   return (
@@ -61,7 +51,7 @@ const Users: FC = () => {
           >
             По алфавиту {state == 1 ? 'А -- Я' : 'Я -- А'}
           </SortButton>
-          {arrUsers.map((user) => {
+          {filteredValue.map((user) => {
             return (
               <UserList key={user.id} user={user} className={styles.userList} />
             );

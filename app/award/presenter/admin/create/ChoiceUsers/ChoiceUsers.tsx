@@ -8,11 +8,9 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 // import UserPreview from '@/core/presenter/ui/UserPreview/UserPreview';
 // import CheckedIcon from './checked.svg';
 import UserList from './UserList/UserList';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // import { IUser } from '@/user/model/user.types';
 import { declOfNum } from '@/core/utils/declOfNum';
-import { IUser } from '@/user/model/user.types';
-import { useCompanyState } from '@/company/data/company.slice';
 
 const ChoiceUsers = ({
   arrChoiceUser,
@@ -22,15 +20,14 @@ const ChoiceUsers = ({
 }: ChoiceUsersProps): JSX.Element => {
   const [allChecked, setAllChecked] = useState<boolean>(false);
   const [visibleCheckbox, setVisibleCheckbox] = useState<boolean>(false);
-  // const { currentCompany } = useCompanyState();
-  // console.log(currentCompany)
+  
   const { users } = useMyUser('');
 
-  const [arrUsers, setArrUsers] = useState<IUser[]>([...users]);
+  const [searchValue, setSearchValue] = useState<string>('');
 
-  // useEffect(() => {
-  //   setArrUsers(users);
-  // }, [users]);
+  const filteredValue = users.filter((item) =>
+    item.lastname?.toLowerCase().includes(searchValue)
+  );
 
   const handleChoiceAllUsers = () => {
     setAllChecked(!allChecked);
@@ -39,54 +36,17 @@ const ChoiceUsers = ({
       let arr: string[] = [];
       users.forEach((item) => arr.push(item.id));
       setArrChoiceUser(arr);
-      setArrUsers([...users]);
+      setSearchValue('');
     }
     if (allChecked) {
       setArrChoiceUser([]);
-      setArrUsers([...users]);
+      setSearchValue('');
     }
-  };
-
-  // const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-  //   if (event.currentTarget.value.length == 0) {
-  //     setArrUsers([]);
-  //     // console.log(arrUsers);
-  //   } else {
-  //     setArrUsers([...users]);
-  //     let arr = arrUsers.filter((item) => {
-  //       if (
-  //         item.lastname?.toLowerCase().includes(`${event.currentTarget.value}`)
-  //       ) {
-  //         return item;
-  //       }
-  //     });
-  //     setArrUsers(arr);
-  //   }
-  // };
-
-  // ПЕРЕДЕЛАТЬ ПОИСК
-  const handleFocus = () => {
-    setArrUsers([...users]);
-    // console.log(arrUsers)
   };
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    if (event.currentTarget.value.length == 0) {
-      setArrUsers([...users]);
-      // console.log(arrUsers);
-    } else {
-      // setArrUsers([...users]);
-      let arr = arrUsers.filter((item) => {
-        if (
-          item.lastname?.toLowerCase().includes(`${event.currentTarget.value}`)
-        ) {
-          return item;
-        }
-      });
-      setArrUsers(arr);
-    }
+    setSearchValue(event.currentTarget.value);
   };
-  // ПЕРЕДЕЛАТЬ ПОИСК
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
@@ -97,7 +57,6 @@ const ChoiceUsers = ({
         button={false}
         search={true}
         color='white'
-        onFocus={handleFocus}
       />
       <div className={styles.searchPanel}>
         <P size='s' fontstyle='thin' color='gray'>
@@ -121,32 +80,7 @@ const ChoiceUsers = ({
         </Checkbox>
       </div>
       <div className={styles.searchUsers}>
-        {arrUsers.length == 0
-          ? users?.map((user) => {
-              return (
-                <UserList
-                  arrChoiceUser={arrChoiceUser}
-                  setArrChoiceUser={setArrChoiceUser}
-                  key={user.id}
-                  user={user}
-                  setVisibleCheckbox={setVisibleCheckbox}
-                  allChecked={allChecked}
-                />
-              );
-            })
-          : arrUsers?.map((user) => {
-              return (
-                <UserList
-                  arrChoiceUser={arrChoiceUser}
-                  setArrChoiceUser={setArrChoiceUser}
-                  key={user.id}
-                  user={user}
-                  setVisibleCheckbox={setVisibleCheckbox}
-                  allChecked={allChecked}
-                />
-              );
-            })}
-        {/* {users?.map((user) => {
+        {filteredValue?.map((user) => {
           return (
             <UserList
               arrChoiceUser={arrChoiceUser}
@@ -157,7 +91,7 @@ const ChoiceUsers = ({
               allChecked={allChecked}
             />
           );
-        })} */}
+        })}
       </div>
     </div>
   );
