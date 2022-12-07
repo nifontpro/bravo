@@ -26,7 +26,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   item.state?.includes(active)
 );
 
-  // Сотртировка по новизне
+  // Сотртировка по startDate
   if (filteredValue !== undefined) {
     filteredValue.sort((prev, next): number => {
       if (prev.startDate !== undefined && next.startDate !== undefined) {
@@ -36,7 +36,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
     });
   }
 
-  console.log(awards); 
+  // console.log(awards); 
 
   return (
     <Meta title='Медали'>
