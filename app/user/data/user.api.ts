@@ -1,6 +1,6 @@
 import {queryWithReauth} from "@/core/data/base.api";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
-import {IUser, IUserCreate} from "@/user/model/user.types";
+import {IUser, IUserAwards, IUserCreate} from "@/user/model/user.types";
 import {getUserUrl} from "@/core/config/api.config";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
 
@@ -64,6 +64,21 @@ export const userApi = createApi({
 			query: (data) => ({
 				method: 'POST',
 				url: getUserUrl('/get_company_dep'),
+				body: data
+			}),
+			providesTags: ['User']
+		}),
+
+		/**
+ 		 * Получить сотрудников компании с присвоенными наградами (облегченными)
+ 		 * Сортировка по
+ 		 *  -количеству наград по убыванию
+ 		 *  -фамилии по возрастанию
+ 		 */
+ 		getByCompanyWithAwards: build.query<IUserAwards[], { companyId: string, filter?: string }>({
+			query: (data) => ({
+				method: 'POST',
+				url: getUserUrl('/get_awards'),
 				body: data
 			}),
 			providesTags: ['User']
