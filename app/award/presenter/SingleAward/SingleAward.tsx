@@ -35,7 +35,7 @@ const SingleAward = ({
         </div>
         <P size='m' className={styles.name}>
           {award.name}
-        </P>
+        </P> 
 
         {/* {award.relateUsers.length == 0 && (
           <div>
