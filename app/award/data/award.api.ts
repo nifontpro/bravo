@@ -3,6 +3,7 @@ import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {getAwardUrl} from "@/core/config/api.config";
 import {IAward, IAwardUsers} from "../model/award.types";
 import {IAwardCreate, IAwardUpdate, IAwardUserRequest} from "../model/api.types";
+import {IAwardRelate} from "../model/awardRelate.types";
 
 export const awardApi = createApi({
 	reducerPath: 'awardApi',
@@ -69,6 +70,22 @@ export const awardApi = createApi({
 		awardUser: build.mutation<void, IAwardUserRequest>({
 			query: (request) => ({
 				method: 'POST',
+				url: getAwardUrl("/user"),
+				body: request
+			}),
+			invalidatesTags: ['Award']
+		}),
+
+		/**
+		 * Удалить запись о награждении конкретного сотрудника
+		 *
+		 * @param [userId] id сотрудника
+		 * @param [awardId] id награды
+		 */
+
+		deleteUserAward: build.mutation<IAwardRelate, {awardId: string, userId:string}>({
+			query: (request) => ({
+				method: 'DELETE',
 				url: getAwardUrl("/user"),
 				body: request
 			}),
