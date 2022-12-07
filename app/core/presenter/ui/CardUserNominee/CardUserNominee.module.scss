@@ -6,17 +6,15 @@
   display: flex;
   align-items: center;
 
-  > .description {
-
-  }
-
   > .img {
     height: 60px;
     width: 60px;
     margin-right: 30px;
   }
 
-  > .post {
-    margin-top: 5px;
+  > .description {
+    > .post {
+      margin-top: 5px;
+    }
   }
 }

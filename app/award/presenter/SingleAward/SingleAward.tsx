@@ -20,7 +20,7 @@ const SingleAward = ({
   // }
 
   // console.log(award);
-
+ if (award.state == 'AWARD' || award.state == 'NONE') {
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
         <div className={styles.img}>
@@ -51,6 +51,12 @@ const SingleAward = ({
         />
     </div>
   );
+ } else {
+  return (
+    <div>Это номинация</div>
+  )
+ }
+  
 };
 
 export default SingleAward;

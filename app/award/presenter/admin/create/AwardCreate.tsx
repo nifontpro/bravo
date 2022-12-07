@@ -59,7 +59,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmit, handleClick } = useAwardCreate(setValue, reset, currentCompany?.id, arrChoiceUser);
+  const { onSubmitReward, onSubmitNominee } = useAwardCreate(setValue, reset, currentCompany?.id, arrChoiceUser);
 
   return (
     <Meta title='Создание новой награды'>
@@ -127,7 +127,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
                 },
               })}
               title='Начинается'
-              placeholder='ДД.ММ.ГГГГ'
+              placeholder='ММ.ДД.ГГГГ'
               error={errors.startDate}
             />
 
@@ -139,7 +139,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
                 },
               })}
               title='Заканчивается'
-              placeholder='ДД.ММ.ГГГГ'
+              placeholder='ММ.ДД.ГГГГ'
               error={errors.endDate}
             />
           </div>
@@ -147,10 +147,10 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
           <ChoiceUsers arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser}/>
 
           <div className={styles.buttons}>
-            <Button onClick={handleSubmit(onSubmit)} appearance='whiteBlack' size='l' >
+            <Button onClick={handleSubmit(onSubmitReward)} appearance='whiteBlack' size='l' >
               Выдать сразу и закрыть
             </Button>
-            <Button onClick={handleClick} appearance='blackWhite' size='l' className='ml-[15px]'>
+            <Button onClick={handleSubmit(onSubmitNominee)} appearance='blackWhite' size='l' className='ml-[15px]'>
               Номинировать
             </Button>
           </div>

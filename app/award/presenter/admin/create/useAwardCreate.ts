@@ -25,7 +25,7 @@ export const useAwardCreate = (
   const [updateImage] = awardApi.useUpdateImageMutation();
   const [reward] = awardApi.useAwardUserMutation();
 
-  const onSubmit: SubmitHandler<IAwardCreate> = async (data) => {
+  const onSubmitReward: SubmitHandler<IAwardCreate> = async (data) => {
     // if (data.endDate != undefined && data.startDate != undefined) {
     //   if (data.endDate == 0) {
     //     data.endDate = Math.floor(new Date().getTime() / 1000);
@@ -45,7 +45,7 @@ export const useAwardCreate = (
       data.endDate = Math.floor(new Date().getTime() / 1000);
       data.startDate = Math.floor(new Date().getTime() / 1000);
     }
-
+    // data.state = 'AWARD';
     let isError = false;
 
     if (companyId) {
@@ -93,10 +93,84 @@ export const useAwardCreate = (
     reset();
   };
 
-  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    back();
+  const onSubmitNominee: SubmitHandler<IAwardCreate> = async (data) => {
+    let currentDate = Math.floor(new Date().getTime() / 1000);
+
+    // data.state = 'NOMINEE';
+
+    // console.log('currentDate : ' + currentDate);
+
+    if (data.endDate != undefined && data.startDate != undefined) {
+      if (data.startDate == 0) {
+        data.startDate = Math.floor(new Date().getTime() / 1000);
+        // console.log('startDate : ' + data.startDate);
+      } else {
+        data.startDate = new Date(data.startDate).getTime() / 1000;
+        // console.log('startDate : ' + data.startDate);
+      }
+
+      if (data.endDate == 0) {
+        toast.error('Необходимо указать дату окончания!');
+        // } else if (currentDate < (new Date(data.endDate).getTime())) {
+      } else if (
+        currentDate + 1000 >
+        Math.round(new Date(data.endDate).getTime() / 1000.0)
+      ) {
+        toast.error('Текущая дата больше чем дата окончания');
+      } else {
+        console.log(data.endDate);
+        data.endDate = Math.round(new Date(data.endDate).getTime() / 1000.0);
+        // console.log('endDate : ' + data.endDate);
+
+        let isError = false;
+        console.log(data);
+
+        if (companyId) {
+          await create({ ...data })
+            .unwrap()
+            .then(async (award: IAward) => {
+              const fileData = data.file[0];
+              if (fileData) {
+                const formData = new FormData();
+                formData.append('imageUrl', fileData);
+                await updateImage({ awardId: award.id, formData })
+                  .unwrap()
+                  .catch(() => {
+                    isError = true;
+                    toast.error('Ошибка добавления фото награды');
+                  });
+              }
+              if (arrChoiceUser != undefined && arrChoiceUser?.length > 0) {
+                arrChoiceUser.forEach((user) => {
+                  reward({
+                    awardId: award.id,
+                    userId: user,
+                    awardState: 'NOMINEE',
+                  })
+                    .unwrap()
+                    .catch(() => {
+                      isError = true;
+                      toast.error(`Ошибка награждения ${user}`);
+                    });
+                });
+              }
+            })
+            .catch((e) => {
+              isError = true;
+              toastError(e, 'Ошибка создания награды');
+            });
+        } else {
+          isError = true;
+          toast.error('Необходимо выбрать компанию');
+        }
+        if (!isError) {
+          toast.success('Награда успешно создана');
+          back();
+        }
+        reset();
+      }
+    }
   };
 
-  return { onSubmit, handleClick };
+  return { onSubmitReward, onSubmitNominee };
 };

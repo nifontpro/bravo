@@ -22,7 +22,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
 
   const [state, setState] = useState<1 | -1>(1);
 
-  // console.log(awards);
+  console.log(awards);
 
   return (
     <Meta title='Медали'>
