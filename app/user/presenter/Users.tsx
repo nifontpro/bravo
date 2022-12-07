@@ -14,7 +14,7 @@ const Users: FC = () => {
 
   const filteredValue = users.filter((item) =>
     item.lastname?.toLowerCase().includes(searchValue)
-  );
+  ); 
 
   //Сотртировка по фамилии
   const [state, setState] = useState<1 | -1>(1);

@@ -18,11 +18,25 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
       companyId: company.id,
     });
 
-  const [active, setActive] = useState<'All' | 'Award' | 'Nominee'>('All');
+  const [active, setActive] = useState<'' | 'AWARD' | 'NOMINEE'>('');
 
   const [state, setState] = useState<1 | -1>(1);
 
-  // console.log(awards);
+  const filteredValue = awards?.filter((item) =>
+  item.state?.includes(active)
+);
+
+  // Сотртировка по новизне
+  if (filteredValue !== undefined) {
+    filteredValue.sort((prev, next): number => {
+      if (prev.startDate !== undefined && next.startDate !== undefined) {
+        if (prev?.startDate > next?.startDate) return state; //(-1)
+      }
+      return 1;
+    });
+  }
+
+  console.log(awards); 
 
   return (
     <Meta title='Медали'>
@@ -33,25 +47,25 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
         >{`Награды компании ${company.name}`}</Htag>
         <div className={styles.header}>
           <ButtonRadio
-            onClick={() => setActive('All')}
+            onClick={() => setActive('')}
             className={cn(styles.all, {
-              [styles.active]: active == 'All',
+              [styles.active]: active == '',
             })}
           >
             Все
           </ButtonRadio>
           <ButtonRadio
-            onClick={() => setActive('Award')}
+            onClick={() => setActive('AWARD')}
             className={cn(styles.award, {
-              [styles.active]: active == 'Award',
+              [styles.active]: active == 'AWARD',
             })}
           >
             Медали
           </ButtonRadio>
           <ButtonRadio
-            onClick={() => setActive('Nominee')}
+            onClick={() => setActive('NOMINEE')}
             className={cn(styles.nominee, {
-              [styles.active]: active == 'Nominee',
+              [styles.active]: active == 'NOMINEE',
             })}
           >
             Награды
@@ -77,7 +91,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             <Spinner />
           ) : (
             <div className={styles.cards}>
-              {awards?.map((item) => {
+              {filteredValue?.map((item) => {
                 return (
                   <Link key={item.id} href={'/award/' + item.id}>
                     <a>
