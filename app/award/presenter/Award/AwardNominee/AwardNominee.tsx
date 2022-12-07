@@ -6,7 +6,7 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import CardUserAwarded from '@/core/presenter/ui/CardUserAwarded/CardUserAwarded';
 import P from '@/core/presenter/ui/P/P';
 import uniqid from 'uniqid';
-import CardNominee from '@/core/presenter/ui/CardNominee/CardNominee';
+import CardNominee from 'award/presenter/Award/AwardNominee/CardNominee/CardNominee';
 import { awardApi } from 'award/data/award.api';
 
 const AwardNominee = ({
@@ -14,7 +14,6 @@ const AwardNominee = ({
   className,
   ...props
 }: AwardNomineeProps): JSX.Element => {
-
   // console.log(award)
 
   return (
@@ -31,20 +30,16 @@ const AwardNominee = ({
             Добавить участников
           </ButtonCircleIcon>
         </div>
-        {award.relateUsers.findIndex((item) => item.state === 'NOMINEE') >=
-        0 ? (
-          <div className={styles.usersAwarded}>
-            {award.relateUsers.map((item) => {
-              if (item.state === 'NOMINEE' || item.state === 'AWARD') {
-                return <CardNominee awardId={award.id} user={item} key={uniqid()} />;
-              }
-            })}
-          </div>
-        ) : (
-          <P className={styles.none} fontstyle='thin' size='m'>
-            Нет участников. Добавьте участников.
-          </P>
-        )}
+
+        <div className={styles.usersAwarded}>
+          {award.relateUsers.map((item) => {
+            if (item.state === 'NOMINEE' || item.state === 'AWARD') {
+              return (
+                <CardNominee awardId={award.id} user={item} key={uniqid()} />
+              );
+            }
+          })}
+        </div>
       </div>
     </div>
   );

@@ -9,10 +9,11 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
 import { useState } from 'react';
 import { timeConverterUser } from '@/core/utils/timeConverterUser';
-import Button from '../Button/Button';
+import Button from '../../../../../core/presenter/ui/Button/Button';
 import RemoveIcon from './removeUser.svg';
 import { awardApi } from 'award/data/award.api';
 import { toast } from 'react-toastify';
+import { useCardNominee } from './useCardNominee';
 
 const CardNominee = ({
   awardId,
@@ -21,28 +22,8 @@ const CardNominee = ({
   ...props
 }: CardNomineeProps): JSX.Element => {
   let convertDate = timeConverterUser(user.nomineeDate);
-  // console.log(convertDate)
 
-  // console.log(user);
-
-  const [reward] = awardApi.useAwardUserMutation();
-
-  const handleClick = async () => {
-
-    let isError = false;
-    if (user) {
-      await reward({ awardId: awardId, userId: user.user.id, awardState: 'AWARD' })
-        .unwrap()
-        .catch(() => {
-          isError = true;
-          toast.error('Ошибка награждения');
-        });
-
-      if (!isError) {
-        toast.success('Награждение успешно');
-      }
-    }
-  };
+  const { handleReward, handleRemove } = useCardNominee(user, awardId);
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
@@ -72,7 +53,7 @@ const CardNominee = ({
 
       <div className={styles.buttons}>
         {user.state === 'NOMINEE' && (
-          <Button onClick={handleClick} size='m' appearance='blackWhite'>
+          <Button onClick={handleReward} size='m' appearance='blackWhite'>
             Наградить
           </Button>
         )}
@@ -86,7 +67,7 @@ const CardNominee = ({
           </Button>
         )}
         <RemoveIcon
-          onClick={() => console.log('Удалить')}
+          onClick={handleRemove}
           className='ml-[5px] cursor-pointer'
         />
       </div>
