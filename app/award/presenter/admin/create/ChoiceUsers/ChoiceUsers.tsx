@@ -26,12 +26,11 @@ const ChoiceUsers = ({
   // console.log(currentCompany)
   const { users } = useMyUser('');
 
-  const [arrUsers, setArrUsers] = useState<IUser[]>([]);
+  const [arrUsers, setArrUsers] = useState<IUser[]>([...users]);
 
-  useEffect(() => {
-    let arr = [...users]
-    setArrUsers([...arr]);
-  }, [users]);
+  // useEffect(() => {
+  //   setArrUsers(users);
+  // }, [users]);
 
   const handleChoiceAllUsers = () => {
     setAllChecked(!allChecked);
@@ -48,11 +47,35 @@ const ChoiceUsers = ({
     }
   };
 
+  // const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+  //   if (event.currentTarget.value.length == 0) {
+  //     setArrUsers([]);
+  //     // console.log(arrUsers);
+  //   } else {
+  //     setArrUsers([...users]);
+  //     let arr = arrUsers.filter((item) => {
+  //       if (
+  //         item.lastname?.toLowerCase().includes(`${event.currentTarget.value}`)
+  //       ) {
+  //         return item;
+  //       }
+  //     });
+  //     setArrUsers(arr);
+  //   }
+  // };
+
+  // ПЕРЕДЕЛАТЬ ПОИСК
+  const handleFocus = () => {
+    setArrUsers([...users]);
+    // console.log(arrUsers)
+  };
+
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.value.length == 0) {
       setArrUsers([...users]);
       // console.log(arrUsers);
     } else {
+      // setArrUsers([...users]);
       let arr = arrUsers.filter((item) => {
         if (
           item.lastname?.toLowerCase().includes(`${event.currentTarget.value}`)
@@ -63,6 +86,7 @@ const ChoiceUsers = ({
       setArrUsers(arr);
     }
   };
+  // ПЕРЕДЕЛАТЬ ПОИСК
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
@@ -73,6 +97,7 @@ const ChoiceUsers = ({
         button={false}
         search={true}
         color='white'
+        onFocus={handleFocus}
       />
       <div className={styles.searchPanel}>
         <P size='s' fontstyle='thin' color='gray'>
@@ -96,7 +121,32 @@ const ChoiceUsers = ({
         </Checkbox>
       </div>
       <div className={styles.searchUsers}>
-        {arrUsers?.map((user) => {
+        {arrUsers.length == 0
+          ? users?.map((user) => {
+              return (
+                <UserList
+                  arrChoiceUser={arrChoiceUser}
+                  setArrChoiceUser={setArrChoiceUser}
+                  key={user.id}
+                  user={user}
+                  setVisibleCheckbox={setVisibleCheckbox}
+                  allChecked={allChecked}
+                />
+              );
+            })
+          : arrUsers?.map((user) => {
+              return (
+                <UserList
+                  arrChoiceUser={arrChoiceUser}
+                  setArrChoiceUser={setArrChoiceUser}
+                  key={user.id}
+                  user={user}
+                  setVisibleCheckbox={setVisibleCheckbox}
+                  allChecked={allChecked}
+                />
+              );
+            })}
+        {/* {users?.map((user) => {
           return (
             <UserList
               arrChoiceUser={arrChoiceUser}
@@ -107,7 +157,7 @@ const ChoiceUsers = ({
               allChecked={allChecked}
             />
           );
-        })}
+        })} */}
       </div>
     </div>
   );

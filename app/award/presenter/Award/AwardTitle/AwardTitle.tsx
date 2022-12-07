@@ -9,6 +9,8 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
 import { useState } from 'react';
 import { useAwardAdmin } from '../useAwardAdmin';
+import ButtonIcon from '@/core/presenter/ui/ButtonIcon/ButtonIcon';
+import { declOfNum } from '@/core/utils/declOfNum';
 
 const AwardTitle = ({
   award,
@@ -18,6 +20,7 @@ const AwardTitle = ({
   let URL = '/manage/award/edit/';
 
   let convertDate = timeConverter(award.endDate);
+  let currentDateNumber = +new Date();
 
   const [visible, setVisible] = useState<boolean>(false);
 
@@ -64,9 +67,27 @@ const AwardTitle = ({
         <P size='s' fontstyle='thin' className={styles.criteria}>
           {award.criteria}
         </P>
-        <P size='m' className={styles.date}>
-          Награда выдана {convertDate}
+        {award.state == 'AWARD' && (
+          <P size='m' className={styles.date}>
+            Награда выдана {convertDate}
+          </P>
+        )}
+        {award.state == 'NOMINEE' && award.endDate != undefined && (
+          <P size='s' color='gray' fontstyle='thin' className={styles.date}>
+          Осталось
+          <ButtonIcon className='ml-[10px]' appearance='gray'>
+            {Math.floor(
+              (award.endDate * 1000 - currentDateNumber) / 1000 / 60 / 60 / 24
+            )}{' '}
+            {declOfNum(
+              Math.floor(
+                (award.endDate * 1000 - currentDateNumber) / 1000 / 60 / 60 / 24
+              ),
+              ['день', 'дня', 'дней']
+            )}
+          </ButtonIcon>
         </P>
+        )}
       </div>
     </div>
   );

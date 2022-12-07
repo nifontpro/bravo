@@ -2,7 +2,7 @@ import styles from './ButtonIcon.module.scss';
 import cn from 'classnames';
 import { ButtonProps } from './ButtonIcon.props';
 
-const Button = ({
+const ButtonIcon = ({
   appearance,
   children,
   className,
@@ -15,6 +15,7 @@ const Button = ({
         {
           [styles.white]: appearance == 'white',
           [styles.black]: appearance == 'black',
+          [styles.gray]: appearance == 'gray',
         },
         className
       )}
@@ -25,4 +26,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default ButtonIcon;
