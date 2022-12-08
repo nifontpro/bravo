@@ -11,13 +11,13 @@ import { useState } from 'react';
 import { useAwardAdmin } from '../useAwardAdmin';
 import ButtonIcon from '@/core/presenter/ui/ButtonIcon/ButtonIcon';
 import { declOfNum } from '@/core/utils/declOfNum';
+import { getAwardEditUrl } from '@/core/config/api.config';
 
 const AwardTitle = ({
   award,
   className,
   ...props
 }: AwardTitleProps): JSX.Element => {
-  let URL = '/manage/award/edit/';
 
   let convertDate = timeConverter(award.endDate);
   let currentDateNumber = +new Date();
@@ -52,7 +52,7 @@ const AwardTitle = ({
             appearance='transparent'
           />
           <EditPanel
-            URL={URL}
+            getUrl={getAwardEditUrl}
             onMouseLeave={() => setVisible(!visible)}
             id={award.id}
             deleteAsync={deleteAsync}

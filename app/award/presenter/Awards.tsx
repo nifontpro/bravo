@@ -11,6 +11,8 @@ import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import SingleAward from './SingleAward/SingleAward';
 import Spinner from '@/core/presenter/ui/Spinner/Spinner';
 import Link from 'next/link';
+import { getAwardCreateUrl } from '@/core/config/api.config';
+import { useRouter } from 'next/router';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { data: awards, isLoading } =
@@ -18,13 +20,13 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
       companyId: company.id,
     });
 
+  const { push } = useRouter();
+
   const [active, setActive] = useState<'' | 'AWARD' | 'NOMINEE'>('');
 
   const [state, setState] = useState<1 | -1>(1);
 
-  const filteredValue = awards?.filter((item) =>
-  item.state?.includes(active)
-);
+  const filteredValue = awards?.filter((item) => item.state?.includes(active));
 
   // Сотртировка по startDate
   if (filteredValue !== undefined) {
@@ -36,7 +38,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
     });
   }
 
-  // console.log(awards); 
+  // console.log(awards);
 
   return (
     <Meta title='Медали'>
@@ -77,13 +79,15 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
           >
             Сначала новые
           </SortButton>
-          <Link href='/manage/award/create'>
-            <a>
-              <Button appearance='blackWhite' size='m' className={styles.btn}>
-                +&nbsp;&nbsp;&nbsp;Создать
-              </Button>
-            </a>
-          </Link>
+
+          <Button
+            onClick={() => push(getAwardCreateUrl())}
+            appearance='blackWhite'
+            size='m'
+            className={styles.btn}
+          >
+            +&nbsp;&nbsp;&nbsp;Создать
+          </Button>
         </div>
 
         {

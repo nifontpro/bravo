@@ -7,6 +7,7 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import ButtonIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useRouter } from 'next/router';
 import Spinner from '@/core/presenter/ui/Spinner/Spinner';
+import { getCompanyCreateUrl } from '@/core/config/api.config';
 
 const OwnerCompany: FC = () => {
   const { push } = useRouter();
@@ -22,7 +23,7 @@ const OwnerCompany: FC = () => {
           ''
         ) : (
           <ButtonIcon
-            onClick={() => push('/manage/company/create')}
+            onClick={() => push(getCompanyCreateUrl())}
             appearance='black'
             icon='plus'
           >

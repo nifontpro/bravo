@@ -12,6 +12,7 @@ import Button from '@/core/presenter/ui/Button/Button';
 import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
 import { IUser } from '@/user/model/user.types';
+import { getDepartmentEditUrl } from '@/core/config/api.config';
 
 const Depart = ({
   data,
@@ -40,8 +41,6 @@ const Depart = ({
   //   });
   // }
 
-  let URL = '/manage/department/edit/';
-
   const [visible, setVisible] = useState<boolean>(false);
   const [listUserVisible, setListUserVisible] = useState<boolean>(false);
 
@@ -58,7 +57,7 @@ const Depart = ({
             appearance='transparent'
           />
           <EditPanel
-            URL={URL}
+            getUrl={getDepartmentEditUrl}
             onMouseLeave={() => setVisible(!visible)}
             id={data.id}
             deleteAsync={() => deleteAsync(data.id)}

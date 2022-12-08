@@ -8,11 +8,11 @@ import ButtonCircleIcon from '../../../core/presenter/ui/ButtonCircleIcon/Button
 import { ICompany } from '@/company/model/company.types';
 import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
 import { useRouter } from 'next/router';
+import { getDepartmentCreateUrl, getUserCreateUrl } from '@/core/config/api.config';
 
 const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
   const { push } = useRouter();
   const [toggle, setToogle] = useState<boolean>(false);
-  const { createAsync } = useDepartmentAdmin(company.id);
 
   return ( 
     <div className={styles.wrapper}>
@@ -41,7 +41,7 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
           <div className={styles.new}>
             <div className={styles.newDepartment}>
               <ButtonCircleIcon
-                onClick={() => push('/manage/department/create')}
+                onClick={() => push(getDepartmentCreateUrl())}
                 icon='plus'
                 appearance='black'
               />
@@ -49,7 +49,7 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
             </div>
             <div className={styles.newUser}>
               <ButtonCircleIcon
-                onClick={() => push('/manage/user/create')}
+                onClick={() => push(getUserCreateUrl())}
                 icon='plus'
                 appearance='black'
               />
@@ -61,7 +61,7 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
         {toggle == true && <User />}
       </div>
     </div>
-  );
+  ); 
 };
 
 export default DepartmentAndUsers;

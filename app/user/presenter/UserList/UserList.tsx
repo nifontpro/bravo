@@ -7,6 +7,7 @@ import RemoveIcon from '../../../department/presenter/SingleDepartments/Depart/L
 import P from '@/core/presenter/ui/P/P';
 import { useUserAdmin } from '../admin/useUserAdmin';
 import { useRouter } from 'next/router';
+import { getUserEditUrl } from '@/core/config/api.config';
 
 const UserList = ({
   user,
@@ -28,7 +29,7 @@ const UserList = ({
       )}
       <div className={styles.editPanel} {...props}>
         <EditIcon
-          onClick={() => push('/manage/user/edit/' + user.id)}
+          onClick={() => push(getUserEditUrl(`/${user.id}`))}
           className='cursor-pointer'
         />
         <RemoveIcon

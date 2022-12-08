@@ -13,6 +13,7 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
 import GpsIcon from './gps.svg'
+import { getCompanyEditUrl, getCompanyUrl } from '@/core/config/api.config';
 
 const TitleSingleCompany = ({
   company,
@@ -23,10 +24,6 @@ const TitleSingleCompany = ({
   const { data: users } = userApi.useGetByCompanyDepNameQuery({
     companyId: company.id,
   });
-
-  // const { users } = useMyUser('');
-
-  let URL = '/manage/company/edit/';
 
   const [visible, setVisible] = useState<boolean>(false);
 
@@ -56,7 +53,7 @@ const TitleSingleCompany = ({
             appearance='transparent'
           />
           <EditPanel
-            URL={URL}
+            getUrl={getCompanyEditUrl}
             onMouseLeave={() => setVisible(!visible)}
             id={company.id}
             deleteAsync={deleteAsync}

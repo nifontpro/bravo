@@ -5,7 +5,7 @@ import { EditPanelProps } from './EditPanel.props';
 import { useRouter } from 'next/router';
 
 const EditPanel = ({
-  URL,
+  getUrl,
   id,
   deleteAsync,
   children,
@@ -23,7 +23,7 @@ const EditPanel = ({
       })}
       {...props}
     >
-      <div onClick={() => push(URL + `${id}`)} className='cursor-pointer'>Edit</div>
+      <div onClick={() => push(getUrl(`/${id}`))} className='cursor-pointer'>Edit</div>
       {id && <div onClick={() => deleteAsync(id)} className='cursor-pointer'>Remove</div>}
     </div>
   );

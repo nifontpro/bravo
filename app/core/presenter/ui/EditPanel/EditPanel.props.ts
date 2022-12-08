@@ -4,5 +4,5 @@ export type EditPanelProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, H
     children?: ReactNode;
     visible: boolean
     deleteAsync:(id: string) => void
-    URL: string
+    getUrl: (string?: string) => string
 }

@@ -13,7 +13,7 @@ import { ICompany, ICompanyCreate } from '@/company/model/company.types';
 import { ICompanyUpdateRequest } from './company-edit.type';
 
 export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>) => {
-  const { push, query } = useRouter();
+  const { push, back, query } = useRouter();
   const companyId = String(query.id);
 
   const [updateImg] = companyApi.useUpdateImageMutation();
@@ -51,7 +51,7 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>)
 
       if (!isError) {
         toast.success('Данные компании успешно обновлены');
-        await push('/company');
+        await back();
       }
     }
   };
