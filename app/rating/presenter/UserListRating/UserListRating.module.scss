@@ -1,0 +1,82 @@
+.wrapper {
+  background: var(--white);
+  padding: 75px;
+  border-radius: 20px;
+  margin-bottom: 50px;
+
+  .search {
+    margin-bottom: 50px;
+  }
+
+  .userWrapper {
+    display: grid;
+    align-items: center;
+    grid-template-columns: [start] 100px [endLogo] 50px [startUser] auto [endUser] 1fr [startCount] auto [endCount] 100px [startViewer] 300px [end];
+    margin-bottom: 50px;
+
+    &:nth-last-child(1) {
+      margin-bottom: 0px;
+    }
+
+    .img {
+      grid-column: start / endLogo;
+    }
+
+    .user {
+      grid-column: startUser / endUser;
+      cursor: pointer;
+
+      .userTag {
+        margin-top: 5px;
+      }
+    }
+
+    .countAwards,
+    .countAwardsDisable {
+      display: flex;
+      align-items: center;
+      grid-column: startCount / endCount;
+    }
+
+    .countAwardsDisable {
+        .disabled {
+            color: var(--gray);
+        }
+        > svg path {
+            stroke: var(--gray);
+        }
+    }
+
+    .viewerAward {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      grid-column: startViewer / end;
+
+      .countIcon {
+        height: fit-content;
+        margin-left: 10px;
+      }
+
+      .circle {
+        width: 50px;
+        height: 50px;
+        background: var(--gray);
+        border-radius: 100%;
+        margin-left: 10px;
+        &:nth-child(1) {
+            margin-left: 0;
+          }
+      }
+
+      .imgAward {
+        margin-left: 10px;
+
+        // transform: translate(15px, 0);
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

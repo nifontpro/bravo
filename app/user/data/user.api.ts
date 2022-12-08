@@ -7,7 +7,7 @@ import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['User', 'Reward', 'Count'],
+	tagTypes: ['User', 'Reward', 'Count', 'Award'],
 	endpoints: (build) => ({
 
 		//Получить всех сотрудников по отделу
@@ -81,7 +81,7 @@ export const userApi = createApi({
 				url: getUserUrl('/get_awards'),
 				body: data
 			}),
-			providesTags: ['User']
+			providesTags: ['User'] 
 		}),
 
 		getBests: build.query<IUser[], { companyId: string, limit: number }>({
