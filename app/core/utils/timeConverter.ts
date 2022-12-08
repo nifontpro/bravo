@@ -1,6 +1,6 @@
 export const timeConverter = (UNIX_timestamp: number | undefined) => {
   if (UNIX_timestamp != undefined) {
-    let a = new Date(UNIX_timestamp * 1000);
+    let a = new Date(UNIX_timestamp);
     let months = [
       '01',
       '02',

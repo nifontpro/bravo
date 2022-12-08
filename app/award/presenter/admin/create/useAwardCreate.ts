@@ -42,8 +42,8 @@ export const useAwardCreate = (
     // }
 
     if (data.endDate != undefined && data.startDate != undefined) {
-      data.endDate = Math.floor(new Date().getTime() / 1000);
-      data.startDate = Math.floor(new Date().getTime() / 1000);
+      data.endDate = Math.floor(new Date().getTime() );
+      data.startDate = Math.floor(new Date().getTime() );
     }
     // data.state = 'AWARD';
     let isError = false;
@@ -94,7 +94,7 @@ export const useAwardCreate = (
   };
 
   const onSubmitNominee: SubmitHandler<IAwardCreate> = async (data) => {
-    let currentDate = Math.floor(new Date().getTime() / 1000);
+    let currentDate = Math.floor(new Date().getTime() );
 
     // data.state = 'NOMINEE';
 
@@ -102,10 +102,10 @@ export const useAwardCreate = (
 
     if (data.endDate != undefined && data.startDate != undefined) {
       if (data.startDate == 0) {
-        data.startDate = Math.floor(new Date().getTime() / 1000);
+        data.startDate = Math.floor(new Date().getTime() );
         // console.log('startDate : ' + data.startDate);
       } else {
-        data.startDate = new Date(data.startDate).getTime() / 1000;
+        data.startDate = new Date(data.startDate).getTime() ;
         // console.log('startDate : ' + data.startDate);
       }
 
@@ -114,12 +114,12 @@ export const useAwardCreate = (
         // } else if (currentDate < (new Date(data.endDate).getTime())) {
       } else if (
         currentDate + 1000 >
-        Math.round(new Date(data.endDate).getTime() / 1000.0)
+        Math.round(new Date(data.endDate).getTime() )
       ) {
         toast.error('Текущая дата больше чем дата окончания');
       } else {
         console.log(data.endDate);
-        data.endDate = Math.round(new Date(data.endDate).getTime() / 1000.0);
+        data.endDate = Math.round(new Date(data.endDate).getTime() );
         // console.log('endDate : ' + data.endDate);
 
         let isError = false;

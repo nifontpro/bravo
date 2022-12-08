@@ -68,11 +68,11 @@ const SingleAward = ({
           Осталось
           <ButtonIcon className='ml-[10px]' appearance='gray'>
             {Math.floor(
-              (award.endDate * 1000 - currentDate) / 1000 / 60 / 60 / 24
+              (award.endDate - currentDate) / 1000 / 60 / 60 / 24
             )}{' '}
             {declOfNum(
               Math.floor(
-                (award.endDate * 1000 - currentDate) / 1000 / 60 / 60 / 24
+                (award.endDate - currentDate) / 1000 / 60 / 60 / 24
               ),
               ['день', 'дня', 'дней']
             )}
