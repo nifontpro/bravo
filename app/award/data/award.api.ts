@@ -4,6 +4,7 @@ import {getAwardUrl} from "@/core/config/api.config";
 import {IAward, IAwardUsers} from "../model/award.types";
 import {IAwardCreate, IAwardUpdate, IAwardUserRequest} from "../model/api.types";
 import {IAwardRelate} from "../model/awardRelate.types";
+import {userApi} from "@/user/data/user.api";
 
 export const awardApi = createApi({
 	reducerPath: 'awardApi',
@@ -73,7 +74,15 @@ export const awardApi = createApi({
 				url: getAwardUrl("/user"),
 				body: request
 			}),
-			invalidatesTags: ['Award']
+			invalidatesTags: ['Award'],
+			async onQueryStarted(args, {dispatch, queryFulfilled}) {
+				try {
+					await queryFulfilled;
+					await dispatch(userApi.util.invalidateTags(['User']))
+				} catch (error) {
+					console.error(`Error award user!`, error)
+				}
+			},
 		}),
 
 		/**
@@ -83,7 +92,7 @@ export const awardApi = createApi({
 		 * @param [awardId] id награды
 		 */
 
-		deleteUserAward: build.mutation<IAwardRelate, {awardId: string, userId:string}>({
+		deleteUserAward: build.mutation<IAwardRelate, { awardId: string, userId: string }>({
 			query: (request) => ({
 				method: 'DELETE',
 				url: getAwardUrl("/user"),
