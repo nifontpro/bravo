@@ -43,3 +43,18 @@ export interface IAwardLite {
   imageUrl?: string;
   id: string;
 }
+
+/**
+ * Объединенная детализация награждения сотрудника
+ * (Объединяется сама награда и запись о награждении сотрудника)
+ */
+export interface IAwardUnion extends Omit<IAwardBase, 'state'> {
+	awardState: AwardState
+
+	// from user award:
+	userState: AwardState
+	nomineeDate? : number
+	awardDate?: number
+	nomineeUserId?: string
+	awardUserId?: string
+}

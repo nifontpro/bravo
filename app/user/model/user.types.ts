@@ -1,6 +1,6 @@
-import { TypeRoles } from '@/auth/model/auth.roles';
-import { ImageRef } from '@/core/model/image.types';
-import { IAwardLite } from '../../award/model/award.types';
+import {TypeRoles} from "@/auth/model/auth.roles";
+import {ImageRef} from "@/core/model/image.types";
+import {IAwardLite} from "../../award/model/award.types";
 
 export interface IUser {
   id: string;
@@ -31,7 +31,15 @@ export interface IUserCreate
 
 /**
  * Сотрудники со списком наград
+ * (облегченная версия для списка)
  */
 export interface IUserAwards extends IUser {
   awards: IAwardLite[];
+}
+
+/**
+ * Сотрудник со списком наград с объединенной детализацией
+ */
+export interface IUserAwardsUnion extends IUser {
+	awards: IAwardUnion[]
 }

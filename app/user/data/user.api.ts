@@ -1,6 +1,6 @@
 import {queryWithReauth} from "@/core/data/base.api";
 import {createApi} from "@reduxjs/toolkit/dist/query/react";
-import {IUser, IUserAwards, IUserCreate} from "@/user/model/user.types";
+import {IUser, IUserAwards, IUserAwardsUnion, IUserCreate} from "@/user/model/user.types";
 import {getUserUrl} from "@/core/config/api.config";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
 
@@ -43,6 +43,19 @@ export const userApi = createApi({
 			query: (userId) => ({
 				method: 'POST',
 				url: getUserUrl('/get_id_dep'),
+				body: {userId}
+			}),
+			providesTags: ['User']
+		}),
+
+		/**
+		 * Получение сотрудника с наградами и соответствующими записями о его награждении
+		 * @param: userId
+		 */
+		getByIdWithAwards: build.query<IUserAwardsUnion, string>({
+			query: (userId) => ({
+				method: 'POST',
+				url: getUserUrl('/get_id_awards'),
 				body: {userId}
 			}),
 			providesTags: ['User']
