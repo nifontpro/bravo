@@ -2,5 +2,5 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react"
 
 export type ButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
     children: ReactNode;
-    appearance: 'white' | 'black' | 'gray'
+    appearance: 'white' | 'black' | 'gray' | 'lightGray'
 }

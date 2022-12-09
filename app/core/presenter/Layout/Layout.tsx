@@ -32,9 +32,12 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       <div className={styles.layout}>
         <Header className={styles.header} />
         <Navigation className={styles.navigation} />
-        {/* {children} */}
+        {/* <div className={styles.center}>
+        {children}
+        </div> */}
 
-        {/*---------------------------------------------------------*/}
+
+        {/* --------------------------------------------------------- */}
         <div className={cn(styles.center, { [styles.auth]: user })}>
           {/* До размера md */}
           <div className='my:hidden flex-col'>

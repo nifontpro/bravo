@@ -11,7 +11,7 @@
   .userWrapper {
     display: grid;
     align-items: center;
-    grid-template-columns: [start] 100px [endLogo] 50px [startUser] auto [endUser] 1fr [startCount] auto [endCount] 100px [startViewer] 300px [end];
+    grid-template-columns: [start] 100px [endLogo] 50px [startUser] 300px [endUser] 100px [startDepart] 150px [endDepart] 150px [startCount] auto [endCount] 50px [startViewer] 300px [end];
     margin-bottom: 50px;
 
     &:nth-last-child(1) {
@@ -29,6 +29,10 @@
       .userTag {
         margin-top: 5px;
       }
+    }
+
+    .depart {
+      grid-column: startDepart / endDepart;
     }
 
     .countAwards,
@@ -56,6 +60,7 @@
       .countIcon {
         height: fit-content;
         margin-left: 10px;
+        cursor: default;
       }
 
       .circle {
@@ -71,6 +76,8 @@
 
       .imgAward {
         margin-left: 10px;
+        width: 50px;
+        height: 50px;
 
         // transform: translate(15px, 0);
         &:nth-child(1) {

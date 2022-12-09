@@ -21,9 +21,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
     companyId: company.id,
   });
 
-  const { data: departments} = departmentApi.useGetByCompanyQuery(
-    company.id
-  );
+  const { data: departments } = departmentApi.useGetByCompanyQuery(company.id);
   let arrDeparts: IOption[] = [];
   departments?.forEach((item) => {
     arrDeparts.push({
@@ -34,27 +32,69 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
   arrDeparts.unshift({
     label: 'Все отделы',
     value: '',
-  })
+  });
 
-  // console.log(departments);
+  //Поиск по фамилии
+  const [searchValue, setSearchValue] = useState<string>('');
+  let filteredValue = users?.filter((user) =>
+    user.lastname?.toLowerCase().includes(searchValue)
+  );
+  //Сортировка по кол.наград
+  const [sortAward, setSortAward] = useState<boolean>(true);
+  const [departSort, setDepartSort] = useState<string>('');
+  if (filteredValue !== undefined) {
+    filteredValue.sort((prev, next): number => {
+      if (prev.awards !== undefined && next.awards !== undefined) {
+        if (prev.awards.length < next.awards.length) return state; //(-1)
+      }
+      return 1;
+    });
+    //Сортировка по отделам
+    filteredValue = filteredValue.filter((user) =>
+      user.departmentId?.includes(departSort)
+    );
+    //Фильтр по наградам
+    if (sortAward) {
+      filteredValue = filteredValue.filter(
+        (user) => user.awards.length >= 0
+      );
+    } else {
+      filteredValue = filteredValue.filter(
+        (user) => user.awards.length > 0
+      );
+    }
+
+  }
+
+  // console.log(departSort);
 
   return (
     <Meta title='Рейтинг'>
       <div {...props} className={styles.wrapper}>
         <Htag tag='h1'>Рейтинг</Htag>
         <div className={styles.header}>
-          <SelectCustom placeholder={company.name} className={styles.selectCompany} options={[]}/>
-          <SelectCustom placeholder={'Все отделы'} className={styles.selectDepartment} options={arrDeparts}/>
+          <SelectCustom
+            placeholder={company.name}
+            className={styles.selectCompany}
+            options={[]}
+            setDepartSort={setDepartSort}
+          />
+          <SelectCustom
+            placeholder={'Все отделы'}
+            className={styles.selectDepartment}
+            options={arrDeparts}
+            setDepartSort={setDepartSort}
+          />
           <SortButton
             state={state}
             onClick={() => (state == 1 ? setState(-1) : setState(1))}
             className={styles.sort}
           >
-            Сначала новые
+            По количеству наград
           </SortButton>
-          <ButtonToggle className={styles.toogle}>Только с наградами</ButtonToggle>
+          <ButtonToggle setSortAward={setSortAward} className={styles.toogle} />
         </div>
-        <UserListRating users={users} />
+        <UserListRating users={filteredValue} setSearchValue={setSearchValue} />
       </div>
     </Meta>
   );

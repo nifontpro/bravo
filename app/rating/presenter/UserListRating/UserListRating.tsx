@@ -11,18 +11,23 @@ import AwardIcon from './award.svg';
 import { awardApi } from 'award/data/award.api';
 import { getUserUrl } from '@/core/config/api.config';
 import { useRouter } from 'next/router';
+import P from '@/core/presenter/ui/P/P';
 
 const UserListRating = ({
+  setSearchValue,
   users,
   className,
   ...props
 }: UserListRatingProps): JSX.Element => {
-  console.log(users);
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setSearchValue(event.currentTarget.value);
+  };
+  // console.log(users);
   const { push } = useRouter();
   return (
     <div {...props} className={styles.wrapper}>
       <Search
-        // onChange={handleChange}
+        onChange={handleChange}
         color='white'
         search={true}
         button={false}
@@ -46,20 +51,26 @@ const UserListRating = ({
               onClick={() => push(getUserUrl(`/${user.id}`))}
               className={styles.user}
             >
-              <Htag tag='h3'>
+              <P size='l'>
                 {user.lastname} {user.name}
-              </Htag>
+              </P>
               <div className={styles.userTag}>
                 {user.post && (
-                  <ButtonIcon appearance='gray'>{user.post}</ButtonIcon>
-                )}
-                {user.departmentName && (
-                  <ButtonIcon className='ml-[10px]' appearance='gray'>
-                    {user.departmentName}
-                  </ButtonIcon>
+                  <P size='s' fontstyle='thin' color='gray'>
+                    {user.post}
+                  </P>
                 )}
               </div>
             </div>
+            {user.departmentName ? (
+              <ButtonIcon className={styles.depart} appearance='lightGray'>
+                {user.departmentName}
+              </ButtonIcon>
+            ) : (
+              <ButtonIcon className={styles.depart} appearance='lightGray'>
+                Нет отдела
+              </ButtonIcon>
+            )}
             {user.awards.length >= 1 ? (
               <div className={styles.countAwards}>
                 <Htag tag='h2'>{user.awards.length}</Htag>
@@ -67,25 +78,27 @@ const UserListRating = ({
               </div>
             ) : (
               <div className={styles.countAwardsDisable}>
-                <Htag className={styles.disabled} tag='h2'>{user.awards.length}</Htag>
+                <Htag className={styles.disabled} tag='h2'>
+                  {user.awards.length}
+                </Htag>
                 <AwardIcon className='ml-[10px]' />
               </div>
             )}
             <div className={styles.viewerAward}>
-              {[...Array(user.awards.length)].map((item, index) => {
+              {user.awards.map((award, index) => {
                 if (index < 4) {
                   return (
-                    <div className={styles.circle} key={uniqid()}></div>
-                    // <div className={styles.imgAward} key={uniqid()}>
-                    //   <ImageDefault
-                    //     src={user.imageUrl}
-                    //     width={50}
-                    //     height={50}
-                    //     alt='preview image'
-                    //     objectFit='cover'
-                    //     className='rounded-full'
-                    //   />
-                    // </div>
+                    // <div className={styles.circle} key={uniqid()}></div>
+                    <div className={styles.imgAward} key={uniqid()}>
+                      <ImageDefault
+                        src={award.imageUrl}
+                        width={50}
+                        height={50}
+                        alt='preview image'
+                        objectFit='cover'
+                        className='rounded-full'
+                      />
+                    </div>
                   );
                 }
               })}

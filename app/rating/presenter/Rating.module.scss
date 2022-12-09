@@ -3,7 +3,7 @@
         margin-top: 40px;
         margin-bottom: 65px;
         display: grid;
-        grid-template-columns: [start] 250px [endCompany] 15px [startDepart] 250px [endDepart] 1fr [startSort] auto [endSort] 40px [startToogle] auto [end];
+        grid-template-columns: [start] 250px [endCompany] 15px [startDepart] 250px [endDepart] 1fr [startSort] auto [endSort] 30px [startToogle] auto [end];
 
         .selectCompany {
             grid-column: start / endCompany;

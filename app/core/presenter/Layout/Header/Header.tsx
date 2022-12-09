@@ -22,7 +22,7 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
       <Search
         color='gray'
         search={true}
-        button={true}
+        button={false}
         placeholder='Сотрудник, отдел, медаль...'
         className={styles.search}
       />

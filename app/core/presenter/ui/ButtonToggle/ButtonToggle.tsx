@@ -4,25 +4,37 @@ import { ButtonToggleProps } from './ButtonToggle.props';
 import { useState } from 'react';
 
 const ButtonToggle = ({
+  setSortAward,
   children,
   className,
   ...props
 }: ButtonToggleProps): JSX.Element => {
   const [ active, setActive ] = useState<boolean>(false)
+
+  const handleON = () => {
+    setActive(false)
+    setSortAward(false)
+  }
+
+  const handleOFF = () => {
+    setActive(true)
+    setSortAward(true)
+  }
+
   return (
     <div
       className={cn(styles.wrapper, className)}
       {...props}
     >
       <div className={styles.toogle}>
-        <div onClick={() => setActive(!active)} className={cn(styles.dot, {
+        <div onClick={handleON} className={cn(styles.dot, {
           [styles.active]: active
-        })}></div>
-        <div onClick={() => setActive(!active)} className={cn(styles.dot, {
+        })}>С наградами</div>
+        <div onClick={handleOFF} className={cn(styles.dot, {
           [styles.active]: !active
-        })}></div>
+        })}>Все</div>
       </div>
-      {children}
+      {/* {children} */}
     </div>
   );
 };

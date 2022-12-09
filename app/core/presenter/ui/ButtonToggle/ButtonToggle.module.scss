@@ -8,27 +8,24 @@
 
   .toogle {
     width: fit-content;
-    height: 27px;
-    padding: 0px 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid var(--black);
-    border-radius: 35px;
-    margin-right: 15px;
+    border-radius: 15px;
     cursor: pointer;
 
+    background: var(--gray-dark);
+
     .dot {
-      padding: 0;
-      margin: 0;
-      width: 16.5px;
-      height: 16.5px;
-      background: var(--black);
-      border-radius: 100%;
+      padding: 5px 20px;
+      background: var(--white);
+      border-radius: 15px;
+      color: var(--gray-dark);
     }
 
     .active {
       opacity: 0;
+      color: var(--white);
     }
   }
 }

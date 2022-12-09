@@ -1,5 +1,6 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from "react"
+import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, ReactNode, SetStateAction } from "react"
 
 export type ButtonToggleProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
-    children: ReactNode;
+    children?: ReactNode;
+    setSortAward: Dispatch<SetStateAction<boolean>>
 }
