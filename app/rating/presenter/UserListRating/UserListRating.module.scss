@@ -11,7 +11,7 @@
   .userWrapper {
     display: grid;
     align-items: center;
-    grid-template-columns: [start] 100px [endLogo] 50px [startUser] 300px [endUser] 100px [startDepart] 150px [endDepart] 150px [startCount] auto [endCount] 50px [startViewer] 300px [end];
+    grid-template-columns: [start] 100px [endLogo] 50px [startUser] 300px [endUser] 100px [startDepart] 150px [endDepart] 150px [startCount] auto [endCount] 50px [startViewer] 250px [endViewer] 10px [startCountIcon] 50px [end];
     margin-bottom: 50px;
 
     &:nth-last-child(1) {
@@ -55,13 +55,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      grid-column: startViewer / end;
-
-      .countIcon {
-        height: fit-content;
-        margin-left: 10px;
-        cursor: default;
-      }
+      grid-column: startViewer / endViewer;
 
       .circle {
         width: 50px;
@@ -84,6 +78,12 @@
           margin-left: 0;
         }
       }
+    }
+
+    .countIcon {
+      height: fit-content;
+      cursor: default;
+      grid-column: startCountIcon / end;
     }
   }
 }
