@@ -98,7 +98,7 @@ export const awardApi = createApi({
 				url: getAwardUrl("/user"),
 				body: request
 			}),
-			invalidatesTags: ['Award']
+			invalidatesTags: ['Award'] 
 		}),
 
 		/**

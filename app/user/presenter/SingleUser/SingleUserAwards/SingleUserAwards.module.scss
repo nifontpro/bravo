@@ -1,0 +1,18 @@
+.wrapper {
+  margin-top: 95px;
+  .title {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+
+    .countAwards {
+      margin-left: 10px;
+    }
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+}
