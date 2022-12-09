@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { declOfNum } from '@/core/utils/declOfNum';
 
 const ChoiceUsers = ({
+  users,
   arrChoiceUser,
   setArrChoiceUser,
   className,
@@ -20,8 +21,6 @@ const ChoiceUsers = ({
 }: ChoiceUsersProps): JSX.Element => {
   const [allChecked, setAllChecked] = useState<boolean>(false);
   const [visibleCheckbox, setVisibleCheckbox] = useState<boolean>(false);
-  
-  const { users } = useMyUser('');
 
   const [searchValue, setSearchValue] = useState<string>('');
 

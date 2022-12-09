@@ -8,6 +8,10 @@ import P from '@/core/presenter/ui/P/P';
 import uniqid from 'uniqid';
 import CardNominee from 'award/presenter/Award/AwardNominee/CardNominee/CardNominee';
 import { awardApi } from 'award/data/award.api';
+import { useState } from 'react';
+import { useMyUser } from '@/user/presenter/useMyUsers';
+import ModalWindowWithAddUsers from '@/core/presenter/ui/ModalWindowWithAddUsers/ModalWindowWithAddUsers';
+import { IUser } from '@/user/model/user.types';
 
 const AwardNominee = ({
   award,
@@ -15,6 +19,19 @@ const AwardNominee = ({
   ...props
 }: AwardNomineeProps): JSX.Element => {
   // console.log(award)
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
+
+  const { users } = useMyUser('');
+
+  //Фильтр тех кто еще не участвует в номинации
+  let arrIdUserNominee: string[] = [];
+  award.relateUsers.forEach((user) => arrIdUserNominee.push(user.user.id));
+  let arrUserNotNominee: IUser[] = [];
+  users.forEach((user) => {
+    if (arrIdUserNominee.find((item) => item == user.id) == undefined) {
+      arrUserNotNominee.push(user);
+    }
+  });
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
@@ -22,7 +39,7 @@ const AwardNominee = ({
         <div className={styles.header}>
           <Htag tag='h3'>Кто участвует</Htag>
           <ButtonCircleIcon
-            onClick={() => console.log('Наградить еще')}
+            onClick={() => setVisibleModal(true)}
             appearance='black'
             icon='plus'
             className='font-bold'
@@ -41,6 +58,15 @@ const AwardNominee = ({
           })}
         </div>
       </div>
+
+      <ModalWindowWithAddUsers
+        awardState='NOMINEE'
+        awardId={award.id}
+        users={arrUserNotNominee}
+        visibleModal={visibleModal}
+        setVisibleModal={setVisibleModal}
+        textBtn='Номинировать'
+      />
     </div>
   );
 };

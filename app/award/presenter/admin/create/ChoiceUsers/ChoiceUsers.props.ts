@@ -5,4 +5,5 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, ReactNode, SetStateA
 export type ChoiceUsersProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     arrChoiceUser: string[]
     setArrChoiceUser: Dispatch<SetStateAction<string[]>>
+    users: IUser[]
 }   

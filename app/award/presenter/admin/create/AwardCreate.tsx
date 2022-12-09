@@ -20,6 +20,7 @@ import { IAwardCreate } from 'award/model/api.types';
 import { validDate } from '@/core/utils/regex';
 import ChoiceUsers from './ChoiceUsers/ChoiceUsers';
 import { IUser } from '@/user/model/user.types';
+import { useMyUser } from '@/user/presenter/useMyUsers';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -29,6 +30,8 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     push('/company');
   }
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
+
+  const { users } = useMyUser('');
   
   const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
     currentCompany!.id
@@ -144,7 +147,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
             />
           </div>
 
-          <ChoiceUsers arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser}/>
+          <ChoiceUsers users={users} arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser}/>
 
           <div className={styles.buttons}>
             <Button onClick={handleSubmit(onSubmitReward)} appearance='whiteBlack' size='l' >

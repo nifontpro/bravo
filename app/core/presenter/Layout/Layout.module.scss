@@ -22,7 +22,8 @@
   }
 
   > .center {
-    padding: 80px 50px 0px 50px;
+    position: relative;
+    padding: 50px 50px 0px 50px;
     background: var(--gray);
     grid-area: center;
   }
