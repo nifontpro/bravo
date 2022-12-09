@@ -27,7 +27,7 @@ export const useUserAdmin = () => {
 		setSearchTerm(e.target.value)
 	}
 
-	const {users, isLoading} = useMyUser(debouncedSearch)
+	const {users} = useMyUser(debouncedSearch)
 	const tableUsers = usersToTable(users)
 
 	const [deleteUser] = userApi.useDeleteMutation()
@@ -47,13 +47,13 @@ export const useUserAdmin = () => {
 			}
 
 			return {
-				isLoading,
+				
 				tableUsers,
 				handleSearch,
 				searchTerm,
 				deleteAsync
 			}
 		},
-		[isLoading, tableUsers, searchTerm, deleteUser]
+		[ tableUsers, searchTerm, deleteUser]
 	)
 }

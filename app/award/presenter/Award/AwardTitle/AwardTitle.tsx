@@ -14,7 +14,7 @@ import { declOfNum } from '@/core/utils/declOfNum';
 import { getAwardEditUrl } from '@/core/config/api.config';
 
 const AwardTitle = ({
-  award,
+  award, 
   className,
   ...props
 }: AwardTitleProps): JSX.Element => {

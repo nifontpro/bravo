@@ -18,7 +18,7 @@ export const useDepartmentAdmin = (companyId: string) => {
 	const [deleteDepartment] = departmentApi.useDeleteMutation()
 
 	const {push} = useRouter()
-
+ 
 	return useMemo(
 		() => {
 

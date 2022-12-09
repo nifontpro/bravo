@@ -55,7 +55,7 @@ const Depart = ({
             onClick={() => setVisible(!visible)}
             icon='dots'
             appearance='transparent'
-          />
+          /> 
           <EditPanel
             getUrl={getDepartmentEditUrl}
             onMouseLeave={() => setVisible(!visible)}

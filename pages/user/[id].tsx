@@ -2,11 +2,11 @@ import {GetServerSideProps, NextPage} from "next";
 import {errorCatch} from "@/core/utils/api.helpers";
 import Error404 from "../404";
 import {userApi} from "@/user/data/user.api";
-import SingleUser from "@/user/presenter/SingleUser";
+import SingleUser from "@/user/presenter/SingleUser/SingleUser";
 
 const SingleUserPage: NextPage<{ id: string | undefined }> = ({id}) => {
 
-	const {data: user} = userApi.useGetByIdQuery(id || '', {skip: !id})
+	const {data: user} = userApi.useGetByIdWithAwardsQuery(id || '', {skip: !id})
 	return user ?
 		<SingleUser user={user}/>
 		:

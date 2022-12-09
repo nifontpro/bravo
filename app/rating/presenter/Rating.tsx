@@ -40,7 +40,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
     user.lastname?.toLowerCase().includes(searchValue)
   );
   //Сортировка по кол.наград
-  const [sortAward, setSortAward] = useState<boolean>(true);
+  const [sortAward, setSortAward] = useState<boolean>(false);
   const [departSort, setDepartSort] = useState<string>('');
   if (filteredValue !== undefined) {
     filteredValue.sort((prev, next): number => {

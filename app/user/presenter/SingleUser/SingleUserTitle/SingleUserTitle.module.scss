@@ -1,0 +1,51 @@
+.wrapper {
+  position: relative;
+  background: var(--white);
+  border-radius: 27px;
+  padding: 75px;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .position {
+    margin-top: 10px;
+    .post {
+      margin-left: 10px;
+    }
+  }
+
+  .contacts {
+    margin-top: 60px;
+  }
+
+  .awards {
+    margin-top: 95px;
+    margin-bottom: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 80px;
+    border-bottom: 1px solid #00000016;
+
+    .imagesAward {
+      display: flex;
+      align-items: center;
+      .imgAward {
+        margin-left: 10px;
+        width: 50px;
+        height: 50px;
+
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+
+      .countIcon {
+        height: fit-content;
+      }
+    }
+  }
+}
