@@ -70,7 +70,7 @@ const CardNominee = ({
           onClick={handleRemove}
           className='ml-[5px] cursor-pointer'
         />
-      </div>
+      </div> 
     </div>
   );
 };

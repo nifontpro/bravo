@@ -62,7 +62,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
               [styles.active]: active == 'AWARD',
             })}
           >
-            Медали
+            Награды
           </ButtonRadio>
           <ButtonRadio
             onClick={() => setActive('NOMINEE')}
@@ -70,7 +70,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
               [styles.active]: active == 'NOMINEE',
             })}
           >
-            Награды
+            Номинации
           </ButtonRadio>
           <SortButton
             state={state}

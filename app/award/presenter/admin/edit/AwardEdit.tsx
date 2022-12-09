@@ -1,4 +1,4 @@
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
 import styles from './AwardEdit.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
@@ -9,16 +9,10 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import { AwardEditProps } from './AwardEdit.props';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
-import { ChangeEvent, useState } from 'react';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useCompanyState } from '@/company/data/company.slice';
-import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
-import { departmentApi } from '@/department/data/department.api';
-import { IOption } from '@/core/presenter/ui/select/select.interface';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
-import { IAwardCreate, IAwardUpdate } from 'award/model/api.types';
-import { validDate } from '@/core/utils/regex';
-import { IAward } from 'award/model/award.types';
+import { IAwardUpdate } from 'award/model/api.types';
 import { useAwardEdit } from './useAwardEdit';
 
 const AwardEdit = ({}: AwardEditProps): JSX.Element => {

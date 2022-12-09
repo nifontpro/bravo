@@ -19,7 +19,6 @@ import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { IAwardCreate } from 'award/model/api.types';
 import { validDate } from '@/core/utils/regex';
 import ChoiceUsers from './ChoiceUsers/ChoiceUsers';
-import { IUser } from '@/user/model/user.types';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {

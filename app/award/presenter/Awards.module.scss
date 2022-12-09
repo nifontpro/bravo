@@ -32,7 +32,8 @@
     }
 
     .active {
-      border: 1px solid var(--gray-dark);
+      // border: 1px solid var(--gray96);
+      background: var(--white);
     }
   }
 

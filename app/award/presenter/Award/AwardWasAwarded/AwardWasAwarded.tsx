@@ -48,7 +48,7 @@ const AwardWasAwarded = ({
           <div className={styles.usersAwarded}>
             {award.relateUsers.map((item) => {
               if (item.state === 'AWARD') {
-                return <CardUserAwarded user={item} key={uniqid()}/>;
+                return <CardUserAwarded award={award} user={item} key={uniqid()}/>;
               }
             })}
           </div>

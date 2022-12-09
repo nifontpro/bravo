@@ -4,12 +4,8 @@ import cn from 'classnames';
 import Search from '@/core/presenter/ui/Search/Search';
 import P from '@/core/presenter/ui/P/P';
 import Checkbox from '@/core/presenter/ui/Checkbox/Checkbox';
-import { useMyUser } from '@/user/presenter/useMyUsers';
-// import UserPreview from '@/core/presenter/ui/UserPreview/UserPreview';
-// import CheckedIcon from './checked.svg';
 import UserList from './UserList/UserList';
 import { useState } from 'react';
-// import { IUser } from '@/user/model/user.types';
 import { declOfNum } from '@/core/utils/declOfNum';
 
 const ChoiceUsers = ({
