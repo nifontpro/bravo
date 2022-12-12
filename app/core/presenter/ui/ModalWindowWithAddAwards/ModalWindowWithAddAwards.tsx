@@ -10,43 +10,50 @@ import Button from '../Button/Button';
 import { useCompanyState } from '@/company/data/company.slice';
 import { toast } from 'react-toastify';
 import { awardApi } from 'award/data/award.api';
+import ChoiceAwards from '@/user/presenter/SingleUser/SingleUserTitle/ChoiceAwards/ChoiceAwards';
 
 const ModalWindowWithAddAwards = ({
   textBtn,
   awardState,
-  awardId,
-  users,
+  userId,
+  awards,
   visibleModal,
   setVisibleModal,
   className,
   ...props
 }: ModalWindowWithAddAwardsProps): JSX.Element => {
-  const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
+  const [arrChoiceAward, setArrChoiceAward] = useState<string[]>([]);
   const [reward] = awardApi.useAwardUserMutation();
+  console.log(arrChoiceAward)
+
+  const handleCancel = () => {
+    setArrChoiceAward([])
+    setVisibleModal(false)
+  }
 
   const onSubmitNominee = async () => {
     let isError = false;
-    // console.log(arrChoiceUser);
+    console.log(arrChoiceAward);
 
-    if (arrChoiceUser.length == 0) {
+    if (arrChoiceAward.length == 0) {
       // setVisibleModal(false);
       toast.error(`Выберите сотрудников для номинации`);
     }
 
-    if (arrChoiceUser != undefined && arrChoiceUser?.length > 0) {
-      arrChoiceUser.forEach((user) => {
+    if (arrChoiceAward != undefined && arrChoiceAward?.length > 0) {
+      arrChoiceAward.forEach((award) => {
         reward({
-          awardId: awardId,
-          userId: user,
+          awardId: award,
+          userId: userId,
           awardState: awardState,
         })
           .unwrap()
           .catch(() => {
             isError = true;
-            toast.error(`Ошибка награждения 123 ${user}`);
+            toast.error(`Ошибка награждения 123 ${award}`);
           });
       });
-      setArrChoiceUser([]);
+      setArrChoiceAward([]);
       setVisibleModal(false);
       if (!isError) {
         toast.success('Номинирование успешно');
@@ -75,16 +82,16 @@ const ModalWindowWithAddAwards = ({
           className={styles.exit}
         />
         <Htag tag='h2' className={styles.title}>
-          Добавить участника
+          Добавить награду
         </Htag>
-        <ChoiceUsers
-          users={users}
-          arrChoiceUser={arrChoiceUser}
-          setArrChoiceUser={setArrChoiceUser}
+        <ChoiceAwards
+          awards={awards}
+          arrChoiceAward={arrChoiceAward}
+          setArrChoiceAward={setArrChoiceAward}
         />
         <div className={styles.buttons}>
           <Button
-            onClick={() => setVisibleModal(false)}
+            onClick={handleCancel}
             appearance='whiteBlack'
             size='l'
           >

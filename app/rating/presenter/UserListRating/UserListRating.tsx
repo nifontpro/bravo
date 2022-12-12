@@ -22,7 +22,7 @@ const UserListRating = ({
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
   };
-  console.log(users);
+  // console.log(users);
   const { push } = useRouter();
 
   return (
@@ -72,21 +72,21 @@ const UserListRating = ({
                 Нет отдела
               </ButtonIcon>
             )}
-            {user.awards.length >= 1 ? (
+            {user.awards.filter(item => item.state == 'AWARD').length >= 1 ? (
               <div className={styles.countAwards}>
-                <Htag tag='h2'>{user.awards.length}</Htag>
+                <Htag tag='h2'>{user.awards.filter(item => item.state == 'AWARD').length}</Htag>
                 <AwardIcon className='ml-[10px]' />
               </div>
             ) : (
               <div className={styles.countAwardsDisable}>
                 <Htag className={styles.disabled} tag='h2'>
-                  {user.awards.length}
+                  {user.awards.filter(item => item.state == 'AWARD').length}
                 </Htag>
                 <AwardIcon className='ml-[10px]' />
               </div>
             )}
             <div className={styles.viewerAward}>
-              {user.awards.map((award, index) => {
+              {user.awards.filter(item => item.state == 'AWARD').map((award, index) => {
                 if (index < 4) {
                   return (
                     // <div className={styles.circle} key={uniqid()}></div>
@@ -104,7 +104,7 @@ const UserListRating = ({
                 }
               })}
             </div>
-            {user.awards.length > 4 ? (
+            {user.awards.filter(item => item.state == 'AWARD').length > 4 ? (
               <ButtonIcon className={styles.countIcon} appearance={'white'}>
                 +{user.awards.length - 4}
               </ButtonIcon>

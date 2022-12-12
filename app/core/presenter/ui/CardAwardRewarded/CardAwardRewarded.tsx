@@ -19,7 +19,7 @@ const CardAwardRewarded = ({
   // console.log(award);
   const [deleteUserReward] = awardApi.useDeleteUserAwardMutation();
   const handleRemove = async () => {
-    let isError = false; 
+    let isError = false;
 
     await deleteUserReward({
       awardId: award.id,
@@ -38,6 +38,9 @@ const CardAwardRewarded = ({
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
+      <div onClick={handleRemove} className={styles.remove}>
+        Удалить
+      </div>
       <div className={styles.img}>
         <ImageDefault
           src={award.imageUrl}
@@ -52,9 +55,6 @@ const CardAwardRewarded = ({
       <P size='s' fontstyle='thin' color='gray' className={styles.date}>
         Выдана {convertDate}
       </P>
-      <div onClick={handleRemove} className={styles.remove}>
-        Удалить
-      </div>
     </div>
   );
 };

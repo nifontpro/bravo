@@ -98,7 +98,15 @@ export const awardApi = createApi({
 				url: getAwardUrl("/user"),
 				body: request
 			}),
-			invalidatesTags: ['Award'] 
+			invalidatesTags: ['Award'],
+			async onQueryStarted(args, {dispatch, queryFulfilled}) {
+				try {
+					await queryFulfilled;
+					await dispatch(userApi.util.invalidateTags(['User']))
+				} catch (error) {
+					console.error(`Error award user!`, error)
+				}
+			},
 		}),
 
 		/**

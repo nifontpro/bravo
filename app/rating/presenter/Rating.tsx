@@ -56,17 +56,17 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
     //Фильтр по наградам
     if (sortAward) {
       filteredValue = filteredValue.filter(
-        (user) => user.awards.length >= 0
+        (user) => user.awardCount >= 0
       );
     } else {
       filteredValue = filteredValue.filter(
-        (user) => user.awards.length > 0
+        (user) => user.awardCount > 0
       );
     }
 
   }
 
-  // console.log(departSort);
+  console.log(users);
 
   return (
     <Meta title='Рейтинг'>

@@ -1,0 +1,22 @@
+.wrapper {
+
+  > .searchTitle {
+    margin-bottom: 20px;
+  }
+
+  > .searchPanel {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  > .searchUsers { 
+    max-height: 400px;
+    margin-top: 30px;
+    border-radius: 13px;
+    background: var(--gray-middle);
+    padding: 55px 60px;
+    overflow-y: scroll;
+  }
+}

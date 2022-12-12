@@ -1,0 +1,23 @@
+.userList {
+  margin-bottom: 30px;
+  cursor: pointer;
+  position: relative;
+
+  .searchIcon {
+    position: absolute;
+    top: 2px;
+    left: 55px;
+  }
+}
+
+.userList:nth-last-child(1) {
+  margin-bottom: 0px;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

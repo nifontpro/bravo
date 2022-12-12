@@ -34,6 +34,7 @@ export interface IUserCreate
  * (облегченная версия для списка)
  */
 export interface IUserAwards extends IUser {
+  awardCount: number
   awards: IAwardLite[];
 }
 

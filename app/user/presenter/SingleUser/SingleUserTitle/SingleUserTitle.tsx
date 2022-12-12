@@ -14,12 +14,36 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import uniqid from 'uniqid';
 import Button from '@/core/presenter/ui/Button/Button';
 import ModalWindowWithAddAwards from '@/core/presenter/ui/ModalWindowWithAddAwards/ModalWindowWithAddAwards';
+import { awardApi } from 'award/data/award.api';
+import { useCompanyState } from '@/company/data/company.slice';
+import { IAward } from 'award/model/award.types';
 
 const SingleUserTitle = ({
   user,
   className,
   ...props
 }: SingleUserTitleProps): JSX.Element => {
+  const { data: awards } = awardApi.useGetAwardsByCompanyQuery(
+    { companyId: user.companyId || '' },
+    { skip: !user.companyId }
+  );
+  //Фильтр тех медалей, которыми не награжден еще
+  let arrAwardRewarded: string[] = [];
+  user.awards.forEach((award) => {
+    if (award.awardState == 'AWARD') {
+      arrAwardRewarded.push(award.id);
+    }
+  });
+  let arrAwardNotRewarded: IAward[] = []
+  awards?.forEach((award) => {
+    if (award.state == "AWARD") {
+      if (arrAwardRewarded.find((item) => item == award.id) == undefined) {
+        arrAwardNotRewarded.push(award)
+      }
+    }
+  })
+  // console.log(arrAwardNotRewarded)
+
   const { push } = useRouter();
   const [visible, setVisible] = useState<boolean>(false);
   const { deleteAsync } = useUserAdmin();
@@ -76,7 +100,7 @@ const SingleUserTitle = ({
 
       <div className={styles.awards}>
         <div className={styles.imagesAward}>
-          {user.awards.map((award, index) => {
+          {user.awards.filter(item => item.awardState == 'AWARD').map((award, index) => {
             if (index < 4) {
               return (
                 // <div className={styles.circle} key={uniqid()}></div>
@@ -93,21 +117,23 @@ const SingleUserTitle = ({
               );
             }
           })}
-          {user.awards.length > 4 ? (
+          {user.awards.filter(item => item.awardState == 'AWARD').length > 4 ? (
             <ButtonIcon className={styles.countIcon} appearance={'white'}>
-              +{user.awards.length - 4}
+              +{user.awards.filter(item => item.awardState == 'AWARD').length - 4}
             </ButtonIcon>
           ) : (
             <div className={styles.countIcon}></div>
           )}
         </div>
-        <Button size='m' appearance='blackWhite'>
+        <Button onClick={() => setVisibleModal(true) } size='m' appearance='blackWhite'>
           Выдать награду
         </Button>
       </div>
 
       <P size='l'>О сотруднике</P>
-      <P size='m' fontstyle='thin'>{user.description}</P>
+      <P size='m' fontstyle='thin'>
+        {user.description}
+      </P>
 
       <EditPanel
         getUrl={getUserEditUrl}
@@ -116,14 +142,14 @@ const SingleUserTitle = ({
         deleteAsync={handleRemove}
         visible={visible}
       />
-      {/* <ModalWindowWithAddAwards
+      <ModalWindowWithAddAwards
         awardState='AWARD'
-        awardId={award.id}
-        users={arrUserNotAwarded}
+        userId={user.id}
+        awards={arrAwardNotRewarded}
         visibleModal={visibleModal}
         setVisibleModal={setVisibleModal}
         textBtn='Наградить'
-      /> */}
+      />
     </div>
   );
 };
