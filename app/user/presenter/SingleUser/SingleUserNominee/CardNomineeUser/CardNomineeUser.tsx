@@ -2,17 +2,17 @@ import styles from './CardNomineeUser.module.scss';
 import { CardNomineeUserProps } from './CardNomineeUser.props';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
-import { timeConverter } from '@/core/utils/timeConverter';
+// import { timeConverter } from '@/core/utils/timeConverter';
 import P from '@/core/presenter/ui/P/P';
-import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
-import Htag from '@/core/presenter/ui/Htag/Htag';
-import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
-import { useState } from 'react';
+// import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+// import Htag from '@/core/presenter/ui/Htag/Htag';
+// import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
+// import { useState } from 'react';
 import { timeConverterUser } from '@/core/utils/timeConverterUser';
 import Button from '../../../../../core/presenter/ui/Button/Button';
 import RemoveIcon from './removeUser.svg';
-import { awardApi } from 'award/data/award.api';
-import { toast } from 'react-toastify';
+// import { awardApi } from 'award/data/award.api';
+// import { toast } from 'react-toastify';
 import { useCardNominee } from 'award/presenter/Award/AwardNominee/CardNominee/useCardNominee';
 
 const CardNomineeUser = ({
