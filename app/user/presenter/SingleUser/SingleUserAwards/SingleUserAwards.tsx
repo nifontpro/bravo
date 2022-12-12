@@ -17,7 +17,7 @@ const SingleUserAwards = ({
       <div className={styles.title}>
         <Htag tag='h3'>Медали</Htag>
         <P size='s' fontstyle='thin' className={styles.countAwards}>
-          {user.awards.length}
+          {user.awards.filter(item => item.awardState == 'AWARD').length}
         </P>
       </div>
       <div className={styles.content}>

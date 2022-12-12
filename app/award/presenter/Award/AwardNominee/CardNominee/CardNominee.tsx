@@ -22,8 +22,8 @@ const CardNominee = ({
   ...props
 }: CardNomineeProps): JSX.Element => {
   let convertDate = timeConverterUser(user.nomineeDate);
-
-  const { handleReward, handleRemove } = useCardNominee(user, awardId);
+  let userId = user.user.id;
+  const { handleReward, handleRemove } = useCardNominee(userId, awardId);
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
@@ -70,7 +70,7 @@ const CardNominee = ({
           onClick={handleRemove}
           className='ml-[5px] cursor-pointer'
         />
-      </div> 
+      </div>
     </div>
   );
 };

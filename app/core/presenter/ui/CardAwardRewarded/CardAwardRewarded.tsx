@@ -16,25 +16,25 @@ const CardAwardRewarded = ({
   let convertDate = timeConverterUser(award.awardDate);
   // console.log(convertDate)
 
-  // console.log(award);
-  // const [deleteUserReward] = awardApi.useDeleteUserAwardMutation();
-  // const handleRemove = async () => {
-  //   let isError = false;
+  console.log(award);
+  const [deleteUserReward] = awardApi.useDeleteUserAwardMutation();
+  const handleRemove = async () => {
+    let isError = false; 
 
-  //   await deleteUserReward({
-  //     awardId: award.id,
-  //     userId: user.id,
-  //   })
-  //     .unwrap()
-  //     .catch(() => {
-  //       isError = true;
-  //       toast.error('Ошибка удаления');
-  //     });
+    await deleteUserReward({
+      awardId: award.id,
+      userId: user.id,
+    })
+      .unwrap()
+      .catch(() => {
+        isError = true;
+        toast.error('Ошибка удаления');
+      });
 
-  //   if (!isError) {
-  //     toast.success('Удаление успешно');
-  //   }
-  // };
+    if (!isError) {
+      toast.success('Удаление успешно');
+    }
+  };
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
@@ -52,9 +52,9 @@ const CardAwardRewarded = ({
       <P size='s' fontstyle='thin' color='gray' className={styles.date}>
         Выдана {convertDate}
       </P>
-      {/* <div onClick={handleRemove} className={styles.remove}>
+      <div onClick={handleRemove} className={styles.remove}>
         Удалить
-      </div> */}
+      </div>
     </div>
   );
 };

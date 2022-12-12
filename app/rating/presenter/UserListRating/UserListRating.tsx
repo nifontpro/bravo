@@ -22,8 +22,9 @@ const UserListRating = ({
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     setSearchValue(event.currentTarget.value);
   };
-  // console.log(users);
+  console.log(users);
   const { push } = useRouter();
+
   return (
     <div {...props} className={styles.wrapper}>
       <Search

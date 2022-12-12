@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { awardApi } from 'award/data/award.api';
 import { IAwardRelateUser } from 'award/model/awardRelate.types';
 
-export const useCardNominee = (user: IAwardRelateUser, awardId: string) => {
+export const useCardNominee = (userId: string, awardId: string) => {
   const [reward] = awardApi.useAwardUserMutation();
   const [deleteUserReward] = awardApi.useDeleteUserAwardMutation();
 
@@ -13,10 +13,10 @@ export const useCardNominee = (user: IAwardRelateUser, awardId: string) => {
 
   const handleRemove = async () => {
     let isError = false;
-    if (user) {
+    if (userId) {
       await deleteUserReward({
         awardId: awardId,
-        userId: user.user.id,
+        userId: userId,
       })
         .unwrap()
         .catch(() => {
@@ -33,10 +33,10 @@ export const useCardNominee = (user: IAwardRelateUser, awardId: string) => {
   return useMemo(() => {
     const handleReward = async () => {
       let isError = false;
-      if (user) {
+      if (userId) {
         await reward({
           awardId: awardId,
-          userId: user.user.id,
+          userId: userId,
           awardState: 'AWARD',
         })
           .unwrap()
@@ -55,5 +55,5 @@ export const useCardNominee = (user: IAwardRelateUser, awardId: string) => {
       handleReward,
       handleRemove
     };
-  }, [user, push, reward]);
+  }, [userId, push, reward]);
 };
