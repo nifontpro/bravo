@@ -41,6 +41,7 @@ export interface IAwardUsers extends IAwardBase {
 export interface IAwardLite {
   name: string;
   imageUrl?: string;
+  state: AwardState;
   id: string;
 }
 
@@ -49,12 +50,12 @@ export interface IAwardLite {
  * (Объединяется сама награда и запись о награждении сотрудника)
  */
 export interface IAwardUnion extends Omit<IAwardBase, 'state'> {
-	awardState: AwardState
+  awardState: AwardState;
 
-	// from user award:
-	userState: AwardState
-	nomineeDate? : number
-	awardDate?: number
-	nomineeUserId?: string
-	awardUserId?: string
+  // from user award:
+  userState: AwardState;
+  nomineeDate?: number;
+  awardDate?: number;
+  nomineeUserId?: string;
+  awardUserId?: string;
 }

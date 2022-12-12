@@ -12,6 +12,7 @@ import { modalSlice } from '@/core/store/modal.slice';
 import { rewardApi } from '../../reward/data/reward.api';
 import { loginSlice } from '@/auth/data/login.slice';
 import { awardApi } from 'award/data/award.api';
+import {registerApi} from "../../register/data/register.api";
 
 const rootReducer = combineReducers({
   login: loginSlice.reducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   company: companySlice.reducer,
   department: departmentSlice.reducer,
   modal: modalSlice.reducer,
+  [registerApi.reducerPath]: registerApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [refreshApi.reducerPath]: refreshApi.reducer,
   [companyApi.reducerPath]: companyApi.reducer,
@@ -36,6 +38,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false, // Для сохранения WS в authSlice
     }).concat(
+      registerApi.middleware,
       authApi.middleware,
       refreshApi.middleware,
       companyApi.middleware,
