@@ -21,13 +21,16 @@ export const useUserCreate = (
     setValue('role', 'user');
     setValue('companyId', companyId);
     // setValue('isMNC', false)
-    if (active != undefined) {
-      setValue('gender', active);
-    }
+    // if (active != undefined) {
+    //   setValue('gender', active);
+    // }
   }, [setValue]);
 
   const onSubmit: SubmitHandler<IUserCreateInput> = async (data) => {
     let isError = false;
+    if (active != undefined) {
+      data.gender = active;
+    }
 
     if (companyId) {
       await create({ ...data })

@@ -13,12 +13,10 @@ import Spinner from '@/core/presenter/ui/Spinner/Spinner';
 import Link from 'next/link';
 import { getAwardCreateUrl } from '@/core/config/api.config';
 import { useRouter } from 'next/router';
+import { useAward } from './useAward';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
-  const { data: awards, isLoading } =
-    awardApi.useGetAwardsByCompanyWithUserQuery({
-      companyId: company.id,
-    });
+  const { awardsFull } = useAward('');
 
   const { push } = useRouter();
 
@@ -26,7 +24,12 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
 
   const [state, setState] = useState<1 | -1>(1);
 
-  const filteredValue = awards?.filter((item) => item.state?.includes(active));
+  const filteredValue = awardsFull?.filter((item) =>
+    item.state?.includes(active)
+  );
+
+  // console.log(awardsFull);
+  // console.log(company);
 
   // Сотртировка по startDate
   if (filteredValue !== undefined) {
@@ -90,29 +93,17 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
           </Button>
         </div>
 
-        {
-          isLoading ? (
-            <Spinner />
-          ) : (
-            <div className={styles.cards}>
-              {filteredValue?.map((item) => {
-                return (
-                  <Link key={item.id} href={'/award/' + item.id}>
-                    <a>
-                      <SingleAward award={item} />
-                    </a>
-                  </Link>
-                );
-              })}
-            </div>
-          )
-          // <Catalog
-          // 	data={medals || []}
-          // 	prefix='/medal'
-          // 	title="Медали"
-          // 	description={`Медали, созданные в компании ${company.name}`}
-          // />
-        }
+        <div className={styles.cards}>
+          {filteredValue?.map((item) => {
+            return (
+              <Link key={item.id} href={'/award/' + item.id}>
+                <a>
+                  <SingleAward award={item} />
+                </a>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </Meta>
   );

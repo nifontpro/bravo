@@ -1,0 +1,12 @@
+.wrapper {
+  background: var(--white);
+  border-radius: 25px;
+  padding: 70px 45px;
+
+  .countNominee_head {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

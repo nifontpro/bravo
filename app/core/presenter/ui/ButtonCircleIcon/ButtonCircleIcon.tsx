@@ -2,7 +2,7 @@ import styles from './ButtonCircleIcon.module.scss';
 import cn from 'classnames';
 import { ButtonCircleIconProps, icons } from './ButtonCircleIcon.props';
 
-const ButtonIcon = ({
+const ButtonCircleIcon = ({
   appearance,
   icon,
   className,
@@ -27,4 +27,4 @@ const ButtonIcon = ({
   );
 };
 
-export default ButtonIcon;
+export default ButtonCircleIcon;

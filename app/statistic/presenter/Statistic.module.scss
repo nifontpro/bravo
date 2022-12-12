@@ -1,0 +1,57 @@
+.wrapper {
+  .title {
+    display: flex;
+    align-items: center;
+
+    .header {
+      margin-right: 25px;
+    }
+  }
+
+  .content {
+    margin-top: 55px;
+    display: grid;
+    gap: 30px;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      'countAwards countNominee countDepartment'
+      'usersGender usersAwards countDepartment'
+      'activity activity countDepartment';
+    @apply animate-fade;
+
+    .countNominee {
+      grid-area: countNominee;
+    }
+
+    .countDepartment {
+      grid-area: countDepartment;
+    }
+
+    .usersGender {
+      grid-area: usersGender;
+    }
+
+    .usersAwards {
+      grid-area: usersAwards;
+    }
+
+    .activity {
+        grid-area: activity;
+      }
+
+    .countAwards {
+      grid-area: countAwards;
+      background: var(--white);
+      border-radius: 25px;
+      padding: 70px 45px;
+
+      .countAwards_head {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
+}

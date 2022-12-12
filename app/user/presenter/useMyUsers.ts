@@ -29,11 +29,13 @@ export const useMyUser = (filter: string) => {
   // }
 
   if (currentCompany) {
-    const { data: _depUsers } = userApi.useGetByCompanyDepNameQuery({
+    // Сотрудники без медалей
+    const { data: users } = userApi.useGetByCompanyDepNameQuery({
       companyId: currentCompany.id,
       filter,
     });
-    depUsers = _depUsers || [];
+
+    depUsers = users || [];
   }
 
 
