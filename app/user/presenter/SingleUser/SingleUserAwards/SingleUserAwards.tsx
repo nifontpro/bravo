@@ -12,6 +12,8 @@ const SingleUserAwards = ({
   className,
   ...props
 }: SingleUserAwardsProps): JSX.Element => {
+
+  
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.title}>

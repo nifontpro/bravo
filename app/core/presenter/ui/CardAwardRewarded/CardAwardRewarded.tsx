@@ -16,7 +16,7 @@ const CardAwardRewarded = ({
   let convertDate = timeConverterUser(award.awardDate);
   // console.log(convertDate)
 
-  console.log(award);
+  // console.log(award);
   const [deleteUserReward] = awardApi.useDeleteUserAwardMutation();
   const handleRemove = async () => {
     let isError = false; 

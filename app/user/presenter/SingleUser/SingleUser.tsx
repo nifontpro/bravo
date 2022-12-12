@@ -16,7 +16,7 @@ const SingleUser = ({
   ...props
 }: SingleUserProps): JSX.Element => {
   const { push } = useRouter();
-  // console.log(user);
+  console.log(user);
   return (
     <Meta title={user.name} description={`Профиль сотрудника ${user.name}`}>
       <div className={cn(className)} {...props}>
@@ -39,7 +39,7 @@ const SingleUser = ({
               className='rounded-[27px]'
             />
           </div>
-          <div className={styles.content}>
+          <div className={styles.content}> 
             <SingleUserTitle user={user} />
             <SingleUserAwards user={user} />
             <SingleUserNominee user={user} />

@@ -13,6 +13,7 @@ import P from '@/core/presenter/ui/P/P';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import uniqid from 'uniqid';
 import Button from '@/core/presenter/ui/Button/Button';
+import ModalWindowWithAddAwards from '@/core/presenter/ui/ModalWindowWithAddAwards/ModalWindowWithAddAwards';
 
 const SingleUserTitle = ({
   user,
@@ -22,6 +23,7 @@ const SingleUserTitle = ({
   const { push } = useRouter();
   const [visible, setVisible] = useState<boolean>(false);
   const { deleteAsync } = useUserAdmin();
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
   const handleRemove = () => {
     deleteAsync(user.id);
@@ -114,6 +116,14 @@ const SingleUserTitle = ({
         deleteAsync={handleRemove}
         visible={visible}
       />
+      {/* <ModalWindowWithAddAwards
+        awardState='AWARD'
+        awardId={award.id}
+        users={arrUserNotAwarded}
+        visibleModal={visibleModal}
+        setVisibleModal={setVisibleModal}
+        textBtn='Наградить'
+      /> */}
     </div>
   );
 };

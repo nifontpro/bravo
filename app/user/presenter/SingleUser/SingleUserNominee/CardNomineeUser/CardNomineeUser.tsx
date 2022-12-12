@@ -25,7 +25,7 @@ const CardNomineeUser = ({
 
   let convertDate = timeConverterUser(award?.awardDate);
   const { handleReward, handleRemove } = useCardNominee(userId, awardId);
-  console.log(award);
+  // console.log(award);
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
