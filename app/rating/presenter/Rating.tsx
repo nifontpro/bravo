@@ -66,7 +66,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
 
   }
 
-  console.log(users);
+  // console.log(users);
 
   return (
     <Meta title='Рейтинг'>

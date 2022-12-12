@@ -106,7 +106,7 @@ const UserListRating = ({
             </div>
             {user.awards.filter(item => item.state == 'AWARD').length > 4 ? (
               <ButtonIcon className={styles.countIcon} appearance={'white'}>
-                +{user.awards.length - 4}
+                +{user.awards.filter(item => item.state == 'AWARD').length - 4}
               </ButtonIcon>
             ) : (
               <div className={styles.countIcon}></div>

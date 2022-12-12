@@ -33,7 +33,7 @@ const ModalWindowWithAddAwards = ({
 
   const onSubmitNominee = async () => {
     let isError = false;
-    console.log(arrChoiceAward);
+    // console.log(arrChoiceAward);
 
     if (arrChoiceAward.length == 0) {
       // setVisibleModal(false);
