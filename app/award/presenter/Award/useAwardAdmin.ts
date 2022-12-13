@@ -14,11 +14,11 @@ export const useAwardAdmin = (awardId: string) => {
       await deleteAward(awardId)
         .unwrap()
         .then(() => {
-          toast.success('Отдел успешно удален');
+          toast.success('Награда успешно удалена');
           push('/award')
         })
         .catch((e) => {
-          toastError(e, 'Ошибка при удалении отдела');
+          toastError(e, 'Ошибка при удалении награды');
         });
     };
 

@@ -10,6 +10,7 @@ const P = ({ size = 'm', fontstyle, color, children, className, ...props }: PPro
         [styles.s]: size == 's',
         [styles.m]: size == 'm',
         [styles.l]: size == 'l',
+        [styles.xl]: size == 'xl',
         [styles.thin]: fontstyle == 'thin',
         [styles.bold]: fontstyle == 'bold',
         [styles.gray]: color == 'gray',

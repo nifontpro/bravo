@@ -10,7 +10,7 @@ const StatisticUsersAwards = ({
   className,
   ...props
 }: StatisticUsersAwardsProps): JSX.Element => {
-  console.log(users)
+  // console.log(users)
   let countAll = users.length
   let countMale = users.filter(user => user.gender == 'MALE').length
   let countFemale = users.filter(user => user.gender == 'FEMALE').length
