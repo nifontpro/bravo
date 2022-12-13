@@ -98,6 +98,21 @@ export const userApi = createApi({
 			providesTags: ['User'] 
 		}),
 
+		/**
+ 		 * Получить сотрудников компании с присвоенными наградами (полная информация)
+ 		 * Сортировка по
+ 		 *  -количеству наград по убыванию
+ 		 *  -фамилии по возрастанию
+ 		 */
+		getByCompanyWithAwardsUnion: build.query<IUserAwardsUnion[], { companyId: string, filter?: string }>({
+			query: (data) => ({
+				method: 'POST',
+				url: getUserUrl('/get_awards_full'),
+				body: data
+			}),
+			providesTags: ['User']
+		}),
+
 		getBests: build.query<IUser[], { companyId: string, limit: number }>({
 			query: (body) => ({
 				method: 'POST',
