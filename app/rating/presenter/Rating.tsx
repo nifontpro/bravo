@@ -14,14 +14,15 @@ import { useState } from 'react';
 import ButtonToggle from '@/core/presenter/ui/ButtonToggle/ButtonToggle';
 import UserListRating from './UserListRating/UserListRating';
 import SelectCustom from '@/core/presenter/ui/SelectCustom/SelectCustom';
+import { useDepartment } from '@/department/presenter/useDepartment';
+import { useMyUser } from '@/user/presenter/useMyUsers';
 
 const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
   const [state, setState] = useState<1 | -1>(1);
-  const { data: users, isLoading } = userApi.useGetByCompanyWithAwardsQuery({
-    companyId: company.id,
-  });
+  
+  const { usersWithAwards: users } = useMyUser('');
 
-  const { data: departments } = departmentApi.useGetByCompanyQuery(company.id);
+  const { departmentInCompany: departments } = useDepartment('');
   let arrDeparts: IOption[] = [];
   departments?.forEach((item) => {
     arrDeparts.push({

@@ -18,6 +18,7 @@ import { departmentApi } from '@/department/data/department.api';
 import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import { useDepartment } from '@/department/presenter/useDepartment';
 
 const UserCreate: FC = () => {
   const [active, setActive] = useState<
@@ -32,9 +33,7 @@ const UserCreate: FC = () => {
 
   // const { currentDepartment } = useDepartmentState();
 
-  const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
-    currentCompany!.id
-  );
+  const { departmentInCompany: departments } = useDepartment('');
 
   let arrDeparts: IOption[] = [];
   departments?.forEach((item) => {

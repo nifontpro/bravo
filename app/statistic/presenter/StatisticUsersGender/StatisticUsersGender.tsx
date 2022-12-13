@@ -11,7 +11,7 @@ const StatisticUsersGender = ({
   className,
   ...props
 }: StatisticUsersGenderProps): JSX.Element => {
-  console.log(users);
+  // console.log(users);
   let countAll = users.length;
   let countMale = users.filter((user) => user.gender == 'MALE').length;
   let countMalePercent = Math.ceil((countMale * 100) / countAll);
@@ -20,27 +20,47 @@ const StatisticUsersGender = ({
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
-      <P size='l'>Сотрудники</P>
-      <DoughnutCircle className={styles.doughnut} dataOne={countMale} dataTwo={countFemale} colorOne='rgba(179, 179, 179, 1)' colorTwo='rgba(57, 57, 57, 1)'/>
+      <P size='l' className={styles.title}>
+        Сотрудники
+      </P>
+      <DoughnutCircle
+        className={styles.doughnut}
+        dataOne={countMale}
+        colorOne='rgba(179, 179, 179, 1)'
+        dataTwo={countFemale}
+        colorTwo='rgba(57, 57, 57, 1)'
+      />
       <div className={styles.description}>
         <div className={styles.gender}>
           <div className={styles.genderInfo}>
             <div className={styles.dotFemale}></div>
-            <P size='l' color='gray'>Женщин</P>
+            <P size='l' color='gray'>
+              Женщин
+            </P>
           </div>
           <div className={styles.genderPercent}>
-            <P size='xl' className={styles.count}>{countFemale}</P>
-            <P size='s' className={styles.percent}>{countFemalePercent}%</P>
+            <P size='xl' className={styles.count}>
+              {countFemale}
+            </P>
+            <P size='s' className={styles.percent}>
+              {countFemalePercent}%
+            </P>
           </div>
         </div>
         <div className={styles.gender}>
-          <div  className={styles.genderInfo}>
+          <div className={styles.genderInfo}>
             <div className={styles.dotMale}></div>
-            <P size='l' color='gray'>Мужчин</P>
+            <P size='l' color='gray'>
+              Мужчин
+            </P>
           </div>
           <div className={styles.genderPercent}>
-            <P size='xl' className={styles.count}>{countMale}</P>
-            <P size='s' className={styles.percent}>{countMalePercent}%</P>
+            <P size='xl' className={styles.count}>
+              {countMale}
+            </P>
+            <P size='s' className={styles.percent}>
+              {countMalePercent}%
+            </P>
           </div>
         </div>
       </div>

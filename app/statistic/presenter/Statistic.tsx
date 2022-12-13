@@ -12,13 +12,13 @@ import StatisticUsersGender from './StatisticUsersGender/StatisticUsersGender';
 import StatisticCountNominee from './StatisticCountNominee/StatisticCountNominee';
 import StatisticCountAwards from './StatisticCountAwards/StatisticCountAwards';
 import StatisticUsersAwards from './StatisticUsersAwards/StatisticUsersAwards';
+import StatisticDepartments from './StatisticDepartments/StatisticDepartments';
 
 const Statistic = ({
   company,
   className,
   ...props
 }: StatisticProps): JSX.Element => {
-  const { push } = useRouter();
   const { awardsLight } = useAward('');
   const { users } = useMyUser('');
 
@@ -52,7 +52,7 @@ const Statistic = ({
             awardsLight={awardsLight}
           />
 
-          <div className={styles.countDepartment}></div>
+          <StatisticDepartments companyId={company.id} className={styles.countDepartment}/>
 
           <StatisticUsersGender users={users} className={styles.usersGender} />
 

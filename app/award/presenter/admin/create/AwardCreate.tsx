@@ -20,6 +20,7 @@ import { IAwardCreate } from 'award/model/api.types';
 import { validDate } from '@/core/utils/regex';
 import ChoiceUsers from './ChoiceUsers/ChoiceUsers';
 import { useMyUser } from '@/user/presenter/useMyUsers';
+import { useDepartment } from '@/department/presenter/useDepartment';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -31,10 +32,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
 
   const { users } = useMyUser('');
-  
-  const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
-    currentCompany!.id
-  );
+  const { departmentInCompany: departments } = useDepartment('');
 
   let arrDeparts: IOption[] = [];
   departments?.forEach((item) => {

@@ -18,7 +18,7 @@ const StatisticCountAwards = ({
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <div className={styles.countNominee_head} onClick={() => push('/rating')}>
-        <P size='l'>Номинаций в компании</P>
+        <P size='l'>Наград в компании</P>
         <ButtonCircleIcon appearance='transparent' icon='right' />
       </div>
       <Htag tag='h1'>

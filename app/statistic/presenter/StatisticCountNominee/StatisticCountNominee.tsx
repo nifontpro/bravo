@@ -14,7 +14,7 @@ const StatisticCountNominee = ({
   ...props
 }: StatisticCountNomineeProps): JSX.Element => {
   const { push } = useRouter()
-  console.log(awardsLight)
+  // console.log(awardsLight)
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
