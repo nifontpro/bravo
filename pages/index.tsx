@@ -22,6 +22,8 @@ const Home: NextPage<{ companies: ICompany[] | undefined }> = ({
     }
   }, [])
 
+  console.log(companies)
+
     return (
       <div>Главная страница сайта</div>
       // <Catalog

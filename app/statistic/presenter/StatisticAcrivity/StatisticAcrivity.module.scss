@@ -1,0 +1,10 @@
+.wrapper {
+  background: var(--white);
+  border-radius: 25px;
+  padding: 70px 45px;
+
+  .title {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gray-dark-015);
+  }
+}

@@ -7,12 +7,12 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import SelectCustom from '@/core/presenter/ui/SelectCustom/SelectCustom';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import StatisticUsersGender from './StatisticUsersGender/StatisticUsersGender';
 import StatisticCountNominee from './StatisticCountNominee/StatisticCountNominee';
 import StatisticCountAwards from './StatisticCountAwards/StatisticCountAwards';
 import StatisticUsersAwards from './StatisticUsersAwards/StatisticUsersAwards';
 import StatisticDepartments from './StatisticDepartments/StatisticDepartments';
+import StatisticAcrivity from './StatisticAcrivity/StatisticAcrivity';
 
 const Statistic = ({
   company,
@@ -20,11 +20,11 @@ const Statistic = ({
   ...props
 }: StatisticProps): JSX.Element => {
   const { awardsLight } = useAward('');
-  const { users } = useMyUser('');
+  // const { users } = useMyUser('');
+  const { usersWithAwardsUnion: users } = useMyUser('');
+  // console.log(users)
 
   const [departSort, setDepartSort] = useState<string>('');
-
-  // console.log(users);
 
   return (
     <Meta title='Статистика'>
@@ -58,7 +58,7 @@ const Statistic = ({
 
           <StatisticUsersAwards users={users} className={styles.usersAwards} />
 
-          <div className={styles.activity}></div>
+          <StatisticAcrivity className={styles.activity} />
         </div>
       </div>
     </Meta>

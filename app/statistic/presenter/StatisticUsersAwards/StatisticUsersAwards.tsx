@@ -13,10 +13,12 @@ const StatisticUsersAwards = ({
 }: StatisticUsersAwardsProps): JSX.Element => {
   // console.log(users);
   let countAll = users.length;
-  let countMale = users.filter((user) => user.gender == 'MALE').length;
-  let countMalePercent = Math.ceil((countMale * 100) / countAll);
-  let countFemale = users.filter((user) => user.gender == 'FEMALE').length;
-  let countFemalePercent = Math.floor((countFemale * 100) / countAll);
+  let countWithAward = users.filter((user) => user.awards.length > 0).length;
+  let countWithAwardPercent = Math.ceil((countWithAward * 100) / countAll);
+  let countWithoutAward = users.filter(
+    (user) => user.awards.length == 0
+  ).length;
+  let countWithoutAwardPercent = Math.floor((countWithoutAward * 100) / countAll);
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
@@ -26,9 +28,9 @@ const StatisticUsersAwards = ({
 
       <DoughnutCircle
         className={styles.doughnut}
-        dataOne={countMale}
+        dataOne={countWithAward}
         colorOne='rgba(179, 179, 179, 1)'
-        dataTwo={countFemale}
+        dataTwo={countWithoutAward}
         colorTwo='rgba(57, 57, 57, 1)'
       />
       <div className={styles.description}>
@@ -41,10 +43,10 @@ const StatisticUsersAwards = ({
           </div>
           <div className={styles.genderPercent}>
             <P size='xl' className={styles.count}>
-              {countFemale}
+              {countWithoutAward}
             </P>
             <P size='s' className={styles.percent}>
-              {countFemalePercent}%
+              {countWithAwardPercent}%
             </P>
           </div>
         </div>
@@ -57,10 +59,10 @@ const StatisticUsersAwards = ({
           </div>
           <div className={styles.genderPercent}>
             <P size='xl' className={styles.count}>
-              {countMale}
+              {countWithAward}
             </P>
             <P size='s' className={styles.percent}>
-              {countMalePercent}%
+              {countWithoutAwardPercent}%
             </P>
           </div>
         </div>

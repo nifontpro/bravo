@@ -10,8 +10,8 @@
   grid-template-areas:
     'header header'
     'navigation center';
-    // @apply relative;
-    @apply animate-fade;
+  // @apply relative;
+  @apply animate-fade;
 
   > .header {
     grid-area: header;
@@ -26,5 +26,6 @@
     padding: 50px 50px 0px 50px;
     background: var(--gray);
     grid-area: center;
+    border-radius: 15px 0px 0px 0px;
   }
 }

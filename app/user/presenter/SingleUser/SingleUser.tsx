@@ -15,18 +15,18 @@ const SingleUser = ({
   children,
   ...props
 }: SingleUserProps): JSX.Element => {
-  const { push } = useRouter();
+  const { push, back } = useRouter();
   // console.log(user);
   return (
     <Meta title={user.name} description={`Профиль сотрудника ${user.name}`}>
       <div className={cn(className)} {...props}>
         <ButtonCircleIcon
-          onClick={() => push('/rating')}
+          onClick={() => back()}
           appearance='black'
           icon='down'
           className='mb-[50px]'
         >
-          Все сотрудники
+          Вернуться назад
         </ButtonCircleIcon>
         <div className={styles.wrapper}>
           <div className={styles.img}>
