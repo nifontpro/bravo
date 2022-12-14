@@ -1,25 +1,41 @@
 .wrapper {
-    .header {
+    margin-bottom: 60px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    .bestDepart {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 35px;
-      .bestDepart {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        path {
-          stroke: var(--gray96);
-        }
-        .arrow {
-          margin-left: 20px;
-        }
+      cursor: pointer;
+      path {
+        stroke: var(--gray96);
+      }
+      .arrow {
+        margin-left: 20px;
       }
     }
-    .content {
-        background: var(--white);
-        padding: 30px;
-        border-radius: 16px;
-      }
   }
-  
+  .content {
+    max-width: 370px;
+    background: var(--gray-dark);
+    padding: 30px;
+    border-radius: 16px;
+
+    .img {
+      display: flex;
+      justify-content: center;
+    }
+
+    .countAwardsTitle {
+      margin-top: 40px;
+      margin-bottom: 15px;
+    }
+
+    .countEnd {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

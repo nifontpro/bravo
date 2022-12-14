@@ -14,6 +14,7 @@ const P = ({ size = 'm', fontstyle, color, children, className, ...props }: PPro
         [styles.thin]: fontstyle == 'thin',
         [styles.bold]: fontstyle == 'bold',
         [styles.gray]: color == 'gray',
+        [styles.white]: color == 'white',
       }, className)}
       {...props}
     >

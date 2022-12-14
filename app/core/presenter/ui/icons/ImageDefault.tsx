@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { ImageProps } from 'next/dist/client/image';
+import { ImageProps, StaticImageData } from 'next/dist/client/image';
 import Image from 'next/image';
 import DefaultImage from './defSvg.svg';
 
 type ImageDefaultProps = Omit<ImageProps, 'src'> & {
-  src?: string;
+  src?: string | StaticImageData;
 };
 
 /*const imageLoader = ({src}: ImageLoaderProps) => {
