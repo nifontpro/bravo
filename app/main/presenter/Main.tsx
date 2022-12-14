@@ -24,7 +24,7 @@ const Main = ({ className, ...props }: MainProps): JSX.Element => {
         />
         <MainUsers className={styles.users} users={users} />
         <div className={styles.nominee}>
-          <MainNominee />
+          <MainNominee awards={awardsLight}/>
           <MainActivity />
         </div>
       </div>

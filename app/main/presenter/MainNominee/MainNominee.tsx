@@ -12,10 +12,15 @@ import ButtonIcon from '@/core/presenter/ui/ButtonIcon/ButtonIcon';
 import { declOfNum } from '@/core/utils/declOfNum';
 
 const MainNominee = ({
+  awards,
   className,
   ...props
 }: MainNomineeProps): JSX.Element => {
   const { push } = useRouter();
+  let currentDate = +new Date();
+  let nominee = awards.find((award) => award.state == 'NOMINEE');
+  console.log(nominee);
+
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <div className={styles.header}>
@@ -30,7 +35,7 @@ const MainNominee = ({
       <div className={styles.content}>
         <div className={styles.img}>
           <ImageDefault
-            src={DefaultNominee}
+            src={nominee?.imageUrl}
             width={236}
             height={236}
             alt='preview image'
@@ -39,24 +44,26 @@ const MainNominee = ({
           />
         </div>
         <P size='m' color='white' className={styles.countAwardsTitle}>
-          Лучший сотрудник 2022
+          {nominee?.name}
         </P>
         <div className={styles.countEnd}>
           <P size='s' color='white' fontstyle='thin'>
             Заканчивается
           </P>
-          <ButtonIcon className='ml-[10px]' appearance='gray'>
-            через 5 дней
-            {/* {Math.floor(
-              (award.endDate - currentDate) / 1000 / 60 / 60 / 24
-            )}{' '}
-            {declOfNum(
-              Math.floor(
-                (award.endDate - currentDate) / 1000 / 60 / 60 / 24
-              ),
-              ['день', 'дня', 'дней']
-            )} */}
-          </ButtonIcon>
+          {nominee != undefined && nominee.endDate != undefined && (
+            <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
+              через{' '}
+              {Math.floor(
+                (nominee.endDate - currentDate) / 1000 / 60 / 60 / 24
+              )}{' '}
+              {declOfNum(
+                Math.floor(
+                  (nominee.endDate - currentDate) / 1000 / 60 / 60 / 24
+                ),
+                ['день', 'дня', 'дней']
+              )}
+            </ButtonIcon>
+          )}
         </div>
       </div>
     </div>
