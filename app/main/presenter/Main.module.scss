@@ -1,0 +1,28 @@
+.wrapper {
+//   margin-top: 55px;
+  display: grid;
+  gap: 30px 60px;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 990px 1fr;
+  grid-template-areas:
+    'awards nominee'
+    'users nominee'
+    'users activity';
+  @apply animate-fade;
+
+  .awards {
+    grid-area: awards;
+  }
+
+  .users {
+    grid-area: users;
+  }
+
+  .nominee {
+    grid-area: nominee;
+  }
+
+  .activity {
+    grid-area: activity;
+  }
+}

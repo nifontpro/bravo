@@ -9,46 +9,51 @@ import { errorCatch } from '@/core/utils/api.helpers';
 import { useAuthState } from '@/auth/data/auth.slice';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useCompanyState } from '@/company/data/company.slice';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import Main from 'main/presenter/Main';
 
-const Home: NextPage<{ companies: ICompany[] | undefined }> = ({
-  companies,
-}) => {
+// const Home: NextPage<{ companies: ICompany[] | undefined }> = ({
+//   companies,
+// }) => {
+const Home: NextPage = () => {
   const { push } = useRouter();
   const { user } = useAuthState();
+  const { currentCompany } = useCompanyState();
 
   useEffect(() => {
     if (user == undefined) {
-      push('/auth')
+      push('/auth');
     }
-  }, [])
+  }, []);
 
-  console.log(companies)
-
-    return (
-      <div>Главная страница сайта</div>
-      // <Catalog
-      //   data={companies || []}
-      //   prefix='/company'
-      //   title='Компании'
-      //   description='Компании, зарегистрированные в приложении'
-      // />
-    );
-  }
-
-export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const { data: companies } = await CompanyService.getAll();
-    return {
-      props: { companies },
-      revalidate: 60,
-    };
-  } catch (e) {
-    console.log(errorCatch(e));
-    return {
-      props: {},
-      // notFound: true,
-    };
-  }
+  return (
+    <AuthComponent minRole={'director'}>
+      {currentCompany ? (
+        <Main />
+      ) : (
+        <div className='@apply text-2xl'>
+          Для просмотра сначала выберите или создайте компанию.
+        </div>
+      )}
+    </AuthComponent>
+  );
 };
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   try {
+//     const { data: companies } = await CompanyService.getAll();
+//     return {
+//       props: { companies },
+//       revalidate: 60,
+//     };
+//   } catch (e) {
+//     console.log(errorCatch(e));
+//     return {
+//       props: {},
+//       // notFound: true,
+//     };
+//   }
+// };
 
 export default Home;
