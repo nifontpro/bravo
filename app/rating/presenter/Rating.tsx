@@ -16,10 +16,11 @@ import UserListRating from './UserListRating/UserListRating';
 import SelectCustom from '@/core/presenter/ui/SelectCustom/SelectCustom';
 import { useDepartment } from '@/department/presenter/useDepartment';
 import { useMyUser } from '@/user/presenter/useMyUsers';
+import Search from '@/core/presenter/ui/Search/Search';
 
 const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
   const [state, setState] = useState<1 | -1>(1);
-  
+
   const { usersWithAwards: users } = useMyUser('');
 
   const { departmentInCompany: departments } = useDepartment('');
@@ -56,16 +57,15 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
     );
     //Фильтр по наградам
     if (sortAward) {
-      filteredValue = filteredValue.filter(
-        (user) => user.awardCount >= 0
-      );
+      filteredValue = filteredValue.filter((user) => user.awardCount >= 0);
     } else {
-      filteredValue = filteredValue.filter(
-        (user) => user.awardCount > 0
-      );
+      filteredValue = filteredValue.filter((user) => user.awardCount > 0);
     }
-
   }
+
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setSearchValue(event.currentTarget.value);
+  };
 
   // console.log(users);
 
@@ -95,7 +95,17 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
           </SortButton>
           <ButtonToggle setSortAward={setSortAward} className={styles.toogle} />
         </div>
-        <UserListRating users={filteredValue} setSearchValue={setSearchValue} />
+        <div className={styles.usersListRating}>
+          <Search
+            onChange={handleChange}
+            color='white'
+            search={true}
+            button={false}
+            placeholder='Сотрудник сотрудника ...'
+            className={styles.search}
+          />
+          <UserListRating users={filteredValue} />
+        </div>
       </div>
     </Meta>
   );

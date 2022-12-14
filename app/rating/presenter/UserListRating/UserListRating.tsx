@@ -7,34 +7,21 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import uniqid from 'uniqid';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import ButtonIcon from '@/core/presenter/ui/ButtonIcon/ButtonIcon';
-import AwardIcon from './award.svg';
-import { awardApi } from 'award/data/award.api';
+import AwardIcon from '@/core/presenter/images/union.svg';
 import { getUserUrl } from '@/core/config/api.config';
 import { useRouter } from 'next/router';
 import P from '@/core/presenter/ui/P/P';
 
 const UserListRating = ({
-  setSearchValue,
   users,
   className,
   ...props
 }: UserListRatingProps): JSX.Element => {
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setSearchValue(event.currentTarget.value);
-  };
   // console.log(users);
   const { push } = useRouter();
 
   return (
-    <div {...props} className={styles.wrapper}>
-      <Search
-        onChange={handleChange}
-        color='white'
-        search={true}
-        button={false}
-        placeholder='Сотрудник сотрудника ...'
-        className={styles.search}
-      />
+    <div {...props} className={cn(styles.wrapper, className)}>
       {users?.map((user) => {
         return (
           <div key={uniqid()} className={styles.userWrapper}>
@@ -52,7 +39,7 @@ const UserListRating = ({
               onClick={() => push(getUserUrl(`/${user.id}`))}
               className={styles.user}
             >
-              <P size='l'>
+              <P size='m'>
                 {user.lastname} {user.name}
               </P>
               <div className={styles.userTag}>
@@ -72,45 +59,56 @@ const UserListRating = ({
                 Нет отдела
               </ButtonIcon>
             )}
-            {user.awards.filter(item => item.state == 'AWARD').length >= 1 ? (
+            {user.awards.filter((item) => item.state == 'AWARD').length >= 1 ? (
               <div className={styles.countAwards}>
-                <Htag tag='h2'>{user.awards.filter(item => item.state == 'AWARD').length}</Htag>
-                <AwardIcon className='ml-[10px]' />
+                <Htag tag='h2'>
+                  {user.awards.filter((item) => item.state == 'AWARD').length}
+                </Htag>
+                <AwardIcon className={styles.union} />
               </div>
             ) : (
               <div className={styles.countAwardsDisable}>
                 <Htag className={styles.disabled} tag='h2'>
-                  {user.awards.filter(item => item.state == 'AWARD').length}
+                  {user.awards.filter((item) => item.state == 'AWARD').length}
                 </Htag>
-                <AwardIcon className='ml-[10px]' />
+                <AwardIcon className={styles.union} />
               </div>
             )}
             <div className={styles.viewerAward}>
-              {user.awards.filter(item => item.state == 'AWARD').map((award, index) => {
-                if (index < 4) {
-                  return (
-                    // <div className={styles.circle} key={uniqid()}></div>
-                    <div className={styles.imgAward} key={uniqid()}>
-                      <ImageDefault
-                        src={award.imageUrl}
-                        width={50}
-                        height={50}
-                        alt='preview image'
-                        objectFit='cover'
-                        className='rounded-full'
-                      />
-                    </div>
-                  );
-                }
-              })}
+              {user.awards
+                .filter((item) => item.state == 'AWARD')
+                .map((award, index) => {
+                  if (index < 4) {
+                    return (
+                      <div className={cn(styles.imgAward, {
+                        [styles.one]: index == 0,
+                        [styles.two]: index == 1,
+                        [styles.three]: index == 2,
+                        [styles.four]: index == 3,
+                      })} key={uniqid()}>
+                        <ImageDefault
+                          src={award.imageUrl}
+                          width={50}
+                          height={50}
+                          alt='preview image'
+                          objectFit='cover'
+                          className='rounded-full'
+                        />
+                      </div>
+                    );
+                  }
+                })}
+              {user.awards.filter((item) => item.state == 'AWARD').length >
+              4 ? (
+                <div className={styles.countIcon}>
+                  +
+                  {user.awards.filter((item) => item.state == 'AWARD').length -
+                    4}
+                </div>
+              ) : (
+                <div className={styles.countIconDisabled}></div>
+              )}
             </div>
-            {user.awards.filter(item => item.state == 'AWARD').length > 4 ? (
-              <ButtonIcon className={styles.countIcon} appearance={'white'}>
-                +{user.awards.filter(item => item.state == 'AWARD').length - 4}
-              </ButtonIcon>
-            ) : (
-              <div className={styles.countIcon}></div>
-            )}
           </div>
         );
       })}

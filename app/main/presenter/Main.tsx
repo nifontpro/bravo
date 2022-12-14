@@ -11,13 +11,14 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 
 const Main = ({ className, ...props }: MainProps): JSX.Element => {
   const { awardsLight } = useAward('');
-  const { usersWithAwardsUnion: users } = useMyUser('');
+  const { usersWithAwards: users } = useMyUser('');
+  // const { usersWithAwardsUnion: users } = useMyUser('');
 
   return (
     <Meta title='Главная'>
       <div {...props} className={styles.wrapper}>
         <MainAwars className={styles.awards} awards={awardsLight} users={users}/>
-        <MainUsers className={styles.users} />
+        <MainUsers className={styles.users} users={users}/>
         <MainNominee className={styles.nominee} />
         <MainActivity className={styles.activity} />
       </div>

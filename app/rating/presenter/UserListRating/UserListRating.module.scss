@@ -1,17 +1,8 @@
 .wrapper {
-  background: var(--white);
-  padding: 75px;
-  border-radius: 20px;
-  margin-bottom: 50px;
-
-  .search {
-    margin-bottom: 50px;
-  }
-
   .userWrapper {
     display: grid;
     align-items: center;
-    grid-template-columns: [start] 100px [endLogo] 50px [startUser] 300px [endUser] 100px [startDepart] 150px [endDepart] 150px [startCount] auto [endCount] 50px [startViewer] 250px [endViewer] 10px [startCountIcon] 50px [end];
+    grid-template-columns: [start] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 1fr [startViewer] 200px [endViewer];
     margin-bottom: 50px;
 
     &:nth-last-child(1) {
@@ -38,52 +29,77 @@
     .countAwards,
     .countAwardsDisable {
       display: flex;
+      justify-content: flex-end;
       align-items: center;
       grid-column: startCount / endCount;
+
+      .union {
+        margin-left: 10px;
+        width: 15px;
+      }
     }
 
     .countAwardsDisable {
-        .disabled {
-            color: var(--gray);
-        }
-        > svg path {
-            stroke: var(--gray);
-        }
+      .disabled {
+        color: var(--gray);
+      }
+      > svg path {
+        fill: var(--gray);
+      }
     }
 
     .viewerAward {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       grid-column: startViewer / endViewer;
 
-      .circle {
-        width: 50px;
-        height: 50px;
-        background: var(--gray);
+      .imgAward {
+        border: 1px solid var(--white);
         border-radius: 100%;
         margin-left: 10px;
-        &:nth-child(1) {
-            margin-left: 0;
-          }
-      }
-
-      .imgAward {
-        margin-left: 10px;
         width: 50px;
         height: 50px;
-
-        // transform: translate(15px, 0);
-        &:nth-child(1) {
-          margin-left: 0;
-        }
+        position: absolute;
       }
-    }
 
-    .countIcon {
-      height: fit-content;
-      cursor: default;
-      grid-column: startCountIcon / end;
+      .one {
+        transform: translate(-30px, 0);
+        z-index: 4;
+      }
+      .two {
+        transform: translate(-60px, 0);
+        z-index: 3;
+      }
+      .three {
+        transform: translate(-90px, 0);
+        z-index: 2;
+      }
+      .four {
+        transform: translate(-120px, 0);
+        z-index: 1;
+      }
+
+      .countIcon {
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
+        background: var(--gray-dark);
+        border: 1px solid var(--white);
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+        z-index: 5;
+        // grid-column: startCountIcon / end;
+      }
+
+      .countIconDisabled {
+        background: transparent;
+        border: none;
+      }
     }
   }
 }
