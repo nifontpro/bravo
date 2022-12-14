@@ -6,8 +6,7 @@
   grid-template-columns: 990px 1fr;
   grid-template-areas:
     'awards nominee'
-    'users nominee'
-    'users activity';
+    'users nominee';
   @apply animate-fade;
 
   .awards {
@@ -20,9 +19,6 @@
 
   .nominee {
     grid-area: nominee;
-  }
 
-  .activity {
-    grid-area: activity;
   }
 }

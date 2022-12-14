@@ -17,10 +17,16 @@ const Main = ({ className, ...props }: MainProps): JSX.Element => {
   return (
     <Meta title='Главная'>
       <div {...props} className={styles.wrapper}>
-        <MainAwars className={styles.awards} awards={awardsLight} users={users}/>
-        <MainUsers className={styles.users} users={users}/>
-        <MainNominee className={styles.nominee} />
-        <MainActivity className={styles.activity} />
+        <MainAwars
+          className={styles.awards}
+          awards={awardsLight}
+          users={users}
+        />
+        <MainUsers className={styles.users} users={users} />
+        <div className={styles.nominee}>
+          <MainNominee />
+          <MainActivity />
+        </div>
       </div>
     </Meta>
   );

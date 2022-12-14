@@ -1,0 +1,25 @@
+.wrapper {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+      .bestDepart {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        path {
+          stroke: var(--gray96);
+        }
+        .arrow {
+          margin-left: 20px;
+        }
+      }
+    }
+    .content {
+        background: var(--white);
+        padding: 30px;
+        border-radius: 16px;
+      }
+  }
+  
