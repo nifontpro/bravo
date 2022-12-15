@@ -1,7 +1,7 @@
 import {TypeMaterialIconName} from "@/core/model/icon.types";
 
 export interface IMenuItem {
-	icon: TypeMaterialIconName
+	icon: 'main' | 'company' | 'help' | 'rating' | 'statistic' | 'awards'
 	title: string
 	link: string
 }

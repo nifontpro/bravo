@@ -22,7 +22,7 @@ const MainUsers = ({
         <Htag tag='h2'>Лучшие сотрудники</Htag>
         <div className={styles.bestDepart} onClick={() => push('/statistic')}>
           <P size='s' fontstyle='thin' color='gray'>
-            Лучший отдел
+            Рейтинг
           </P>
           <ArrowIcon className={styles.arrow}/>
         </div>
