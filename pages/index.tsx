@@ -6,9 +6,6 @@ import { CompanyService } from '@/company/data/company.service';
 import { errorCatch } from '@/core/utils/api.helpers';
 // import { API_SERVER_URL } from '@/core/config/api.config';
 // import Auth from '@/auth/presenter/Auth';
-import { useAuthState } from '@/auth/data/auth.slice';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { useCompanyState } from '@/company/data/company.slice';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import Main from 'main/presenter/Main';
@@ -17,15 +14,7 @@ import Main from 'main/presenter/Main';
 //   companies,
 // }) => {
 const Home: NextPage = () => {
-  const { push } = useRouter();
-  const { user } = useAuthState();
   const { currentCompany } = useCompanyState();
-
-  useEffect(() => {
-    if (user == undefined) {
-      push('/auth');
-    }
-  }, []);
 
   return (
     <AuthComponent minRole={'director'}>
