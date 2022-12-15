@@ -39,7 +39,7 @@ const Auth: FC = () => {
       login(data)
         .unwrap()
         .then((d) => {
-          setAuthData(d); 
+          setAuthData(d);
           toast.success('Добро пожаловать!');
         })
         .catch((e) => {
@@ -95,7 +95,6 @@ const Auth: FC = () => {
               Продолжить
             </Button>
 
-
             {/* <Button
               type='submit'
               onClick={() => setType('register')}
@@ -104,13 +103,19 @@ const Auth: FC = () => {
               Регистрация
             </Button> */}
           </div>
+          <Link href={'/login'}>
+            <a className='flex justify-center'>
+              <P size='m' color='gray' fontstyle='thin' className={styles.auth}>
+                Зарегестрироваться
+              </P>
+            </a>
+          </Link>
         </form>
 
-        <a href="mailto:example@htmlbook.ru" className={styles.sendUs}>
-          <SendUsIcon className={styles.sendIcon}/>
+        <a href='mailto:example@htmlbook.ru' className={styles.sendUs}>
+          <SendUsIcon className={styles.sendIcon} />
           <P>Написать нам</P>
         </a>
-        
       </section>
     </Meta>
   );
