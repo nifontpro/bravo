@@ -3,8 +3,7 @@ import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IUser, IUserAwards, IUserAwardsUnion, IUserCreate} from "@/user/model/user.types";
 import {getUserUrl} from "@/core/config/api.config";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
-import { awardApi } from 'award/data/award.api';
-import { IUserAwardCount } from '../model/count.types';
+import {IUserAwardCount} from '../model/count.types';
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
