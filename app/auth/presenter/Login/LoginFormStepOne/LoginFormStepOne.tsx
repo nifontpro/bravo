@@ -14,6 +14,8 @@ import { authApi } from '@/auth/data/auth.api';
 import { loginActions } from '@/auth/data/login.slice';
 import { useDispatch } from 'react-redux';
 import { toastError } from '@/core/utils/toast-error';
+import P from '@/core/presenter/ui/P/P';
+import Link from 'next/link';
 
 const LoginFormStepOne = ({
   visible,
@@ -121,6 +123,13 @@ const LoginFormStepOne = ({
           Продолжить
         </Button>
       </div>
+      <Link href={'/auth'}>
+        <a className='flex justify-center'>
+          <P size='m' color='gray' fontstyle='thin' className={styles.auth}>
+            Уже зарегестрированны? Войти
+          </P>
+        </a>
+      </Link>
     </form>
   );
 };
