@@ -3,10 +3,11 @@ import { useCompanyState } from '@/company/data/company.slice';
 import { useDepartmentState } from '@/department/data/department.slice';
 import { useMemo } from 'react';
 import { IUser, IUserAwards, IUserAwardsUnion } from '@/user/model/user.types';
+import { IUserAwardCount } from '../model/count.types';
 
 export const useMyUser = (filter: string) => {
   const { currentCompany } = useCompanyState();
-  const { currentDepartment } = useDepartmentState();
+  // const { currentDepartment } = useDepartmentState();
   // let users: IUser[] = [];
   // let usersWithAwards: IUserAwards[] = [];
   // let usersWithAwardsUnion: IUserAwardsUnion[] = [];
@@ -34,11 +35,12 @@ export const useMyUser = (filter: string) => {
     userApi.useGetByCompanyWithAwardsUnionQuery({
       companyId: currentCompany != null ? currentCompany.id : '',
       filter,
-    }); 
+    });
+    
 
-    // users = depUsers || [];
-    // usersWithAwards = depUserWithAwards || [];
-    // usersWithAwardsUnion = depUserWithAwardsUnion || [];
+  // users = depUsers || [];
+  // usersWithAwards = depUserWithAwards || [];
+  // usersWithAwardsUnion = depUserWithAwardsUnion || [];
   // }
 
   // const users = depUsers;

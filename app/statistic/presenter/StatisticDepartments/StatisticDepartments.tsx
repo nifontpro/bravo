@@ -13,7 +13,7 @@ const StatisticDepartments = ({
   ...props
 }: StatisticDepartmentsProps): JSX.Element => {
   const { departmentInCompany } = useDepartment('');
-  console.log(departmentInCompany);
+  // console.log(departmentInCompany);
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
