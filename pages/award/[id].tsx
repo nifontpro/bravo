@@ -1,8 +1,8 @@
 import {GetServerSideProps, NextPage} from "next";
 import {errorCatch} from "@/core/utils/api.helpers";
 import Error404 from "../404";
-import {medalApi} from "@/medal/data/medal.api";
-import SingleMedal from "@/medal/presenter/SingleMedal";
+// import {medalApi} from "@/medal/data/medal.api";
+// import SingleMedal from "@/medal/presenter/SingleMedal";
 import { awardApi } from 'award/data/award.api';
 import Award from 'award/presenter/Award/Award';
 

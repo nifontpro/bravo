@@ -7,9 +7,9 @@ import { companySlice } from '@/company/data/company.slice';
 import { departmentApi } from '@/department/data/department.api';
 import { departmentSlice } from '@/department/data/department.slice';
 import { userApi } from '@/user/data/user.api';
-import { medalApi } from '@/medal/data/medal.api';
+// import { medalApi } from '@/medal/data/medal.api';
 import { modalSlice } from '@/core/store/modal.slice';
-import { rewardApi } from '../../reward/data/reward.api';
+// import { rewardApi } from '../../reward/data/reward.api';
 import { loginSlice } from '@/auth/data/login.slice';
 import { awardApi } from 'award/data/award.api';
 import {registerApi} from "../../register/data/register.api";
@@ -26,8 +26,8 @@ const rootReducer = combineReducers({
   [companyApi.reducerPath]: companyApi.reducer,
   [departmentApi.reducerPath]: departmentApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
-  [medalApi.reducerPath]: medalApi.reducer,
-  [rewardApi.reducerPath]: rewardApi.reducer,
+  // [medalApi.reducerPath]: medalApi.reducer,
+  // [rewardApi.reducerPath]: rewardApi.reducer,
   [awardApi.reducerPath]: awardApi.reducer,
 });
 
@@ -43,9 +43,9 @@ export const store = configureStore({
       refreshApi.middleware,
       companyApi.middleware,
       departmentApi.middleware,
-      medalApi.middleware,
+      // medalApi.middleware,
       userApi.middleware,
-      rewardApi.middleware,
+      // rewardApi.middleware,
       awardApi.middleware,
     ),
 });
