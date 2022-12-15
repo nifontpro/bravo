@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
-import AdminNavigation from '@/admin/presenter/admin-navigation/AdminNavigation';
-import Heading from '@/core/presenter/ui/heading/Heading';
+// import AdminNavigation from '@/admin/presenter/admin-navigation/AdminNavigation';
+// import Heading from '@/core/presenter/ui/heading/Heading';
 import SkeletonLoader from '@/core/presenter/ui/sceleton-loader/SkeletonLoader';
-import formStyles from '@/core/presenter/ui/form/admin-form.module.scss';
+// import formStyles from '@/core/presenter/ui/form/admin-form.module.scss';
 // import styles from "@/core/presenter/ui/form/form.module.scss"
 import styles from './DepartmentEdit.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
