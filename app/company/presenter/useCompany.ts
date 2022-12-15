@@ -6,18 +6,18 @@ import { ICompany } from '../model/company.types';
 
 
 export const useCompany = (filter: string) => {
-  const { currentCompany } = useCompanyState();
+  // const { currentCompany } = useCompanyState();
   let depCompany: ICompany[] = [];
 
-  if (currentCompany) {
+  // if (currentCompany) {
     //Легкий запрос
     const { data: companies } = companyApi.useGetByOwnerQuery();
     
 
     depCompany = companies || [];
-  }
+  // }
 
-  const companies = depCompany;
+  // const companies = depCompany;
 
   return useMemo(() => {
     return {

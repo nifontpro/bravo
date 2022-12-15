@@ -24,6 +24,11 @@ const Depart = ({
     departmentId: data.id,
     filter: '',
   });
+//   const { data: countAwards } = userApi.useGetAwardCountByDepartmentQuery(data.id,);
+// console.log(`Кол медалей в отедле ${data.name} ${countAwards?.awards}`)
+// console.log(`Кол номинаций в отедле ${data.name} ${countAwards?.nominee}`)
+// console.log(`Кол всего в отедле ${data.name} ${countAwards?.total}`)
+// console.log(`Кол всего в отедле ${data.name} ${countAwards?.total}`)
 
   // let arrUser: IUser[] = []
   // usersInDepartment?.forEach((item) => {

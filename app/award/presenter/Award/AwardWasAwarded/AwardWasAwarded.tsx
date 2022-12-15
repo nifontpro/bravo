@@ -11,11 +11,13 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import { useState } from 'react';
 import { IUser } from '@/user/model/user.types';
 
+
 const AwardWasAwarded = ({
   award,
   className,
   ...props
 }: AwardWasAwardedProps): JSX.Element => {
+
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
   const { users } = useMyUser('');

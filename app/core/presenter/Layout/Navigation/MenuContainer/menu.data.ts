@@ -14,6 +14,12 @@ const itemCompany: IMenuItem = {
 	title: 'Отделы и сотрудники',
 }
 
+const itemHelp: IMenuItem = {
+	icon: 'help',
+	link: '/help',
+	title: 'Помощь',
+}
+
 // const itemDepartment: IMenuItem = {
 // 	icon: 'MdFoundation',
 // 	link: '/department',
@@ -60,7 +66,8 @@ export const firstMenuOwner: IMenu = {
 		// itemDepartment,
 		// itemUser,
 		itemRating,
-		itemStatistic
+		itemStatistic,
+		itemHelp
 	],
 }
 

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useLayoutEffect } from 'react';
 import Catalog from '@/core/presenter/ui/catalog/Catalog';
 import Meta from '@/core/utils/meta/Meta';
 // import Heading from "@/core/presenter/ui/heading/Heading";
@@ -9,11 +9,18 @@ import { useRouter } from 'next/router';
 import Spinner from '@/core/presenter/ui/Spinner/Spinner';
 import { getCompanyCreateUrl } from '@/core/config/api.config';
 import { useCompany } from './useCompany';
+import { useCompanyState } from '../data/company.slice';
 
 const OwnerCompany: FC = () => {
   const { push } = useRouter();
+  const { companies } = useCompany('');
+  const { currentCompany } = useCompanyState();
 
-  const { companies } = useCompany('')
+  // useEffect(() => {
+  //   if (currentCompany != undefined) {
+  //     push(`/company/${currentCompany.id}`);
+  //   }
+  // });
 
   return (
     <Meta title='Компании владельца'>

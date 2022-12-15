@@ -18,10 +18,15 @@ const MenuItem: FC<{ item: IMenuItem }> = ({ item }) => {
   const handleClick = () => {
     dispatch(modalActions.setState(false));
   };
+  // console.log(item)
 
   return (
     <li
-      className={cn(styles.menuItem, { [styles.active]: asPath === item.link })}
+      className={cn(styles.menuItem, { 
+        [styles.active]: asPath === item.link,
+        [styles.helpActive]: item.link === '/help',
+        [styles.help]: item.link === '/help' && asPath === '/help',
+      })}
     >
       <Link href={item.link}>
         <a onClick={handleClick}>

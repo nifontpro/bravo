@@ -2,7 +2,7 @@ import styles from './ModalWindowWithAddAwards.module.scss';
 import { ModalWindowWithAddAwardsProps } from './ModalWindowWithAddAwards.props';
 import cn from 'classnames';
 import Htag from '../Htag/Htag';
-import ExitIcon from './exit.svg';
+import ExitIcon from '@/core/presenter/images/close.svg';
 import Search from '../Search/Search';
 import ChoiceUsers from 'award/presenter/admin/create/ChoiceUsers/ChoiceUsers';
 import { useEffect, useState } from 'react';
@@ -24,7 +24,7 @@ const ModalWindowWithAddAwards = ({
 }: ModalWindowWithAddAwardsProps): JSX.Element => {
   const [arrChoiceAward, setArrChoiceAward] = useState<string[]>([]);
   const [reward] = awardApi.useAwardUserMutation();
-  console.log(arrChoiceAward)
+  // console.log(arrChoiceAward)
 
   const handleCancel = () => {
     setArrChoiceAward([])

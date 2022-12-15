@@ -2,7 +2,7 @@ import styles from './ModalWindowWithAddUsers.module.scss';
 import { ModalWindowWithAddUsersProps } from './ModalWindowWithAddUsers.props';
 import cn from 'classnames';
 import Htag from '../Htag/Htag';
-import ExitIcon from './exit.svg';
+import ExitIcon from '@/core/presenter/images/close.svg';
 import Search from '../Search/Search';
 import ChoiceUsers from 'award/presenter/admin/create/ChoiceUsers/ChoiceUsers';
 import { useEffect, useState } from 'react';

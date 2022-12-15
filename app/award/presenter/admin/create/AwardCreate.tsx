@@ -26,9 +26,10 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
 
-  if (currentCompany === null) {
-    push('/company');
-  }
+  // if (currentCompany === null) {
+  //   push('/company');
+  // } 
+
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
 
   const { users } = useMyUser('');

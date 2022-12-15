@@ -19,7 +19,7 @@ export const useUserCreate = (
 
   useEffect(() => {
     setValue('role', 'user');
-    setValue('companyId', companyId);
+    // setValue('companyId', companyId);
     // setValue('isMNC', false)
     // if (active != undefined) {
     //   setValue('gender', active);
@@ -33,6 +33,7 @@ export const useUserCreate = (
     }
 
     if (companyId) {
+      data.companyId = companyId
       await create({ ...data })
         .unwrap()
         .then(async (user: IUser) => {

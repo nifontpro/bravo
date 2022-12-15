@@ -19,9 +19,9 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
 
-  if (currentCompany === null) {
-    push('/company');
-  }
+  // if (currentCompany === null) {
+  //   push('/company');
+  // }
 
   const {
     handleSubmit,

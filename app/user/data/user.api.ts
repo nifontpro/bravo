@@ -4,6 +4,7 @@ import {IUser, IUserAwards, IUserAwardsUnion, IUserCreate} from "@/user/model/us
 import {getUserUrl} from "@/core/config/api.config";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
 import { awardApi } from 'award/data/award.api';
+import { IUserAwardCount } from '../model/count.types';
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
@@ -163,6 +164,32 @@ export const userApi = createApi({
 				method: 'POST',
 				url: getUserUrl("/count_d"),
 				body: {departmentId}
+			}),
+			providesTags: ['Count']
+		}),
+
+		/**
+ 		 * Получить количество наград в отделе
+ 		 * @param [departmentId]
+ 		 */
+		getAwardCountByDepartment: build.query<IUserAwardCount, string>({
+			query: (departmentId) => ({
+				method: 'POST',
+				url: getUserUrl("/count_ad"),
+				body: {departmentId}
+			}),
+			providesTags: ['Count']
+		}),
+
+		/**
+ 		 * Получить количество наград в компании
+ 		 * @param [companyId]
+ 		 */
+		getAwardCountByCompany: build.query<IUserAwardCount, string>({
+			query: (companyId) => ({
+				method: 'POST',
+				url: getUserUrl("/count_ac"),
+				body: {companyId}
 			}),
 			providesTags: ['Count']
 		}),

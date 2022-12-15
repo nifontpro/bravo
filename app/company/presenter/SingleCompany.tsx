@@ -29,12 +29,12 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
   // });
 
   // То что ниже нужно переделать
-  useEffect(() => {
-    if (company != undefined) {
-      dispatch(companyActions.setState(company));
-      saveCompanyToStorage(company);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (company != undefined) {
+  //     dispatch(companyActions.setState(company));
+  //     saveCompanyToStorage(company);
+  //   }
+  // }, []);
   // То что выше нужно переделать
 
   //   const handleClick = () => {

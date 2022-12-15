@@ -19,7 +19,7 @@ const MainNominee = ({
   const { push } = useRouter();
   let currentDate = +new Date();
   let nominee = awards.find((award) => award.state == 'NOMINEE');
-  console.log(nominee);
+  // console.log(nominee);
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>

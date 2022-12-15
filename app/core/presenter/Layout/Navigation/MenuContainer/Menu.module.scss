@@ -1,50 +1,74 @@
 .menu {
-	@apply mb-14 animate-fade;
+  @apply mb-14 animate-fade;
 
-	.heading {
-		color: var(--gray-light);
-		@apply uppercase text-sm font-semibold pl-layout;
-	}
+  .heading {
+    color: var(--gray-light);
+    @apply uppercase text-sm font-semibold pl-layout;
+  }
 
-	.ul {
-		> li {
-			@apply mx-[35px] ;
-			> a {
-				@apply  border-r-4 border-r-transparent transition-colors  py-[17px] px-[30px] flex items-center text-white mt-6 cursor-pointer rounded-[12px] hover:bg-gray_middle;
+  .ul {
+    > li {
+      @apply mx-[35px];
+      > a {
+        @apply border-r-4 border-r-transparent transition-colors  py-[17px] px-[30px] flex items-center text-white mt-6 cursor-pointer rounded-[12px] hover:bg-gray_middle;
 
-				&:hover {
-					@apply text-gray_dark;
-				}
+        &:hover {
+          @apply text-gray_dark;
+        }
 
-				&:hover svg path {
-					@apply stroke-gray_dark
-				}
+        &:hover svg path {
+          @apply stroke-gray_dark;
+        }
 
-				> span {
-					@apply ml-3 text-lg hover:text-gray-600 text-[16px];
-				}
+        > span {
+          @apply ml-3 text-lg hover:text-gray-600 text-[16px];
+        }
 
-				> svg {
-					@apply text-2lg;
-				}
+        > svg {
+          @apply text-2lg;
+        }
 
-				> span,
-				> svg {
-					@apply transition-all;
-				}
+        > span,
+        > svg {
+          @apply transition-all;
+        }
+      }
+
+      &.active {
+        @apply bg-gray_middle rounded-[12px];
+        > a > span {
+          @apply text-gray_dark;
+        }
+
+        > a svg path {
+          @apply stroke-gray_dark;
+        }
+      }
+
+      &.help {
+        @apply bg-gray_middle rounded-[12px] opacity-100 ;
+        > a > span {
+          @apply text-gray_dark;
+        }
+
+        > a svg path {
+          @apply stroke-gray_dark;
+        }
+      }
+
+      &.helpActive {
+		> a {
+			@apply opacity-40 border-t-2 rounded-none mt-10;
+	
+			&:hover {
+			  @apply text-gray_dark rounded-[12px] border-transparent opacity-100;
 			}
 
-			&.active {
-				
-				@apply bg-gray_middle rounded-[12px];
-				> a > span {
-					@apply text-gray_dark ;
-				}
-
-				> a svg path {
-					@apply stroke-gray_dark
-				}
-			}
+			&:hover svg path {
+				@apply stroke-gray_dark opacity-100;
+			  }
 		}
-	}
+      }
+    }
+  }
 }

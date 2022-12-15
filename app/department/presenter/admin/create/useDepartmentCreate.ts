@@ -8,25 +8,20 @@ import { toastError } from '@/core/utils/toast-error';
 import { IUser } from '@/user/model/user.types';
 import { departmentApi } from '@/department/data/department.api';
 import { IDepartmentCreate } from '@/department/model/department.types';
+import { ICompany } from '@/company/model/company.types';
 
 export const useDepartmentCreate = (
   setValue: UseFormSetValue<IDepartmentCreate>,
-  companyId?: string
+  company?: string
 ) => {
   const { back } = useRouter();
   const [create] = departmentApi.useCreateMutation();
 
-  useEffect(() => {
-    if (companyId) {
-      setValue('companyId', companyId);
-    }
-  }, [setValue]);
-
   const onSubmit: SubmitHandler<IDepartmentCreate> = async (data) => {
     let isError = false;
-    // console.log(data);
 
-    if (companyId) {
+    if (company) {
+      data.companyId = company
       await create({ ...data })
         .unwrap()
         .catch((e) => {

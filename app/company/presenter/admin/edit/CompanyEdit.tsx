@@ -36,9 +36,9 @@ const UserEdit: FC = () => {
   const { currentCompany } = useCompanyState();
   const { back, push } = useRouter();
 
-  if (currentCompany === null) {
-    push('/');
-  }
+  // if (currentCompany === null) {
+  //   push('/');
+  // }
 
   const { isLoading, onSubmit, changePhoto, img } = useCompanyEdit(setValue);
 

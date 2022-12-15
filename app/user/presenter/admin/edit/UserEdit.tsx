@@ -18,6 +18,7 @@ import { useCompanyState } from '@/company/data/company.slice';
 import { departmentApi } from '@/department/data/department.api';
 import { IOption } from '@/core/presenter/ui/select/select.interface';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import { useDepartment } from '@/department/presenter/useDepartment';
 
 const UserEdit: FC = () => {
   const {
@@ -33,13 +34,12 @@ const UserEdit: FC = () => {
   const { currentCompany } = useCompanyState();
   const { back, push } = useRouter();
 
-  if (currentCompany === null || currentCompany === undefined) {
-    push('/company');
-  }
+  // if (currentCompany === null || currentCompany === undefined) {
+  //   push('/company');
+  // }
 
-  const { data: departments } = departmentApi.useGetByCompanyQuery(
-    currentCompany!.id
-  );
+  const { departmentInCompany: departments } = useDepartment('')
+
   let arrDeparts: IOption[] = [];
   departments?.forEach((item) => {
     arrDeparts.push({
