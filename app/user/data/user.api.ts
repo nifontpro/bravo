@@ -3,7 +3,7 @@ import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IUser, IUserAwards, IUserAwardsUnion, IUserCreate} from "@/user/model/user.types";
 import {getUserUrl} from "@/core/config/api.config";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
-import {IUserAwardCount} from '../model/count.types';
+import {IUserAwardCount, IUserAwardsCountDep} from '../model/count.types';
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
@@ -188,6 +188,20 @@ export const userApi = createApi({
 			query: (companyId) => ({
 				method: 'POST',
 				url: getUserUrl("/count_ac"),
+				body: {companyId}
+			}),
+			providesTags: ['Count']
+		}),
+
+		/**
+		 * Получить информацию о награжденных сотрудниках в компании,
+		 * с группировкой по отделам
+		 * @param [companyId]
+		 */
+		getAwardCountByCompanyDepGroup: build.query<IUserAwardsCountDep[], string>({
+			query: (companyId) => ({
+				method: 'POST',
+				url: getUserUrl("/count_ac_dep"),
 				body: {companyId}
 			}),
 			providesTags: ['Count']
