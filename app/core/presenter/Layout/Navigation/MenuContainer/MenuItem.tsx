@@ -23,9 +23,9 @@ const MenuItem: FC<{ item: IMenuItem }> = ({ item }) => {
   return (
     <li
       className={cn(styles.menuItem, { 
-        [styles.active]: asPath === item.link,
-        [styles.helpActive]: item.link === '/help',
-        [styles.help]: item.link === '/help' && asPath === '/help',
+        [styles.active]: asPath == item.link,
+        [styles.helpActive]: item.link == '/help',
+        [styles.help]: item.link == '/help' && asPath == '/help',
       })}
     >
       <Link href={item.link}>

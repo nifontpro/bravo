@@ -11,7 +11,7 @@ const itemHome: IMenuItem = {
 const itemCompany: IMenuItem = {
 	icon: 'company',
 	link: '/company',
-	title: 'Отделы и сотрудники',
+	title: 'Компания',
 }
 
 const itemHelp: IMenuItem = {
@@ -54,6 +54,14 @@ export const firstMenu: IMenu = {
 	title: menuTitle,
 	items: [
 		itemHome,
+		itemRating,
+		itemMedals,
+		itemCompany,
+		// itemDepartment,
+		// itemUser,
+
+		itemStatistic,
+		itemHelp
 	],
 }
 

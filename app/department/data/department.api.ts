@@ -38,7 +38,7 @@ export const departmentApi = createApi({
 			query: (departmentId) => ({
 				method: 'POST',
 				url: getDepartmentUrl("/get_id"),
-				params: {companyId: departmentId}
+				body: {departmentId}
 			}),
 			invalidatesTags: ['Department'],
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {

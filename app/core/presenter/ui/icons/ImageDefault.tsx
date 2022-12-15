@@ -35,7 +35,7 @@ export const ImageDefault: FC<ImageDefaultProps> = ({
       layout={layout}
       draggable={draggable}
       priority={priority}
-      objectFit={objectFit}
+      objectFit={objectFit} 
       // loader={imageLoader}
     />
   ) : (

@@ -6,7 +6,7 @@ import Statistic from 'statistic/presenter/Statistic';
 const StatisticPage: NextPage = () => {
 	const {currentCompany} = useCompanyState()
 
-	return <AuthComponent minRole={"director"}>
+	return <AuthComponent minRole={"user"}>
 		{currentCompany ? <Statistic company={currentCompany}/>
 			:
 			<div className="@apply text-2xl">

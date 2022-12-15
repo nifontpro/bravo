@@ -34,7 +34,8 @@
         }
       }
 
-      &.active {
+      &.active,
+      .activeUser {
         @apply bg-gray_middle rounded-[12px];
         > a > span {
           @apply text-gray_dark;

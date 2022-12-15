@@ -8,7 +8,7 @@ const RatingPage: NextPage = () => {
 
 	const {currentCompany} = useCompanyState()
 
-	return <AuthComponent minRole={"director"}>
+	return <AuthComponent minRole={"user"}>
 		{currentCompany ? <Rating company={currentCompany}/>
 			:
 			<div className="@apply text-2xl">

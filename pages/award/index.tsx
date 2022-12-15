@@ -7,7 +7,7 @@ const AwardsPage: NextPage = () => {
 
 	const {currentCompany} = useCompanyState()
 
-	return <AuthComponent minRole={"director"}>
+	return <AuthComponent minRole={"user"}>
 		{currentCompany ? <Awards company={currentCompany}/>
 			:
 			<div className="@apply text-2xl">

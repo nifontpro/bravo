@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   const { currentCompany } = useCompanyState();
 
   return (
-    <AuthComponent minRole={'director'}>
+    <AuthComponent minRole={'user'}>
       {currentCompany ? (
         <Main />
       ) : (
