@@ -8,7 +8,7 @@ import {IUserAwardCount, IUserAwardsCountDep} from '../model/count.types';
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['User', 'Reward', 'Count', 'Award'],
+	tagTypes: ['User', 'Count', 'Award', 'None'],
 	endpoints: (build) => ({
 
 		//Получить всех сотрудников по отделу
@@ -84,26 +84,26 @@ export const userApi = createApi({
 		}),
 
 		/**
- 		 * Получить сотрудников компании с присвоенными наградами (облегченными)
- 		 * Сортировка по
- 		 *  -количеству наград по убыванию
- 		 *  -фамилии по возрастанию
- 		 */
- 		getByCompanyWithAwards: build.query<IUserAwards[], { companyId: string, filter?: string }>({
+		 * Получить сотрудников компании с присвоенными наградами (облегченными)
+		 * Сортировка по
+		 *  -количеству наград по убыванию
+		 *  -фамилии по возрастанию
+		 */
+		getByCompanyWithAwards: build.query<IUserAwards[], { companyId: string, filter?: string }>({
 			query: (data) => ({
 				method: 'POST',
 				url: getUserUrl('/get_awards'),
 				body: data
 			}),
-			providesTags: ['User'] 
+			providesTags: ['User']
 		}),
 
 		/**
- 		 * Получить сотрудников компании с присвоенными наградами (полная информация)
- 		 * Сортировка по
- 		 *  -количеству наград по убыванию
- 		 *  -фамилии по возрастанию
- 		 */
+		 * Получить сотрудников компании с присвоенными наградами (полная информация)
+		 * Сортировка по
+		 *  -количеству наград по убыванию
+		 *  -фамилии по возрастанию
+		 */
 		getByCompanyWithAwardsUnion: build.query<IUserAwardsUnion[], { companyId: string, filter?: string }>({
 			query: (data) => ({
 				method: 'POST',
@@ -122,7 +122,7 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
-		create: build.mutation<IUser,  IUserCreate>({
+		create: build.mutation<IUser, IUserCreate>({
 			query: (user) => ({
 				method: 'POST',
 				url: getUserUrl('/create'),
@@ -149,6 +149,18 @@ export const userApi = createApi({
 			invalidatesTags: ['User']
 		}),
 
+		/**
+		 * Обновление пароля сотрудника
+		 */
+		updatePassword: build.mutation<void, { userId: string, password: string, newPassword: string }>({
+			query: (body) => ({
+				method: 'PUT',
+				url: getUserUrl('/password'),
+				body: body
+			}),
+			invalidatesTags: ['None']
+		}),
+
 		getCountByCompany: build.query<number, string>({
 			query: (companyId) => ({
 				method: 'POST',
@@ -168,9 +180,9 @@ export const userApi = createApi({
 		}),
 
 		/**
- 		 * Получить количество наград в отделе
- 		 * @param [departmentId]
- 		 */
+		 * Получить количество наград в отделе
+		 * @param [departmentId]
+		 */
 		getAwardCountByDepartment: build.query<IUserAwardCount, string>({
 			query: (departmentId) => ({
 				method: 'POST',
@@ -181,9 +193,9 @@ export const userApi = createApi({
 		}),
 
 		/**
- 		 * Получить количество наград в компании
- 		 * @param [companyId]
- 		 */
+		 * Получить количество наград в компании
+		 * @param [companyId]
+		 */
 		getAwardCountByCompany: build.query<IUserAwardCount, string>({
 			query: (companyId) => ({
 				method: 'POST',
