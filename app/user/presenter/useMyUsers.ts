@@ -36,7 +36,13 @@ export const useMyUser = (filter: string) => {
       companyId: currentCompany != null ? currentCompany.id : '',
       filter,
     });
-    
+
+  // Сотрудник по ID
+  // const {
+  //   data: userWithId,
+  //   isLoading,
+  //   isSuccess: isGetSuccess,
+  // } = userApi.useGetByIdQuery(filter);
 
   // users = depUsers || [];
   // usersWithAwards = depUserWithAwards || [];
@@ -49,6 +55,7 @@ export const useMyUser = (filter: string) => {
 
   return useMemo(() => {
     let users: IUser[] = depUsers || [];
+    // let userId: IUser = userWithId || undefined;
     let usersWithAwards: IUserAwards[] = depUserWithAwards || [];
     let usersWithAwardsUnion: IUserAwardsUnion[] = depUserWithAwardsUnion || [];
 

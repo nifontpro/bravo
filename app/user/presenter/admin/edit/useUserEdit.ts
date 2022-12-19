@@ -9,6 +9,7 @@ import { IUserEditInput } from '@/user/presenter/admin/edit/user-edit.type';
 export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
   const { push, query } = useRouter();
   const userId = String(query.id);
+  console.log(query.id)
 
   const [updateImg] = userApi.useUpdateImageMutation();
 

@@ -5,6 +5,7 @@ import {IAward, IAwardUsers} from "../model/award.types";
 import {IAwardCreate, IAwardUpdate, IAwardUserRequest} from "../model/api.types";
 import {IAwardRelate} from "../model/awardRelate.types";
 import {userApi} from "@/user/data/user.api";
+import { IAwardCount } from 'award/model/count.types';
 
 export const awardApi = createApi({
 	reducerPath: 'awardApi',
@@ -156,6 +157,19 @@ export const awardApi = createApi({
 				method: 'POST',
 				url: getAwardUrl("/get_idu"),
 				body: {awardId}
+			}),
+			providesTags: ['Award']
+		}),
+
+		/**
+ 		 * Получить статистику о награждениях в компании
+ 		 * @param [companyId]
+ 		 */
+		getAwardCount: build.query<IAwardCount, string>({
+			query: (companyId) => ({
+				method: 'POST',
+				url: getAwardUrl("/count"),
+				body: {companyId}
 			}),
 			providesTags: ['Award']
 		}),
