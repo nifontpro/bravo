@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
 import { useAuthRedirect } from '@/auth/presenter/useAuthRedirect';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IAuthInput } from '@/auth/model/auth.interface';
 import styles from '@/auth/presenter/Auth.module.scss';
 import Meta from '@/core/utils/meta/Meta';
 import AuthFields from '@/auth/presenter/AuthFields';
@@ -16,6 +15,7 @@ import Button from '@/core/presenter/ui/Button/Button';
 import P from '@/core/presenter/ui/P/P';
 import SendUsIcon from './sendUs.svg';
 import Link from 'next/link';
+import { IAuthInput } from '../model/auth.interface';
 
 const Auth: FC = () => {
   useAuthRedirect();
@@ -45,17 +45,18 @@ const Auth: FC = () => {
         .catch((e) => {
           toastError(e, 'Ошибка входа');
         });
-    } else if (type === 'register') {
-      register(data)
-        .unwrap()
-        .then((d) => {
-          setAuthData(d);
-          toast.success('Вы успешно зарегистрированы!');
-        })
-        .catch((e) => {
-          toastError(e, 'Ошибка регистрации');
-        });
-    }
+    } 
+    // else if (type === 'register') {
+    //   register(data)
+    //     .unwrap()
+    //     .then((d) => {
+    //       setAuthData(d);
+    //       toast.success('Вы успешно зарегистрированы!');
+    //     })
+    //     .catch((e) => {
+    //       toastError(e, 'Ошибка регистрации');
+    //     });
+    // }
     // reset()
   };
 

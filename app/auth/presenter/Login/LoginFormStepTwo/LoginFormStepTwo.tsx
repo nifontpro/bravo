@@ -29,16 +29,16 @@ const LoginFormStepTwo = ({
   const [registerStepTwo] = authApi.useRegisterStepTwoMutation();
   const { setAuthData } = useSetAuthData();
 
-  useEffect(() => {
-    setValue('email', email);
-  }, [email]);
-
   const {
     handleSubmit,
     register,
     formState: { errors },
     setValue,
   } = useForm<{ code: string; email: string }>({ mode: 'onChange' });
+
+  useEffect(() => {
+    setValue('email', email);
+  }, [email, setValue]);
 
   const onSubmit: SubmitHandler<{
     code: string;
