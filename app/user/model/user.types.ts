@@ -34,6 +34,8 @@ export interface IUserCreate
    */
 
   test?: boolean;
+  file: FileList
+  password?: string
 }
 
 /**

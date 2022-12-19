@@ -4,5 +4,5 @@ export type PProps = DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTM
     children?: ReactNode;
     size?: 'xs' | 's' | 'm' | 'l' | 'xl';
     fontstyle?: 'thin' | 'bold';
-    color?: 'gray' | 'white';
+    color?: 'gray' | 'white' | 'gray96' | 'black';
 }

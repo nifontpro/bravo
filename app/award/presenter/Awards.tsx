@@ -16,10 +16,15 @@ import { useRouter } from 'next/router';
 import { useAward } from './useAward';
 import { useAuthState } from '@/auth/data/auth.slice';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import P from '@/core/presenter/ui/P/P';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { awardsFull } = useAward('');
   const { user: currentUser } = useAuthState();
+
+  let allAwards = awardsFull.filter((award) => award.state == 'AWARD');
+  let allNominee = awardsFull.filter((award) => award.state == 'NOMINEE');
 
   const { push } = useRouter();
 
@@ -49,43 +54,60 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   return (
     <Meta title='Медали'>
       <div {...props} className={styles.wrapper}>
-        {currentUser?.role == 'user' ? (
-          <Htag
-            tag='h2'
-            className={styles.headTitle}
-          >{`Награды`}</Htag>
-        ) : (
-          <Htag
-            tag='h2'
-            className={styles.headTitle}
-          >{`Награды компании ${company.name}`}</Htag>
-        )}
+        <Htag tag='h2' className={styles.headTitle}>{`Награды`}</Htag>
 
         <div className={styles.header}>
-          <ButtonRadio
+          <Htag
+            tag='h3'
+            color='gray'
             onClick={() => setActive('')}
             className={cn(styles.all, {
               [styles.active]: active == '',
             })}
           >
             Все
-          </ButtonRadio>
-          <ButtonRadio
+            <P
+              size='s'
+              color={active == '' ? 'black' : 'gray96'}
+              className={styles.awardsCount}
+            >
+              {awardsFull.length}
+            </P>
+          </Htag>
+          <Htag
+            tag='h3'
+            color='gray'
             onClick={() => setActive('AWARD')}
             className={cn(styles.award, {
               [styles.active]: active == 'AWARD',
             })}
           >
             Награды
-          </ButtonRadio>
-          <ButtonRadio
+            <P
+              size='s'
+              color={active == 'AWARD' ? 'black' : 'gray96'}
+              className={styles.awardsCount}
+            >
+              {allAwards.length}
+            </P>
+          </Htag>
+          <Htag
+            tag='h3'
+            color='gray'
             onClick={() => setActive('NOMINEE')}
             className={cn(styles.nominee, {
               [styles.active]: active == 'NOMINEE',
             })}
           >
             Номинации
-          </ButtonRadio>
+            <P
+              size='s'
+              color={active == 'NOMINEE' ? 'black' : 'gray96'}
+              className={styles.awardsCount}
+            >
+              {allNominee.length}
+            </P>
+          </Htag>
           <SortButton
             state={state}
             onClick={() => (state == 1 ? setState(-1) : setState(1))}
@@ -95,14 +117,14 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
           </SortButton>
 
           <AuthComponent minRole={'director'}>
-            <Button
+            <ButtonCircleIcon
               onClick={() => push(getAwardCreateUrl())}
-              appearance='blackWhite'
-              size='m'
-              className={styles.btn}
+              appearance='black'
+              icon='plus'
+              className='font-bold'
             >
-              +&nbsp;&nbsp;&nbsp;Создать
-            </Button>
+              Создать награду
+            </ButtonCircleIcon>
           </AuthComponent>
         </div>
 

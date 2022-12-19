@@ -5,12 +5,26 @@
   .header {
     display: grid;
     grid-template-columns: [start] auto auto auto [spaceStart] 1fr [spaceEnd] auto auto [end];
-    gap: 20px;
+    gap: 30px;
     align-items: center;
     margin-bottom: 60px;
 
+    .all,
+    .award,
+    .nominee {
+      display: flex;
+      align-items: flex-start;
+      cursor: pointer;
+
+      .awardsCount {
+        margin-top: 5px;
+        margin-left: 10px;
+      }
+    }
+
     .all {
       grid-column: start / 2;
+
     }
 
     .award {
@@ -32,8 +46,8 @@
     }
 
     .active {
-      // border: 1px solid var(--gray96);
-      background: var(--white);
+      cursor: pointer;
+      color: var(--gray-dark);
     }
   }
 

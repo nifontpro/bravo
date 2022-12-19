@@ -1,7 +1,7 @@
 .p {
   font-weight: 700;
   margin: 0;
-  color: var(--gray-dark)
+  color: var(--gray-dark);
 }
 
 .xs {
@@ -39,9 +39,17 @@
 }
 
 .gray {
-opacity: 0.5;
+  opacity: 0.5;
+}
+
+.gray96 {
+  color: var(--gray96);
+}
+
+.black {
+  color: var(--gray-dark);
 }
 
 .white {
   color: var(--white);
-  }
+}

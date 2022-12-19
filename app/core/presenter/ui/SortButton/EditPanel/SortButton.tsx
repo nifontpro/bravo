@@ -2,7 +2,7 @@
 import styles from './SortButton.module.scss'
 import cn from 'classnames';
 import { SortButtonProps } from './SortButton.props';
-import SortIcon from './sort.svg'
+import SortIcon from '@/core/presenter/images/sort.svg'
 
 const SortButton = ({
   state,
