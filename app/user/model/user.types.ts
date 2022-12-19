@@ -26,7 +26,15 @@ export interface IUser {
 
 export interface IUserCreate
   extends Omit<IUser, 'id' | 'imageUrl' | 'imageKey' | 'images'> {
-  // password: string;
+
+  /**
+   * Параметр для режима разработки:
+   * В тестовом режиме, если параметр true, пароль не генерируется, а имеет значение "testPsw",
+   * в противном случае, или если параметр отсутствует сгенерированный пароль
+   * отправляется на указанную почту сотрудника
+    */
+
+  test?: boolean
 }
 
 /**
