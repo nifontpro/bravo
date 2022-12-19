@@ -15,6 +15,7 @@ const Main = ({ className, ...props }: MainProps): JSX.Element => {
   // const { usersCountAwardsOnDepCompany } = useMyUser('');
   // const { usersWithAwardsUnion: users } = useMyUser('');
 
+
   return (
     <Meta title='Главная'>
       <div {...props} className={styles.wrapper}>
