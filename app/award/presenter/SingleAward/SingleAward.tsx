@@ -26,7 +26,10 @@ const SingleAward = ({
   // console.log(award);
   if (award.state == 'AWARD' || award.state == 'NONE') {
     return (
-      <div {...props} className={cn(styles.wrapper, className)}>
+      <div
+        {...props}
+        className={cn(styles.wrapper, styles.wrapperAward, className)}
+      >
         <div className={styles.img}>
           <ImageDefault
             src={award.imageUrl}
@@ -37,7 +40,7 @@ const SingleAward = ({
             className='rounded-full'
           />
         </div>
-        <P size='m' className={styles.name}>
+        <P size='m' color='white' className={styles.name}>
           {award.name}
         </P>
         <CountUsersPreview
@@ -49,7 +52,11 @@ const SingleAward = ({
     );
   } else if (award.endDate != undefined) {
     return (
-      <div {...props} className={cn(styles.wrapper, className)}>
+      <div
+        {...props}
+        className={cn(styles.wrapper, styles.wrapperNominee, className)}
+      >
+        <div className={styles.nominee}>Номинация</div>
         <div className={styles.imgNominee}>
           <ImageDefault
             src={award.imageUrl}
@@ -60,20 +67,16 @@ const SingleAward = ({
             className='rounded-full'
           />
         </div>
-        <div className={styles.nominee}>Номинация</div>
-        <P size='m' className={styles.name}>
+
+        <P size='m' color='white' className={styles.name}>
           {award.name}
         </P>
-        <P size='s' color='gray' fontstyle='thin'>
-          Осталось
-          <ButtonIcon className='ml-[10px]' appearance='gray'>
-            {Math.floor(
-              (award.endDate - currentDate) / 1000 / 60 / 60 / 24
-            )}{' '}
+        <P size='xs' color='gray96' fontstyle='thin' className={styles.date}>
+          Награждение через
+          <ButtonIcon className={styles.btnIcon} appearance='whiteBlack'>
+            {Math.floor((award.endDate - currentDate) / 1000 / 60 / 60 / 24)}{' '}
             {declOfNum(
-              Math.floor(
-                (award.endDate - currentDate) / 1000 / 60 / 60 / 24
-              ),
+              Math.floor((award.endDate - currentDate) / 1000 / 60 / 60 / 24),
               ['день', 'дня', 'дней']
             )}
           </ButtonIcon>
