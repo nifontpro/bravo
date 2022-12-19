@@ -64,7 +64,7 @@ const MainAwars = ({
                 Лучший отдел
               </P>
               <P size='m' className={styles.countAwardsTitle}>
-                {awardsOnCompanyGroupDep[0].id.name}
+                {awardsOnCompanyGroupDep[0] && awardsOnCompanyGroupDep[0].id.name}
               </P>
             </div>
           </div>
