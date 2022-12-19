@@ -20,6 +20,7 @@ const CurrentUser = ({
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <div key={uniqid()} className={styles.userWrapper}>
+        <P size='s' fontstyle='thin' color='white' className={styles.numberOfRating}>#6</P>
         <div className={styles.img}>
           <ImageDefault
             src={currentUser?.imageUrl}
