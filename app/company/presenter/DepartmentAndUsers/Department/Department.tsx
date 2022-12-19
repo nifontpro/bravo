@@ -8,7 +8,7 @@ const Department: FC<{ company: ICompany }> =({ company }) => {
 
 	// const {currentCompany} = useCompanyState()
 
-	return <AuthComponent minRole={"admin"}>
+	return <AuthComponent minRole={"user"}>
 		{company ?
 			<Departments company={company}/>
 			:

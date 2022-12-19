@@ -33,7 +33,7 @@ const MenuContainer: FC = () => {
 	}
 
 	return (
-		<div>
+		<div className='sticky top-10'>
 			<Menu menu={menu}/>
 			{/* <Menu menu={userMenu}/> */}
 		</div>

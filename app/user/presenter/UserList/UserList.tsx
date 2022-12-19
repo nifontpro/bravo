@@ -8,6 +8,7 @@ import P from '@/core/presenter/ui/P/P';
 import { useUserAdmin } from '../admin/useUserAdmin';
 import { useRouter } from 'next/router';
 import { getUserEditUrl } from '@/core/config/api.config';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const UserList = ({
   user,
@@ -15,9 +16,8 @@ const UserList = ({
   children,
   ...props
 }: UserListProps): JSX.Element => {
-
-  const { push } = useRouter()
-	const {deleteAsync} = useUserAdmin()
+  const { push } = useRouter();
+  const { deleteAsync } = useUserAdmin();
 
   return (
     <div className={cn(className, styles.container)} {...props}>
@@ -27,16 +27,18 @@ const UserList = ({
       ) : (
         <P className={styles.department}>{user.departmentName}</P>
       )}
-      <div className={styles.editPanel} {...props}>
-        <EditIcon
-          onClick={() => push(getUserEditUrl(`/${user.id}`))}
-          className='cursor-pointer'
-        />
-        <RemoveIcon
-          onClick={() => deleteAsync(user.id)}
-          className='ml-[5px] cursor-pointer'
-        />
-      </div>
+      <AuthComponent minRole={'director'}>
+        <div className={styles.editPanel} {...props}>
+          <EditIcon
+            onClick={() => push(getUserEditUrl(`/${user.id}`))}
+            className='cursor-pointer'
+          />
+          <RemoveIcon
+            onClick={() => deleteAsync(user.id)}
+            className='ml-[5px] cursor-pointer'
+          />
+        </div>
+      </AuthComponent>
     </div>
   );
 };

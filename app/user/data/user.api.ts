@@ -152,7 +152,7 @@ export const userApi = createApi({
 		/**
  		 * Обновление пароля сотрудника
  		 */
-		updatePassword: build.mutation<void, { userId: string, password: string, newPassword: string }>({
+		updatePassword: build.mutation<void, { userId: string, password: string, newPassword: string, test?: boolean }>({
 			query: (body) => ({
 				method: 'PUT',
 				url: getUserUrl('/password'),

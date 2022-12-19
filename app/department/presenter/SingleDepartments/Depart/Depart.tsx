@@ -13,6 +13,7 @@ import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
 import { IUser } from '@/user/model/user.types';
 import { getDepartmentEditUrl } from '@/core/config/api.config';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const Depart = ({
   data,
@@ -24,11 +25,11 @@ const Depart = ({
     departmentId: data.id,
     filter: '',
   });
-//   const { data: countAwards } = userApi.useGetAwardCountByDepartmentQuery(data.id,);
-// console.log(`Кол медалей в отедле ${data.name} ${countAwards?.awards}`)
-// console.log(`Кол номинаций в отедле ${data.name} ${countAwards?.nominee}`)
-// console.log(`Кол всего в отедле ${data.name} ${countAwards?.total}`)
-// console.log(`Кол всего в отедле ${data.name} ${countAwards?.total}`)
+  //   const { data: countAwards } = userApi.useGetAwardCountByDepartmentQuery(data.id,);
+  // console.log(`Кол медалей в отедле ${data.name} ${countAwards?.awards}`)
+  // console.log(`Кол номинаций в отедле ${data.name} ${countAwards?.nominee}`)
+  // console.log(`Кол всего в отедле ${data.name} ${countAwards?.total}`)
+  // console.log(`Кол всего в отедле ${data.name} ${countAwards?.total}`)
 
   // let arrUser: IUser[] = []
   // usersInDepartment?.forEach((item) => {
@@ -56,18 +57,20 @@ const Depart = ({
       <div className={styles.header}>
         <div className={styles.title}>
           <Htag tag='h3'>{data.name}</Htag>
-          <ButtonIcon
-            onClick={() => setVisible(!visible)}
-            icon='dots'
-            appearance='transparent'
-          /> 
-          <EditPanel
-            getUrl={getDepartmentEditUrl}
-            onMouseLeave={() => setVisible(!visible)}
-            id={data.id}
-            deleteAsync={() => deleteAsync(data.id)}
-            visible={visible}
-          />
+          <AuthComponent minRole={'director'}>
+            <ButtonIcon
+              onClick={() => setVisible(!visible)}
+              icon='dots'
+              appearance='transparent'
+            />
+            <EditPanel
+              getUrl={getDepartmentEditUrl}
+              onMouseLeave={() => setVisible(!visible)}
+              id={data.id}
+              deleteAsync={() => deleteAsync(data.id)}
+              visible={visible}
+            />
+          </AuthComponent>
         </div>
         <P size='m' className={styles.description}>
           {data.description}
