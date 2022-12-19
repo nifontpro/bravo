@@ -8,7 +8,7 @@ import {IUserAwardCount, IUserAwardsCountDep} from '../model/count.types';
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['User', 'Reward', 'Count', 'Award'],
+	tagTypes: ['User', 'Count', 'Award', 'None'],
 	endpoints: (build) => ({
 
 		//Получить всех сотрудников по отделу
@@ -149,6 +149,18 @@ export const userApi = createApi({
 			invalidatesTags: ['User']
 		}),
 
+		/**
+ 		 * Обновление пароля сотрудника
+ 		 */
+		updatePassword: build.mutation<void, { userId: string, password: string, newPassword: string }>({
+			query: (body) => ({
+				method: 'PUT',
+				url: getUserUrl('/password'),
+				body: body
+			}),
+			invalidatesTags: ['None']
+		}),
+		
 		getCountByCompany: build.query<number, string>({
 			query: (companyId) => ({
 				method: 'POST',
