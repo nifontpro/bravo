@@ -3,7 +3,7 @@ import { useCompanyState } from '@/company/data/company.slice';
 import { useDepartmentState } from '@/department/data/department.slice';
 import { useMemo } from 'react';
 import { IUser, IUserAwards, IUserAwardsUnion } from '@/user/model/user.types';
-import { IUserAwardCount } from '../model/count.types';
+import { IUserAwardCount, IUserAwardsCountDep } from '../model/count.types';
 
 export const useMyUser = (filter: string) => {
   const { currentCompany } = useCompanyState();
@@ -36,7 +36,19 @@ export const useMyUser = (filter: string) => {
       companyId: currentCompany != null ? currentCompany.id : '',
       filter,
     });
-    
+
+  // Сотрудник по ID
+  // const {
+  //   data: userWithId,
+  //   isLoading,
+  //   isSuccess: isGetSuccess,
+  // } = userApi.useGetByIdQuery(filter);
+
+  // Получить информацию о награжденных сотрудниках в компании, с группировкой по отделам
+  const { data: depCountAwardsOnDepCompany } =
+    userApi.useGetAwardCountByCompanyDepGroupQuery(
+      currentCompany != null ? currentCompany.id : ''
+    );
 
   // users = depUsers || [];
   // usersWithAwards = depUserWithAwards || [];
@@ -49,14 +61,17 @@ export const useMyUser = (filter: string) => {
 
   return useMemo(() => {
     let users: IUser[] = depUsers || [];
+    // let userId: IUser = userWithId || undefined;
     let usersWithAwards: IUserAwards[] = depUserWithAwards || [];
     let usersWithAwardsUnion: IUserAwardsUnion[] = depUserWithAwardsUnion || [];
+    let usersCountAwardsOnDepCompany: IUserAwardsCountDep[] = depCountAwardsOnDepCompany || [];
 
     return {
       // isLoading,
       users,
       usersWithAwards,
       usersWithAwardsUnion,
+      usersCountAwardsOnDepCompany,
     };
-  }, [depUsers, depUserWithAwards, depUserWithAwardsUnion]);
+  }, [depUsers, depUserWithAwards, depUserWithAwardsUnion, depCountAwardsOnDepCompany]);
 };

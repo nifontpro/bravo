@@ -7,13 +7,14 @@ import P from '@/core/presenter/ui/P/P';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
 import { useState } from 'react';
-import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
+// import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
 import { useCompanyAdmin } from '../admin/useCompanyAdmin';
-import { useMyUser } from '@/user/presenter/useMyUsers';
+// import { useMyUser } from '@/user/presenter/useMyUsers';
 import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
-import GpsIcon from './gps.svg'
+import GpsIcon from './gps.svg';
 import { getCompanyEditUrl, getCompanyUrl } from '@/core/config/api.config';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const TitleSingleCompany = ({
   company,
@@ -47,22 +48,24 @@ const TitleSingleCompany = ({
           <Htag tag='h1' className={styles.header}>
             {company.name}
           </Htag>
-          <ButtonCircleIcon
-            onClick={() => setVisible(!visible)}
-            icon='dots'
-            appearance='transparent'
-          />
-          <EditPanel
-            getUrl={getCompanyEditUrl}
-            onMouseLeave={() => setVisible(!visible)}
-            id={company.id}
-            deleteAsync={deleteAsync}
-            visible={visible}
-          />
+          <AuthComponent minRole={'director'}>
+            <ButtonCircleIcon
+              onClick={() => setVisible(!visible)}
+              icon='dots'
+              appearance='transparent'
+            />
+            <EditPanel
+              getUrl={getCompanyEditUrl}
+              onMouseLeave={() => setVisible(!visible)}
+              id={company.id}
+              deleteAsync={deleteAsync}
+              visible={visible}
+            />
+          </AuthComponent>
         </div>
 
         <div className={styles.address}>
-          <GpsIcon className='mr-[10px]'/>
+          <GpsIcon className='mr-[10px]' />
           <P size='s' className={styles.description}>
             {company.address}
           </P>
@@ -76,7 +79,11 @@ const TitleSingleCompany = ({
           <a href='mailto:hello@familyagency.ru'>{company.email}</a>
         </div>
         <div className={styles.colUsers}>
-          <CountUsersPreview appearanceBtn='black' usersInDepartment={users} className={styles.default}/>
+          <CountUsersPreview
+            appearanceBtn='black'
+            usersInDepartment={users}
+            className={styles.default}
+          />
         </div>
       </div>
     </div>

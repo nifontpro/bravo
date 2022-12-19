@@ -6,6 +6,7 @@ import P from '@/core/presenter/ui/P/P';
 import { timeConverterUser } from '@/core/utils/timeConverterUser';
 import { awardApi } from 'award/data/award.api';
 import { toast } from 'react-toastify';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const CardUserAwarded = ({
   award,
@@ -58,7 +59,11 @@ const CardUserAwarded = ({
       <P size='s' fontstyle='thin' color='gray' className={styles.date}>
         {convertDate}
       </P>
-      <div onClick={handleRemove} className={styles.remove}>Удалить</div>
+      <AuthComponent minRole={'director'}>
+        <div onClick={handleRemove} className={styles.remove}>
+          Удалить
+        </div>
+      </AuthComponent>
     </div>
   );
 };

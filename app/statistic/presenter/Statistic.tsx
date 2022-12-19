@@ -19,10 +19,11 @@ const Statistic = ({
   className,
   ...props
 }: StatisticProps): JSX.Element => {
-  const { awardsLight } = useAward('');
-  // const { users } = useMyUser('');
+  const { awardsLight, awardsFullCompany } = useAward('');
+  const { usersCountAwardsOnDepCompany } = useMyUser('');
   const { usersWithAwardsUnion: users } = useMyUser('');
-  // console.log(users)
+
+  // console.log(usersCountAwardsOnDepCompany)
 
   const [departSort, setDepartSort] = useState<string>('');
 
@@ -52,7 +53,7 @@ const Statistic = ({
             awardsLight={awardsLight}
           />
 
-          <StatisticDepartments companyId={company.id} className={styles.countDepartment}/>
+          <StatisticDepartments usersCountAwardsOnDepCompany={usersCountAwardsOnDepCompany} className={styles.countDepartment}/>
 
           <StatisticUsersGender users={users} className={styles.usersGender} />
 

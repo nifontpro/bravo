@@ -14,6 +14,7 @@ import RemoveIcon from './removeUser.svg';
 // import { awardApi } from 'award/data/award.api';
 // import { toast } from 'react-toastify';
 import { useCardNominee } from 'award/presenter/Award/AwardNominee/CardNominee/useCardNominee';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const CardNomineeUser = ({
   userId,
@@ -21,7 +22,7 @@ const CardNomineeUser = ({
   className,
   ...props
 }: CardNomineeUserProps): JSX.Element => {
-  let awardId = award.id
+  let awardId = award.id;
 
   let convertDate = timeConverterUser(award?.awardDate);
   const { handleReward, handleRemove } = useCardNominee(userId, awardId);
@@ -49,26 +50,28 @@ const CardNomineeUser = ({
           Завершена {convertDate}
         </P>
       ) : (
-        <div className={styles.buttons}>
-          {award.userState === 'NOMINEE' && (
-            <Button onClick={handleReward} size='m' appearance='blackWhite'>
-              Наградить
-            </Button>
-          )}
-          {award.userState === 'AWARD' && (
-            <Button
-              size='m'
-              appearance='blackWhite'
-              className={styles.btnDefault}
-            >
-              Буден награжден
-            </Button>
-          )}
-          <RemoveIcon
-            onClick={handleRemove}
-            className='ml-[5px] cursor-pointer'
-          />
-        </div>
+        <AuthComponent minRole={'director'}>
+          <div className={styles.buttons}>
+            {award.userState === 'NOMINEE' && (
+              <Button onClick={handleReward} size='m' appearance='blackWhite'>
+                Наградить
+              </Button>
+            )}
+            {award.userState === 'AWARD' && (
+              <Button
+                size='m'
+                appearance='blackWhite'
+                className={styles.btnDefault}
+              >
+                Буден награжден
+              </Button>
+            )}
+            <RemoveIcon
+              onClick={handleRemove}
+              className='ml-[5px] cursor-pointer'
+            />
+          </div>
+        </AuthComponent>
       )}
     </div>
   );

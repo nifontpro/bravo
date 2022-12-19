@@ -10,14 +10,13 @@ import ModalWindowWithAddUsers from '@/core/presenter/ui/ModalWindowWithAddUsers
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import { useState } from 'react';
 import { IUser } from '@/user/model/user.types';
-
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const AwardWasAwarded = ({
   award,
   className,
   ...props
 }: AwardWasAwardedProps): JSX.Element => {
-
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
   const { users } = useMyUser('');
@@ -37,20 +36,24 @@ const AwardWasAwarded = ({
       <div className={styles.content}>
         <div className={styles.header}>
           <Htag tag='h3'>Награжденные</Htag>
-          <ButtonCircleIcon
-            onClick={() => setVisibleModal(true)}
-            appearance='black'
-            icon='plus'
-            className='font-bold'
-          >
-            Наградить еще
-          </ButtonCircleIcon>
+          <AuthComponent minRole={'director'}>
+            <ButtonCircleIcon
+              onClick={() => setVisibleModal(true)}
+              appearance='black'
+              icon='plus'
+              className='font-bold'
+            >
+              Наградить еще
+            </ButtonCircleIcon>
+          </AuthComponent>
         </div>
         {award.relateUsers.findIndex((item) => item.state === 'AWARD') >= 0 ? (
           <div className={styles.usersAwarded}>
             {award.relateUsers.map((item) => {
               if (item.state === 'AWARD') {
-                return <CardUserAwarded award={award} user={item} key={uniqid()}/>;
+                return (
+                  <CardUserAwarded award={award} user={item} key={uniqid()} />
+                );
               }
             })}
           </div>

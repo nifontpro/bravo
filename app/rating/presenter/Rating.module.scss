@@ -1,4 +1,5 @@
 .wrapper {
+
   .header {
     margin-top: 40px;
     margin-bottom: 65px;
@@ -23,6 +24,12 @@
     }
   }
 
+  .headerUser {
+    .selectDepartment {
+      grid-column: start / endCompany;
+    }
+  }
+
   .usersListRating {
     background: var(--white);
     padding: 75px;
@@ -30,7 +37,8 @@
     margin-bottom: 50px;
 
     .search {
-        margin-bottom: 50px;
-      }
+      margin-bottom: 50px;
+    }
   }
+
 }

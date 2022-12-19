@@ -15,6 +15,7 @@ export const getDepartmentEditUrl = (string: string = '') => `/department/edit${
 export const getUserUrl = (string: string = '') => `/user${string}`
 export const getUserCreateUrl = (string: string = '') => `/user/create${string}`
 export const getUserEditUrl = (string: string = '') => `/user/edit${string}`
+export const getUserEditPasswordUrl = (string: string = '') => `/user/edit_password${string}`
 export const getMedalUrl = (string: string = '') => `/medal${string}`
 export const getRewardUrl = (string: string = '') => `/reward${string}`
 export const getAwardUrl = (string: string = '') => `/award${string}` 

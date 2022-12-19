@@ -14,9 +14,12 @@ import Link from 'next/link';
 import { getAwardCreateUrl } from '@/core/config/api.config';
 import { useRouter } from 'next/router';
 import { useAward } from './useAward';
+import { useAuthState } from '@/auth/data/auth.slice';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { awardsFull } = useAward('');
+  const { user: currentUser } = useAuthState();
 
   const { push } = useRouter();
 
@@ -46,10 +49,18 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   return (
     <Meta title='Медали'>
       <div {...props} className={styles.wrapper}>
-        <Htag
-          tag='h2'
-          className={styles.headTitle}
-        >{`Награды компании ${company.name}`}</Htag>
+        {currentUser?.role == 'user' ? (
+          <Htag
+            tag='h2'
+            className={styles.headTitle}
+          >{`Награды`}</Htag>
+        ) : (
+          <Htag
+            tag='h2'
+            className={styles.headTitle}
+          >{`Награды компании ${company.name}`}</Htag>
+        )}
+
         <div className={styles.header}>
           <ButtonRadio
             onClick={() => setActive('')}
@@ -83,14 +94,16 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             Сначала новые
           </SortButton>
 
-          <Button
-            onClick={() => push(getAwardCreateUrl())}
-            appearance='blackWhite'
-            size='m'
-            className={styles.btn}
-          >
-            +&nbsp;&nbsp;&nbsp;Создать
-          </Button>
+          <AuthComponent minRole={'director'}>
+            <Button
+              onClick={() => push(getAwardCreateUrl())}
+              appearance='blackWhite'
+              size='m'
+              className={styles.btn}
+            >
+              +&nbsp;&nbsp;&nbsp;Создать
+            </Button>
+          </AuthComponent>
         </div>
 
         <div className={styles.cards}>

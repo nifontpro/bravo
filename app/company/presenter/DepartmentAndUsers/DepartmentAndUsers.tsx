@@ -8,13 +8,17 @@ import ButtonCircleIcon from '../../../core/presenter/ui/ButtonCircleIcon/Button
 import { ICompany } from '@/company/model/company.types';
 import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
 import { useRouter } from 'next/router';
-import { getDepartmentCreateUrl, getUserCreateUrl } from '@/core/config/api.config';
+import {
+  getDepartmentCreateUrl,
+  getUserCreateUrl,
+} from '@/core/config/api.config';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
   const { push } = useRouter();
   const [toggle, setToogle] = useState<boolean>(false);
 
-  return ( 
+  return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <div className={styles.header}>
@@ -38,30 +42,32 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
               Сотрудники
             </Htag>
           </div>
-          <div className={styles.new}>
-            <div className={styles.newDepartment}>
-              <ButtonCircleIcon
-                onClick={() => push(getDepartmentCreateUrl())}
-                icon='plus'
-                appearance='black'
-              />
-              Отдел
+          <AuthComponent minRole={'director'}>
+            <div className={styles.new}>
+              <div className={styles.newDepartment}>
+                <ButtonCircleIcon
+                  onClick={() => push(getDepartmentCreateUrl())}
+                  icon='plus'
+                  appearance='black'
+                />
+                Отдел
+              </div>
+              <div className={styles.newUser}>
+                <ButtonCircleIcon
+                  onClick={() => push(getUserCreateUrl())}
+                  icon='plus'
+                  appearance='black'
+                />
+                Сотрудник
+              </div>
             </div>
-            <div className={styles.newUser}>
-              <ButtonCircleIcon
-                onClick={() => push(getUserCreateUrl())}
-                icon='plus'
-                appearance='black'
-              />
-              Сотрудник
-            </div>
-          </div>
+          </AuthComponent>
         </div>
         {toggle == false && <Department company={company} />}
         {toggle == true && <User />}
       </div>
     </div>
-  ); 
+  );
 };
 
 export default DepartmentAndUsers;
