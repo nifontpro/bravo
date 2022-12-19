@@ -34,7 +34,7 @@ const UserListRating = ({
                 objectFit='cover'
                 className='rounded-[10px]'
               />
-            </div>
+            </div> 
             <div
               onClick={() => push(getUserUrl(`/${user.id}`))}
               className={styles.user}

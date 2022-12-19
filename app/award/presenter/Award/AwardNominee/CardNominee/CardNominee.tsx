@@ -2,17 +2,10 @@ import styles from './CardNominee.module.scss';
 import { CardNomineeProps } from './CardNominee.props';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
-import { timeConverter } from '@/core/utils/timeConverter';
 import P from '@/core/presenter/ui/P/P';
-import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
-import Htag from '@/core/presenter/ui/Htag/Htag';
-import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
-import { useState } from 'react';
 import { timeConverterUser } from '@/core/utils/timeConverterUser';
 import Button from '../../../../../core/presenter/ui/Button/Button';
-import RemoveIcon from './removeUser.svg';
-import { awardApi } from 'award/data/award.api';
-import { toast } from 'react-toastify';
+import RemoveIcon from '@/core/presenter/images/removeUser.svg';
 import { useCardNominee } from './useCardNominee';
 
 const CardNominee = ({

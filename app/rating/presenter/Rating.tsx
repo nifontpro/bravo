@@ -17,11 +17,20 @@ import SelectCustom from '@/core/presenter/ui/SelectCustom/SelectCustom';
 import { useDepartment } from '@/department/presenter/useDepartment';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
+import { useAuthState } from '@/auth/data/auth.slice';
+import CurrentUser from './CurrentUser/CurrentUser';
 
 const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
+  const { user } = useAuthState();
   const [state, setState] = useState<1 | -1>(1);
 
   const { usersWithAwards: users } = useMyUser('');
+
+  let currentUser = users.find((item) => {
+    if (item.id != undefined) {
+      return item.id == user?.id;
+    }
+  });
 
   const { departmentInCompany: departments } = useDepartment('');
   let arrDeparts: IOption[] = [];
@@ -69,46 +78,92 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
 
   // console.log(users);
 
-  return (
-    <Meta title='Рейтинг'>
-      <div {...props} className={styles.wrapper}>
-        <Htag tag='h1'>Рейтинг</Htag>
-        <div className={styles.header}>
-          <SelectCustom
-            placeholder={company.name}
-            className={styles.selectCompany}
-            options={[]}
-            setDepartSort={setDepartSort}
-          />
-          <SelectCustom
-            placeholder={'Все отделы'}
-            className={styles.selectDepartment}
-            options={arrDeparts}
-            setDepartSort={setDepartSort}
-          />
-          <SortButton
-            state={state}
-            onClick={() => (state == 1 ? setState(-1) : setState(1))}
-            className={styles.sort}
-          >
-            По количеству наград
-          </SortButton>
-          <ButtonToggle setSortAward={setSortAward} className={styles.toogle} />
+  if (user?.role == 'user') {
+    return (
+      <Meta title='Рейтинг'>
+        <div {...props} className={styles.wrapper}>
+          <Htag tag='h1'>Рейтинг</Htag>
+          <div className={cn(styles.header, styles.headerUser)}>
+            <SelectCustom
+              placeholder={'Все отделы'}
+              className={styles.selectDepartment}
+              options={arrDeparts}
+              setDepartSort={setDepartSort}
+            />
+            <SortButton
+              state={state}
+              onClick={() => (state == 1 ? setState(-1) : setState(1))}
+              className={styles.sort}
+            >
+              По количеству наград
+            </SortButton>
+            <ButtonToggle
+              setSortAward={setSortAward}
+              className={styles.toogle}
+            />
+          </div>
+
+          {currentUser && <CurrentUser currentUser={currentUser}/>}
+
+          <div className={styles.usersListRating}>
+            <Search
+              onChange={handleChange}
+              color='white'
+              search={true}
+              button={false}
+              placeholder='Сотрудник сотрудника ...'
+              className={styles.search}
+            />
+            <UserListRating users={filteredValue} />
+          </div>
         </div>
-        <div className={styles.usersListRating}>
-          <Search
-            onChange={handleChange}
-            color='white'
-            search={true}
-            button={false}
-            placeholder='Сотрудник сотрудника ...'
-            className={styles.search}
-          />
-          <UserListRating users={filteredValue} />
+      </Meta>
+    );
+  } else {
+    return (
+      <Meta title='Рейтинг'>
+        <div {...props} className={styles.wrapper}>
+          <Htag tag='h1'>Рейтинг</Htag>
+          <div className={styles.header}>
+            <SelectCustom
+              placeholder={company.name}
+              className={styles.selectCompany}
+              options={[]}
+              setDepartSort={setDepartSort}
+            />
+            <SelectCustom
+              placeholder={'Все отделы'}
+              className={styles.selectDepartment}
+              options={arrDeparts}
+              setDepartSort={setDepartSort}
+            />
+            <SortButton
+              state={state}
+              onClick={() => (state == 1 ? setState(-1) : setState(1))}
+              className={styles.sort}
+            >
+              По количеству наград
+            </SortButton>
+            <ButtonToggle
+              setSortAward={setSortAward}
+              className={styles.toogle}
+            />
+          </div>
+          <div className={styles.usersListRating}>
+            <Search
+              onChange={handleChange}
+              color='white'
+              search={true}
+              button={false}
+              placeholder='Сотрудник сотрудника ...'
+              className={styles.search}
+            />
+            <UserListRating users={filteredValue} />
+          </div>
         </div>
-      </div>
-    </Meta>
-  );
+      </Meta>
+    );
+  }
 };
 
 export default Rating;

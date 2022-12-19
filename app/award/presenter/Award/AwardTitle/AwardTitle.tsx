@@ -12,13 +12,16 @@ import { useAwardAdmin } from '../useAwardAdmin';
 import ButtonIcon from '@/core/presenter/ui/ButtonIcon/ButtonIcon';
 import { declOfNum } from '@/core/utils/declOfNum';
 import { getAwardEditUrl } from '@/core/config/api.config';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import { useAuthState } from '@/auth/data/auth.slice';
+import Button from '@/core/presenter/ui/Button/Button';
 
 const AwardTitle = ({
-  award, 
+  award,
   className,
   ...props
 }: AwardTitleProps): JSX.Element => {
-
+  const { user: currentUser } = useAuthState();
   let convertDate = timeConverter(award.endDate);
   let currentDateNumber = +new Date();
 
@@ -46,18 +49,20 @@ const AwardTitle = ({
           <Htag tag='h1' className={styles.header}>
             {award.name}
           </Htag>
-          <ButtonCircleIcon
-            onClick={() => setVisible(!visible)}
-            icon='dots'
-            appearance='transparent'
-          />
-          <EditPanel
-            getUrl={getAwardEditUrl}
-            onMouseLeave={() => setVisible(!visible)}
-            id={award.id}
-            deleteAsync={deleteAsync}
-            visible={visible}
-          />
+          <AuthComponent minRole={'director'}>
+            <ButtonCircleIcon
+              onClick={() => setVisible(!visible)}
+              icon='dots'
+              appearance='transparent'
+            />
+            <EditPanel
+              getUrl={getAwardEditUrl}
+              onMouseLeave={() => setVisible(!visible)}
+              id={award.id}
+              deleteAsync={deleteAsync}
+              visible={visible}
+            />
+          </AuthComponent>
         </div>
 
         <P size='m' fontstyle='thin' className={styles.description}>
@@ -67,27 +72,33 @@ const AwardTitle = ({
         <P size='s' fontstyle='thin' className={styles.criteria}>
           {award.criteria}
         </P>
-        {award.state == 'AWARD' && (
-          <P size='m' className={styles.date}>
-            Награда выдана {convertDate}
-          </P>
-        )}
-        {award.state == 'NOMINEE' && award.endDate != undefined && (
-          <P size='s' color='gray' fontstyle='thin' className={styles.date}>
-          Осталось
-          <ButtonIcon className='ml-[10px]' appearance='gray'>
-            {Math.floor(
-              (award.endDate - currentDateNumber) / 1000 / 60 / 60 / 24
-            )}{' '}
-            {declOfNum(
-              Math.floor(
-                (award.endDate - currentDateNumber) / 1000 / 60 / 60 / 24
-              ),
-              ['день', 'дня', 'дней']
-            )}
-          </ButtonIcon>
-        </P>
-        )}
+        <div className={styles.date}>
+          {award.state == 'AWARD' && (
+            <P size='m'>Награда выдана {convertDate}</P>
+          )}
+        </div>
+        <div className={styles.date}>
+          {award.state == 'NOMINEE' && award.endDate != undefined && (
+            <P size='s' color='gray' fontstyle='thin'>
+              Осталось
+              <ButtonIcon className='ml-[10px]' appearance='gray'>
+                {Math.floor(
+                  (award.endDate - currentDateNumber) / 1000 / 60 / 60 / 24
+                )}{' '}
+                {declOfNum(
+                  Math.floor(
+                    (award.endDate - currentDateNumber) / 1000 / 60 / 60 / 24
+                  ),
+                  ['день', 'дня', 'дней']
+                )}
+              </ButtonIcon>
+            </P>
+          )}
+          {award.state == 'NOMINEE' && currentUser?.role == 'user' ? 
+          (
+          <Button onClick={() => console.log('Хочу участвовать')} appearance='blackWhite' size='l'>Хочу участвовать</Button>
+          ) : ''}
+        </div>
       </div>
     </div>
   );

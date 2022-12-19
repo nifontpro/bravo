@@ -1,15 +1,19 @@
 .wrapper {
+  margin-bottom: 30px;
+
   .userWrapper {
     display: grid;
     align-items: center;
     grid-template-columns: [start] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 1fr [startViewer] 200px [endViewer];
-    margin-bottom: 50px;
+    background: var(--gray-dark);
+    padding: 30px 75px;
+    border-radius: 20px;
 
     &:nth-last-child(1) {
       margin-bottom: 0px;
     }
 
-    .img { 
+    .img {
       grid-column: start / endLogo;
     }
 
@@ -26,8 +30,7 @@
       grid-column: startDepart / endDepart;
     }
 
-    .countAwards,
-    .countAwardsDisable {
+    .countAwards {
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -37,14 +40,8 @@
         margin-left: 10px;
         width: 15px;
       }
-    }
-
-    .countAwardsDisable {
-      .disabled {
-        color: var(--gray);
-      }
       > svg path {
-        fill: var(--gray);
+        fill: var(--white);
       }
     }
 
