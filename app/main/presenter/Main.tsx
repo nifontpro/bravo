@@ -11,7 +11,8 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 
 const Main = ({ className, ...props }: MainProps): JSX.Element => {
   const { awardsLight } = useAward('');
-  const { usersWithAwards: users } = useMyUser('');
+  const { usersWithAwards: users, usersCountAwardsOnDepCompany: awardsOnCompanyGroupDep } = useMyUser('');
+  // const { usersCountAwardsOnDepCompany } = useMyUser('');
   // const { usersWithAwardsUnion: users } = useMyUser('');
 
   return (
@@ -21,6 +22,7 @@ const Main = ({ className, ...props }: MainProps): JSX.Element => {
           className={styles.awards}
           awards={awardsLight}
           users={users}
+          awardsOnCompanyGroupDep={awardsOnCompanyGroupDep}
         />
         <MainUsers className={styles.users} users={users} />
         <div className={styles.nominee}>

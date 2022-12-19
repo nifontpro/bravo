@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 const MainAwars = ({
   awards,
   users,
+  awardsOnCompanyGroupDep,
   className,
   ...props
 }: MainAwarsProps): JSX.Element => {
@@ -19,6 +20,7 @@ const MainAwars = ({
   let countAll = users.length;
   let countWithAward = users.filter((user) => user.awards.length > 0).length;
   let countWithAwardPercent = Math.ceil((countWithAward * 100) / countAll);
+
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <Htag tag='h2'>Медали</Htag>
@@ -62,7 +64,7 @@ const MainAwars = ({
                 Лучший отдел
               </P>
               <P size='m' className={styles.countAwardsTitle}>
-                Бухгалтерия
+                {awardsOnCompanyGroupDep[0].id.name}
               </P>
             </div>
           </div>
