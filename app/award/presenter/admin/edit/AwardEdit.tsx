@@ -35,7 +35,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
     reset,
   } = useForm<IAwardUpdate>({ mode: 'onChange' });
 
-  const { onSubmit, changePhoto, img } =
+  const { onSubmit, changePhoto, removePhoto, img } =
     useAwardEdit(setValue);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
@@ -63,7 +63,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
             <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
               <RefreshIcon className={styles.refresh} />
             </InputPhotoRefresh>
-            <RemoveIcon className={styles.remove} />
+            <RemoveIcon onClick={removePhoto} className={styles.remove} />
           </div>
         </div>
 

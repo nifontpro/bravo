@@ -17,6 +17,7 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
   const awardId = String(query.id);
 
   const [updateImg] = awardApi.useUpdateImageMutation();
+  const [removeImg] = awardApi.useDeleteMainImageMutation();
 
   const {
     data: award,
@@ -35,7 +36,7 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
       setValue('criteria', award.criteria);
       setImg(award.imageUrl);
     }
-  }, [isGetSuccess, setValue]);
+  }, [isGetSuccess, setValue, award]);
   //   console.log(award)
 
   const onSubmit: SubmitHandler<IAwardUpdate> = async (data) => {
@@ -52,6 +53,21 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
       if (!isError) {
         toast.success('Данные награды успешно обновлены');
         await push('/award/' + award.id);
+      }
+    }
+  };
+
+  const removePhoto = async () => {
+    let isError = false;
+    if (award != undefined) {
+      await removeImg(award.id)
+        .unwrap()
+        .catch(() => {
+          isError = true;
+          toast.error('Ошибка удаления фотографии фотографии');
+        });
+      if (!isError) {
+        toast.success('Фото успешно удалено');
       }
     }
   };
@@ -88,5 +104,5 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
   //   }
   // };
 
-  return { award, onSubmit, changePhoto, isLoading, img };
+  return { award, onSubmit, changePhoto, removePhoto, isLoading, img };
 };

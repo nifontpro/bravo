@@ -55,8 +55,8 @@ const CardAwardRewarded = ({
           className='rounded-[27px]'
         />
       </div>
-      <P size='l'>{award.name}</P>
-      <P size='s' fontstyle='thin' color='gray' className={styles.date}>
+      <P size='l' color='white'>{award.name}</P>
+      <P size='s' fontstyle='thin' color='gray96' className={styles.date}>
         Выдана {convertDate}
       </P>
     </div>

@@ -2,14 +2,25 @@
   .userWrapper {
     display: grid;
     align-items: center;
-    grid-template-columns: [start] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 1fr [startViewer] 200px [endViewer];
+    grid-template-columns: [start] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 1fr [startViewer] 200px [endViewer] 50px [startArrow] auto [end];
     margin-bottom: 50px;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 20px 30px;
+    @apply duration-200;
+    &:hover {
+      background: var(--graySilver);
+
+      .arrowRight svg path {
+        stroke: var(--gray-dark);
+      }
+    }
 
     &:nth-last-child(1) {
       margin-bottom: 0px;
     }
 
-    .img { 
+    .img {
       grid-column: start / endLogo;
     }
 
@@ -100,6 +111,15 @@
       .countIconDisabled {
         background: transparent;
         border: none;
+      }
+    }
+
+    .arrowRight {
+      grid-column: startArrow / end;
+
+      svg path {
+        @apply duration-200;
+        stroke: var(--graySilver);
       }
     }
   }

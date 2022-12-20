@@ -54,7 +54,7 @@ const AwardTitle = ({
               onClick={() => setVisible(!visible)}
               icon='dots'
               appearance='transparent'
-              className={styles.dot}
+              className={styles.dots}
             />
             <EditPanel
               getUrl={getAwardEditUrl}
@@ -66,7 +66,7 @@ const AwardTitle = ({
           </AuthComponent>
         </div>
 
-        <P size='xs' fontstyle='thin' className={styles.description}>
+        <P size='xs' fontstyle='thin' type='silverBtn' className={styles.description}>
           {award.description}
         </P>
 

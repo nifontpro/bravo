@@ -1,8 +1,8 @@
 .wrapper {
-  background: var(--white);
+  background: var(--gray-dark);
   border-radius: 27px;
   padding: 55px;
-  min-width: 480px;
+  min-width: 430px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@
   }
 
   > .date{
-    margin-top: 65px;
+    margin-top: 30px;
   }
 
   .remove {
@@ -27,5 +27,6 @@
     position: absolute;
     top: 20px;
     right: 20px;
+    color: var(--white);
   }
 }

@@ -132,7 +132,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
               setDepartSort={setDepartSort}
             />
             <SelectCustom
-              placeholder={'Все отделы'}
+              placeholder={'Выбрать'}
               className={styles.selectDepartment}
               options={arrDeparts}
               setDepartSort={setDepartSort}

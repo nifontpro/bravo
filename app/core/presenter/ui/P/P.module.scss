@@ -46,10 +46,21 @@
   color: var(--gray96);
 }
 
+.graySilver {
+  color: var(--graySilver);
+}
+
 .black {
   color: var(--gray-dark);
 }
 
 .white {
   color: var(--white);
+}
+
+.silverBtn {
+  background: var(--graySilver);
+  width: fit-content;
+  padding: 3px 7px;
+  border-radius: 30px;
 }
