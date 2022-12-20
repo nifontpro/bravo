@@ -21,6 +21,9 @@ import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleI
 // import { ICompanyCreate } from '@/company/model/company.types';
 import { useCompanyEdit } from './useCompanyEdit';
 import { ICompanyUpdateRequest } from './company-edit.type';
+import InputPhotoRefresh from '@/core/presenter/ui/InputPhotoRefresh/InputPhotoRefresh';
+import RemoveIcon from '@/core/presenter/images/remove.svg';
+import RefreshIcon from '@/core/presenter/images/refresh.svg';
 
 const UserEdit: FC = () => {
   const {
@@ -56,15 +59,18 @@ const UserEdit: FC = () => {
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
             src={img}
-            width={300}
-            height={300}
+            width={400}
+            height={400}
             alt='preview image'
             objectFit='cover'
-            className='rounded-[10px]'
+            // className='rounded-[10px]'
           />
-          <InputFile onChange={changePhoto}>
-            Загрузить новое изображение
-          </InputFile>
+          <div className={styles.editPanel}>
+            <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
+              <RefreshIcon className={styles.refresh} />
+            </InputPhotoRefresh>
+            <RemoveIcon className={styles.remove} />
+          </div>
         </div>
 
         <form className={styles.form}>
@@ -110,7 +116,7 @@ const UserEdit: FC = () => {
             <Button onClick={handleClick} appearance='white' size='l'>
               Отменить
             </Button>
-            <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
+            <Button onClick={handleSubmit(onSubmit)} appearance='blackWhite' size='l' className='ml-[15px]'>
               Изменить
             </Button>
           </div>

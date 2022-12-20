@@ -112,10 +112,10 @@ const DepartmentEdit: FC = () => {
             />
 
             <div className={styles.btn}>
-              <Button onClick={handleClick} size='m' appearance='white'>
+              <Button onClick={handleClick} size='l' appearance='white'>
                 Отменить
               </Button>
-              <Button onClick={handleSubmit(onSubmit)} size='m' appearance='gray' className='ml-[15px]'>
+              <Button onClick={handleSubmit(onSubmit)} size='l' appearance='blackWhite' className='ml-[15px]'>
                 Сохранить
               </Button>
             </div>

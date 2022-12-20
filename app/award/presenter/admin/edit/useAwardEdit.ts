@@ -64,7 +64,7 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
         .unwrap()
         .catch(() => {
           isError = true;
-          toast.error('Ошибка удаления фотографии фотографии');
+          toast.error('Ошибка удаления фотографии');
         });
       if (!isError) {
         toast.success('Фото успешно удалено');

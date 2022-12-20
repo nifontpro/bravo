@@ -74,8 +74,8 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
           <Button onClick={handleClick} appearance='white' size='l'>
             Отменить
           </Button> 
-          <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
-            Добавить
+          <Button onClick={handleSubmit(onSubmit)} appearance='blackWhite' size='l' className='ml-[15px]'>
+            Сохранить
           </Button>
         </div>
       </form>

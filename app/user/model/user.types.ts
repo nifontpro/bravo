@@ -1,6 +1,6 @@
-import {TypeRoles} from "@/auth/model/auth.roles";
-import {ImageRef} from "@/core/model/image.types";
-import {IAwardLite, IAwardUnion} from "../../award/model/award.types";
+import { TypeRoles } from '@/auth/model/auth.roles';
+import { ImageRef } from '@/core/model/image.types';
+import { IAwardLite, IAwardUnion } from '../../award/model/award.types';
 
 export interface IUser {
   id: string;
@@ -26,15 +26,14 @@ export interface IUser {
 
 export interface IUserCreate
   extends Omit<IUser, 'id' | 'imageUrl' | 'imageKey' | 'images'> {
-
   /**
    * Параметр для режима разработки:
    * В тестовом режиме, если параметр true, пароль не генерируется, а имеет значение "testPsw",
    * в противном случае, или если параметр отсутствует сгенерированный пароль
    * отправляется на указанную почту сотрудника
-    */
-
-  test?: boolean
+   */
+	file: FileList
+  test?: boolean;
 }
 
 /**
@@ -42,8 +41,8 @@ export interface IUserCreate
  * (облегченная версия для списка)
  */
 export interface IUserAwards extends IUser {
-  departmentName? : string
-  awardCount: number
+  departmentName?: string;
+  awardCount: number;
   awards: IAwardLite[];
 }
 
@@ -51,7 +50,7 @@ export interface IUserAwards extends IUser {
  * Сотрудник со списком наград с объединенной детализацией
  */
 export interface IUserAwardsUnion extends IUser {
-  departmentName? : string
-  awardCount: number
-  awards: IAwardUnion[]
+  departmentName?: string;
+  awardCount: number;
+  awards: IAwardUnion[];
 }

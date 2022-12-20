@@ -35,8 +35,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
     reset,
   } = useForm<IAwardUpdate>({ mode: 'onChange' });
 
-  const { onSubmit, changePhoto, removePhoto, img } =
-    useAwardEdit(setValue);
+  const { onSubmit, changePhoto, removePhoto, img } = useAwardEdit(setValue);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -50,15 +49,18 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
       </ButtonCircleIcon>
       <div className={styles.newForm}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            // onClick={changePreviewPhoto}
-            src={img}
-            width={400}
-            height={400}
-            alt='preview image'
-            objectFit='cover'
-            // className='rounded-[10px]'
-          />
+          <div className={styles.images}>
+            <ImageDefault
+              // onClick={changePreviewPhoto}
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+              // className='rounded-[10px]'
+            />
+          </div>
+
           <div className={styles.editPanel}>
             <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
               <RefreshIcon className={styles.refresh} />
