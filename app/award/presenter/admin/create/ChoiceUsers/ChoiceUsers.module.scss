@@ -16,9 +16,10 @@
   > .searchUsers { 
     max-height: 400px;
     margin-top: 30px;
-    border-radius: 13px;
-    background: var(--gray-middle);
-    padding: 55px 60px;
+    // border-radius: 13px;
+    background: var(--white);
+    padding: 0px 60px 20px 60px;
     overflow-y: scroll;
+    border-bottom: 1px solid var(--gray)
   }
 }
