@@ -15,6 +15,7 @@ import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersP
 import GpsIcon from './gps.svg';
 import { getCompanyEditUrl, getCompanyUrl } from '@/core/config/api.config';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import { useMyUser } from '@/user/presenter/useMyUsers';
 
 const TitleSingleCompany = ({
   company,
@@ -22,10 +23,13 @@ const TitleSingleCompany = ({
   className,
   ...props
 }: TitleSingleCompanyProps): JSX.Element => {
-  const { data: users } = userApi.useGetByCompanyDepNameQuery({
-    companyId: company.id,
-  });
+  const { users } = useMyUser('')
+  // const { data: users } = userApi.useGetByCompanyDepNameQuery({
+  //   companyId: company.id,
+  // });
 
+  // console.log(users)
+ 
   const [visible, setVisible] = useState<boolean>(false);
 
   const { deleteAsync } = useCompanyAdmin();
@@ -53,6 +57,7 @@ const TitleSingleCompany = ({
               onClick={() => setVisible(!visible)}
               icon='dots'
               appearance='transparent'
+              className={styles.dots}
             />
             <EditPanel
               getUrl={getCompanyEditUrl}

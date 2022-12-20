@@ -21,7 +21,8 @@ export const useDepartment = (filter: string) => {
     let departmentInCompany: IDepartment[] = departments || [];
 
     return {
+      isLoading,
       departmentInCompany,
     };
-  }, [departments]);
+  }, [departments, isLoading]);
 };

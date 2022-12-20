@@ -6,6 +6,7 @@ import P from '../P/P';
 
 const UserPreview = ({
   user,
+  forWhat,
   children,
   className,
   ...props
@@ -28,9 +29,11 @@ const UserPreview = ({
           {user.post}
         </P>
       </div>
-      <P size='xs' fontstyle='thin' className={styles.departName}>
-        {user.departmentName}
-      </P>
+      {forWhat == 'user' && (
+        <P size='xs' fontstyle='thin' className={styles.departName}>
+          {user.departmentName}
+        </P>
+      )}
     </div>
   );
 };

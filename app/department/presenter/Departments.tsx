@@ -5,11 +5,13 @@ import Catalog from '@/core/presenter/ui/catalog/Catalog';
 import { departmentApi } from '@/department/data/department.api';
 import { ICompany } from '@/company/model/company.types';
 import SingleDepartments from './SingleDepartments/SingleDepartments';
+import { useDepartment } from './useDepartment';
 
 const Departments: FC<{ company: ICompany }> = ({ company }) => {
-  const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
-    company.id
-  );
+  const { departmentInCompany: departments, isLoading } = useDepartment('')
+  // const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
+  //   company.id
+  // );
 
   //   console.log(departments)
 

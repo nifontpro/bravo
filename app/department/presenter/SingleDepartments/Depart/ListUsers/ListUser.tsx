@@ -2,8 +2,8 @@ import styles from './ListUser.module.scss';
 import cn from 'classnames';
 import { ListUserProps } from './ListUser.props';
 import UserPreview from '@/core/presenter/ui/UserPreview/UserPreview';
-import EditIcon from './editUser.svg';
-import RemoveIcon from './removeUser.svg';
+import EditIcon from '@/core/presenter/images/edit.svg';
+import RemoveIcon from '@/core/presenter/images/remove.svg';
 import { useUserAdmin } from '@/user/presenter/admin/useUserAdmin';
 import { useRouter } from 'next/router';
 import { getUserEditUrl } from '@/core/config/api.config';
@@ -23,7 +23,7 @@ const ListUser = ({
       {usersInDepartment?.map((item) => {
         return (
           <div key={item.login} className={styles.container}>
-            <UserPreview user={item} />
+            <UserPreview user={item} forWhat='depart'/>
             <AuthComponent minRole={'director'}>
               <div className={styles.editPanel} {...props}>
                 <EditIcon
