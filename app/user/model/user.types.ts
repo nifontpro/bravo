@@ -42,6 +42,7 @@ export interface IUserCreate
  * (облегченная версия для списка)
  */
 export interface IUserAwards extends IUser {
+  departmentName? : string
   awardCount: number
   awards: IAwardLite[];
 }
@@ -50,5 +51,7 @@ export interface IUserAwards extends IUser {
  * Сотрудник со списком наград с объединенной детализацией
  */
 export interface IUserAwardsUnion extends IUser {
-	awards: IAwardUnion[]
+  departmentName? : string
+  awardCount: number
+  awards: IAwardUnion[]
 }
