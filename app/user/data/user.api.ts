@@ -232,7 +232,16 @@ export const userApi = createApi({
 
 		/**
 		 * Удаление основного изображения
+		 * @param [userId]
 		 */
+		deleteMainImage: build.mutation<void, string>({
+			query: (userId) => ({
+				method: 'DELETE',
+				url: getUserUrl('/image/delete'),
+				body: {userId},
+			}),
+			invalidatesTags: ['User']
+		}),
 
 		/**
 		 * Обновленная версия работы со множеством изображений сущности
