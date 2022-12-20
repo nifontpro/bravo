@@ -74,5 +74,19 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
     }
   };
 
+  // const removePhoto = async () => {
+  //   let isError = false;
+
+  //   await updateImg({ awardId: award.id})
+  //     .unwrap()
+  //     .catch(() => {
+  //       isError = true;
+  //       toast.error('Ошибка обновления фотографии');
+  //     });
+  //   if (!isError) {
+  //     toast.success('Фото успешно обновлено');
+  //   }
+  // };
+
   return { award, onSubmit, changePhoto, isLoading, img };
 };

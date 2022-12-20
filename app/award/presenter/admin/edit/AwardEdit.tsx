@@ -14,6 +14,9 @@ import { useCompanyState } from '@/company/data/company.slice';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { IAwardUpdate } from 'award/model/api.types';
 import { useAwardEdit } from './useAwardEdit';
+import RemoveIcon from '@/core/presenter/images/remove.svg';
+import RefreshIcon from '@/core/presenter/images/refresh.svg';
+import InputPhotoRefresh from '@/core/presenter/ui/InputPhotoRefresh/InputPhotoRefresh';
 
 const AwardEdit = ({}: AwardEditProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -32,12 +35,13 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
     reset,
   } = useForm<IAwardUpdate>({ mode: 'onChange' });
 
-  const { onSubmit, changePhoto, img } = useAwardEdit(setValue);
+  const { onSubmit, changePhoto, img } =
+    useAwardEdit(setValue);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    back()
-  } 
+    back();
+  };
 
   return (
     <Meta title='Редактирование компании'>
@@ -47,35 +51,41 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
       <div className={styles.newForm}>
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
+            // onClick={changePreviewPhoto}
             src={img}
-            width={300}
-            height={300}
+            width={400}
+            height={400}
             alt='preview image'
             objectFit='cover'
-            className='rounded-[10px]'
+            // className='rounded-[10px]'
           />
-          <InputFile onChange={changePhoto}>
-            Загрузить новое изображение
-          </InputFile>
+          <div className={styles.editPanel}>
+            <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
+              <RefreshIcon className={styles.refresh} />
+            </InputPhotoRefresh>
+            <RemoveIcon className={styles.remove} />
+          </div>
         </div>
 
         <form className={styles.form}>
           <div className={styles.fields}>
             <Htag tag='h2' className={styles.title}>
-              Описание
+              Описание медали
             </Htag>
 
             <Field
               {...register('name', { required: 'Название необходимо!' })}
-              title='Название медали'
+              title='Название'
               placeholder={currentCompany?.name}
               error={errors.name}
               className='mb-[60px]'
             />
 
             <Field
-              {...register('description', { required: 'Краткое описание обязательно!' })}
-              title='Краткое описание'
+              {...register('description', {
+                required: 'Краткое описание обязательно!',
+              })}
+              title='Описание'
               placeholder={currentCompany?.address}
               error={errors.description}
             />
@@ -84,7 +94,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
               {...register('criteria', {
                 required: 'Критерии необходимы!',
               })}
-              title='Требования'
+              title='Требования к номинанту'
               placeholder='Введите требования к медали'
               error={errors.criteria}
               className='mb-[100px] mt-[60px]'
@@ -94,7 +104,12 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
               <Button onClick={handleClick} appearance='white' size='l'>
                 Отменить
               </Button>
-              <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
+              <Button
+                onClick={handleSubmit(onSubmit)}
+                appearance='blackWhite'
+                size='l'
+                className='ml-[15px]'
+              >
                 Изменить
               </Button>
             </div>

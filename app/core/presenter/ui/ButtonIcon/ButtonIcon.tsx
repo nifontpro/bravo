@@ -18,6 +18,7 @@ const ButtonIcon = ({
           [styles.gray]: appearance == 'gray',
           [styles.lightGray]: appearance == 'lightGray',
           [styles.whiteBlack]: appearance == 'whiteBlack',
+          [styles.lime]: appearance == 'lime',
         },
         className
       )}

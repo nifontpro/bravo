@@ -11,6 +11,7 @@ import ModalWindowWithAddUsers from '@/core/presenter/ui/ModalWindowWithAddUsers
 import { IUser, IUserAwards } from '@/user/model/user.types';
 import { useAuthState } from '@/auth/data/auth.slice';
 import CardNomineeUser from './CardNomineeUser/CardNomineeUser';
+import P from '@/core/presenter/ui/P/P';
 
 const AwardNominee = ({
   award,
@@ -33,7 +34,7 @@ const AwardNominee = ({
       arrUserNotNominee.push(user);
     }
   });
-  let arrUserNominee: IUserAwards[] = []
+  let arrUserNominee: IUserAwards[] = [];
   users.forEach((user) => {
     if (arrIdUserNominee.find((item) => item == user.id) != undefined) {
       arrUserNominee.push(user);
@@ -45,7 +46,10 @@ const AwardNominee = ({
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.content}>
         <div className={styles.header}>
-          <Htag tag='h3'>Кто участвует</Htag>
+          <Htag tag='h3' className='@apply flex'>
+            Кто участвует
+            <P className={styles.rewardedLength}>{arrIdUserNominee.length}</P>
+          </Htag>
           {currentUser?.role == 'user' ? (
             <ButtonCircleIcon
               onClick={() => console.log('Рекомендовать')}
@@ -70,9 +74,7 @@ const AwardNominee = ({
         {currentUser?.role == 'user' ? (
           <div className={styles.usersAwarded}>
             {arrUserNominee.map((user) => {
-                return (
-                  <CardNomineeUser user={user} key={uniqid()} />
-                );
+              return <CardNomineeUser user={user} key={uniqid()} />;
             })}
           </div>
         ) : (
