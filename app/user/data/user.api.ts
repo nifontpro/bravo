@@ -231,9 +231,9 @@ export const userApi = createApi({
 		}),
 
 		/**
- 		 * Удаление основного изображения
- 		 * @param [userId]
- 		 */
+		 * Удаление основного изображения
+		 * @param [userId]
+		 */
 		deleteMainImage: build.mutation<void, string>({
 			query: (userId) => ({
 				method: 'DELETE',
