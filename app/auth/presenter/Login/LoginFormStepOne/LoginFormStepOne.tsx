@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { toastError } from '@/core/utils/toast-error';
 import P from '@/core/presenter/ui/P/P';
 import Link from 'next/link';
+import { ILoginPasswordCheck } from './login.interface';
 
 const LoginFormStepOne = ({
   visible,
@@ -32,10 +33,10 @@ const LoginFormStepOne = ({
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<ILoginInput>({ mode: 'onChange' });
+  } = useForm<ILoginPasswordCheck>({ mode: 'onChange' });
 
-  const onSubmit: SubmitHandler<ILoginInput> = async (data) => {
-    if (data.password !== data.passwordСheck) {
+  const onSubmit: SubmitHandler<ILoginPasswordCheck> = async (data) => {
+    if (data.password !== data.passwordCheck) {
       toast.error('Пароли не совпадают!');
     } else {
       const { email, login, name, password } = data;
@@ -91,7 +92,7 @@ const LoginFormStepOne = ({
           error={errors.password}
         />
         <Field
-          {...register('passwordСheck', {
+          {...register('passwordCheck', {
             required: 'Продублируйте пароль!',
             minLength: {
               value: 4,
@@ -100,7 +101,7 @@ const LoginFormStepOne = ({
           })}
           title='Повторите пароль'
           placeholder='Продублируйте пароль'
-          error={errors.passwordСheck}
+          error={errors.passwordCheck}
         />
       </div>
 

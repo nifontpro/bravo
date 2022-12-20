@@ -1,26 +1,24 @@
-import styles from './InputFile.module.scss';
+import styles from './InputPhotoRefresh.module.scss';
 import cn from 'classnames';
-import { InputFileProps } from './InputFile.props';
+import { InputPhotoRefreshProps } from './InputPhotoRefresh.props';
 import { ForwardedRef, forwardRef } from 'react';
 
-const InputFile = forwardRef(
+const InputPhotoRefresh = forwardRef(
   (
-    { error, className, children, ...props }: InputFileProps,
+    { error, className, children, ...props }: InputPhotoRefreshProps,
     ref: ForwardedRef<HTMLInputElement>
   ): JSX.Element => {
 
     return (
       <div className={cn(styles.inputWrapper, className)}>
         <input type='file' className={styles.inputFile} ref={ref} {...props} />
-        <label className={styles.fileButton}>
-          <span className={styles.buttonText}>{children}</span>
-        </label>
+        {children}
         {error && <span className={styles.errorMessage}>{error.message}</span>}
       </div>
     );
   }
 );
 
-InputFile.displayName = 'file';
+InputPhotoRefresh.displayName = 'file';
 
-export default InputFile;
+export default InputPhotoRefresh;

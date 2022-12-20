@@ -19,6 +19,7 @@ import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useDepartment } from '@/department/presenter/useDepartment';
+import { IUserCreate } from '@/user/model/user.types';
 
 const UserCreate: FC = () => {
   const [active, setActive] = useState<
@@ -61,7 +62,7 @@ const UserCreate: FC = () => {
     formState: { errors },
     setValue,
     control,
-  } = useForm<IUserCreateInput>({ mode: 'onChange' });
+  } = useForm<IUserCreate>({ mode: 'onChange' });
 
   const { onSubmit } = useUserCreate(
     setValue,
@@ -84,8 +85,8 @@ const UserCreate: FC = () => {
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    back()
-  } 
+    back();
+  };
 
   return (
     <Meta title='Создание профиля сотрудника'>
@@ -162,15 +163,23 @@ const UserCreate: FC = () => {
             />
 
             <Field
-              {...register('password', {
-                required: 'Пароль обязательно!',
-                minLength: 6,
-              })}
+              // {...register('password', {
+              //   required: 'Пароль обязательно!',
+              //   minLength: 6,
+              // })}
               title='Пароль'
               placeholder='Придумайте пароль'
               error={errors.password}
             />
           </div>
+
+          <Field
+            {...register('email', { required: 'Почта обязательно!' })}
+            title='Почта'
+            placeholder='Введите свою почту'
+            error={errors.email}
+            className='@apply mb-[60px]'
+          />
 
           <div className={styles.group}>
             <div className={styles.fixedCompanyName}>
@@ -228,7 +237,12 @@ const UserCreate: FC = () => {
             <Button onClick={handleClick} appearance='white' size='l'>
               Отменить
             </Button>
-            <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
+            <Button
+              onClick={handleSubmit(onSubmit)}
+              appearance='gray'
+              size='l'
+              className='ml-[15px]'
+            >
               Добавить
             </Button>
           </div>

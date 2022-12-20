@@ -54,6 +54,7 @@ const AwardTitle = ({
               onClick={() => setVisible(!visible)}
               icon='dots'
               appearance='transparent'
+              className={styles.dot}
             />
             <EditPanel
               getUrl={getAwardEditUrl}
@@ -65,23 +66,26 @@ const AwardTitle = ({
           </AuthComponent>
         </div>
 
-        <P size='m' fontstyle='thin' className={styles.description}>
+        <P size='xs' fontstyle='thin' className={styles.description}>
           {award.description}
         </P>
-        <P size='m'>Требования</P>
+
+        <div className={styles.dateAward}>
+          {/* {award.state == 'AWARD' && ( */}
+            <P size='m' color='gray'>Награда выдана {convertDate}</P>
+          {/* )} */}
+        </div>
+
+        <P size='m' className={styles.criteriaTitle}>Требования</P>
         <P size='s' fontstyle='thin' className={styles.criteria}>
           {award.criteria}
         </P>
-        <div className={styles.date}>
-          {award.state == 'AWARD' && (
-            <P size='m'>Награда выдана {convertDate}</P>
-          )}
-        </div>
+
         <div className={styles.date}>
           {award.state == 'NOMINEE' && award.endDate != undefined && (
-            <P size='s' color='gray' fontstyle='thin'>
+            <P size='s' fontstyle='thin'>
               Осталось
-              <ButtonIcon className='ml-[10px]' appearance='gray'>
+              <ButtonIcon className='ml-[10px]' appearance='lime'>
                 {Math.floor(
                   (award.endDate - currentDateNumber) / 1000 / 60 / 60 / 24
                 )}{' '}

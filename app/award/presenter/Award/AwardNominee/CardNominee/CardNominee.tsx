@@ -17,6 +17,7 @@ const CardNominee = ({
   let convertDate = timeConverterUser(user.nomineeDate);
   let userId = user.user.id;
   const { handleReward, handleRemove } = useCardNominee(userId, awardId);
+  console.log(user)
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
@@ -41,7 +42,8 @@ const CardNominee = ({
       </div>
 
       <P size='s' fontstyle='thin' color='gray' className={styles.date}>
-        {convertDate}
+        {/* {convertDate} */}
+        {user.user.departmentId}
       </P>
 
       <div className={styles.buttons}>

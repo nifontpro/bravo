@@ -5,10 +5,10 @@ import { toast } from 'react-toastify';
 import { IUserCreateInput } from '@/user/presenter/admin/create/user-create.type';
 import { userApi } from '@/user/data/user.api';
 import { toastError } from '@/core/utils/toast-error';
-import { IUser } from '@/user/model/user.types';
+import { IUser, IUserCreate } from '@/user/model/user.types';
 
 export const useUserCreate = (
-  setValue: UseFormSetValue<IUserCreateInput>,
+  setValue: UseFormSetValue<IUserCreate>,
   active: 'MALE' | 'FEMALE' | 'UNDEFINED' | undefined,
   companyId?: string
   // departmentId?: string,
@@ -26,7 +26,7 @@ export const useUserCreate = (
     // }
   }, [setValue]);
 
-  const onSubmit: SubmitHandler<IUserCreateInput> = async (data) => {
+  const onSubmit: SubmitHandler<IUserCreate> = async (data) => {
     let isError = false;
     if (active != undefined) {
       data.gender = active;
@@ -34,6 +34,7 @@ export const useUserCreate = (
 
     if (companyId) {
       data.companyId = companyId
+      data.test = true
       await create({ ...data })
         .unwrap()
         .then(async (user: IUser) => {

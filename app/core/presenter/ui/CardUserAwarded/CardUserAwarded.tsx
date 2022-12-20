@@ -7,6 +7,7 @@ import { timeConverterUser } from '@/core/utils/timeConverterUser';
 import { awardApi } from 'award/data/award.api';
 import { toast } from 'react-toastify';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import AwardIcon from '@/core/presenter/images/union.svg'
 
 const CardUserAwarded = ({
   award,
@@ -56,8 +57,9 @@ const CardUserAwarded = ({
       <P size='s' fontstyle='thin' color='gray' className={styles.post}>
         {user.user.post}
       </P>
-      <P size='s' fontstyle='thin' color='gray' className={styles.date}>
+      <P size='s' fontstyle='thin' className={styles.date}>
         {convertDate}
+        <AwardIcon className='@apply w-[10px] ml-[10px]'/>
       </P>
       <AuthComponent minRole={'director'}>
         <div onClick={handleRemove} className={styles.remove}>

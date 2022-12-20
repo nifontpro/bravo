@@ -35,7 +35,10 @@ const AwardWasAwarded = ({
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.content}>
         <div className={styles.header}>
-          <Htag tag='h3'>Награжденные</Htag>
+          <Htag tag='h3' className='@apply flex'>
+            Награжденные
+            <P className={styles.rewardedLength}>{arrIdUserRewarded.length}</P>
+            </Htag>
           <AuthComponent minRole={'director'}>
             <ButtonCircleIcon
               onClick={() => setVisibleModal(true)}
