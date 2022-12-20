@@ -46,7 +46,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const [img, setImg] = useState<string>('');
 
   const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files !== null) {
+    if (event.target.files !== null && event.target.files.length > 0) {
       setImg(URL.createObjectURL(event.target.files[0]));
     }
   };
@@ -77,8 +77,8 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
         <div className={cn(styles.field, styles.uploadField)}>
           <ImageDefault
             src={img}
-            width={300}
-            height={300}
+            width={400}
+            height={400}
             alt='preview image'
             objectFit='cover'
             className='rounded-[10px]'
@@ -113,7 +113,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
 
           <TextArea
             {...register('criteria', { required: 'Критерии необходимы!' })}
-            title='Требования'
+            title='Требования к номинанту'
             placeholder='Введите критерии награды'
             error={errors.criteria}
             className='mb-[60px]'
