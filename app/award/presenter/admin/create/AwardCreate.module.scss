@@ -10,6 +10,10 @@
     height: fit-content;
     background: var(--white);
     // padding-bottom: 15px;
+
+    .images {
+      border-bottom: 1px solid var(--gray);
+    }
   }
 
   > .fields {

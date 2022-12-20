@@ -28,7 +28,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
 
   // if (currentCompany === null) {
   //   push('/company');
-  // } 
+  // }
 
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
 
@@ -60,7 +60,12 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmitReward, onSubmitNominee } = useAwardCreate(setValue, reset, currentCompany?.id, arrChoiceUser);
+  const { onSubmitReward, onSubmitNominee } = useAwardCreate(
+    setValue,
+    reset,
+    currentCompany?.id,
+    arrChoiceUser
+  );
 
   return (
     <Meta title='Создание новой награды'>
@@ -75,14 +80,16 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
 
       <form className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            src={img}
-            width={400}
-            height={400}
-            alt='preview image'
-            objectFit='cover'
-            className='rounded-[10px]'
-          />
+          <div className={styles.images}>
+            <ImageDefault
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+            />
+          </div>
+
           <InputFile
             error={errors.file}
             {...register('file', { onChange: changePhoto })}
@@ -145,13 +152,26 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
             />
           </div>
 
-          <ChoiceUsers users={users} arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser}/>
+          <ChoiceUsers
+            users={users}
+            arrChoiceUser={arrChoiceUser}
+            setArrChoiceUser={setArrChoiceUser}
+          />
 
           <div className={styles.buttons}>
-            <Button onClick={handleSubmit(onSubmitReward)} appearance='whiteBlack' size='l' >
+            <Button
+              onClick={handleSubmit(onSubmitReward)}
+              appearance='whiteBlack'
+              size='l'
+            >
               Выдать сразу и закрыть
             </Button>
-            <Button onClick={handleSubmit(onSubmitNominee)} appearance='blackWhite' size='l' className='ml-[15px]'>
+            <Button
+              onClick={handleSubmit(onSubmitNominee)}
+              appearance='blackWhite'
+              size='l'
+              className='ml-[15px]'
+            >
               Номинировать
             </Button>
           </div>
