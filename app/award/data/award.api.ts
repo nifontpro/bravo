@@ -51,7 +51,21 @@ export const awardApi = createApi({
 		}),
 
 		/**
+		 * Удаление основного изображения
+		 * @param [awardId]
+		 */
+		deleteMainImage: build.mutation<void, string>({
+			query: (awardId) => ({
+				method: 'DELETE',
+				url: getAwardUrl('/delete/image'),
+				body: {awardId},
+			}),
+			invalidatesTags: ['Award']
+		}),
+
+		/**
 		 * Удалить награждение со всеми записями о награждении сотрудников
+		 * @param [awardId]
 		 */
 		delete: build.mutation<IAward, string>({
 			query: (awardId) => ({
