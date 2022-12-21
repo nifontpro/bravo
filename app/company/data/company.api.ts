@@ -4,7 +4,6 @@ import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {getAdminUrl} from "@/core/config/url.config";
 import {getCompanyUrl} from "@/core/config/api.config";
-import {IdResponse} from "@/core/model/idResponse.types";
 import {companyActions} from "@/company/data/company.slice";
 import {ICompanyUpdateRequest} from "@/company/presenter/admin/edit/company-edit.type";
 
@@ -112,6 +111,15 @@ export const companyApi = createApi({
 			invalidatesTags: [{type: 'Company'}]
 		}),
 
+		getCount: build.query<number, undefined>({
+			query: () => ({
+				method: 'POST',
+				url: getCompanyUrl('/count'),
+				body: {filter: ""}
+			}),
+			providesTags: ['Count']
+		}),
+
 		updateImage: build.mutation<void, { companyId: string, formData: FormData }>({
 			query: (arg) => ({
 				method: 'PUT',
@@ -123,13 +131,17 @@ export const companyApi = createApi({
 			invalidatesTags: [{type: 'Company'}]
 		}),
 
-		getCount: build.query<number, undefined>({
-			query: () => ({
-				method: 'POST',
-				url: getCompanyUrl('/count'),
-				body: {filter: ""}
+		/**
+		 * Удаление основного изображения
+		 * @param [companyId]
+		 */
+		deleteMainImage: build.mutation<void, string>({
+			query: (companyId) => ({
+				method: 'DELETE',
+				url: getCompanyUrl('/image/delete'),
+				body: {companyId},
 			}),
-			providesTags: ['Count']
+			invalidatesTags: ['Company']
 		}),
 
 		/**
