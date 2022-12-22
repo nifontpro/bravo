@@ -43,12 +43,13 @@ const UserEdit: FC = () => {
   //   push('/');
   // }
 
-  const { isLoading, onSubmit, changePhoto, removePhoto, img } = useCompanyEdit(setValue);
+  const { isLoading, onSubmit, changePhoto, removePhoto, img } =
+    useCompanyEdit(setValue);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    back()
-  } 
+    back();
+  };
 
   return (
     <Meta title='Редактирование компании'>
@@ -57,14 +58,17 @@ const UserEdit: FC = () => {
       </ButtonCircleIcon>
       <div className={styles.newForm}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            src={img}
-            width={400}
-            height={400}
-            alt='preview image'
-            objectFit='cover'
-            // className='rounded-[10px]'
-          />
+          <div className={styles.images}>
+            <ImageDefault
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+              // className='rounded-[10px]'
+            />
+          </div>
+
           <div className={styles.editPanel}>
             <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
               <RefreshIcon className={styles.refresh} />
@@ -74,53 +78,58 @@ const UserEdit: FC = () => {
         </div>
 
         <form className={styles.form}>
-        <div className={styles.fields}>
-          <Htag tag='h2' className={styles.title}>
-            Компания
-          </Htag>
+          <div className={styles.fields}>
+            <Htag tag='h2' className={styles.title}>
+              Компания
+            </Htag>
 
-          <Field
-            {...register('name', { required: 'Название необходимо!' })}
-            title='Название'
-            placeholder={currentCompany?.name}
-            error={errors.name}
-            className='mb-[60px]'
-          />
-
-          <div className={styles.group}>
             <Field
-              {...register('phone', { required: 'Телефон обязательно!' })}
-              title='Телефон'
-              placeholder={currentCompany?.phone}
-              error={errors.phone}
+              {...register('name', { required: 'Название необходимо!' })}
+              title='Название'
+              placeholder={currentCompany?.name}
+              error={errors.name}
+              className='mb-[60px]'
             />
+
+            <div className={styles.group}>
+              <Field
+                {...register('phone', { required: 'Телефон обязательно!' })}
+                title='Телефон'
+                placeholder={currentCompany?.phone}
+                error={errors.phone}
+              />
+              <Field
+                {...register('email', {
+                  required: 'Почта обязательна!',
+                  minLength: 6,
+                })}
+                title='Почта'
+                placeholder={currentCompany?.email}
+                error={errors.email}
+              />
+            </div>
+
             <Field
-              {...register('email', {
-                required: 'Почта обязательна!',
-                minLength: 6,
-              })}
-              title='Почта'
-              placeholder={currentCompany?.email}
-              error={errors.email}
+              {...register('address', { required: 'Адрес обязательно!' })}
+              title='Офис'
+              placeholder={currentCompany?.address}
+              error={errors.address}
             />
-          </div>
 
-          <Field
-            {...register('address', { required: 'Адрес обязательно!' })}
-            title='Офис'
-            placeholder={currentCompany?.address}
-            error={errors.address}
-          />
-
-          <div className={styles.buttons}>
-            <Button onClick={handleClick} appearance='white' size='l'>
-              Отменить
-            </Button>
-            <Button onClick={handleSubmit(onSubmit)} appearance='blackWhite' size='l' className='ml-[15px]'>
-              Изменить
-            </Button>
+            <div className={styles.buttons}>
+              <Button onClick={handleClick} appearance='white' size='l'>
+                Отменить
+              </Button>
+              <Button
+                onClick={handleSubmit(onSubmit)}
+                appearance='blackWhite'
+                size='l'
+                className='ml-[15px]'
+              >
+                Изменить
+              </Button>
+            </div>
           </div>
-        </div>
         </form>
       </div>
     </Meta>

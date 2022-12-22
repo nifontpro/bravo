@@ -47,19 +47,11 @@ const DepartmentEdit: FC = () => {
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    back()
-  }
+    back();
+  };
 
   return (
     <Meta title='Редактирование отдела'>
-      <ButtonCircleIcon
-        onClick={back}
-        appearance='black'
-        icon='down'
-        className='mb-[50px]'
-      >
-        Вернуться назад
-      </ButtonCircleIcon>
       <form className={styles.form}>
         {isLoading ? (
           <SkeletonLoader count={3} />
@@ -115,7 +107,12 @@ const DepartmentEdit: FC = () => {
               <Button onClick={handleClick} size='l' appearance='white'>
                 Отменить
               </Button>
-              <Button onClick={handleSubmit(onSubmit)} size='l' appearance='blackWhite' className='ml-[15px]'>
+              <Button
+                onClick={handleSubmit(onSubmit)}
+                size='l'
+                appearance='blackWhite'
+                className='ml-[15px]'
+              >
                 Сохранить
               </Button>
             </div>

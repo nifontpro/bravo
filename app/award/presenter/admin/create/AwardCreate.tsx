@@ -26,10 +26,6 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
 
-  // if (currentCompany === null) {
-  //   push('/company');
-  // }
-
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
 
   const { users } = useMyUser('');
@@ -73,7 +69,6 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
         onClick={() => push('/award')}
         appearance='black'
         icon='down'
-        className='mb-[50px]'
       >
         Вернуться назад
       </ButtonCircleIcon>

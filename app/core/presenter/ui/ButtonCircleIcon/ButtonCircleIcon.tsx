@@ -12,13 +12,12 @@ const ButtonCircleIcon = ({
   const IconComp = icons[icon];
 
   return (
-    <div className={cn(styles.wrapper ,className)} {...props}>
+    <div className={cn(styles.wrapper)} {...props}>
       <button
         className={cn(styles.button, {
           [styles.black]: appearance == 'black',
           [styles.transparent]: appearance == 'transparent',
-        })}
-
+        }, className)}
       >
         <IconComp />
       </button>

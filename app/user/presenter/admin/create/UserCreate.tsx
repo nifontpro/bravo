@@ -90,14 +90,10 @@ const UserCreate: FC = () => {
 
   return (
     <Meta title='Создание профиля сотрудника'>
-      <ButtonCircleIcon
-        onClick={back}
-        appearance='black'
-        icon='down'
-        className='mb-[50px]'
-      >
+      <ButtonCircleIcon onClick={back} appearance='black' icon='down'>
         Вернуться назад
       </ButtonCircleIcon>
+
       <form className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
           <div className={styles.images}>

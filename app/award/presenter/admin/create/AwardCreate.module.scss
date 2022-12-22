@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 30px;
+  margin-top: 50px;
 
   > .uploadField {
     overflow: hidden;
@@ -9,7 +10,6 @@
     width: 400px;
     height: fit-content;
     background: var(--white);
-    // padding-bottom: 15px;
 
     .images {
       height: 400px;

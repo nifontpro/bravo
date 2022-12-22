@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 30px;
+  margin-top: 50px;
 
   > .uploadField {
     overflow: hidden;
@@ -9,7 +10,6 @@
     width: 400px;
     height: fit-content;
     background: var(--white);
-    // padding-bottom: 15px;
 
     .images {
       height: 400px;
@@ -26,8 +26,8 @@
       margin-bottom: 80px;
     }
 
-    > .groupGender{
-      margin-bottom: 60px;  
+    > .groupGender {
+      margin-bottom: 60px;
       position: relative;
 
       > .gender {
@@ -35,7 +35,6 @@
         bottom: 6.3px;
         right: 10px;
       }
-
     }
 
     > .group {
@@ -66,30 +65,29 @@
 
 .radioButton {
   display: inline-block;
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
-.radioButton input[type=radio] {
-	// display: none;
+.radioButton input[type='radio'] {
+  // display: none;
 }
 
 .radioButton label {
-	display: inline-block;
-	cursor: pointer;
-	padding: 0px 15px;
-	line-height: 34px;
-	border: 1px solid #999;
-	border-radius: 6px;
-	user-select: none;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0px 15px;
+  line-height: 34px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  user-select: none;
 }
 
 /* Checked */
-.radioButton input[type=radio]:checked + label {
-	background: #ffe0a6;
+.radioButton input[type='radio']:checked + label {
+  background: #ffe0a6;
 }
 
- 
 /* Hover */
 .radioButton label:hover {
-	color: red;
+  color: red;
 }

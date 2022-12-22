@@ -12,7 +12,9 @@ import { companyApi } from '@/company/data/company.api';
 import { ICompany, ICompanyCreate } from '@/company/model/company.types';
 import { ICompanyUpdateRequest } from './company-edit.type';
 
-export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>) => {
+export const useCompanyEdit = (
+  setValue: UseFormSetValue<ICompanyUpdateRequest>
+) => {
   const { push, back, query } = useRouter();
   const companyId = String(query.id);
 
@@ -34,16 +36,16 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>)
       setValue('email', company.email);
       setValue('phone', company.phone);
       setValue('address', company.address);
-	  setImg(company.imageUrl)
+      setImg(company.imageUrl);
     }
-  }, [isGetSuccess, setValue]);
-//   console.log(company)
+  }, [isGetSuccess, setValue, company]);
+  //   console.log(company)
 
   const onSubmit: SubmitHandler<ICompanyUpdateRequest> = async (data) => {
     console.log(data);
     let isError = false;
     if (company) {
-      await update({...data, id: company.id})
+      await update({ ...data, id: company.id })
         .unwrap()
         .catch(() => {
           isError = true;

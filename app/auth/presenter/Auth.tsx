@@ -4,18 +4,18 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from '@/auth/presenter/Auth.module.scss';
 import Meta from '@/core/utils/meta/Meta';
 import AuthFields from '@/auth/presenter/AuthFields';
-// import Button from '@/core/presenter/ui/form/Button';
 import { authApi } from '@/auth/data/auth.api';
 import { toast } from 'react-toastify';
 import { toastError } from '@/core/utils/toast-error';
 import { useSetAuthData } from '@/auth/presenter/useSetAuthData';
-import LogoIcon from './logo.svg';
+import LogoIcon from '@/core/presenter/images/logoAuth.svg';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import Button from '@/core/presenter/ui/Button/Button';
 import P from '@/core/presenter/ui/P/P';
-import SendUsIcon from './sendUs.svg';
+import SendUsIcon from '@/core/presenter/images/sendUs.svg';
 import Link from 'next/link';
 import { IAuthInput } from '../model/auth.interface';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const Auth: FC = () => {
   useAuthRedirect();
@@ -45,19 +45,7 @@ const Auth: FC = () => {
         .catch((e) => {
           toastError(e, 'Ошибка входа');
         });
-    } 
-    // else if (type === 'register') {
-    //   register(data)
-    //     .unwrap()
-    //     .then((d) => {
-    //       setAuthData(d);
-    //       toast.success('Вы успешно зарегистрированы!');
-    //     })
-    //     .catch((e) => {
-    //       toastError(e, 'Ошибка регистрации');
-    //     });
-    // }
-    // reset()
+    }
   };
 
   return (
@@ -68,9 +56,19 @@ const Auth: FC = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <Htag tag='h1' className={styles.title}>
-            Вход
-          </Htag>
+          <div className={styles.title}>
+            <Htag tag='h1'>Вход</Htag>
+            <Link href={'/login'}>
+              <a className={styles.registration}>
+                <P size='s'>Регистрация</P>
+                <ButtonCircleIcon
+                  appearance='black'
+                  icon='right'
+                  className={styles.arrow}
+                />
+              </a>
+            </Link>
+          </div>
           <AuthFields
             formState={formState}
             register={registerInput}
@@ -78,15 +76,6 @@ const Auth: FC = () => {
           />
 
           <div className={styles.buttons}>
-            {/* <Button
-              appearance='blackWhite'
-              size='l'
-              onClick={() => setType('login')}
-              disabled={isLoading}
-            >
-              Войти
-            </Button> */}
-
             <Button
               appearance='blackWhite'
               size='l'
@@ -95,19 +84,11 @@ const Auth: FC = () => {
             >
               Продолжить
             </Button>
-
-            {/* <Button
-              type='submit'
-              onClick={() => setType('register')}
-              disabled={isLoading}
-            >
-              Регистрация
-            </Button> */}
           </div>
-          <Link href={'/login'}>
+          <Link href={'/'}>
             <a className='flex justify-center'>
               <P size='m' color='gray' fontstyle='thin' className={styles.auth}>
-                Зарегестрироваться
+                Забыли пароль?
               </P>
             </a>
           </Link>

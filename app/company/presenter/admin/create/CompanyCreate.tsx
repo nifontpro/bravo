@@ -42,8 +42,8 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    back()
-  } 
+    back();
+  };
 
   return (
     <Meta title='Создание новой компании'>
@@ -51,7 +51,6 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
         onClick={() => push('/company')}
         appearance='black'
         icon='down'
-        className='mb-[50px]'
       >
         Вернуться назад
       </ButtonCircleIcon>
@@ -115,7 +114,12 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
             <Button onClick={handleClick} appearance='white' size='l'>
               Отменить
             </Button>
-            <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
+            <Button
+              onClick={handleSubmit(onSubmit)}
+              appearance='gray'
+              size='l'
+              className='ml-[15px]'
+            >
               Добавить
             </Button>
           </div>

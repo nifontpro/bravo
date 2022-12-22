@@ -16,16 +16,11 @@ const SingleUser = ({
   ...props
 }: SingleUserProps): JSX.Element => {
   const { push, back } = useRouter();
-  // console.log(user);
+
   return (
     <Meta title={user.name} description={`Профиль сотрудника ${user.name}`}>
       <div className={cn(className)} {...props}>
-        <ButtonCircleIcon
-          onClick={() => back()}
-          appearance='black'
-          icon='down'
-          className='mb-[50px]'
-        >
+        <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>
           Вернуться назад
         </ButtonCircleIcon>
         <div className={styles.wrapper}>
@@ -39,7 +34,7 @@ const SingleUser = ({
               className='rounded-[27px]'
             />
           </div>
-          <div className={styles.content}> 
+          <div className={styles.content}>
             <SingleUserTitle user={user} />
             <SingleUserAwards user={user} />
             <SingleUserNominee user={user} />
