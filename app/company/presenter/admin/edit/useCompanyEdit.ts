@@ -17,6 +17,7 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>)
   const companyId = String(query.id);
 
   const [updateImg] = companyApi.useUpdateImageMutation();
+  const [removeImg] = companyApi.useDeleteMainImageMutation();
 
   const {
     data: company,
@@ -56,6 +57,21 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>)
     }
   };
 
+  const removePhoto = async () => {
+    let isError = false;
+    if (company != undefined) {
+      await removeImg(companyId)
+        .unwrap()
+        .catch(() => {
+          isError = true;
+          toast.error('Ошибка удаления фотографии');
+        });
+      if (!isError) {
+        toast.success('Фото успешно удалено');
+      }
+    }
+  };
+
   const changePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
     let isError = false;
     if (event.target.files !== null && company != undefined) {
@@ -74,5 +90,5 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>)
     }
   };
 
-  return { company, onSubmit, changePhoto, isLoading, img };
+  return { company, onSubmit, changePhoto, removePhoto, isLoading, img };
 };

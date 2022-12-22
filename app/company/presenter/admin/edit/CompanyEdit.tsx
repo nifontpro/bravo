@@ -43,7 +43,7 @@ const UserEdit: FC = () => {
   //   push('/');
   // }
 
-  const { isLoading, onSubmit, changePhoto, img } = useCompanyEdit(setValue);
+  const { isLoading, onSubmit, changePhoto, removePhoto, img } = useCompanyEdit(setValue);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -69,7 +69,7 @@ const UserEdit: FC = () => {
             <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
               <RefreshIcon className={styles.refresh} />
             </InputPhotoRefresh>
-            <RemoveIcon className={styles.remove} />
+            <RemoveIcon onClick={removePhoto} className={styles.remove} />
           </div>
         </div>
 

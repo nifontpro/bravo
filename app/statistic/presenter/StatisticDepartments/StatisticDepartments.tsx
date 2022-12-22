@@ -2,9 +2,8 @@ import styles from './StatisticDepartments.module.scss';
 import uniqid from 'uniqid';
 import { StatisticDepartmentsProps } from './StatisticDepartments.props';
 import cn from 'classnames';
-import { useDepartment } from '@/department/presenter/useDepartment';
 import P from '@/core/presenter/ui/P/P';
-import AwardIcon from './award.svg';
+import AwardIcon from '@/core/presenter/images/award.svg';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 
 const StatisticDepartments = ({
@@ -12,14 +11,9 @@ const StatisticDepartments = ({
   className,
   ...props
 }: StatisticDepartmentsProps): JSX.Element => {
-  // const { departmentInCompany } = useDepartment('');
-  // console.log(usersCountAwardsOnDepCompany);
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
-      <P size='s' className={styles.title}>
-        По отделам
-      </P>
       {usersCountAwardsOnDepCompany.map((depart, index) => {
         if (index == 0) {
           return (
@@ -37,7 +31,7 @@ const StatisticDepartments = ({
                 <Htag className={styles.count} tag='h2'>
                   {depart.userAwardCount}
                 </Htag>
-                <AwardIcon className='ml-[10px]' />
+                <AwardIcon className='@apply ml-[10px] w-[17px] h-[24px]' />
               </div>
             </div>
           );
@@ -49,7 +43,7 @@ const StatisticDepartments = ({
                 <Htag className={styles.count} tag='h2'>
                 {depart.userAwardCount}
                 </Htag>
-                <AwardIcon className='ml-[10px]' />
+                <AwardIcon className='@apply ml-[10px] w-[17px] h-[24px]' />
               </div>
             </div>
           );
