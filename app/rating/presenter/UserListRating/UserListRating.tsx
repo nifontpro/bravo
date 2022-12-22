@@ -14,6 +14,7 @@ import ArrowRightIcon from '@/core/presenter/images/arrowRight.svg';
 
 const UserListRating = ({
   users,
+  withoutCountAwards,
   className,
   ...props
 }: UserListRatingProps): JSX.Element => {
@@ -21,7 +22,10 @@ const UserListRating = ({
   const { push } = useRouter();
 
   return (
-    <div {...props} className={cn(styles.wrapper, className)}>
+    <div {...props} className={cn({
+      [styles.wrapperWithoutCountAwards]: withoutCountAwards == false,
+      [styles.wrapper]: withoutCountAwards == true
+    }, className)}>
       {users?.map((user) => {
         return (
           <div
@@ -75,7 +79,7 @@ const UserListRating = ({
                 <AwardIcon className={styles.union} />
               </div>
             )}
-            <div className={styles.viewerAward}>
+            {withoutCountAwards == true ? (<div className={styles.viewerAward}>
               {user.awards
                 .filter((item) => item.state == 'AWARD')
                 .map((award, index) => {
@@ -112,7 +116,7 @@ const UserListRating = ({
               ) : (
                 <div className={styles.countIconDisabled}></div>
               )}
-            </div>
+            </div>) : ('') }
             <div className={styles.arrowRight}>
               <ArrowRightIcon />
             </div>
