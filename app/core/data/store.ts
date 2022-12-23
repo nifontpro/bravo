@@ -1,18 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { authSlice } from '@/auth/data/auth.slice';
-import { companyApi } from '@/company/data/company.api';
-import { combineReducers } from 'redux';
-import { authApi, refreshApi } from '@/auth/data/auth.api';
-import { companySlice } from '@/company/data/company.slice';
-import { departmentApi } from '@/department/data/department.api';
-import { departmentSlice } from '@/department/data/department.slice';
-import { userApi } from '@/user/data/user.api';
-// import { medalApi } from '@/medal/data/medal.api';
-import { modalSlice } from '@/core/store/modal.slice';
-// import { rewardApi } from '../../reward/data/reward.api';
-import { loginSlice } from '@/auth/data/login.slice';
-import { awardApi } from 'award/data/award.api';
+import {configureStore} from '@reduxjs/toolkit';
+import {authSlice} from '@/auth/data/auth.slice';
+import {companyApi} from '@/company/data/company.api';
+import {combineReducers} from 'redux';
+import {authApi, refreshApi} from '@/auth/data/auth.api';
+import {companySlice} from '@/company/data/company.slice';
+import {departmentApi} from '@/department/data/department.api';
+import {departmentSlice} from '@/department/data/department.slice';
+import {userApi} from '@/user/data/user.api';
+import {modalSlice} from '@/core/store/modal.slice';
+import {loginSlice} from '@/auth/data/login.slice';
+import {awardApi} from 'award/data/award.api';
 import {registerApi} from "../../register/data/register.api";
+import {messageApi} from "../../message/data/message.api";
 
 const rootReducer = combineReducers({
   login: loginSlice.reducer,
@@ -26,9 +25,8 @@ const rootReducer = combineReducers({
   [companyApi.reducerPath]: companyApi.reducer,
   [departmentApi.reducerPath]: departmentApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
-  // [medalApi.reducerPath]: medalApi.reducer,
-  // [rewardApi.reducerPath]: rewardApi.reducer,
   [awardApi.reducerPath]: awardApi.reducer,
+  [messageApi.reducerPath]: messageApi.reducer,
 });
 
 export const store = configureStore({
@@ -43,10 +41,9 @@ export const store = configureStore({
       refreshApi.middleware,
       companyApi.middleware,
       departmentApi.middleware,
-      // medalApi.middleware,
       userApi.middleware,
-      // rewardApi.middleware,
       awardApi.middleware,
+      messageApi.middleware,
     ),
 });
 
