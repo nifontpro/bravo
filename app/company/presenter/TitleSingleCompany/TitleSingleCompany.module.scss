@@ -21,6 +21,12 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 72px;
+
+      .dots {
+        position: absolute;
+        top: -50px;
+        right: -50px;
+      }
       
       > .header {
         font-size: 54px;

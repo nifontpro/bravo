@@ -1,10 +1,18 @@
 .wrapper {
   .title {
-    display: flex;
-    align-items: center;
-
     .header {
-      margin-right: 25px;
+      margin-bottom: 25px;
+    }
+
+    .headerTitle {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .selectCompany {
+      width: fit-content;
     }
   }
 
@@ -22,6 +30,10 @@
 
     .countNominee {
       grid-area: countNominee;
+      background: var(--orange);
+      border-radius: 25px;
+      padding: 20px;
+      cursor: pointer;
     }
 
     .countDepartment {
@@ -38,14 +50,15 @@
     }
 
     .activity {
-        grid-area: activity;
-      }
+      grid-area: activity;
+    }
 
     .countAwards {
       grid-area: countAwards;
-      background: var(--white);
+      background: var(--lime);
       border-radius: 25px;
-      padding: 70px 45px;
+      padding: 20px;
+      cursor: pointer;
 
       .countAwards_head {
         cursor: pointer;

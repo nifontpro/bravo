@@ -7,7 +7,7 @@
 }
 
 .form {
-  width: 956px;
+  width: 1200px;
   background: var(--white);
   padding: 110px 100px;
   border-radius: 27px;
@@ -19,6 +19,29 @@
 
 .title {
   margin-bottom: 100px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .registration {
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    svg path {
+      stroke: var(--white);
+    }
+
+    .arrow {
+      margin-left: 10px;
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 
 .buttons {

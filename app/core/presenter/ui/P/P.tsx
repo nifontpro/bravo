@@ -2,7 +2,7 @@ import styles from './P.module.scss';
 import cn from 'classnames';
 import { PProps } from './P.props';
 
-const P = ({ size = 'm', fontstyle, color, children, className, ...props }: PProps): JSX.Element => {
+const P = ({ size = 'm', fontstyle, color, type, children, className, ...props }: PProps): JSX.Element => {
   return (
     <p
       className={cn(styles.p, {
@@ -14,9 +14,11 @@ const P = ({ size = 'm', fontstyle, color, children, className, ...props }: PPro
         [styles.thin]: fontstyle == 'thin',
         [styles.bold]: fontstyle == 'bold',
         [styles.gray]: color == 'gray',
+        [styles.graySilver]: color == 'graySilver',
         [styles.gray96]: color == 'gray96',
         [styles.white]: color == 'white',
         [styles.black]: color == 'black',
+        [styles.silverBtn]: type == 'silverBtn',
       }, className)}
       {...props}
     >

@@ -26,10 +26,6 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
 
-  // if (currentCompany === null) {
-  //   push('/company');
-  // } 
-
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
 
   const { users } = useMyUser('');
@@ -46,7 +42,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const [img, setImg] = useState<string>('');
 
   const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files !== null) {
+    if (event.target.files !== null && event.target.files.length > 0) {
       setImg(URL.createObjectURL(event.target.files[0]));
     }
   };
@@ -60,7 +56,12 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmitReward, onSubmitNominee } = useAwardCreate(setValue, reset, currentCompany?.id, arrChoiceUser);
+  const { onSubmitReward, onSubmitNominee } = useAwardCreate(
+    setValue,
+    reset,
+    currentCompany?.id,
+    arrChoiceUser
+  );
 
   return (
     <Meta title='Создание новой награды'>
@@ -68,21 +69,22 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
         onClick={() => push('/award')}
         appearance='black'
         icon='down'
-        className='mb-[50px]'
       >
         Вернуться назад
       </ButtonCircleIcon>
 
       <form className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            src={img}
-            width={300}
-            height={300}
-            alt='preview image'
-            objectFit='cover'
-            className='rounded-[10px]'
-          />
+          <div className={styles.images}>
+            <ImageDefault
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+            />
+          </div>
+
           <InputFile
             error={errors.file}
             {...register('file', { onChange: changePhoto })}
@@ -113,7 +115,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
 
           <TextArea
             {...register('criteria', { required: 'Критерии необходимы!' })}
-            title='Требования'
+            title='Требования к номинанту'
             placeholder='Введите критерии награды'
             error={errors.criteria}
             className='mb-[60px]'
@@ -145,13 +147,26 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
             />
           </div>
 
-          <ChoiceUsers users={users} arrChoiceUser={arrChoiceUser} setArrChoiceUser={setArrChoiceUser}/>
+          <ChoiceUsers
+            users={users}
+            arrChoiceUser={arrChoiceUser}
+            setArrChoiceUser={setArrChoiceUser}
+          />
 
           <div className={styles.buttons}>
-            <Button onClick={handleSubmit(onSubmitReward)} appearance='whiteBlack' size='l' >
+            <Button
+              onClick={handleSubmit(onSubmitReward)}
+              appearance='whiteBlack'
+              size='l'
+            >
               Выдать сразу и закрыть
             </Button>
-            <Button onClick={handleSubmit(onSubmitNominee)} appearance='blackWhite' size='l' className='ml-[15px]'>
+            <Button
+              onClick={handleSubmit(onSubmitNominee)}
+              appearance='blackWhite'
+              size='l'
+              className='ml-[15px]'
+            >
               Номинировать
             </Button>
           </div>

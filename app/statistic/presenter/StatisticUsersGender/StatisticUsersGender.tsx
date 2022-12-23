@@ -26,7 +26,7 @@ const StatisticUsersGender = ({
       <DoughnutCircle
         className={styles.doughnut}
         dataOne={countMale}
-        colorOne='rgba(179, 179, 179, 1)'
+        colorOne='#E5F23B'
         dataTwo={countFemale}
         colorTwo='rgba(57, 57, 57, 1)'
       />

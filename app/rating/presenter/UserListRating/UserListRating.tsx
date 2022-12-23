@@ -2,7 +2,6 @@ import styles from './UserListRating.module.scss';
 
 import { UserListRatingProps } from './UserListRating.props';
 import cn from 'classnames';
-import Search from '@/core/presenter/ui/Search/Search';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import uniqid from 'uniqid';
 import Htag from '@/core/presenter/ui/Htag/Htag';
@@ -11,9 +10,11 @@ import AwardIcon from '@/core/presenter/images/union.svg';
 import { getUserUrl } from '@/core/config/api.config';
 import { useRouter } from 'next/router';
 import P from '@/core/presenter/ui/P/P';
+import ArrowRightIcon from '@/core/presenter/images/arrowRight.svg';
 
 const UserListRating = ({
   users,
+  withoutCountAwards,
   className,
   ...props
 }: UserListRatingProps): JSX.Element => {
@@ -21,10 +22,17 @@ const UserListRating = ({
   const { push } = useRouter();
 
   return (
-    <div {...props} className={cn(styles.wrapper, className)}>
+    <div {...props} className={cn({
+      [styles.wrapperWithoutCountAwards]: withoutCountAwards == false,
+      [styles.wrapper]: withoutCountAwards == true
+    }, className)}>
       {users?.map((user) => {
         return (
-          <div key={uniqid()} className={styles.userWrapper}>
+          <div
+            key={uniqid()}
+            className={styles.userWrapper}
+            onClick={() => push(getUserUrl(`/${user.id}`))}
+          >
             <div className={styles.img}>
               <ImageDefault
                 src={user.imageUrl}
@@ -34,11 +42,8 @@ const UserListRating = ({
                 objectFit='cover'
                 className='rounded-[10px]'
               />
-            </div> 
-            <div
-              onClick={() => push(getUserUrl(`/${user.id}`))}
-              className={styles.user}
-            >
+            </div>
+            <div className={styles.user}>
               <P size='m'>
                 {user.lastname} {user.name}
               </P>
@@ -51,11 +56,11 @@ const UserListRating = ({
               </div>
             </div>
             {user.departmentName ? (
-              <ButtonIcon className={styles.depart} appearance='lightGray'>
+              <ButtonIcon className={styles.depart} appearance='graySilver'>
                 {user.departmentName}
               </ButtonIcon>
             ) : (
-              <ButtonIcon className={styles.depart} appearance='lightGray'>
+              <ButtonIcon className={styles.depart} appearance='graySilver'>
                 Нет отдела
               </ButtonIcon>
             )}
@@ -74,18 +79,21 @@ const UserListRating = ({
                 <AwardIcon className={styles.union} />
               </div>
             )}
-            <div className={styles.viewerAward}>
+            {withoutCountAwards == true ? (<div className={styles.viewerAward}>
               {user.awards
                 .filter((item) => item.state == 'AWARD')
                 .map((award, index) => {
                   if (index < 4) {
                     return (
-                      <div className={cn(styles.imgAward, {
-                        [styles.one]: index == 0,
-                        [styles.two]: index == 1,
-                        [styles.three]: index == 2,
-                        [styles.four]: index == 3,
-                      })} key={uniqid()}>
+                      <div
+                        className={cn(styles.imgAward, {
+                          [styles.one]: index == 0,
+                          [styles.two]: index == 1,
+                          [styles.three]: index == 2,
+                          [styles.four]: index == 3,
+                        })}
+                        key={uniqid()}
+                      >
                         <ImageDefault
                           src={award.imageUrl}
                           width={50}
@@ -108,6 +116,9 @@ const UserListRating = ({
               ) : (
                 <div className={styles.countIconDisabled}></div>
               )}
+            </div>) : ('') }
+            <div className={styles.arrowRight}>
+              <ArrowRightIcon />
             </div>
           </div>
         );

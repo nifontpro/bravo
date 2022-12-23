@@ -5,4 +5,5 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, ReactNode, SetStateA
 export type UserListRatingProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     children?: ReactNode;
     users: IUserAwards[] | undefined
+    withoutCountAwards: boolean
 }

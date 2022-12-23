@@ -72,14 +72,14 @@ const Depart = ({
             />
           </AuthComponent>
         </div>
-        <P size='m' className={styles.description}>
+        <P size='m' type='silverBtn' className={styles.description}>
           {data.description}
         </P>
       </div>
 
       <CountUsersPreview
         onClick={() => setListUserVisible(!listUserVisible)}
-        appearanceBtn='white'
+        appearanceBtn='black'
         listUserVisible={listUserVisible}
         usersInDepartment={usersInDepartment}
       />

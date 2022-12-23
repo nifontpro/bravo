@@ -12,7 +12,7 @@ const [visible, setVisible] = useState<boolean>(allChecked)
 useEffect(() => {
   setVisible(allChecked)
 }, [allChecked])
-
+ 
 const handleClick = () => {
   setVisible(!visible)
   setVisibleCheckbox(false)

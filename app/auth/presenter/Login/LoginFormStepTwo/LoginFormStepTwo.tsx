@@ -45,7 +45,7 @@ const LoginFormStepTwo = ({
     email: string;
   }> = async (data) => {
     console.log(data);
-    registerStepTwo({ ...data})
+    registerStepTwo({ ...data })
       .unwrap()
       .then((d) => {
         setAuthData(d);
@@ -71,8 +71,9 @@ const LoginFormStepTwo = ({
         icon='down'
         className={styles.back}
       >
-        Вернуться назад
+        Назад
       </ButtonCircleIcon>
+
       <Htag tag='h1' className={styles.title}>
         Регистрация
       </Htag>
@@ -86,10 +87,7 @@ const LoginFormStepTwo = ({
       />
 
       <div className={styles.buttons}>
-        <Button
-          appearance='blackWhite'
-          size='l'
-        >
+        <Button appearance='blackWhite' size='l'>
           Продолжить
         </Button>
       </div>

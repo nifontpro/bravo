@@ -6,19 +6,9 @@ import AwardTitle from './AwardTitle/AwardTitle';
 import AwardWasAwarded from './AwardWasAwarded/AwardWasAwarded';
 import AwardWasNominee from './AwardWasNominee/AwardWasNominee';
 import AwardNominee from './AwardNominee/AwardNominee';
-import { useCompanyState } from '@/company/data/company.slice';
-import { useEffect } from 'react';
 
 const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
   const { push } = useRouter();
-  //   const { currentCompany } = useCompanyState();
-  // useEffect(() => {
-  //   if (currentCompany != undefined) {
-  //     push(`/company`);
-  //   }
-  // });
-
-  // console.log(award);
 
   if (award.state == 'AWARD' || award.state == 'NONE') {
     return (
@@ -27,7 +17,6 @@ const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
           onClick={() => push('/award')}
           appearance='black'
           icon='down'
-          className='mb-[50px]'
         >
           Вернуться назад
         </ButtonCircleIcon>
@@ -50,7 +39,7 @@ const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
         </ButtonCircleIcon>
 
         <AwardTitle award={award} />
-        <AwardNominee award={award}/>
+        <AwardNominee award={award} />
       </div>
     );
   }

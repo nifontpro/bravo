@@ -13,8 +13,14 @@ import {
   getUserCreateUrl,
 } from '@/core/config/api.config';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import { useDepartment } from '@/department/presenter/useDepartment';
+import { useMyUser } from '@/user/presenter/useMyUsers';
+import P from '@/core/presenter/ui/P/P';
 
 const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
+  const { departmentInCompany: departments, isLoading } = useDepartment('')
+  const { users } = useMyUser('')
+
   const { push } = useRouter();
   const [toggle, setToogle] = useState<boolean>(false);
 
@@ -31,6 +37,7 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
               })}
             >
               Отделы
+              <P className={styles.rewardedLength}>{departments.length}</P>
             </Htag>
             <Htag
               tag='h3'
@@ -40,6 +47,7 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
               })}
             >
               Сотрудники
+              <P className={styles.rewardedLength}>{users.length}</P>
             </Htag>
           </div>
           <AuthComponent minRole={'director'}>

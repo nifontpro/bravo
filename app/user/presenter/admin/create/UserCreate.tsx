@@ -90,24 +90,23 @@ const UserCreate: FC = () => {
 
   return (
     <Meta title='Создание профиля сотрудника'>
-      <ButtonCircleIcon
-        onClick={back}
-        appearance='black'
-        icon='down'
-        className='mb-[50px]'
-      >
+      <ButtonCircleIcon onClick={back} appearance='black' icon='down'>
         Вернуться назад
       </ButtonCircleIcon>
+
       <form className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            src={img}
-            width={300}
-            height={300}
-            alt='preview image'
-            objectFit='cover'
-            className='rounded-[10px]'
-          />
+          <div className={styles.images}>
+            <ImageDefault
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+              // className='rounded-[10px]'
+            />
+          </div>
+
           <InputFile
             error={errors.file}
             {...register('file', { onChange: changePhoto })}
@@ -162,7 +161,7 @@ const UserCreate: FC = () => {
               error={errors.login}
             />
 
-            <Field
+            {/* <Field
               // {...register('password', {
               //   required: 'Пароль обязательно!',
               //   minLength: 6,
@@ -170,7 +169,7 @@ const UserCreate: FC = () => {
               title='Пароль'
               placeholder='Придумайте пароль'
               error={errors.password}
-            />
+            /> */}
           </div>
 
           <Field

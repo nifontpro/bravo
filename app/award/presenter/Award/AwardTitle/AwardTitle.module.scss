@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 30px;
+  margin-top: 50px;
 
   > .img {
     background: var(--gray-dark);
@@ -27,7 +28,7 @@
         font-size: 54px;
       }
 
-      .dot {
+      .dots {
         position: absolute;
         top: -50px;
         right: -50px;
@@ -35,13 +36,7 @@
     }
 
     > .description {
-      // padding-bottom: 75px;
-      // border-bottom: 1px solid #0000001a;
       margin-bottom: 30px;
-      background: var(--graySilver);
-      width: fit-content;
-      padding: 3px 7px;
-      border-radius: 30px;
     }
 
     > .criteria {

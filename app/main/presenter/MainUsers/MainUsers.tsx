@@ -27,7 +27,7 @@ const MainUsers = ({
           <ArrowIcon className={styles.arrow}/>
         </div>
       </div>
-      <UserListRating users={users} className={styles.userList}/>
+      <UserListRating withoutCountAwards={false} users={users} className={styles.userList}/>
     </div>
   );
 };

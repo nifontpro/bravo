@@ -17,6 +17,7 @@ import { toastError } from '@/core/utils/toast-error';
 import P from '@/core/presenter/ui/P/P';
 import Link from 'next/link';
 import { ILoginPasswordCheck } from './login.interface';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const LoginFormStepOne = ({
   visible,
@@ -58,9 +59,19 @@ const LoginFormStepOne = ({
       {...props}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Htag tag='h1' className={styles.title}>
-        Регистрация
-      </Htag>
+      <div className={styles.title}>
+        <Htag tag='h1'>Регистрация</Htag>
+        <Link href={'/auth'}>
+          <a className={styles.registration}>
+            <P size='s'>Войти</P>
+            <ButtonCircleIcon
+              appearance='black'
+              icon='right'
+              className={styles.arrow}
+            />
+          </a>
+        </Link>
+      </div>
 
       <Field
         {...register('name', { required: 'Имя необходимо!' })}
@@ -70,13 +81,28 @@ const LoginFormStepOne = ({
         className='mb-[60px]'
       />
 
-      <Field
-        {...register('login', { required: 'Логин необходим!' })}
-        title='Логин'
-        placeholder='Введите логин'
-        error={errors.login}
-        className='mb-[60px]'
-      />
+      <div className={styles.group}>
+        <Field
+          {...register('login', { required: 'Логин необходим!' })}
+          title='Логин'
+          placeholder='Введите логин'
+          error={errors.login}
+          className='mb-[20px]'
+        />
+        <Field
+          {...register('email', {
+            required: 'Почта необходима!',
+            pattern: {
+              value: validEmail,
+              message: 'Пожалуйста введите корректный адрес',
+            },
+          })}
+          title='Почта'
+          placeholder='Введите почту'
+          error={errors.email}
+          className='mb-[20px]'
+        />
+      </div>
 
       <div className={styles.group}>
         <Field
@@ -105,32 +131,18 @@ const LoginFormStepOne = ({
         />
       </div>
 
-      <Field
-        {...register('email', {
-          required: 'Почта необходима!',
-          pattern: {
-            value: validEmail,
-            message: 'Пожалуйста введите корректный адрес',
-          },
-        })}
-        title='Почта'
-        placeholder='Введите почту'
-        error={errors.email}
-        className='mb-[60px]'
-      />
-
       <div className={styles.buttons}>
         <Button appearance='blackWhite' size='l'>
           Продолжить
         </Button>
       </div>
-      <Link href={'/auth'}>
+      {/* <Link href={'/auth'}>
         <a className='flex justify-center'>
           <P size='m' color='gray' fontstyle='thin' className={styles.auth}>
             Уже зарегестрированны? Войти
           </P>
         </a>
-      </Link>
+      </Link> */}
     </form>
   );
 };

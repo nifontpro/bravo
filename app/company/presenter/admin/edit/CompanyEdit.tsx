@@ -21,6 +21,9 @@ import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleI
 // import { ICompanyCreate } from '@/company/model/company.types';
 import { useCompanyEdit } from './useCompanyEdit';
 import { ICompanyUpdateRequest } from './company-edit.type';
+import InputPhotoRefresh from '@/core/presenter/ui/InputPhotoRefresh/InputPhotoRefresh';
+import RemoveIcon from '@/core/presenter/images/remove.svg';
+import RefreshIcon from '@/core/presenter/images/refresh.svg';
 
 const UserEdit: FC = () => {
   const {
@@ -40,12 +43,13 @@ const UserEdit: FC = () => {
   //   push('/');
   // }
 
-  const { isLoading, onSubmit, changePhoto, img } = useCompanyEdit(setValue);
+  const { isLoading, onSubmit, changePhoto, removePhoto, img } =
+    useCompanyEdit(setValue);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    back()
-  } 
+    back();
+  };
 
   return (
     <Meta title='Редактирование компании'>
@@ -54,67 +58,78 @@ const UserEdit: FC = () => {
       </ButtonCircleIcon>
       <div className={styles.newForm}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            src={img}
-            width={300}
-            height={300}
-            alt='preview image'
-            objectFit='cover'
-            className='rounded-[10px]'
-          />
-          <InputFile onChange={changePhoto}>
-            Загрузить новое изображение
-          </InputFile>
+          <div className={styles.images}>
+            <ImageDefault
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+              // className='rounded-[10px]'
+            />
+          </div>
+
+          <div className={styles.editPanel}>
+            <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
+              <RefreshIcon className={styles.refresh} />
+            </InputPhotoRefresh>
+            <RemoveIcon onClick={removePhoto} className={styles.remove} />
+          </div>
         </div>
 
         <form className={styles.form}>
-        <div className={styles.fields}>
-          <Htag tag='h2' className={styles.title}>
-            Компания
-          </Htag>
+          <div className={styles.fields}>
+            <Htag tag='h2' className={styles.title}>
+              Компания
+            </Htag>
 
-          <Field
-            {...register('name', { required: 'Название необходимо!' })}
-            title='Название'
-            placeholder={currentCompany?.name}
-            error={errors.name}
-            className='mb-[60px]'
-          />
-
-          <div className={styles.group}>
             <Field
-              {...register('phone', { required: 'Телефон обязательно!' })}
-              title='Телефон'
-              placeholder={currentCompany?.phone}
-              error={errors.phone}
+              {...register('name', { required: 'Название необходимо!' })}
+              title='Название'
+              placeholder={currentCompany?.name}
+              error={errors.name}
+              className='mb-[60px]'
             />
+
+            <div className={styles.group}>
+              <Field
+                {...register('phone', { required: 'Телефон обязательно!' })}
+                title='Телефон'
+                placeholder={currentCompany?.phone}
+                error={errors.phone}
+              />
+              <Field
+                {...register('email', {
+                  required: 'Почта обязательна!',
+                  minLength: 6,
+                })}
+                title='Почта'
+                placeholder={currentCompany?.email}
+                error={errors.email}
+              />
+            </div>
+
             <Field
-              {...register('email', {
-                required: 'Почта обязательна!',
-                minLength: 6,
-              })}
-              title='Почта'
-              placeholder={currentCompany?.email}
-              error={errors.email}
+              {...register('address', { required: 'Адрес обязательно!' })}
+              title='Офис'
+              placeholder={currentCompany?.address}
+              error={errors.address}
             />
-          </div>
 
-          <Field
-            {...register('address', { required: 'Адрес обязательно!' })}
-            title='Офис'
-            placeholder={currentCompany?.address}
-            error={errors.address}
-          />
-
-          <div className={styles.buttons}>
-            <Button onClick={handleClick} appearance='white' size='l'>
-              Отменить
-            </Button>
-            <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
-              Изменить
-            </Button>
+            <div className={styles.buttons}>
+              <Button onClick={handleClick} appearance='white' size='l'>
+                Отменить
+              </Button>
+              <Button
+                onClick={handleSubmit(onSubmit)}
+                appearance='blackWhite'
+                size='l'
+                className='ml-[15px]'
+              >
+                Изменить
+              </Button>
+            </div>
           </div>
-        </div>
         </form>
       </div>
     </Meta>

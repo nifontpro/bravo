@@ -13,7 +13,7 @@ export const useAwardCreate = (
   companyId?: string,
   arrChoiceUser?: string[]
 ) => {
-  const { back } = useRouter();
+  const { back, push } = useRouter();
 
   useEffect(() => {
     if (companyId) {
@@ -42,8 +42,8 @@ export const useAwardCreate = (
     // }
 
     if (data.endDate != undefined && data.startDate != undefined) {
-      data.endDate = Math.floor(new Date().getTime() );
-      data.startDate = Math.floor(new Date().getTime() );
+      data.endDate = Math.floor(new Date().getTime());
+      data.startDate = Math.floor(new Date().getTime());
     }
     // data.state = 'AWARD';
     let isError = false;
@@ -77,6 +77,9 @@ export const useAwardCreate = (
                 });
             });
           }
+          if (!isError) {
+            push(`/award/${award.id}`);
+          }
         })
         .catch((e) => {
           isError = true;
@@ -88,13 +91,13 @@ export const useAwardCreate = (
     }
     if (!isError) {
       toast.success('Награда успешно создана');
-      back();
+      // back();
     }
     reset();
   };
 
   const onSubmitNominee: SubmitHandler<IAwardCreate> = async (data) => {
-    let currentDate = Math.floor(new Date().getTime() );
+    let currentDate = Math.floor(new Date().getTime());
 
     // data.state = 'NOMINEE';
 
@@ -102,10 +105,10 @@ export const useAwardCreate = (
 
     if (data.endDate != undefined && data.startDate != undefined) {
       if (data.startDate == 0) {
-        data.startDate = Math.floor(new Date().getTime() );
+        data.startDate = Math.floor(new Date().getTime());
         // console.log('startDate : ' + data.startDate);
       } else {
-        data.startDate = new Date(data.startDate).getTime() ;
+        data.startDate = new Date(data.startDate).getTime();
         // console.log('startDate : ' + data.startDate);
       }
 
@@ -114,12 +117,12 @@ export const useAwardCreate = (
         // } else if (currentDate < (new Date(data.endDate).getTime())) {
       } else if (
         currentDate + 1000 >
-        Math.round(new Date(data.endDate).getTime() )
+        Math.round(new Date(data.endDate).getTime())
       ) {
         toast.error('Текущая дата больше чем дата окончания');
       } else {
         console.log(data.endDate);
-        data.endDate = Math.round(new Date(data.endDate).getTime() );
+        data.endDate = Math.round(new Date(data.endDate).getTime());
         // console.log('endDate : ' + data.endDate);
 
         let isError = false;
@@ -154,6 +157,9 @@ export const useAwardCreate = (
                     });
                 });
               }
+              if (!isError) {
+                push(`/award/${award.id}`);
+              }
             })
             .catch((e) => {
               isError = true;
@@ -165,7 +171,7 @@ export const useAwardCreate = (
         }
         if (!isError) {
           toast.success('Награда успешно создана');
-          back();
+          // back();
         }
         reset();
       }

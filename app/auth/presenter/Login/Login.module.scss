@@ -7,7 +7,7 @@
 }
 
 .formOne {
-  width: 956px;
+  width: 1200px;
   background: var(--white);
   padding: 110px 100px;
   border-radius: 27px;
@@ -29,12 +29,11 @@
 
 .sendUs {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   width: 100%;
   text-align: end;
   margin-top: 100px;
-  margin-right: 100px;
   opacity: 0.5;
   color: var(--gray-dark);
 }

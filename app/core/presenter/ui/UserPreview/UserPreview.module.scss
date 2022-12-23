@@ -1,9 +1,13 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 76px 1fr;
+  grid-template-columns: 76px 1fr 200px;
   align-items: center;
+  gap: 30px;
 
-  > .info {
-    margin-left: 25px;
+  .departName {
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--graySilver);
+    text-align: center;
   }
 }

@@ -2,27 +2,17 @@ import { useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
 import styles from './DepartmentCreate.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
-import cn from 'classnames';
-import { IUserCreateInput } from '@/user/presenter/admin/create/user-create.type';
 import { useCompanyState } from '@/company/data/company.slice';
 import { useRouter } from 'next/router';
 import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { DepartmentCreateProps } from './DepartmentCreate.props';
 import { useDepartmentCreate } from './useDepartmentCreate';
-import {
-  IDepartment,
-  IDepartmentCreate,
-} from '@/department/model/department.types';
-import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import { IDepartmentCreate } from '@/department/model/department.types';
 
 const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
-
-  // if (currentCompany === null) {
-  //   push('/company');
-  // }
 
   const {
     handleSubmit,
@@ -35,19 +25,11 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    back()
-  } 
+    back();
+  };
 
   return (
     <Meta title='Создание нового отдела'>
-      <ButtonCircleIcon
-        onClick={back}
-        appearance='black'
-        icon='down'
-        className='mb-[50px]'
-      >
-        Вернуться назад
-      </ButtonCircleIcon>
       <form className={styles.form}>
         <Htag tag='h2' className={styles.title}>
           Новый отдел
@@ -73,9 +55,14 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
         <div className={styles.btn}>
           <Button onClick={handleClick} appearance='white' size='l'>
             Отменить
-          </Button> 
-          <Button onClick={handleSubmit(onSubmit)} appearance='gray' size='l' className='ml-[15px]'>
-            Добавить
+          </Button>
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            appearance='blackWhite'
+            size='l'
+            className='ml-[15px]'
+          >
+            Сохранить
           </Button>
         </div>
       </form>

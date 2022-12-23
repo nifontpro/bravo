@@ -19,6 +19,7 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
 import { useAuthState } from '@/auth/data/auth.slice';
 import CurrentUser from './CurrentUser/CurrentUser';
+import { useRouter } from 'next/router';
 
 const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
   const { user } = useAuthState();
@@ -114,7 +115,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
               placeholder='Сотрудник сотрудника ...'
               className={styles.search}
             />
-            <UserListRating users={filteredValue} />
+            <UserListRating withoutCountAwards={true} users={filteredValue} />
           </div>
         </div>
       </Meta>
@@ -132,7 +133,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
               setDepartSort={setDepartSort}
             />
             <SelectCustom
-              placeholder={'Все отделы'}
+              placeholder={'Выбрать'}
               className={styles.selectDepartment}
               options={arrDeparts}
               setDepartSort={setDepartSort}
@@ -158,7 +159,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
               placeholder='Сотрудник сотрудника ...'
               className={styles.search}
             />
-            <UserListRating users={filteredValue} />
+            <UserListRating withoutCountAwards={true} users={filteredValue} />
           </div>
         </div>
       </Meta>

@@ -1,9 +1,9 @@
 import Meta from '@/core/utils/meta/Meta';
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
-import SendUsIcon from '../sendUs.svg';
+import SendUsIcon from '@/core/presenter/images/sendUs.svg';
 import { LoginProps } from './Login.props';
-import LogoIcon from '../logo.svg';
+import LogoIcon from '@/core/presenter/images/logoAuth.svg';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import Button from '@/core/presenter/ui/Button/Button';
 import P from '@/core/presenter/ui/P/P';

@@ -23,13 +23,13 @@ const StatisticUsersAwards = ({
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <P size='l' className={styles.title}>
-        Сотрудники
+        Призеры
       </P>
 
       <DoughnutCircle
         className={styles.doughnut}
         dataOne={countWithAward}
-        colorOne='rgba(179, 179, 179, 1)'
+        colorOne='#E5F23B'
         dataTwo={countWithoutAward}
         colorTwo='rgba(57, 57, 57, 1)'
       />

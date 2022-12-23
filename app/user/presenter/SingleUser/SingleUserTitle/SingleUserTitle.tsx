@@ -3,7 +3,10 @@ import { SingleUserTitleProps } from './SingleUserTitle.props';
 import cn from 'classnames';
 import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
 import { useState } from 'react';
-import { getUserEditPasswordUrl, getUserEditUrl } from '@/core/config/api.config';
+import {
+  getUserEditPasswordUrl,
+  getUserEditUrl,
+} from '@/core/config/api.config';
 import { useUserAdmin } from '../../admin/useUserAdmin';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useRouter } from 'next/router';
@@ -82,22 +85,42 @@ const SingleUserTitle = ({
 
       <div className={styles.position}>
         {user.departmentName ? (
-          <ButtonIcon className={styles.depart} appearance='gray'>
+          <P
+            size='xs'
+            fontstyle='thin'
+            type='silverBtn'
+            className={styles.depart}
+          >
             {user.departmentName}
-          </ButtonIcon>
+          </P>
         ) : (
-          <ButtonIcon className={styles.depart} appearance='gray'>
+          <P
+            size='xs'
+            fontstyle='thin'
+            type='silverBtn'
+            className={styles.depart}
+          >
             Нет отдела
-          </ButtonIcon>
+          </P>
         )}
         {user.post ? (
-          <ButtonIcon className={styles.post} appearance='gray'>
+          <P
+            size='xs'
+            fontstyle='thin'
+            type='silverBtn'
+            className={styles.post}
+          >
             {user.post}
-          </ButtonIcon>
+          </P>
         ) : (
-          <ButtonIcon className={styles.post} appearance='gray'>
+          <P
+            size='xs'
+            fontstyle='thin'
+            type='silverBtn'
+            className={styles.post}
+          >
             Нет отдела
-          </ButtonIcon>
+          </P>
         )}
       </div>
 
@@ -133,7 +156,7 @@ const SingleUserTitle = ({
             })}
           {user.awards.filter((item) => item.awardState == 'AWARD').length >
           4 ? (
-            <ButtonIcon className={styles.countIcon} appearance={'white'}>
+            <ButtonIcon className={styles.countIcon} appearance={'black'}>
               +
               {user.awards.filter((item) => item.awardState == 'AWARD').length -
                 4}
@@ -164,16 +187,16 @@ const SingleUserTitle = ({
           <AuthComponent minRole={'director'}>
             <Button
               onClick={() => setVisibleModal(true)}
-              size='m'
+              size='l'
               appearance='blackWhite'
             >
-              Выдать награду
+              Наградить
             </Button>
           </AuthComponent>
         )}
       </div>
 
-      <P size='l'>О сотруднике</P>
+      <P size='l' className={styles.aboutUser}>О сотруднике</P>
       <P size='m' fontstyle='thin'>
         {user.description}
       </P>
