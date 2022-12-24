@@ -1,20 +1,32 @@
 .wrapper {
   margin-bottom: 30px;
+  background: var(--gray-dark);
+  border-radius: 20px;
 
   .userWrapper {
     display: grid;
     align-items: center;
-    grid-template-columns: [start] auto [endNumber] 30px [startLogo] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 1fr [startViewer] 200px [endViewer];
-    background: var(--gray-dark);
-    padding: 30px 75px 30px 35px;
+    grid-template-columns: [start] 40px [endPosition] 20px [startLogo] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 1fr [startViewer] 400px [endViewer] 50px [startArrow] auto [end];
+    margin-bottom: 50px;
+    cursor: pointer;
     border-radius: 20px;
+    padding: 20px 60px;
+    @apply duration-200;
+
+    // &:hover {
+    //   background: var(--graySilver);
+
+    //   .arrowRight svg path {
+    //     stroke: var(--gray-dark);
+    //   }
+    // }
 
     &:nth-last-child(1) {
       margin-bottom: 0px;
     }
 
     .numberOfRating {
-      grid-column: start / endNumber;
+      grid-column: start / endPosition;
     }
 
     .img {
@@ -34,18 +46,29 @@
       grid-column: startDepart / endDepart;
     }
 
-    .countAwards {
+    .countAwards,
+    .countAwardsDisable {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       grid-column: startCount / endCount;
 
+      svg path {
+        fill: var(--white);
+      }
+
       .union {
         margin-left: 10px;
         width: 15px;
       }
+    }
+
+    .countAwardsDisable {
+      .disabled {
+        color: var(--gray);
+      }
       > svg path {
-        fill: var(--white);
+        fill: var(--gray);
       }
     }
 
@@ -56,31 +79,22 @@
       justify-content: flex-end;
       grid-column: startViewer / endViewer;
 
+      .countPreview {
+        margin-left: 10px;
+      }
+
       .imgAward {
-        border: 1px solid var(--white);
         background: var(--graySilver);
         border-radius: 100%;
         margin-left: 10px;
         width: 50px;
         height: 50px;
-        position: absolute;
-      }
 
-      .one {
-        transform: translate(-30px, 0);
-        z-index: 4;
-      }
-      .two {
-        transform: translate(-60px, 0);
-        z-index: 3;
-      }
-      .three {
-        transform: translate(-90px, 0);
-        z-index: 2;
-      }
-      .four {
-        transform: translate(-120px, 0);
-        z-index: 1;
+        &:first-child {
+          margin-left: 0px;
+        }
+
+
       }
 
       .countIcon {
@@ -102,6 +116,15 @@
         background: transparent;
         border: none;
       }
+    }
+
+    .arrowRight {
+      grid-column: startArrow / end;
+
+      // svg path {
+      //   @apply duration-200;
+      //   stroke: var(--graySilver);
+      // }
     }
   }
 }

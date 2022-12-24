@@ -5,4 +5,5 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, ReactNode, SetStateA
 export type CurrentUserProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     children?: ReactNode;
     currentUser: IUserAwards | undefined
+    currentUserIndex: number
 }

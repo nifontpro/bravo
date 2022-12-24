@@ -1,17 +1,12 @@
 import React from 'react';
-import {NextPage} from "next";
-import {useRouter} from "next/router";
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import ResetPassword from 'register/presenter/ResetPassword';
 
 const ResetPasswordPage: NextPage = () => {
+  const router = useRouter();
 
-	const router = useRouter();
-
-	return (
-		<div>
-			Token: {router.query.resetToken}
-			UserId: {router.query.userId}
-		</div>
-	);
+  return <ResetPassword router={router} />;
 };
 
 export default ResetPasswordPage;

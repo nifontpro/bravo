@@ -170,7 +170,7 @@ const SingleUserTitle = ({
             <Button
               onClick={() => push(getUserEditUrl(`/${user.id}`))}
               size='m'
-              appearance='whiteBlack'
+              appearance='blackWhite'
             >
               Редактировать
             </Button>

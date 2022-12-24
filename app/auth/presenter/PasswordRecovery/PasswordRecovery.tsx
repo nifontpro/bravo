@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 import { toastError } from '@/core/utils/toast-error';
 import Field from '@/core/presenter/ui/form/Field/Field';
 import { validEmail } from '@/core/utils/regex';
+import { registerApi } from 'register/data/register.api';
 
 const PasswordRecovery = ({
   className,
@@ -31,17 +32,25 @@ const PasswordRecovery = ({
     setValue,
   } = useForm<{ code: string; email: string }>({ mode: 'onChange' });
 
-  const onSubmit: SubmitHandler<{ code: string; email: string; }> = (data) => {
-    console.log(data);
-    // login(data)
-    //   .unwrap()
-    //   .then((d) => {
-    //     setAuthData(d);
-    //     toast.success('Добро пожаловать!');
-    //   })
-    //   .catch((e) => {
-    //     toastError(e, 'Ошибка входа');
-    //   });
+  const [ passwordReset ] = registerApi.usePasswordResetStepOneMutation();
+
+  const onSubmit: SubmitHandler<{ email: string; }> = (data) => {
+    let isError = false;
+
+    passwordReset(data.email)
+      .unwrap()
+      .then((d) => {
+
+        toast.success('Добро пожаловать!');
+      })
+      .catch((e) => {
+        toastError(e, 'Ошибка входа');
+      });
+    
+      if (!isError) {
+        toast.success(`Проверьте адрес ${data.email}`);
+        setVisible(true);
+      }
   };
 
   return (
