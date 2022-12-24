@@ -16,8 +16,7 @@ export const getUserUrl = (string: string = '') => `/user${string}`
 export const getUserCreateUrl = (string: string = '') => `/user/create${string}`
 export const getUserEditUrl = (string: string = '') => `/user/edit${string}`
 export const getUserEditPasswordUrl = (string: string = '') => `/user/edit_password${string}`
-export const getMedalUrl = (string: string = '') => `/medal${string}`
-export const getRewardUrl = (string: string = '') => `/reward${string}`
-export const getAwardUrl = (string: string = '') => `/award${string}` 
-export const getAwardCreateUrl = (string: string = '') => `/award/create${string}` 
-export const getAwardEditUrl = (string: string = '') => `/award/edit${string}` 
+export const getAwardUrl = (string: string = '') => `/award${string}`
+export const getAwardCreateUrl = (string: string = '') => `/award/create${string}`
+export const getAwardEditUrl = (string: string = '') => `/award/edit${string}`
+export const getMessageUrl = (string: string = '') => `/message${string}`
