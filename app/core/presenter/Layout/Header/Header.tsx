@@ -8,14 +8,21 @@ import Search from '../../ui/Search/Search';
 import { useAuthState } from '@/auth/data/auth.slice';
 import { ImageDefault } from '../../ui/icons/ImageDefault';
 import LogoutButton from '../Navigation/MenuContainer/auth/LogoutButton';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import UserModalWindow from './UserModalWindow/UserModalWindow';
-import { useOutside } from '@/core/hooks/useOutside';
+import useOutsideClick from '@/core/hooks/useOutsideClick';
 
 const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const { user } = useAuthState();
-  const [visibleModal, setVisibleModal] = useState<boolean>(false)
-  // const { ref, isShow, setIsShow } = useOutside(true)
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
+
+  //Закрытие модального окна нажатием вне его
+  const ref = useRef(null);
+  const refOpen = useRef(null);
+  const handleClickOutside = () => {
+    setVisibleModal(false);
+  };
+  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
 
   return (
     <header className={cn(className, styles.header)} {...props}>
@@ -35,9 +42,12 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
         <div className={styles.userComponent}>
           <NotificationIcon className={styles.notification} />
         </div>
-        {/* <Link href={'/user/' + user?.id}>
-          <a> */}
-        <div className={styles.userImg} onClick={() => setVisibleModal(!visibleModal)}>
+
+        <div
+          className={styles.userImg}
+          onClick={() => setVisibleModal(!visibleModal)}
+          ref={refOpen}
+        >
           <ImageDefault
             src={user?.imageUrl}
             width={64}
@@ -47,9 +57,13 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
             className='rounded-[10px]'
           />
         </div>
-        {/* <LogoutButton /> */}
       </div>
-      <UserModalWindow visibleModal={visibleModal} setVisibleModal={setVisibleModal} user={user}/>
+      <UserModalWindow
+        visibleModal={visibleModal}
+        setVisibleModal={setVisibleModal}
+        user={user}
+        ref={ref}
+      />
     </header>
   );
 };

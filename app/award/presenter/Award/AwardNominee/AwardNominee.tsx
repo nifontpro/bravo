@@ -5,13 +5,14 @@ import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleI
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import uniqid from 'uniqid';
 import CardNominee from 'award/presenter/Award/AwardNominee/CardNominee/CardNominee';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import ModalWindowWithAddUsers from '@/core/presenter/ui/ModalWindowWithAddUsers/ModalWindowWithAddUsers';
 import { IUser, IUserAwards } from '@/user/model/user.types';
 import { useAuthState } from '@/auth/data/auth.slice';
 import CardNomineeUser from './CardNomineeUser/CardNomineeUser';
 import P from '@/core/presenter/ui/P/P';
+import useOutsideClick from '@/core/hooks/useOutsideClick';
 
 const AwardNominee = ({
   award,
@@ -19,9 +20,15 @@ const AwardNominee = ({
   ...props
 }: AwardNomineeProps): JSX.Element => {
   const { user: currentUser } = useAuthState();
-  // console.log(currentUser);
-  // console.log(award)
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
+
+  //Закрытие модального окна нажатием вне его
+  const ref = useRef(null);
+  const refOpen = useRef(null);
+  const handleClickOutside = () => {
+    setVisibleModal(false);
+  };
+  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
 
   const { usersWithAwards: users } = useMyUser('');
 
@@ -65,6 +72,7 @@ const AwardNominee = ({
               appearance='black'
               icon='plus'
               className='font-bold'
+              ref={refOpen}
             >
               Добавить участников
             </ButtonCircleIcon>
@@ -97,6 +105,7 @@ const AwardNominee = ({
         visibleModal={visibleModal}
         setVisibleModal={setVisibleModal}
         textBtn='Номинировать'
+        ref={ref}
       />
     </div>
   );
