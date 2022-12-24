@@ -2,13 +2,10 @@ import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import {
   ChangeEvent,
-  Dispatch,
-  SetStateAction,
   useEffect,
   useState,
 } from 'react';
 import { toast } from 'react-toastify';
-import { IAward } from 'award/model/award.types';
 import { awardApi } from 'award/data/award.api';
 import { IAwardUpdate } from 'award/model/api.types';
 
@@ -37,7 +34,6 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
       setImg(award.imageUrl);
     }
   }, [isGetSuccess, setValue, award]);
-  //   console.log(award)
 
   const onSubmit: SubmitHandler<IAwardUpdate> = async (data) => {
     console.log(data);
@@ -80,29 +76,15 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
       formData.append('imageUrl', event.target.files[0]);
       await updateImg({ awardId: award.id, formData })
         .unwrap()
-        .catch(() => {
+        .catch((e) => {
           isError = true;
-          toast.error('Ошибка обновления фотографии');
+          toast.error(e + 'Ошибка обновления фотографии');
         });
       if (!isError) {
         toast.success('Фото успешно обновлено');
       }
     }
   };
-
-  // const removePhoto = async () => {
-  //   let isError = false;
-
-  //   await updateImg({ awardId: award.id})
-  //     .unwrap()
-  //     .catch(() => {
-  //       isError = true;
-  //       toast.error('Ошибка обновления фотографии');
-  //     });
-  //   if (!isError) {
-  //     toast.success('Фото успешно обновлено');
-  //   }
-  // };
 
   return { award, onSubmit, changePhoto, removePhoto, isLoading, img };
 };
