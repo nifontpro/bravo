@@ -21,11 +21,7 @@ const NotificationModalWindow = forwardRef(
     }: NotificationModalWindowProps,
     ref: ForwardedRef<HTMLDivElement>
   ): JSX.Element => {
-    console.log(message);
-
-    const {
-      handleClickReadAll,
-    } = useUserPanelModalWindow(message);
+    const { handleClickReadAll } = useUserPanelModalWindow(message);
 
     return (
       <div
@@ -43,13 +39,17 @@ const NotificationModalWindow = forwardRef(
           Уведомления
         </Htag>
 
-        {message != undefined && message.filter(item => item.read == false).length > 0 ? (
+        {message != undefined &&
+        message.filter((item) => item.read == false).length > 0 ? (
           <>
             <ul className={styles.list}>
               {message.map((notification) => {
                 if (notification.read == false) {
                   return (
-                    <NotificationItem key={uniqid()} notification={notification}/>
+                    <NotificationItem
+                      key={uniqid()}
+                      notification={notification}
+                    />
                   );
                 }
               })}

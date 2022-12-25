@@ -15,7 +15,9 @@ import { messageApi } from 'message/data/message.api';
 
 const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const { user } = useAuthState();
-  const { data: allMessage } = messageApi.useGetByUserQuery(user?.id || '', {skip: !user?.id});
+  const { data: allMessage } = messageApi.useGetByUserQuery(user?.id || '', {
+    skip: !user?.id,
+  });
 
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
   const [visibleNotification, setVisibleNotification] =
@@ -62,8 +64,13 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
           ref={refOpenNotification}
           onClick={() => setVisibleNotification(!visibleNotification)}
         >
-          <NotificationIcon className={styles.notification}/>
-          <div className={styles.notificationCount}>{allMessage?.filter(item => item.read == false).length}</div>
+          <NotificationIcon className={styles.notification} />
+          {allMessage &&
+            allMessage.filter((item) => item.read == false).length > 0 && (
+              <div className={styles.notificationCount}>
+                {/* {allMessage?.filter(item => item.read == false).length} */}
+              </div>
+            )}
         </div>
 
         <div

@@ -85,13 +85,13 @@ const ModalWindowWithAddUsers = forwardRef(
             setArrChoiceUser={setArrChoiceUser}
           />
           <div className={styles.buttons}>
-            <Button
+            {/* <Button
               onClick={() => setVisibleModal(false)}
               appearance='whiteBlack'
               size='l'
             >
               Отменить
-            </Button>
+            </Button> */}
             <Button
               onClick={onSubmitNominee}
               appearance='blackWhite'

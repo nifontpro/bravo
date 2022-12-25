@@ -82,7 +82,7 @@ const AwardWasAwarded = ({
         users={arrUserNotAwarded}
         visibleModal={visibleModal}
         setVisibleModal={setVisibleModal}
-        textBtn='Наградить'
+        textBtn='Выдать награду'
         ref={ref}
       />
     </div>

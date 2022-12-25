@@ -18,13 +18,16 @@
     margin-top: 5px;
   }
 
-  > .date{
+  > .date {
     display: flex;
-    margin-top: 65px; 
+    margin-top: 65px;
     background: var(--graySilver);
-    width: fit-content;
     padding: 5px 20px;
     border-radius: 30px;
+
+    .dateRewarded {
+      margin-right: 10px;
+    }
   }
 
   .remove {

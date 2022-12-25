@@ -45,7 +45,7 @@ const ChoiceUsers = ({
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
-      <P className={styles.searchTitle}>Поиск</P>
+      {/* <P className={styles.searchTitle}>Поиск</P> */}
       <Search
         onChange={handleChange}
         placeholder='Поиск сотрудника'
