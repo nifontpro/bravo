@@ -20,7 +20,7 @@ const NotificationItem = ({
     <li {...props} className={cn(styles.item, className)} onClick={handleClickRead}>
       <div className={styles.img}>
         <ImageDefault
-          // src={}
+          src={notification.imageUrl}
           width={64}
           height={64}
           alt='award img'
