@@ -9,6 +9,7 @@ export interface IMessage {
     read: boolean
     sendDate?: number
     readDate?: number
+    imageUrl?: string
 }
 
 export type MessageType = "NONE" | "SYSTEM" | "USER"
