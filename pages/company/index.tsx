@@ -16,7 +16,7 @@ const CompaniesPage: NextPage = () => {
     if (currentUser?.role == 'user' && currentCompany != null) {
 		push(`/company/${currentCompany.id}`)
     }
-  }, []);
+  }, [currentCompany, currentUser?.role, push]);
 
   return (
     <AuthComponent minRole={'owner'}>

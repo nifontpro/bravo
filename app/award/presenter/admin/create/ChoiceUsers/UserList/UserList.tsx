@@ -28,7 +28,7 @@ const handleClick = () => {
 
   return (
     <div onClick={handleClick} className={cn(styles.userList, className)} {...props}>
-      <UserPreview user={user} />
+      <UserPreview forWhat='user' user={user} /> 
       <CheckedIcon className={cn(styles.searchIcon, {
         [styles.visible]: visible,
         [styles.hidden]: !visible,

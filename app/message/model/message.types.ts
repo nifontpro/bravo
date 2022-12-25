@@ -1,6 +1,5 @@
 export interface IMessage {
     fromId?: string
-    imageUrl: string
     id: string
     toId: string
     type: MessageType
