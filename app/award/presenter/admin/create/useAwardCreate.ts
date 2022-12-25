@@ -1,6 +1,6 @@
 import { SubmitHandler, UseFormReset, UseFormSetValue } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { toastError } from '@/core/utils/toast-error';
 import { IAwardCreate } from 'award/model/api.types';
@@ -13,7 +13,15 @@ export const useAwardCreate = (
   companyId?: string,
   arrChoiceUser?: string[]
 ) => {
-  const { back, push } = useRouter();
+  const { push } = useRouter();
+
+  const [img, setImg] = useState<string>('');
+
+  const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files !== null && event.target.files.length > 0) {
+      setImg(URL.createObjectURL(event.target.files[0]));
+    }
+  };
 
   useEffect(() => {
     if (companyId) {
@@ -178,5 +186,5 @@ export const useAwardCreate = (
     }
   };
 
-  return { onSubmitReward, onSubmitNominee };
+  return { onSubmitReward, onSubmitNominee, changePhoto, img };
 };

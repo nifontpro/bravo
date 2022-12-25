@@ -22,17 +22,31 @@ const UserListRating = ({
   const { push } = useRouter();
 
   return (
-    <div {...props} className={cn({
-      [styles.wrapperWithoutCountAwards]: withoutCountAwards == false,
-      [styles.wrapper]: withoutCountAwards == true
-    }, className)}>
-      {users?.map((user) => {
+    <div
+      {...props}
+      className={cn(
+        {
+          [styles.wrapperWithoutCountAwards]: withoutCountAwards == false,
+          [styles.wrapper]: withoutCountAwards == true,
+        },
+        className
+      )}
+    >
+      {users?.map((user, index) => {
         return (
           <div
             key={uniqid()}
             className={styles.userWrapper}
             onClick={() => push(getUserUrl(`/${user.id}`))}
           >
+            <P
+              size='s'
+              fontstyle='thin'
+              className={styles.numberOfRating}
+              color='gray'
+            >
+              #{index+1}
+            </P>
             <div className={styles.img}>
               <ImageDefault
                 src={user.imageUrl}
@@ -79,44 +93,43 @@ const UserListRating = ({
                 <AwardIcon className={styles.union} />
               </div>
             )}
-            {withoutCountAwards == true ? (<div className={styles.viewerAward}>
-              {user.awards
-                .filter((item) => item.state == 'AWARD')
-                .map((award, index) => {
-                  if (index < 4) {
-                    return (
-                      <div
-                        className={cn(styles.imgAward, {
-                          [styles.one]: index == 0,
-                          [styles.two]: index == 1,
-                          [styles.three]: index == 2,
-                          [styles.four]: index == 3,
-                        })}
-                        key={uniqid()}
-                      >
-                        <ImageDefault
-                          src={award.imageUrl}
-                          width={50}
-                          height={50}
-                          alt='preview image'
-                          objectFit='cover'
-                          className='rounded-full'
-                        />
-                      </div>
-                    );
-                  }
-                })}
-              {user.awards.filter((item) => item.state == 'AWARD').length >
-              4 ? (
-                <div className={styles.countIcon}>
-                  +
-                  {user.awards.filter((item) => item.state == 'AWARD').length -
-                    4}
-                </div>
-              ) : (
-                <div className={styles.countIconDisabled}></div>
-              )}
-            </div>) : ('') }
+            {withoutCountAwards == true ? (
+              <div className={styles.viewerAward}>
+                {user.awards
+                  .filter((item) => item.state == 'AWARD')
+                  .map((award, index) => {
+                    if (index < 3) {
+                      return (
+                        <div className={cn(styles.imgAward)} key={uniqid()}>
+                          <ImageDefault
+                            src={award.imageUrl}
+                            width={50}
+                            height={50}
+                            alt='preview image'
+                            objectFit='cover'
+                            className='rounded-full'
+                          />
+                        </div>
+                      );
+                    }
+                  })}
+                {user.awards.filter((item) => item.state == 'AWARD').length >
+                3 ? (
+                  <ButtonIcon
+                    appearance='black'
+                    className={styles.countPreview}
+                  >
+                    +
+                    {user.awards.filter((item) => item.state == 'AWARD')
+                      .length - 3}
+                  </ButtonIcon>
+                ) : (
+                  <div className={styles.countIconDisabled}></div>
+                )}
+              </div>
+            ) : (
+              ''
+            )}
             <div className={styles.arrowRight}>
               <ArrowRightIcon />
             </div>

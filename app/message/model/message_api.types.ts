@@ -1,5 +1,5 @@
 export interface ISendMessageRequest {
-	toUserId: string
-	theme?: string
-	text: string
+    toUserId: string
+    theme?: string
+    text: string
 }

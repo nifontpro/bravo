@@ -35,7 +35,7 @@ const UserEditPassword: FC = () => {
   return (
     <Meta title='Редактирование пароля сотрудника'>
       <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>
-        Вернуться назад
+        Назад
       </ButtonCircleIcon>
       <form className={styles.form}>
         <Htag tag='h2' className={styles.title}>

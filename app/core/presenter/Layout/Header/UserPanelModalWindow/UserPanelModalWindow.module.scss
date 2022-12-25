@@ -1,0 +1,39 @@
+.userModalWindow {
+  position: absolute;
+  top: 160px;
+  right: 50px;
+  background: var(--white);
+  z-index: 100;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 15px;
+  padding: 45px 40px;
+  @apply animate-fade;
+
+  .title {
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--gray);
+  }
+
+  .list {
+    padding-top: 35px;
+
+    .item {
+       display: flex;
+       align-items: center;
+       margin-bottom: 35px;
+       cursor: pointer;
+
+       &:last-child {
+        margin-bottom: 0px;
+       }
+    }
+
+    .link {
+      margin-left: 20px;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}

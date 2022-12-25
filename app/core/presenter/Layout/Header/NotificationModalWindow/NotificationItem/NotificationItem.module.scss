@@ -1,0 +1,17 @@
+.item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 35px;
+  cursor: pointer;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+
+  .img {
+    width: 64px;
+    height: 64px;
+  }
+}

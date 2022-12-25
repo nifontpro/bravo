@@ -16,7 +16,7 @@ const MainActivity = ({
     <div {...props} className={cn(styles.wrapper, className)}>
       <div className={styles.header}>
         <Htag tag='h2'>Активность</Htag>
-        <div className={styles.bestDepart} onClick={() => push('/award')}>
+        <div className={styles.bestDepart} onClick={() => push('/message')}>
           <P size='s' fontstyle='thin' color='gray'>
             Все
           </P>

@@ -1,15 +1,11 @@
 import styles from './Awards.module.scss';
 import Meta from '@/core/utils/meta/Meta';
-import { awardApi } from 'award/data/award.api';
 import Htag from '@/core/presenter/ui/Htag/Htag';
-import ButtonRadio from '@/core/presenter/ui/ButtonRadio/ButtonRadio';
 import { AwardsProps } from './Awards.props';
 import { useState } from 'react';
 import cn from 'classnames';
-import Button from '@/core/presenter/ui/Button/Button';
 import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import SingleAward from './SingleAward/SingleAward';
-import Spinner from '@/core/presenter/ui/Spinner/Spinner';
 import Link from 'next/link';
 import { getAwardCreateUrl } from '@/core/config/api.config';
 import { useRouter } from 'next/router';
@@ -21,7 +17,6 @@ import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleI
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { awardsFull } = useAward('');
-  const { user: currentUser } = useAuthState();
 
   let allAwards = awardsFull.filter((award) => award.state == 'AWARD');
   let allNominee = awardsFull.filter((award) => award.state == 'NOMINEE');
@@ -36,9 +31,6 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
     item.state?.includes(active)
   );
 
-  // console.log(awardsFull);
-  // console.log(company);
-
   // Сотртировка по startDate
   if (filteredValue !== undefined) {
     filteredValue.sort((prev, next): number => {
@@ -48,8 +40,6 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
       return 1;
     });
   }
-
-  // console.log(awards);
 
   return (
     <Meta title='Медали'>

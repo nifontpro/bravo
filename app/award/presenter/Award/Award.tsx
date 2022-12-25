@@ -33,7 +33,6 @@ const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
           onClick={() => push('/award')}
           appearance='black'
           icon='down'
-          className='mb-[50px]'
         >
           Вернуться назад
         </ButtonCircleIcon>

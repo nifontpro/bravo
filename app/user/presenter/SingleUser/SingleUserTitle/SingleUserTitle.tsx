@@ -2,7 +2,7 @@ import styles from './SingleUserTitle.module.scss';
 import { SingleUserTitleProps } from './SingleUserTitle.props';
 import cn from 'classnames';
 import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   getUserEditPasswordUrl,
   getUserEditUrl,
@@ -22,6 +22,7 @@ import { awardApi } from 'award/data/award.api';
 import { IAward } from 'award/model/award.types';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import { useAuthState } from '@/auth/data/auth.slice';
+import useOutsideClick from '@/core/hooks/useOutsideClick';
 
 const SingleUserTitle = ({
   user,
@@ -33,6 +34,7 @@ const SingleUserTitle = ({
     { companyId: user.companyId || '' },
     { skip: !user.companyId }
   );
+
   //Фильтр тех медалей, которыми не награжден еще
   let arrAwardRewarded: string[] = [];
   user.awards.forEach((award) => {
@@ -54,6 +56,14 @@ const SingleUserTitle = ({
   const [visible, setVisible] = useState<boolean>(false);
   const { deleteAsync } = useUserAdmin();
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
+
+  //Закрытие модального окна нажатием вне его
+  const ref = useRef(null);
+  const refOpen = useRef(null);
+  const handleClickOutside = () => {
+    setVisibleModal(false);
+  };
+  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
 
   const handleRemove = () => {
     deleteAsync(user.id);
@@ -170,7 +180,7 @@ const SingleUserTitle = ({
             <Button
               onClick={() => push(getUserEditUrl(`/${user.id}`))}
               size='m'
-              appearance='whiteBlack'
+              appearance='blackWhite'
             >
               Редактировать
             </Button>
@@ -189,6 +199,7 @@ const SingleUserTitle = ({
               onClick={() => setVisibleModal(true)}
               size='l'
               appearance='blackWhite'
+              ref={refOpen}
             >
               Наградить
             </Button>
@@ -196,7 +207,9 @@ const SingleUserTitle = ({
         )}
       </div>
 
-      <P size='l' className={styles.aboutUser}>О сотруднике</P>
+      <P size='l' className={styles.aboutUser}>
+        О сотруднике
+      </P>
       <P size='m' fontstyle='thin'>
         {user.description}
       </P>
@@ -208,6 +221,7 @@ const SingleUserTitle = ({
         visibleModal={visibleModal}
         setVisibleModal={setVisibleModal}
         textBtn='Наградить'
+        ref={ref}
       />
     </div>
   );

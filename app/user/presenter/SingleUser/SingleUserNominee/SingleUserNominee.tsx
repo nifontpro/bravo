@@ -21,7 +21,8 @@ const SingleUserNominee = ({
           {user.awards.filter(item => item.awardState == 'NOMINEE').length}
         </P>
       </div>
-      <div className={styles.content}>
+      {user.awards.filter((award) => award.awardState == 'NOMINEE').length > 0 ? (
+        <div className={styles.content}>
         {user.awards.map((award) => {
           if (award.awardState == 'NOMINEE') {
             return (
@@ -29,7 +30,9 @@ const SingleUserNominee = ({
             );
           }
         })}
-      </div>
+      </div>) : (<P size='s' fontstyle='thin' className={styles.countAwards}>
+          У вас пока нет номинаций
+        </P>)}
     </div>
   );
 };

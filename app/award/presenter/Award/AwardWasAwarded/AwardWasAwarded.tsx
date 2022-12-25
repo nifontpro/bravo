@@ -8,9 +8,10 @@ import P from '@/core/presenter/ui/P/P';
 import uniqid from 'uniqid';
 import ModalWindowWithAddUsers from '@/core/presenter/ui/ModalWindowWithAddUsers/ModalWindowWithAddUsers';
 import { useMyUser } from '@/user/presenter/useMyUsers';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { IUser } from '@/user/model/user.types';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import useOutsideClick from '@/core/hooks/useOutsideClick';
 
 const AwardWasAwarded = ({
   award,
@@ -20,6 +21,14 @@ const AwardWasAwarded = ({
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
   const { users } = useMyUser('');
+
+  //Закрытие модального окна нажатием вне его
+  const ref = useRef(null);
+  const refOpen = useRef(null);
+  const handleClickOutside = () => {
+    setVisibleModal(false);
+  };
+  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
 
   //Фильтр тех кто еще не участвует в номинации
   let arrIdUserRewarded: string[] = [];
@@ -38,13 +47,14 @@ const AwardWasAwarded = ({
           <Htag tag='h3' className='@apply flex'>
             Награжденные
             <P className={styles.rewardedLength}>{arrIdUserRewarded.length}</P>
-            </Htag>
+          </Htag>
           <AuthComponent minRole={'director'}>
             <ButtonCircleIcon
               onClick={() => setVisibleModal(true)}
               appearance='black'
               icon='plus'
               className='font-bold'
+              ref={refOpen}
             >
               Наградить еще
             </ButtonCircleIcon>
@@ -73,6 +83,7 @@ const AwardWasAwarded = ({
         visibleModal={visibleModal}
         setVisibleModal={setVisibleModal}
         textBtn='Наградить'
+        ref={ref}
       />
     </div>
   );

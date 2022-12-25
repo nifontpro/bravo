@@ -1,13 +1,8 @@
 import styles from './Rating.module.scss';
 import Meta from '@/core/utils/meta/Meta';
-import { awardApi } from 'award/data/award.api';
 import { RatingProps } from './Rating.props';
 import cn from 'classnames';
-import { userApi } from '@/user/data/user.api';
-import Spinner from '@/core/presenter/ui/Spinner/Spinner';
 import Htag from '@/core/presenter/ui/Htag/Htag';
-import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
-import { departmentApi } from '@/department/data/department.api';
 import { IOption } from '@/core/presenter/ui/SelectArtem/SelectArtem.interface';
 import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import { useState } from 'react';
@@ -19,7 +14,6 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
 import { useAuthState } from '@/auth/data/auth.slice';
 import CurrentUser from './CurrentUser/CurrentUser';
-import { useRouter } from 'next/router';
 
 const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
   const { user } = useAuthState();
@@ -28,6 +22,12 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
   const { usersWithAwards: users } = useMyUser('');
 
   let currentUser = users.find((item) => {
+    if (item.id != undefined) {
+      return item.id == user?.id;
+    }
+  });
+
+  let currentUserIndex = users.findIndex((item) => {
     if (item.id != undefined) {
       return item.id == user?.id;
     }
@@ -77,94 +77,43 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
     setSearchValue(event.currentTarget.value);
   };
 
-  // console.log(users);
-
-  if (user?.role == 'user') {
-    return (
-      <Meta title='Рейтинг'>
-        <div {...props} className={styles.wrapper}>
-          <Htag tag='h1'>Рейтинг</Htag>
-          <div className={cn(styles.header, styles.headerUser)}>
-            <SelectCustom
-              placeholder={'Все отделы'}
-              className={styles.selectDepartment}
-              options={arrDeparts}
-              setDepartSort={setDepartSort}
-            />
-            <SortButton
-              state={state}
-              onClick={() => (state == 1 ? setState(-1) : setState(1))}
-              className={styles.sort}
-            >
-              По количеству наград
-            </SortButton>
-            <ButtonToggle
-              setSortAward={setSortAward}
-              className={styles.toogle}
-            />
-          </div>
-
-          {currentUser && <CurrentUser currentUser={currentUser}/>}
-
-          <div className={styles.usersListRating}>
-            <Search
-              onChange={handleChange}
-              color='white'
-              search={true}
-              button={false}
-              placeholder='Сотрудник сотрудника ...'
-              className={styles.search}
-            />
-            <UserListRating withoutCountAwards={true} users={filteredValue} />
-          </div>
+  return (
+    <Meta title='Рейтинг'>
+      <div {...props} className={styles.wrapper}>
+        <Htag tag='h1'>Рейтинг</Htag>
+        <div className={cn(styles.header, styles.headerUser)}>
+          <SelectCustom
+            placeholder={'Все отделы'}
+            className={styles.selectDepartment}
+            options={arrDeparts}
+            setDepartSort={setDepartSort}
+          />
+          <SortButton
+            state={state}
+            onClick={() => (state == 1 ? setState(-1) : setState(1))}
+            className={styles.sort}
+          >
+            По количеству наград
+          </SortButton>
+          <ButtonToggle setSortAward={setSortAward} className={styles.toogle} />
         </div>
-      </Meta>
-    );
-  } else {
-    return (
-      <Meta title='Рейтинг'>
-        <div {...props} className={styles.wrapper}>
-          <Htag tag='h1'>Рейтинг</Htag>
-          <div className={styles.header}>
-            <SelectCustom
-              placeholder={company.name}
-              className={styles.selectCompany}
-              options={[]}
-              setDepartSort={setDepartSort}
-            />
-            <SelectCustom
-              placeholder={'Выбрать'}
-              className={styles.selectDepartment}
-              options={arrDeparts}
-              setDepartSort={setDepartSort}
-            />
-            <SortButton
-              state={state}
-              onClick={() => (state == 1 ? setState(-1) : setState(1))}
-              className={styles.sort}
-            >
-              По количеству наград
-            </SortButton>
-            <ButtonToggle
-              setSortAward={setSortAward}
-              className={styles.toogle}
-            />
-          </div>
-          <div className={styles.usersListRating}>
-            <Search
-              onChange={handleChange}
-              color='white'
-              search={true}
-              button={false}
-              placeholder='Сотрудник сотрудника ...'
-              className={styles.search}
-            />
-            <UserListRating withoutCountAwards={true} users={filteredValue} />
-          </div>
+
+        {currentUser && <CurrentUser currentUser={currentUser} currentUserIndex={currentUserIndex}/>}
+
+        <div className={styles.usersListRating}>
+          <Search
+            onChange={handleChange}
+            color='white'
+            search={true}
+            button={false}
+            placeholder='Поиск сотрудника ...'
+            className={styles.search}
+          />
+          <UserListRating withoutCountAwards={true} users={filteredValue} />
         </div>
-      </Meta>
-    );
-  }
+      </div>
+    </Meta>
+  );
 };
 
 export default Rating;

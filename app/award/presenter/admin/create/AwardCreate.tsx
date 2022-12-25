@@ -10,53 +10,30 @@ import { AwardCreateProps } from './AwardCreate.props';
 import { useAwardCreate } from './useAwardCreate';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useCompanyState } from '@/company/data/company.slice';
-import { departmentApi } from '@/department/data/department.api';
-import { IOption } from '@/core/presenter/ui/select/select.interface';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { IAwardCreate } from 'award/model/api.types';
 import { validDate } from '@/core/utils/regex';
 import ChoiceUsers from './ChoiceUsers/ChoiceUsers';
 import { useMyUser } from '@/user/presenter/useMyUsers';
-import { useDepartment } from '@/department/presenter/useDepartment';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
-  const { push, back } = useRouter();
-
+  const { push } = useRouter();
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
-
   const { users } = useMyUser('');
-  const { departmentInCompany: departments } = useDepartment('');
-
-  let arrDeparts: IOption[] = [];
-  departments?.forEach((item) => {
-    arrDeparts.push({
-      label: item.name,
-      value: item.id,
-    });
-  });
-
-  const [img, setImg] = useState<string>('');
-
-  const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files !== null && event.target.files.length > 0) {
-      setImg(URL.createObjectURL(event.target.files[0]));
-    }
-  };
 
   const {
     handleSubmit,
     register,
     formState: { errors },
     setValue,
-    control,
     reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmitReward, onSubmitNominee } = useAwardCreate(
+  const { onSubmitReward, onSubmitNominee, changePhoto, img } = useAwardCreate(
     setValue,
     reset,
     currentCompany?.id,
