@@ -1,5 +1,6 @@
 export interface IMessage {
     fromId?: string
+    id: string
     toId: string
     type: MessageType
     theme?: string

@@ -39,7 +39,7 @@
  		 * Получить все сообщения сотрудника
  		 * @param [userId]
  		 */
- 		getByUser: build.query<IMessage, string>({
+ 		getByUser: build.query<IMessage[], string>({
  			query: (userId) => ({
  				method: 'POST',
  				url: getMessageUrl("/user"),

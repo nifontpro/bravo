@@ -14,7 +14,7 @@ import { useRouter } from 'next/router';
 import { Dispatch, SetStateAction } from 'react';
 import { useDispatch } from 'react-redux';
 
-export const useUserModalWindow = (
+export const useUserPanelModalWindow = (
   setVisibleModal: Dispatch<SetStateAction<boolean>>,
   user: IUser | undefined
 ) => {

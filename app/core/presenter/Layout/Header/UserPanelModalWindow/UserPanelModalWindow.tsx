@@ -1,5 +1,5 @@
-import styles from './UserModalWindow.module.scss';
-import { UserModalWindowProps } from './UserModalWindow.props';
+import styles from './UserPanelModalWindow.module.scss';
+import { UserPanelModalWindowProps } from './UserPanelModalWindow.props';
 import cn from 'classnames';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import ProfileIcon from '@/core/presenter/images/profile.svg';
@@ -8,9 +8,9 @@ import ExitIcon from '@/core/presenter/images/exit.svg';
 import ChangePasswordIcon from '@/core/presenter/images/changePassword.svg';
 import P from '@/core/presenter/ui/P/P';
 import { ForwardedRef, forwardRef } from 'react';
-import { useUserModalWindow } from './useUserModalWindow';
+import { useUserPanelModalWindow } from './useUserPanelModalWindow';
 
-const UserModalWindow = forwardRef(
+const UserPanelModalWindow = forwardRef(
   (
     {
       visibleModal,
@@ -18,7 +18,7 @@ const UserModalWindow = forwardRef(
       user,
       className,
       ...props
-    }: UserModalWindowProps,
+    }: UserPanelModalWindowProps,
     ref: ForwardedRef<HTMLDivElement>
   ): JSX.Element => {
     const {
@@ -26,7 +26,7 @@ const UserModalWindow = forwardRef(
       handleClickEditProfile,
       handleClickEditPassword,
       handleLogout,
-    } = useUserModalWindow(setVisibleModal, user);
+    } = useUserPanelModalWindow(setVisibleModal, user);
 
     return (
       <div
@@ -74,5 +74,5 @@ const UserModalWindow = forwardRef(
   }
 );
 
-UserModalWindow.displayName = 'UserModalWindow';
-export default UserModalWindow;
+UserPanelModalWindow.displayName = 'UserPanelModalWindow';
+export default UserPanelModalWindow;

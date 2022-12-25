@@ -36,7 +36,7 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
   }, [isGetSuccess, setValue, award]);
 
   const onSubmit: SubmitHandler<IAwardUpdate> = async (data) => {
-    console.log(data);
+    // console.log(data);
     let isError = false;
     if (award) {
       await update({ ...data, id: award.id })

@@ -65,10 +65,10 @@ export const registerApi = createApi({
          * @param  [password] новый пароль
          */
         passwordResetStepTwo: build.mutation<void, { userId: string, code: string, password: string }>({
-            query: (email) => ({
+            query: (body) => ({
                 url: getRegisterUrl('/psw/reset'),
                 method: 'POST',
-                body: {email}
+                body: body
             }),
             invalidatesTags: ['Register'],
         }),
