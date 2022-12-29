@@ -23,6 +23,10 @@
       "@/user/*": ["user/*"],
       "@/medal/*": ["medal/*"],
       "@/admin/*": ["admin/*"],
+      "@/award/*": ["award/*"],
+      "@/activity/*": ["activity/*"],
+      "@/message/*": ["message/*"],
+      "@/register/*": ["register/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
