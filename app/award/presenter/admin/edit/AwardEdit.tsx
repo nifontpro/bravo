@@ -8,7 +8,6 @@ import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { AwardEditProps } from './AwardEdit.props';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
-import InputFile from '@/core/presenter/ui/InputFile/InputFile';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useCompanyState } from '@/company/data/company.slice';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
@@ -17,6 +16,7 @@ import { useAwardEdit } from './useAwardEdit';
 import RemoveIcon from '@/core/presenter/images/remove.svg';
 import RefreshIcon from '@/core/presenter/images/refresh.svg';
 import InputPhotoRefresh from '@/core/presenter/ui/InputPhotoRefresh/InputPhotoRefresh';
+import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 
 const AwardEdit = ({}: AwardEditProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -60,12 +60,13 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
               // className='rounded-[10px]'
             />
           </div>
-
+ 
           <div className={styles.editPanel}>
             <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
-              <RefreshIcon className={styles.refresh} />
+              <ButtonEdit icon='refresh'/>
+              {/* <RefreshIcon className={styles.refresh} /> */}
             </InputPhotoRefresh>
-            <RemoveIcon onClick={removePhoto} className={styles.remove} />
+            <ButtonEdit icon='remove' onClick={removePhoto}/>
           </div>
         </div>
 
@@ -103,7 +104,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
             />
 
             <div className={styles.buttons}>
-              <Button onClick={handleClick} appearance='white' size='l'>
+              <Button onClick={handleClick} appearance='whiteBlack' size='l'>
                 Отменить
               </Button>
               <Button

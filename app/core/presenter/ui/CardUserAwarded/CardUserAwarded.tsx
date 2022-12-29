@@ -8,6 +8,10 @@ import { awardApi } from 'award/data/award.api';
 import { toast } from 'react-toastify';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import AwardIcon from '@/core/presenter/images/union.svg';
+import EditPanel from '../EditPanel/EditPanel';
+import ButtonCircleIcon from '../ButtonCircleIcon/ButtonCircleIcon';
+import { getUserEditUrl } from '@/core/config/api.config';
+import { useState } from 'react';
 
 const CardUserAwarded = ({
   award,
@@ -16,6 +20,7 @@ const CardUserAwarded = ({
   ...props
 }: CardUserAwardedProps): JSX.Element => {
   let convertDate = timeConverterUser(user.awardDate);
+  const [visible, setVisible] = useState<boolean>(false);
 
   const [deleteUserReward] = awardApi.useDeleteUserAwardMutation();
   const handleRemove = async () => {
@@ -63,9 +68,19 @@ const CardUserAwarded = ({
       </div>
 
       <AuthComponent minRole={'director'}>
-        <div onClick={handleRemove} className={styles.remove}>
-          Удалить
-        </div>
+        <ButtonCircleIcon
+          onClick={() => setVisible(!visible)}
+          icon='dots'
+          appearance='transparent'
+          className={styles.dots}
+        />
+        <EditPanel
+          getUrl={getUserEditUrl}
+          onMouseLeave={() => setVisible(!visible)}
+          id={user.user.id}
+          deleteAsync={handleRemove}
+          visible={visible}
+        />
       </AuthComponent>
     </div>
   );

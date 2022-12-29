@@ -34,7 +34,7 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
   } = useForm<ICompanyCreate>({ mode: 'onChange' });
 
@@ -111,7 +111,7 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
           />
 
           <div className={styles.buttons}>
-            <Button onClick={handleClick} appearance='white' size='l'>
+            <Button onClick={handleClick} appearance='whiteBlack' size='l'>
               Отменить
             </Button>
             <Button
@@ -119,6 +119,7 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
               appearance='gray'
               size='l'
               className='ml-[15px]'
+              disabled={!isDirty || !isValid}
             >
               Добавить
             </Button>

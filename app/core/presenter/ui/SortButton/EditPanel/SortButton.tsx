@@ -11,7 +11,7 @@ const SortButton = ({
   ...props
 }: SortButtonProps): JSX.Element => {
 
-  return (
+  return ( 
     <div
     className={cn(className, styles.container)}
       {...props}

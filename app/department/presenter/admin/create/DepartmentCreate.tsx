@@ -17,7 +17,7 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
   } = useForm<IDepartmentCreate>({ mode: 'onChange' });
 
@@ -53,7 +53,7 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
         />
 
         <div className={styles.btn}>
-          <Button onClick={handleClick} appearance='white' size='l'>
+          <Button onClick={handleClick} appearance='whiteBlack' size='l'>
             Отменить
           </Button>
           <Button
@@ -61,6 +61,7 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
             appearance='blackWhite'
             size='l'
             className='ml-[15px]'
+            disabled={!isDirty || !isValid}
           >
             Сохранить
           </Button>

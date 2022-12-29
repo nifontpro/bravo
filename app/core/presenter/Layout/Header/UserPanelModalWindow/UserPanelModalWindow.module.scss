@@ -22,6 +22,19 @@
        align-items: center;
        margin-bottom: 35px;
        cursor: pointer;
+       @apply duration-200;
+
+       svg path {
+        @apply duration-200;
+       }
+
+       &:hover .link {
+        color: var(--gray);
+       }
+
+       &:hover svg path {
+        stroke: var(--gray);
+       }
 
        &:last-child {
         margin-bottom: 0px;
@@ -30,6 +43,7 @@
 
     .link {
       margin-left: 20px;
+      @apply duration-200;
     }
   }
 }

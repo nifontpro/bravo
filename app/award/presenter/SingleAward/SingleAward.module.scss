@@ -4,12 +4,20 @@
   min-width: 335px;
   height: 100%;
 
+  &:hover {
+    .img,
+    .imgNominee {
+      transform: scale(.9);
+    }
+  }
+
   .img,
   .imgNominee {
     height: 165px;
     display: flex;
     justify-content: center;
     margin-bottom: 70px;
+    @apply duration-200;
   }
 
   .imgNominee {

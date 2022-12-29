@@ -42,22 +42,29 @@ const MainAwars = ({
       <div {...props} className={cn(styles.wrapper, className)}>
         <Htag tag='h2'>Медали</Htag>
         <div className={styles.content}>
-          <div className={cn(styles.allAwards, styles.card)}>
+          <div
+            className={cn(styles.allAwards, styles.card)}
+            onClick={() => push('/statistic')}
+          >
             <div className='flex'>
-              <CupIcon className={styles.img} />
+              <div className={styles.img}>
+                <CupIcon className={styles.imgSvg} />
+              </div>
               <div className={styles.description}>
                 <P size='s'>Мои медали</P>
                 <P size='xl'>{currentUser?.awards.length}</P>
               </div>
             </div>
-            <ArrowIcon
-              onClick={() => push('/statistic')}
-              className={styles.arrow}
-            />
+            <ArrowIcon className={styles.arrow} />
           </div>
-          <div className={cn(styles.countAwards, styles.card)}>
+          <div
+            className={cn(styles.countAwards, styles.card)}
+            onClick={() => push('/statistic')}
+          >
             <div className='flex'>
-              <PeopleIcon className={styles.img} />
+              <div className={styles.img}>
+                <PeopleIcon className={styles.imgSvg} />
+              </div>
               <div className={styles.description}>
                 <P size='s'>Место в рейтинге</P>
                 <div className='flex items-start'>
@@ -66,14 +73,16 @@ const MainAwars = ({
                 </div>
               </div>
             </div>
-            <ArrowIcon
-              onClick={() => push('/statistic')}
-              className={styles.arrow}
-            />
+            <ArrowIcon className={styles.arrow} />
           </div>
-          <div className={cn(styles.bestDepart, styles.card)}>
+          <div
+            className={cn(styles.bestDepart, styles.card)}
+            onClick={() => push('/statistic')}
+          >
             <div className='flex'>
-              <UnionIcon className={styles.img} />
+              <div className={styles.img}>
+                <UnionIcon className={styles.imgSvg} />
+              </div>
               <div className={styles.description}>
                 <P size='s'>Последняя медаль</P>
                 <div>
@@ -83,10 +92,7 @@ const MainAwars = ({
                 </div>
               </div>
             </div>
-            <ArrowIcon
-              onClick={() => push('/statistic')}
-              className={styles.arrow}
-            />
+            <ArrowIcon className={styles.arrow} />
           </div>
         </div>
       </div>
@@ -96,22 +102,29 @@ const MainAwars = ({
       <div {...props} className={cn(styles.wrapper, className)}>
         <Htag tag='h2'>Медали</Htag>
         <div className={styles.content}>
-          <div className={cn(styles.allAwards, styles.card)}>
+          <div
+            className={cn(styles.allAwards, styles.card)}
+            onClick={() => push('/statistic')}
+          >
             <div className='flex'>
-              <CupIcon className={styles.img} />
+              <div className={styles.img}>
+                <CupIcon className={styles.imgSvg} />
+              </div>
               <div className={styles.description}>
                 <P size='s'>Наград в компании</P>
                 <P size='xl'>{awards.length}</P>
               </div>
             </div>
-            <ArrowIcon
-              onClick={() => push('/statistic')}
-              className={styles.arrow}
-            />
+            <ArrowIcon className={styles.arrow} />
           </div>
-          <div className={cn(styles.countAwards, styles.card)}>
+          <div
+            className={cn(styles.countAwards, styles.card)}
+            onClick={() => push('/statistic')}
+          >
             <div className='flex'>
-              <PeopleIcon className={styles.img} />
+              <div className={styles.img}>
+                <PeopleIcon className={styles.imgSvg} />
+              </div>
               <div className={styles.description}>
                 <P size='s'>Есть награды</P>
                 <div className='flex items-end'>
@@ -122,14 +135,17 @@ const MainAwars = ({
                 </div>
               </div>
             </div>
-            <ArrowIcon
-              onClick={() => push('/statistic')}
-              className={styles.arrow}
-            />
+            <ArrowIcon className={styles.arrow} />
           </div>
-          <div className={cn(styles.bestDepart, styles.card)}>
+          <div
+            className={cn(styles.bestDepart, styles.card)}
+            onClick={() => push('/statistic')}
+          >
             <div className='flex'>
-              <UnionIcon className={styles.img} />
+              <div className={styles.img}>
+                <UnionIcon className={styles.imgSvg} />
+              </div>
+
               <div className={styles.description}>
                 <P size='s' fontstyle='thin'>
                   Лучший отдел
@@ -140,10 +156,7 @@ const MainAwars = ({
                 </P>
               </div>
             </div>
-            <ArrowIcon
-              onClick={() => push('/statistic')}
-              className={styles.arrow}
-            />
+            <ArrowIcon className={styles.arrow} />
           </div>
         </div>
       </div>

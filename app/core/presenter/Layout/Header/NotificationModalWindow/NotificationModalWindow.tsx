@@ -6,8 +6,6 @@ import P from '@/core/presenter/ui/P/P';
 import { ForwardedRef, forwardRef } from 'react';
 import { useUserPanelModalWindow } from './useNotificationModalWindow';
 import uniqid from 'uniqid';
-import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
-import { timeConverter } from '@/core/utils/timeConverter';
 import NotificationItem from './NotificationItem/NotificationItem';
 
 const NotificationModalWindow = forwardRef(

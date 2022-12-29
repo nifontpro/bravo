@@ -16,8 +16,8 @@ const MainActivity = ({
     <div {...props} className={cn(styles.wrapper, className)}>
       <div className={styles.header}>
         <Htag tag='h2'>Активность</Htag>
-        <div className={styles.bestDepart} onClick={() => push('/message')}>
-          <P size='s' fontstyle='thin' color='gray'>
+        <div className={styles.bestActivity} onClick={() => push('/message')}>
+          <P size='s' fontstyle='thin' className={styles.text}>
             Все
           </P>
           <ArrowIcon className={styles.arrow} />

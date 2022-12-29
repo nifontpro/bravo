@@ -59,7 +59,7 @@ const UserCreate: FC = () => {
     reset,
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
     control,
   } = useForm<IUserCreate>({ mode: 'onChange' });
@@ -233,7 +233,7 @@ const UserCreate: FC = () => {
           />
 
           <div className={styles.buttons}>
-            <Button onClick={handleClick} appearance='white' size='l'>
+            <Button onClick={handleClick} appearance='whiteBlack' size='l'>
               Отменить
             </Button>
             <Button
@@ -241,6 +241,7 @@ const UserCreate: FC = () => {
               appearance='gray'
               size='l'
               className='ml-[15px]'
+              disabled={!isDirty || !isValid}
             >
               Добавить
             </Button>

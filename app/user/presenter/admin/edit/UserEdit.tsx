@@ -22,6 +22,7 @@ import { useDepartment } from '@/department/presenter/useDepartment';
 import InputPhotoRefresh from '@/core/presenter/ui/InputPhotoRefresh/InputPhotoRefresh';
 import RemoveIcon from '@/core/presenter/images/remove.svg';
 import RefreshIcon from '@/core/presenter/images/refresh.svg';
+import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 
 const UserEdit: FC = () => {
   const {
@@ -84,9 +85,9 @@ const UserEdit: FC = () => {
 
           <div className={styles.editPanel}>
             <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
-              <RefreshIcon className={styles.refresh} />
+            <ButtonEdit icon='refresh'/>
             </InputPhotoRefresh>
-            <RemoveIcon onClick={removePhoto} className={styles.remove} />
+            <ButtonEdit icon='remove' onClick={removePhoto}/>
           </div>
         </div>
 
@@ -203,7 +204,7 @@ const UserEdit: FC = () => {
             />
 
             <div className={styles.buttons}>
-              <Button onClick={handleClick} appearance='white' size='l'>
+              <Button onClick={handleClick} appearance='whiteBlack' size='l'>
                 Отменить
               </Button>
               <Button

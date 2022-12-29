@@ -24,15 +24,41 @@
 
     .all {
       grid-column: start / 2;
+      @apply duration-200;
 
+      &:hover {
+        color: var(--gray-dark);
+
+        .awardsCount {
+          color: var(--gray-dark);
+        }
+      }
     }
 
     .award {
       grid-column: 2 / 3;
+      @apply duration-200;
+
+      &:hover {
+        color: var(--gray-dark);
+
+        .awardsCount {
+          color: var(--gray-dark);
+        }
+      }
     }
 
     .nominee {
       grid-column: 3 / spaceStart;
+      @apply duration-200;
+
+      &:hover {
+        color: var(--gray-dark);
+
+        .awardsCount {
+          color: var(--gray-dark);
+        }
+      }
     }
 
     .sort {

@@ -97,7 +97,7 @@ const Depart = ({
         <div className={styles.button}>
           <Button
             onClick={() => setListUserVisible(!listUserVisible)}
-            appearance='white'
+            appearance='whiteBlack'
             size='s'
           >
             Свернуть

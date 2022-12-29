@@ -25,18 +25,20 @@
       align-items: center;
       padding-right: 20px;
 
-      .input {
+      .input { 
         width: fit-content;
+        height: fit-content;
         margin-right: 10px;
-      }
-
-      .refresh {
         cursor: pointer;
-      }
 
-      .remove {
-        margin-left: 10px;
-        cursor: pointer;
+        &:hover svg {
+          path {
+            stroke: var(--gray-dark);
+          }
+          rect {
+            stroke: var(--gray-dark);
+          }
+        }
       }
     }
   }

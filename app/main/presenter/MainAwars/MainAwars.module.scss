@@ -11,25 +11,45 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      cursor: pointer;
+
+      svg path {
+        @apply duration-200;
+      }
+
+      &:hover {
+        > svg path {
+          opacity: 0.3;
+        }
+        .imgSvg {
+          transform: scale(0.8);
+        }
+      }
+
       .img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 16px;
         padding: 12px;
         width: 60px;
         height: 60px;
         margin-right: 25px;
+
+        .imgSvg {
+          width: 30px;
+          @apply duration-200;
+        }
       }
+
       .description {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
         .percent {
-            margin-left: 5px;
+          margin-left: 5px;
         }
-      }
-
-      .arrow {
-        cursor: pointer;
       }
     }
 

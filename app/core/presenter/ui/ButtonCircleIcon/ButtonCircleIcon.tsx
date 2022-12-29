@@ -24,7 +24,14 @@ const ButtonCircleIcon = forwardRef(
         >
           <IconComp />
         </button>
-        {children}
+        <span
+          className={cn({
+            [styles.blackText]: appearance == 'black',
+            [styles.transparentText]: appearance == 'transparent',
+          })}
+        >
+          {children}
+        </span>
       </div>
     );
   }

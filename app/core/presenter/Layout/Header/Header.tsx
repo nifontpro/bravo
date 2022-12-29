@@ -12,6 +12,7 @@ import useOutsideClick from '@/core/hooks/useOutsideClick';
 import UserPanelModalWindow from './UserPanelModalWindow/UserPanelModalWindow';
 import NotificationModalWindow from './NotificationModalWindow/NotificationModalWindow';
 import { messageApi } from 'message/data/message.api';
+import P from '../../ui/P/P';
 
 const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const { user } = useAuthState();
@@ -67,9 +68,16 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
           <NotificationIcon className={styles.notification} />
           {allMessage &&
             allMessage.filter((item) => item.read == false).length > 0 && (
-              <div className={styles.notificationCount}>
-                {/* {allMessage?.filter(item => item.read == false).length} */}
-              </div>
+              <>
+                <div className={styles.notificationCircle}></div>
+                <P
+                  size='xs'
+                  fontstyle='thin'
+                  className={styles.notificationCount}
+                >
+                  {allMessage?.filter((item) => item.read == false).length}
+                </P>
+              </>
             )}
         </div>
 

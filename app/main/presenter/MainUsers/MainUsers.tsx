@@ -20,8 +20,8 @@ const MainUsers = ({
     <div {...props} className={cn(styles.wrapper, className)}>
       <div className={styles.header}>
         <Htag tag='h2'>Лучшие сотрудники</Htag>
-        <div className={styles.bestDepart} onClick={() => push('/statistic')}>
-          <P size='s' fontstyle='thin' color='gray'>
+        <div className={styles.bestUsers} onClick={() => push('/statistic')}>
+          <P size='s' fontstyle='thin' className={styles.text}>
             Рейтинг
           </P>
           <ArrowIcon className={styles.arrow}/>

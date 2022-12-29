@@ -2,12 +2,26 @@
   display: flex;
   align-items: center;
 
+  svg {
+    @apply duration-200;
+  }
+
+  &:hover {
+    svg {
+      fill: var(--gray96);
+    }
+    .title {
+      color: var(--gray96);
+    }
+  }
+
   .title {
     margin-left: 15px;
     font-weight: 700;
     font-size: 15px;
     line-height: 20px;
-    color: var(--black);
+    color: var(--gray-dark);
+    @apply duration-200;
   }
 
   .rotate {

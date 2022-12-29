@@ -25,8 +25,8 @@ const MainNominee = ({
     <div {...props} className={cn(styles.wrapper, className)}>
       <div className={styles.header}>
         <Htag tag='h2'>Номинации</Htag>
-        <div className={styles.bestDepart} onClick={() => push('/award')}>
-          <P size='s' fontstyle='thin' color='gray'>
+        <div className={styles.bestNominee} onClick={() => push('/award')}>
+          <P size='s' fontstyle='thin' className={styles.text}>
             Все
           </P>
           <ArrowIcon className={styles.arrow} />

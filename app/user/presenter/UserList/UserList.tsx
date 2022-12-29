@@ -2,13 +2,11 @@ import styles from './UserList.module.scss';
 import cn from 'classnames';
 import { UserListProps } from './UserListprops';
 import UserPreview from '@/core/presenter/ui/UserPreview/UserPreview';
-import EditIcon from '@/core/presenter/images/edit.svg';
-import RemoveIcon from '@/core/presenter/images/remove.svg';
-import P from '@/core/presenter/ui/P/P';
 import { useUserAdmin } from '../admin/useUserAdmin';
 import { useRouter } from 'next/router';
 import { getUserEditUrl } from '@/core/config/api.config';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 
 const UserList = ({
   user,
@@ -21,7 +19,7 @@ const UserList = ({
 
   return (
     <div className={cn(className, styles.container)} {...props}>
-      <UserPreview user={user} className={styles.user} forWhat='user'/>
+      <UserPreview user={user} className={styles.user} forWhat='user' />
       {/* {user.departmentName == undefined ? (
         <P className={styles.department}>Отдел не найден</P>
       ) : (
@@ -29,13 +27,15 @@ const UserList = ({
       )} */}
       <AuthComponent minRole={'director'}>
         <div className={styles.editPanel} {...props}>
-          <EditIcon
+          <ButtonEdit
             onClick={() => push(getUserEditUrl(`/${user.id}`))}
-            className='cursor-pointer'
+            icon='edit'
           />
-          <RemoveIcon
+
+          <ButtonEdit
             onClick={() => deleteAsync(user.id)}
-            className='ml-[5px] cursor-pointer'
+            icon='remove'
+            className='@apply ml-[5px]'
           />
         </div>
       </AuthComponent>

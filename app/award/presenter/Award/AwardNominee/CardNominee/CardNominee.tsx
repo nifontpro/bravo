@@ -5,8 +5,8 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import P from '@/core/presenter/ui/P/P';
 import { timeConverterUser } from '@/core/utils/timeConverterUser';
 import Button from '../../../../../core/presenter/ui/Button/Button';
-import RemoveIcon from '@/core/presenter/images/removeUser.svg';
 import { useCardNominee } from './useCardNominee';
+import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 
 const CardNominee = ({
   awardId,
@@ -61,10 +61,7 @@ const CardNominee = ({
             Буден награжден
           </Button>
         )}
-        <RemoveIcon
-          onClick={handleRemove}
-          className='ml-[5px] cursor-pointer'
-        />
+        <ButtonEdit icon='remove' onClick={handleRemove} />
       </div>
     </div>
   );

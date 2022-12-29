@@ -32,7 +32,7 @@ const LoginFormStepTwo = ({
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
   } = useForm<{ code: string; email: string }>({ mode: 'onChange' });
 
@@ -87,7 +87,11 @@ const LoginFormStepTwo = ({
       />
 
       <div className={styles.buttons}>
-        <Button appearance='blackWhite' size='l'>
+        <Button
+          appearance='blackWhite'
+          size='l'
+          disabled={!isDirty || !isValid}
+        >
           Продолжить
         </Button>
       </div>

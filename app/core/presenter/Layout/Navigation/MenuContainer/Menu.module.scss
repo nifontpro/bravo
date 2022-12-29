@@ -9,16 +9,18 @@
   .ul {
     > li {
       @apply mx-[35px];
+
       > a {
-        @apply border-r-4 border-r-transparent transition-colors  py-[17px] px-[30px] flex items-center text-white mt-6 cursor-pointer rounded-[12px] hover:bg-gray_middle;
+        @apply border-r-4 border-r-transparent  py-[17px] px-[30px] flex items-center text-white mt-6 cursor-pointer rounded-[12px] hover:bg-gray_middle duration-200;
 
         &:hover {
-          @apply text-gray_dark;
+          // @apply text-gray_dark;
+          background: var(--gray96);
         }
 
-        &:hover svg path {
-          @apply stroke-gray_dark;
-        }
+        // &:hover svg path {
+        //   @apply stroke-gray_dark;
+        // }
 
         > span {
           @apply ml-3 text-lg hover:text-gray-600 text-[16px];

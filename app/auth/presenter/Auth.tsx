@@ -3,10 +3,9 @@ import { useAuthRedirect } from '@/auth/presenter/useAuthRedirect';
 import styles from '@/auth/presenter/Auth.module.scss';
 import Meta from '@/core/utils/meta/Meta';
 import LogoIcon from '@/core/presenter/images/logoAuth.svg';
-import P from '@/core/presenter/ui/P/P';
-import SendUsIcon from '@/core/presenter/images/sendUs.svg';
 import SingIn from './SingIn/SingIn';
 import PasswordRecovery from './PasswordRecovery/PasswordRecovery';
+import SendUs from '../../core/presenter/ui/SendUs/SendUs';
 
 const Auth: FC = () => {
   useAuthRedirect();
@@ -20,13 +19,10 @@ const Auth: FC = () => {
           <LogoIcon />
         </div>
 
-        <SingIn visible={visible} setVisible={setVisible}/>
-        <PasswordRecovery visible={visible} setVisible={setVisible}/>
+        <SingIn visible={visible} setVisible={setVisible} />
+        <PasswordRecovery visible={visible} setVisible={setVisible} />
 
-        <a href='mailto:example@htmlbook.ru' className={styles.sendUs}>
-          <SendUsIcon className={styles.sendIcon} />
-          <P>Написать нам</P>
-        </a>
+        <SendUs />
       </section>
     </Meta>
   );

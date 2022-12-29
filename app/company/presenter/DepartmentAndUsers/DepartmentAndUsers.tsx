@@ -18,8 +18,8 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import P from '@/core/presenter/ui/P/P';
 
 const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
-  const { departmentInCompany: departments, isLoading } = useDepartment('')
-  const { users } = useMyUser('')
+  const { departmentInCompany: departments, isLoading } = useDepartment('');
+  const { users } = useMyUser('');
 
   const { push } = useRouter();
   const [toggle, setToogle] = useState<boolean>(false);
@@ -37,7 +37,7 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
               })}
             >
               Отделы
-              <P className={styles.rewardedLength}>{departments.length}</P>
+              <P className={styles.countLength}>{departments.length}</P>
             </Htag>
             <Htag
               tag='h3'
@@ -47,7 +47,7 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
               })}
             >
               Сотрудники
-              <P className={styles.rewardedLength}>{users.length}</P>
+              <P className={styles.countLength}>{users.length}</P>
             </Htag>
           </div>
           <AuthComponent minRole={'director'}>
@@ -57,16 +57,18 @@ const DepartmentAndUsers: FC<{ company: ICompany }> = ({ company }) => {
                   onClick={() => push(getDepartmentCreateUrl())}
                   icon='plus'
                   appearance='black'
-                />
-                Отдел
+                >
+                  Отдел
+                </ButtonCircleIcon>
               </div>
               <div className={styles.newUser}>
                 <ButtonCircleIcon
                   onClick={() => push(getUserCreateUrl())}
                   icon='plus'
                   appearance='black'
-                />
-                Сотрудник
+                >
+                  Сотрудник
+                </ButtonCircleIcon>
               </div>
             </div>
           </AuthComponent>

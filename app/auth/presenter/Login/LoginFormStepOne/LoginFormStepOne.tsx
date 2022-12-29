@@ -33,7 +33,7 @@ const LoginFormStepOne = ({
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm<ILoginPasswordCheck>({ mode: 'onChange' });
 
   const onSubmit: SubmitHandler<ILoginPasswordCheck> = async (data) => {
@@ -63,7 +63,9 @@ const LoginFormStepOne = ({
         <Htag tag='h1'>Регистрация</Htag>
         <Link href={'/auth'}>
           <a className={styles.registration}>
-            <P size='s'>Войти</P>
+            <P size='s' className={styles.registrationText}>
+              Войти
+            </P>
             <ButtonCircleIcon
               appearance='black'
               icon='right'
@@ -132,17 +134,14 @@ const LoginFormStepOne = ({
       </div>
 
       <div className={styles.buttons}>
-        <Button appearance='blackWhite' size='l'>
+        <Button
+          appearance='blackWhite'
+          size='l'
+          disabled={!isDirty || !isValid}
+        >
           Продолжить
         </Button>
       </div>
-      {/* <Link href={'/auth'}>
-        <a className='flex justify-center'>
-          <P size='m' color='gray' fontstyle='thin' className={styles.auth}>
-            Уже зарегестрированны? Войти
-          </P>
-        </a>
-      </Link> */}
     </form>
   );
 };

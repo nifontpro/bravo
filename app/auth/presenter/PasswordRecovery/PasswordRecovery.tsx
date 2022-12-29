@@ -1,18 +1,11 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React from 'react';
 import styles from './PasswordRecovery.module.scss';
 import { PasswordRecoveryProps } from './PasswordRecovery.props';
-import { useAuthRedirect } from '../useAuthRedirect';
 import cn from 'classnames';
-import Htag from '@/core/presenter/ui/Htag/Htag';
-import Link from 'next/link';
-import AuthFields from '../AuthFields';
 import Button from '@/core/presenter/ui/Button/Button';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import P from '@/core/presenter/ui/P/P';
-import { useSetAuthData } from '../useSetAuthData';
-import { authApi } from '@/auth/data/auth.api';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IAuthInput } from '@/auth/model/auth.interface';
 import { toast } from 'react-toastify';
 import { toastError } from '@/core/utils/toast-error';
 import Field from '@/core/presenter/ui/form/Field/Field';
@@ -28,8 +21,7 @@ const PasswordRecovery = ({
   const {
     handleSubmit,
     register,
-    formState: { errors },
-    setValue,
+    formState: { errors, isDirty, isValid },
   } = useForm<{ code: string; email: string }>({ mode: 'onChange' });
 
   const [ passwordReset ] = registerApi.usePasswordResetStepOneMutation();
@@ -71,7 +63,7 @@ const PasswordRecovery = ({
             icon='right'
             className={styles.arrow}
           />
-          <P size='s'>Назад</P>
+          <P size='s' className={styles.registrationText}>Назад</P>
         </div>
       </div>
 
@@ -91,7 +83,7 @@ const PasswordRecovery = ({
         />
 
         <div className={styles.buttons}>
-          <Button appearance='blackWhite' size='l'>
+          <Button appearance='blackWhite' size='l' disabled={!isDirty || !isValid}>
             Восстановить пароль
           </Button>
         </div>

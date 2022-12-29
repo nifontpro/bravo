@@ -10,9 +10,20 @@
 }
 
 .whiteBlack {
-  border: 1px solid #000000;
+  border: 1px solid var(--graySilver);
   color: var(--gray-dark);
   background: var(--white);
+  @apply duration-200;
+
+  &:hover {
+    border: 1px solid var(--gray-dark);
+  }
+
+  &:disabled {
+    border: 1px solid var(--graySilver);
+    color: var(--graySilver);
+    cursor: default;
+  }
 }
 
 .gray {
@@ -24,6 +35,17 @@
 .blackWhite {
   color: var(--gray-light);
   background: var(--gray-dark);
+  @apply duration-200;
+
+  &:hover {
+    background: var(--gray-dark-hover);
+  }
+
+  &:disabled {
+    background: var(--grayF8);
+    color: var(--gray);
+    cursor: default;
+  }
 }
 
 .blackGray {

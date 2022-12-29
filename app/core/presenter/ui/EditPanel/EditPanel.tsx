@@ -23,8 +23,8 @@ const EditPanel = ({
       })}
       {...props}
     >
-      <div onClick={() => push(getUrl(`/${id}`))} className='cursor-pointer'>Edit</div>
-      {id && <div onClick={() => deleteAsync(id)} className='cursor-pointer'>Remove</div>}
+      <div onClick={() => push(getUrl(`/${id}`))} className={styles.item}>Редактировать</div>
+      {id && <div onClick={() => deleteAsync(id)} className={styles.item}>Удалить</div>}
     </div>
   );
 };

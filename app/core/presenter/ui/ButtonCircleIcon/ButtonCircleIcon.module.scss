@@ -1,6 +1,16 @@
 .wrapper {
   display: flex;
   align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    .black {
+      background-color: var(--gray96);
+    }
+    .blackText {
+      color: var(--gray96);
+    }
+  }
 
   .button {
     display: flex;
@@ -16,9 +26,14 @@
 
   .black {
     background-color: var(--black);
+    @apply duration-200;
   }
 
   .transparent {
     background-color: none;
+  }
+
+  .blackText {
+    @apply duration-200;
   }
 }

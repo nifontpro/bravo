@@ -104,7 +104,7 @@ const DepartmentEdit: FC = () => {
             />
 
             <div className={styles.btn}>
-              <Button onClick={handleClick} size='l' appearance='white'>
+              <Button onClick={handleClick} size='l' appearance='whiteBlack'>
                 Отменить
               </Button>
               <Button

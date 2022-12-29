@@ -1,0 +1,22 @@
+.sendUs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: end;
+  margin-top: 100px;
+  
+  .text {
+    border-bottom: 1px solid transparent;
+    @apply duration-200
+  }
+  
+
+  .sendIcon {
+    margin-right: 18px;
+  }
+
+  &:hover > .text {
+    border-bottom: 1px solid var(--gray-dark);
+  }
+}

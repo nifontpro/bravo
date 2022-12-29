@@ -28,7 +28,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
     reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
@@ -143,6 +143,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
               appearance='blackWhite'
               size='l'
               className='ml-[15px]'
+              disabled={!isDirty || !isValid}
             >
               Номинировать
             </Button>

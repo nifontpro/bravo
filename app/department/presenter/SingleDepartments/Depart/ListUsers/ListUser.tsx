@@ -1,13 +1,11 @@
 import styles from './ListUser.module.scss';
-import cn from 'classnames';
 import { ListUserProps } from './ListUser.props';
 import UserPreview from '@/core/presenter/ui/UserPreview/UserPreview';
-import EditIcon from '@/core/presenter/images/edit.svg';
-import RemoveIcon from '@/core/presenter/images/remove.svg';
 import { useUserAdmin } from '@/user/presenter/admin/useUserAdmin';
 import { useRouter } from 'next/router';
 import { getUserEditUrl } from '@/core/config/api.config';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 
 const ListUser = ({
   listUserVisible,
@@ -23,16 +21,17 @@ const ListUser = ({
       {usersInDepartment?.map((item) => {
         return (
           <div key={item.login} className={styles.container}>
-            <UserPreview user={item} forWhat='depart'/>
+            <UserPreview user={item} forWhat='depart' />
             <AuthComponent minRole={'director'}>
               <div className={styles.editPanel} {...props}>
-                <EditIcon
+                <ButtonEdit
                   onClick={() => push(getUserEditUrl(`/${item.id}`))}
-                  className='cursor-pointer'
+                  icon='edit'
                 />
-                <RemoveIcon
+                <ButtonEdit
                   onClick={() => deleteAsync(item.id)}
-                  className='ml-[5px] cursor-pointer'
+                  icon='remove'
+                  className='@apply ml-[5px]'
                 />
               </div>
             </AuthComponent>

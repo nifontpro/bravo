@@ -1,16 +1,34 @@
 .wrapper {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
+
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 35px;
-    .bestDepart {
+
+    .bestNominee {
       display: flex;
       align-items: center;
       cursor: pointer;
+
+      .text {
+        color: var(--gray96);
+      }
+
+      &:hover {
+        > .text {
+          color: var(--gray-dark);
+        }
+
+        path {
+          stroke: var(--gray-dark);
+        }
+      }
+
       path {
         stroke: var(--gray96);
+        @apply duration-200;
       }
       .arrow {
         margin-left: 20px;

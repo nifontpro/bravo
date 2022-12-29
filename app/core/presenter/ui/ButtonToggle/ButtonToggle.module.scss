@@ -14,18 +14,22 @@
     border-radius: 15px;
     cursor: pointer;
 
-    background: var(--gray-dark);
-
     .dot {
       padding: 5px 20px;
-      background: var(--white);
+      background: var(--gray-dark);
       border-radius: 15px;
-      color: var(--gray-dark);
+      color: var(--white);
+      @apply duration-200;
+
+      &:hover {
+        background-color: var(--gray-dark-hover);
+        color: var(--white);
+      }
     }
 
     .active {
-      opacity: 0;
-      color: var(--white);
+      color: var(--gray-dark);
+      background: transparent;
     }
   }
 }

@@ -27,12 +27,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #f6f6f625;
+      border: 1px solid var(--gray-light05);
       border-radius: 10px;
       width: 64px;
       height: 64px;
 
-      .notificationCount {
+      svg path {
+        @apply duration-200;
+      }
+
+      &:hover svg path {
+        stroke: var(--gray-light05);
+      }
+
+      .notificationCircle {
         width: 8px;
         height: 8px;
         background-color: var(--lime);
@@ -42,12 +50,24 @@
         right: 19px;
         color: var(--white);
       }
+
+      .notificationCount {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: var(--gray-light05);
+      }
     }
 
     .userImg {
       cursor: pointer;
       height: 64px;
       width: 64px;
+      @apply duration-200;
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
 
     > a {
@@ -62,19 +82,3 @@
     }
   }
 }
-
-// .userModalWindow {
-//   position: absolute;
-//   top: 160px;
-//   right: 60px;
-//   background: var(--white);
-//   z-index: 100;
-//   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-//   border-radius: 15px;
-//   padding: 20px;
-//   @apply animate-fade;
-// }
-
-// .hidden {
-//   display: none;
-// }
