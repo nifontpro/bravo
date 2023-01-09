@@ -1,0 +1,55 @@
+.wrapper {
+  .headTitle {
+    @apply mb-[40px];
+  }
+  .header {
+    grid-template-columns: [start] auto auto auto [spaceStart] 1fr [spaceEnd] auto auto [end];
+    @apply grid gap-[30px] items-center mb-[60px];
+
+    .all {
+      grid-column: start / 2;
+    }
+
+    .award {
+      grid-column: 2 / 3;
+    }
+
+    .nominee {
+      grid-column: 3 / 4;
+    }
+
+    .other {
+      grid-column: 4 / spaceStart;
+    }
+
+    .sort {
+      cursor: pointer;
+      grid-column: spaceEnd / 6;
+    }
+  }
+
+  .cards {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 50px;
+
+    .search {
+      margin-bottom: 40px;
+    }
+  }
+
+  .activity {
+    padding: 15px;
+    margin-bottom: 15px;
+    @apply duration-200 cursor-default;
+
+    &:hover {
+      background: var(--graySilver);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

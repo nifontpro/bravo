@@ -29,7 +29,7 @@ export interface IUserLite {
   name: string;
   patronymic?: string;
   lastname?: string;
-
+  post?: string;
   imageUrl?: string;
 }
 
@@ -41,7 +41,7 @@ export interface IUserCreate
    * в противном случае, или если параметр отсутствует сгенерированный пароль
    * отправляется на указанную почту сотрудника
    */
-	file: FileList
+  file: FileList;
   test?: boolean;
 }
 

@@ -3,17 +3,15 @@ import Meta from '@/core/utils/meta/Meta';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { AwardsProps } from './Awards.props';
 import { useState } from 'react';
-import cn from 'classnames';
 import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import SingleAward from './SingleAward/SingleAward';
 import Link from 'next/link';
 import { getAwardCreateUrl } from '@/core/config/api.config';
 import { useRouter } from 'next/router';
 import { useAward } from './useAward';
-import { useAuthState } from '@/auth/data/auth.slice';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
-import P from '@/core/presenter/ui/P/P';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import TabTitle from '@/core/presenter/ui/TabTitle/TabTitle';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { awardsFull } = useAward('');
@@ -23,7 +21,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
 
   const { push } = useRouter();
 
-  const [active, setActive] = useState<'' | 'AWARD' | 'NOMINEE'>('');
+  const [active, setActive] = useState<'' | 'NOMINEE' | 'AWARD' | 'DELETE_USER'>('');
 
   const [state, setState] = useState<1 | -1>(1);
 
@@ -47,57 +45,33 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
         <Htag tag='h2' className={styles.headTitle}>{`Награды`}</Htag>
 
         <div className={styles.header}>
-          <Htag
-            tag='h3'
-            color='gray'
-            onClick={() => setActive('')}
-            className={cn(styles.all, {
-              [styles.active]: active == '',
-            })}
+          <TabTitle
+            active={active}
+            setActive={setActive}
+            count={awardsFull.length}
+            onClickActive={''}
+            className={styles.all}
           >
             Все
-            <P
-              size='s'
-              color={active == '' ? 'black' : 'gray96'}
-              className={styles.awardsCount}
-            >
-              {awardsFull.length}
-            </P>
-          </Htag>
-          <Htag
-            tag='h3'
-            color='gray'
-            onClick={() => setActive('AWARD')}
-            className={cn(styles.award, {
-              [styles.active]: active == 'AWARD',
-            })}
+          </TabTitle>
+          <TabTitle
+            active={active}
+            setActive={setActive}
+            count={allAwards.length}
+            onClickActive={'AWARD'}
+            className={styles.award}
           >
             Награды
-            <P
-              size='s'
-              color={active == 'AWARD' ? 'black' : 'gray96'}
-              className={styles.awardsCount}
-            >
-              {allAwards.length}
-            </P>
-          </Htag>
-          <Htag
-            tag='h3'
-            color='gray'
-            onClick={() => setActive('NOMINEE')}
-            className={cn(styles.nominee, {
-              [styles.active]: active == 'NOMINEE',
-            })}
+          </TabTitle>
+          <TabTitle
+            active={active}
+            setActive={setActive}
+            count={allNominee.length}
+            onClickActive={'NOMINEE'}
+            className={styles.nominee}
           >
             Номинации
-            <P
-              size='s'
-              color={active == 'NOMINEE' ? 'black' : 'gray96'}
-              className={styles.awardsCount}
-            >
-              {allNominee.length}
-            </P>
-          </Htag>
+          </TabTitle>
           <SortButton
             state={state}
             onClick={() => (state == 1 ? setState(-1) : setState(1))}
