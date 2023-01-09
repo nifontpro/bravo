@@ -1,6 +1,6 @@
 import { TypeRoles } from '@/auth/model/auth.roles';
 import { ImageRef } from '@/core/model/image.types';
-import { IAwardLite, IAwardUnion } from '../../award/model/award.types';
+import { IAwardLite, IAwardUnion } from '@/award/model/award.types';
 
 export interface IUser {
   id: string;
@@ -22,6 +22,15 @@ export interface IUser {
   imageUrl?: string;
   imageKey?: string;
   images: ImageRef[];
+}
+
+export interface IUserLite {
+  id: string;
+  name: string;
+  patronymic?: string;
+  lastname?: string;
+
+  imageUrl?: string;
 }
 
 export interface IUserCreate
