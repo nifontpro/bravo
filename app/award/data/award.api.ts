@@ -7,6 +7,7 @@ import {IAwardRelate} from "../model/awardRelate.types";
 import {userApi} from "@/user/data/user.api";
 import {IAwardCount} from "../model/count.types";
 import { messageApi } from 'message/data/message.api';
+import { activityApi } from '@/activity/data/activity.api';
 
 export const awardApi = createApi({
 	reducerPath: 'awardApi',
@@ -96,6 +97,7 @@ export const awardApi = createApi({
 					await queryFulfilled;
 					await dispatch(userApi.util.invalidateTags(['User']))
 					await dispatch(messageApi.util.invalidateTags(['Message']))
+					await dispatch(activityApi.util.invalidateTags(['Activity']))
 				} catch (error) {
 					console.error(`Error award user!`, error)
 				}

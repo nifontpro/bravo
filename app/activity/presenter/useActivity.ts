@@ -10,8 +10,8 @@ export const useActivity = (filter: string = '', sort: number = 1) => {
   if (currentCompany) {
     //Получить активность в компании
     const { data: activity } = activityApi.useGetAwardCountQuery({
-      // companyId: currentCompany.id,
-      companyId: '638621902741bb167c6c2386',
+      companyId: currentCompany.id,
+      // companyId: '638621902741bb167c6c2386',
       sort: sort,
       filter: filter,
     });
