@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import ButtonIcon from '@/core/presenter/ui/ButtonIcon/ButtonIcon';
 import { declOfNum } from '@/core/utils/declOfNum';
+import { IAward } from '@/award/model/award.types';
 
 const MainNominee = ({
   awards,
@@ -18,8 +19,16 @@ const MainNominee = ({
 }: MainNomineeProps): JSX.Element => {
   const { push } = useRouter();
   let currentDate = +new Date();
-  let nominee = awards.find((award) => award.state == 'NOMINEE');
-  // console.log(nominee);
+
+  let allNominee = awards.filter((item) => item.state === 'NOMINEE');
+  let minEndDateNominee = allNominee[0];
+  allNominee.forEach((item) => {
+    if (item.endDate != undefined && minEndDateNominee.endDate != undefined) {
+      if (item?.endDate < minEndDateNominee?.endDate) {
+        minEndDateNominee = item;
+      }
+    }
+  });
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
@@ -35,7 +44,7 @@ const MainNominee = ({
       <div className={styles.content}>
         <div className={styles.img}>
           <ImageDefault
-            src={nominee?.imageUrl}
+            src={minEndDateNominee?.imageUrl}
             width={236}
             height={236}
             alt='preview image'
@@ -44,26 +53,35 @@ const MainNominee = ({
           />
         </div>
         <P size='m' color='white' className={styles.countAwardsTitle}>
-          {nominee?.name}
+          {minEndDateNominee?.name}
         </P>
         <div className={styles.countEnd}>
           <P size='s' color='white' fontstyle='thin'>
             Заканчивается
           </P>
-          {nominee != undefined && nominee.endDate != undefined && (
-            <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
-              через{' '}
-              {Math.floor(
-                (nominee.endDate - currentDate) / 1000 / 60 / 60 / 24
-              )}{' '}
-              {declOfNum(
-                Math.floor(
-                  (nominee.endDate - currentDate) / 1000 / 60 / 60 / 24
-                ),
-                ['день', 'дня', 'дней']
-              )}
-            </ButtonIcon>
-          )}
+          {minEndDateNominee != undefined &&
+            minEndDateNominee.endDate != undefined && (
+              <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
+                через{' '}
+                {Math.floor(
+                  (minEndDateNominee.endDate - currentDate) /
+                    1000 /
+                    60 /
+                    60 /
+                    24
+                )}{' '}
+                {declOfNum(
+                  Math.floor(
+                    (minEndDateNominee.endDate - currentDate) /
+                      1000 /
+                      60 /
+                      60 /
+                      24
+                  ),
+                  ['день', 'дня', 'дней']
+                )}
+              </ButtonIcon>
+            )}
         </div>
       </div>
     </div>
