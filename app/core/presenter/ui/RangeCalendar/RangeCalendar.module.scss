@@ -6,13 +6,27 @@
   align-items: center;
   background: var(--white);
 
+  > div {
+    box-shadow: none !important;
+
+    &.error {
+      border: 1px solid var(--red);
+    }
+
+    &:hover {
+      > div {
+        border: none;
+      }
+    }
+
+    > div {
+      border: none;
+      padding: 0px 0px;
+    }
+  }
+
   .icon {
     border-right: 2px solid var(--gray);
     padding-right: 10px;
   }
-
-  > div {
-    outline: none !important;
-  }
-
 }
