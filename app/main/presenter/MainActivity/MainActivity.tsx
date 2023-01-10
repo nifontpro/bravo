@@ -12,10 +12,9 @@ const MainActivity = ({
   className,
   ...props
 }: MainActivityProps): JSX.Element => {
-  const { activity } = useActivity('', 1);
+  const { activity } = useActivity('', -1);
 
   let currentDate = +new Date();
-  console.log(activity)
 
   const { push } = useRouter();
   return (

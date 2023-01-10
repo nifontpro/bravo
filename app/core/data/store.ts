@@ -13,6 +13,7 @@ import { awardApi } from 'award/data/award.api';
 import { registerApi } from '@/register/data/register.api';
 import { messageApi } from '@/message/data/message.api';
 import { activityApi } from '@/activity/data/activity.api';
+import { dateSlice } from '@/award/presenter/admin/create/data.slice';
 
 const rootReducer = combineReducers({
   login: loginSlice.reducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   company: companySlice.reducer,
   department: departmentSlice.reducer,
   modal: modalSlice.reducer,
+  date: dateSlice.reducer,
   [registerApi.reducerPath]: registerApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [refreshApi.reducerPath]: refreshApi.reducer,

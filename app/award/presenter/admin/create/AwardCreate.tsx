@@ -15,11 +15,16 @@ import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleI
 import { useCompanyState } from '@/company/data/company.slice';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { IAwardCreate } from 'award/model/api.types';
-import { validDate } from '@/core/utils/regex';
+// import { validDate } from '@/core/utils/regex';
 import ChoiceUsers from './ChoiceUsers/ChoiceUsers';
 import { useMyUser } from '@/user/presenter/useMyUsers';
+import SelectCalendar from './SelectCalendar/SelectCalendar';
+import type { DatePickerProps } from 'antd';
+import { useDispatch } from 'react-redux';
+import { dateActions } from './data.slice';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
+  const dispatch = useDispatch();
   const { currentCompany } = useCompanyState();
   const { push } = useRouter();
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
@@ -39,6 +44,14 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     currentCompany?.id,
     arrChoiceUser
   );
+
+  const onChangeStart: DatePickerProps['onChange'] = (date, dateString) => {
+    dispatch(dateActions.setStartDate(dateString));
+  };
+
+  const onChangeEnd: DatePickerProps['onChange'] = (date, dateString) => {
+    dispatch(dateActions.setEndDate(dateString));
+  };
 
   return (
     <Meta title='Создание новой награды'>
@@ -99,7 +112,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
           />
 
           <div className={styles.group}>
-            <Field
+            {/* <Field
               {...register('startDate', {
                 pattern: {
                   value: validDate,
@@ -109,9 +122,18 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
               title='Начинается'
               placeholder='ММ.ДД.ГГГГ'
               error={errors.startDate}
+            /> */}
+            <SelectCalendar
+              handleChangeDate={onChangeStart}
+              title='Начинается'
+              error={errors.startDate}
             />
-
-            <Field
+            <SelectCalendar
+              handleChangeDate={onChangeEnd}
+              title='Заканчивается'
+              error={errors.endDate}
+            />
+            {/* <Field
               {...register('endDate', {
                 pattern: {
                   value: validDate,
@@ -121,7 +143,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
               title='Заканчивается'
               placeholder='ММ.ДД.ГГГГ'
               error={errors.endDate}
-            />
+            /> */}
           </div>
 
           <ChoiceUsers
@@ -135,6 +157,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
               onClick={handleSubmit(onSubmitReward)}
               appearance='whiteBlack'
               size='l'
+              disabled={!isDirty || !isValid}
             >
               Выдать сразу и закрыть
             </Button>

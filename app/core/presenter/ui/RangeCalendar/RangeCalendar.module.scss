@@ -1,0 +1,18 @@
+.calendar {
+  border: none;
+  padding: 5px 0px 5px 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  background: var(--white);
+
+  .icon {
+    border-right: 2px solid var(--gray);
+    padding-right: 10px;
+  }
+
+  > div {
+    outline: none !important;
+  }
+
+}

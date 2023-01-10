@@ -21,6 +21,7 @@ const AwardNominee = ({
 }: AwardNomineeProps): JSX.Element => {
   const { user: currentUser } = useAuthState();
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
+  console.log(award)
 
   //Закрытие модального окна нажатием вне его
   const ref = useRef(null);

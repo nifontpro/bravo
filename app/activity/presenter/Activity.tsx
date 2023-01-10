@@ -8,24 +8,35 @@ import TabTitle from '@/core/presenter/ui/TabTitle/TabTitle';
 import { useActivity } from './useActivity';
 import SingleActivity from './SingleActivity/SingleActivity';
 import Search from '@/core/presenter/ui/Search/Search';
+import RangeCalendar from '@/core/presenter/ui/RangeCalendar/RangeCalendar';
 
 const Activity = ({
   company,
   className,
   ...props
 }: ActivityProps): JSX.Element => {
+
   const [active, setActive] = useState<
     '' | 'AWARD' | 'NOMINEE' | 'DELETE_USER'
   >('');
 
   const [state, setState] = useState<1 | -1>(1);
+  const [startDate, setStartDate] = useState<number>(10000000);
+  const [endDate, setEndDate] = useState<number>(16732673054000);
   const [searchValue, setSearchValue] = useState<string>('');
-  const { activity } = useActivity(searchValue, state);
 
-  const allActivityLength = activity.length
-  const awardsLength = activity?.filter((item) => item.state?.includes("AWARD")).length;
-  const nomineeLength = activity?.filter((item) => item.state?.includes("NOMINEE")).length;
-  const otherLength = activity?.filter((item) => item.state?.includes("DELETE_USER")).length;
+  const { activity } = useActivity(searchValue, state, startDate, endDate);
+
+  const allActivityLength = activity.length;
+  const awardsLength = activity?.filter((item) =>
+    item.state?.includes('AWARD')
+  ).length;
+  const nomineeLength = activity?.filter((item) =>
+    item.state?.includes('NOMINEE')
+  ).length;
+  const otherLength = activity?.filter((item) =>
+    item.state?.includes('DELETE_USER')
+  ).length;
 
   //Фитруем по категории
   let filteredValue = activity?.filter((item) => item.state?.includes(active));
@@ -87,7 +98,7 @@ const Activity = ({
             Сначала новые
           </SortButton>
 
-          <Htag tag='h3'>Календарь</Htag>
+            <RangeCalendar setStartDate={setStartDate} setEndDate={setEndDate}/>
         </div>
 
         <div className={styles.cards}>
@@ -100,7 +111,13 @@ const Activity = ({
             className={styles.search}
           />
           {filteredValue?.map((item) => {
-            return <SingleActivity activity={item} key={item.id} className={styles.activity}/>;
+            return (
+              <SingleActivity
+                activity={item}
+                key={item.id}
+                className={styles.activity}
+              />
+            );
           })}
         </div>
       </div>
