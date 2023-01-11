@@ -6,7 +6,7 @@ import { toastError } from '@/core/utils/toast-error';
 import { IAwardCreate } from 'award/model/api.types';
 import { awardApi } from 'award/data/award.api';
 import { IAward } from 'award/model/award.types';
-import { dateActions, useEndDateState, useStartDateState } from './data.slice';
+import { dateActions, useEndDateState, useStartDateState } from './dataCreateAward.slice';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
 import { convertCorrectDataForUnix } from '@/core/utils/convertCorrectDataForUnix';
@@ -21,6 +21,8 @@ export const useAwardCreate = (
   const dispatch = useDispatch();
   const startDateSelect = useStartDateState();
   const endDateSelect = useEndDateState();
+  console.log(startDateSelect)
+  console.log(endDateSelect)
 
   const [img, setImg] = useState<string>('');
 

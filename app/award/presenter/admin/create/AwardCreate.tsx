@@ -21,7 +21,7 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import SelectCalendar from './SelectCalendar/SelectCalendar';
 import type { DatePickerProps } from 'antd';
 import { useDispatch } from 'react-redux';
-import { dateActions } from './data.slice';
+import { dateActions } from './dataCreateAward.slice';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const dispatch = useDispatch();

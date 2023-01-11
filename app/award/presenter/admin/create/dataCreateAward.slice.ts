@@ -11,8 +11,8 @@ const initialState: IModalState = {
   endDate: '',
 };
 
-export const dateSlice = createSlice({
-  name: 'date',
+export const dataCreateAwardSlice = createSlice({
+  name: 'dataCreateAward',
   initialState,
   reducers: {
     setStartDate: (state, action: PayloadAction<string>) => {
@@ -28,7 +28,7 @@ export const dateSlice = createSlice({
   },
 });
 
-export const dateActions = dateSlice.actions;
+export const dateActions = dataCreateAwardSlice.actions;
 
-export const useStartDateState = () => useTypedSelector((state) => state.date.startDate);
-export const useEndDateState = () => useTypedSelector((state) => state.date.endDate);
+export const useStartDateState = () => useTypedSelector((state) => state.dataCreateAward.startDate);
+export const useEndDateState = () => useTypedSelector((state) => state.dataCreateAward.endDate);
