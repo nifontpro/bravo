@@ -55,9 +55,16 @@ const MainActivity = ({
                     </div>
                   </div>
                 </div>
-                <P size='m' color='gray' fontstyle='thin'>
-                  {Math.floor((currentDate - item.date) / 86400000)}&nbsp;дн
-                </P>
+                {Math.floor((currentDate - item.date) / 86400000) == 0 ? (
+                  <P size='m' color='gray' fontstyle='thin'>
+                    сегодня
+                  </P>
+                ) : (
+                  <P size='m' color='gray' fontstyle='thin'>
+                    (true ? () : ())
+                    {Math.floor((currentDate - item.date) / 86400000)}&nbsp;дн
+                  </P>
+                )}
               </li>
             );
           }

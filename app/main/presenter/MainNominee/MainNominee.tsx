@@ -60,28 +60,26 @@ const MainNominee = ({
             Заканчивается
           </P>
           {minEndDateNominee != undefined &&
-            minEndDateNominee.endDate != undefined && (
+            minEndDateNominee.endDate != undefined &&
+            (Math.floor((minEndDateNominee.endDate - currentDate) / 86400000) !=
+            0 ? (
               <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
                 через{' '}
                 {Math.floor(
-                  (minEndDateNominee.endDate - currentDate) /
-                    1000 /
-                    60 /
-                    60 /
-                    24
+                  (minEndDateNominee.endDate - currentDate) / 86400000
                 )}{' '}
                 {declOfNum(
                   Math.floor(
-                    (minEndDateNominee.endDate - currentDate) /
-                      1000 /
-                      60 /
-                      60 /
-                      24
+                    (minEndDateNominee.endDate - currentDate) / 86400000
                   ),
                   ['день', 'дня', 'дней']
                 )}
               </ButtonIcon>
-            )}
+            ) : (
+              <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
+                сегодня
+              </ButtonIcon>
+            ))}
         </div>
       </div>
     </div>

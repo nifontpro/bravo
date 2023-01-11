@@ -97,9 +97,6 @@ export const useAwardCreate = (
 
   const onSubmitNominee: SubmitHandler<IAwardCreate> = async (data) => {
     let currentDate = Math.floor(new Date().getTime());
-    // console.log(data)
-    // console.log(endDateSelect)
-    // console.log(dayjs(endDateSelect))
 
     if (endDateSelect.length > 0) {
       data.endDate =
@@ -127,7 +124,6 @@ export const useAwardCreate = (
     }
 
     let isError = false;
-    console.log(data)
 
     if (
       companyId &&
