@@ -1,8 +1,7 @@
 import styles from './RangeCalendar.module.scss';
 import cn from 'classnames';
 import { RangeCalendarProps } from './RangeCalendar.props';
-import { DatePicker, Space } from 'antd';
-import locale from 'antd/es/date-picker/locale/ru_RU';
+import { DatePicker } from 'antd';
 import dayjs from 'dayjs';
 import CalenradIcon from './calendar.svg';
 import { convertCorrectDataForUnix } from '@/core/utils/convertCorrectDataForUnix';
@@ -37,7 +36,6 @@ const RangeCalendar = ({
         <CalenradIcon />
       </div>
       <RangePicker
-        locale={locale}
         format={dateFormat}
         className={styles.calendar}
         inputReadOnly={true}

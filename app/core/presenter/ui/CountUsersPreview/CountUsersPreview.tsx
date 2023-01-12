@@ -6,6 +6,7 @@ import { declOfNum } from '@/core/utils/declOfNum';
 import { ImageDefault } from '../icons/ImageDefault';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import uniqid from 'uniqid';
+import { motion } from 'framer-motion';
 
 const CountUsersPreview = ({
   usersAwards,

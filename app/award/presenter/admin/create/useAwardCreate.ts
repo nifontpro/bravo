@@ -21,8 +21,6 @@ export const useAwardCreate = (
   const dispatch = useDispatch();
   const startDateSelect = useStartDateState();
   const endDateSelect = useEndDateState();
-  console.log(startDateSelect)
-  console.log(endDateSelect)
 
   const [img, setImg] = useState<string>('');
 

@@ -1,5 +1,4 @@
 .wrapper {
-  // position: relative;
   background: var(--white);
   border-radius: 27px;
   padding: 75px;
@@ -10,10 +9,10 @@
     justify-content: space-between;
     align-items: center;
 
-    .dots {
+    .editPanel {
       position: absolute;
-      top: -50px;
-      right: -50px;
+      top: -70px;
+      right: -70px;
     }
   }
 

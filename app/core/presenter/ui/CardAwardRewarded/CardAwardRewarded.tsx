@@ -7,6 +7,11 @@ import { timeConverterUser } from '@/core/utils/timeConverterUser';
 import { awardApi } from 'award/data/award.api';
 import { toast } from 'react-toastify';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import EditPanel from '../EditPanelAuthBtn/EditPanel/EditPanel';
+import { useState } from 'react';
+import ButtonCircleIcon from '../ButtonCircleIcon/ButtonCircleIcon';
+import EditPanelAuthBtn from '../EditPanelAuthBtn/EditPanelAuthBtn';
+import { getUserEditUrl } from '@/core/config/api.config';
 
 const CardAwardRewarded = ({
   user,
@@ -15,9 +20,8 @@ const CardAwardRewarded = ({
   ...props
 }: CardAwardRewardedProps): JSX.Element => {
   let convertDate = timeConverterUser(award.awardDate);
-  // console.log(convertDate)
+  const [visible, setVisible] = useState<boolean>(false);
 
-  // console.log(award);
   const [deleteUserReward] = awardApi.useDeleteUserAwardMutation();
   const handleRemove = async () => {
     let isError = false;
@@ -39,11 +43,29 @@ const CardAwardRewarded = ({
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
-      <AuthComponent minRole={'director'}>
-        <div onClick={handleRemove} className={styles.remove}>
-          Удалить
-        </div>
-      </AuthComponent>
+      <EditPanelAuthBtn
+        color='white'
+        onlyRemove={true}
+        handleRemove={handleRemove}
+        id={user.id}
+        getUrl={getUserEditUrl}
+      />
+      {/* <AuthComponent minRole={'director'}>
+        <ButtonCircleIcon
+          onClick={() => setVisible(!visible)}
+          icon='dots'
+          appearance='white'
+          className={styles.dots}
+        />
+        <EditPanel
+          onMouseLeave={() => setVisible(!visible)}
+          id={user.id}
+          deleteAsync={handleRemove}
+          visible={visible}
+          className={styles.editPanel}
+          onlyRemove={true}
+        />
+      </AuthComponent> */}
 
       <div className={styles.img}>
         <ImageDefault
@@ -55,7 +77,9 @@ const CardAwardRewarded = ({
           className='rounded-[27px]'
         />
       </div>
-      <P size='l' color='white'>{award.name}</P>
+      <P size='l' color='white'>
+        {award.name}
+      </P>
       <P size='s' fontstyle='thin' color='gray96' className={styles.date}>
         Выдана {convertDate}
       </P>

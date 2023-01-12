@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  width: fit-content;
+  @apply animate-fade;
 
   &:hover {
     .black {
@@ -31,6 +33,14 @@
 
   .transparent {
     background-color: none;
+  }
+
+  .white {
+    background-color: none;
+
+    svg > circle {
+      fill: var(--white);
+    }
   }
 
   .blackText {

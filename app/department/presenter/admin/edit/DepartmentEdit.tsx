@@ -52,6 +52,9 @@ const DepartmentEdit: FC = () => {
 
   return (
     <Meta title='Редактирование отдела'>
+      <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>
+        Вернуться назад
+      </ButtonCircleIcon>
       <form className={styles.form}>
         {isLoading ? (
           <SkeletonLoader count={3} />

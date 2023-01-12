@@ -2,7 +2,6 @@ import styles from './SelectCalendar.module.scss';
 import cn from 'classnames';
 import { SelectCalendarProps } from './SelectCalendar.props';
 import { DatePicker } from 'antd';
-import locale from 'antd/es/date-picker/locale/ru_RU';
 import P from '../../../../../core/presenter/ui/P/P';
 
 type RangeValue = Parameters<
@@ -22,7 +21,6 @@ const SelectCalendar = ({
     <div {...props} className={cn(styles.calendar, className)}>
       <P className={styles.placeholder}>{title}</P>
       <DatePicker
-        locale={locale}
         format={dateFormat}
         className={cn(styles.calendar, {
           [styles.error]: error,

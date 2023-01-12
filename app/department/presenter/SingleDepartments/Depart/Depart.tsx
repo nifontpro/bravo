@@ -6,7 +6,7 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import ButtonIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useDepartmentAdmin } from '../../admin/useDepartmentAdmin';
 import { useState } from 'react';
-import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
+import EditPanel from '@/core/presenter/ui/EditPanelAuthBtn/EditPanel/EditPanel';
 import ListUser from './ListUsers/ListUser';
 import Button from '@/core/presenter/ui/Button/Button';
 import { userApi } from '@/user/data/user.api';
@@ -14,6 +14,7 @@ import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersP
 import { getDepartmentEditUrl } from '@/core/config/api.config';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import { motion } from 'framer-motion';
+import EditPanelAuthBtn from '@/core/presenter/ui/EditPanelAuthBtn/EditPanelAuthBtn';
 
 const Depart = ({
   data,
@@ -43,24 +44,16 @@ const Depart = ({
   };
 
   return (
-    <motion.div className={styles.wrapper} {...props}>
+    <div className={styles.wrapper} {...props}>
       <div className={styles.header}>
         <div className={styles.title}>
           <Htag tag='h3'>{data.name}</Htag>
-          <AuthComponent minRole={'director'}>
-            <ButtonIcon
-              onClick={() => setVisible(!visible)}
-              icon='dots'
-              appearance='transparent'
-            />
-            <EditPanel
-              getUrl={getDepartmentEditUrl}
-              onMouseLeave={() => setVisible(!visible)}
-              id={data.id}
-              deleteAsync={() => deleteAsync(data.id)}
-              visible={visible}
-            />
-          </AuthComponent>
+          <EditPanelAuthBtn
+            onlyRemove={false}
+            handleRemove={deleteAsync}
+            id={data.id}
+            getUrl={getDepartmentEditUrl}
+          />
         </div>
         <P size='m' type='silverBtn' className={styles.description}>
           {data.description}
@@ -71,12 +64,11 @@ const Depart = ({
         animate={listUserVisible ? 'hidden' : 'visible'}
         variants={variants}
         initial='hidden'
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.2 }}
       >
         <CountUsersPreview
           onClick={() => setListUserVisible(!listUserVisible)}
           appearanceBtn='black'
-          listUserVisible={listUserVisible}
           usersInDepartment={usersInDepartment}
         />
       </motion.div>
@@ -86,13 +78,7 @@ const Depart = ({
         variants={variants}
         initial='hidden'
         transition={{ duration: 0.5 }}
-        className={cn(
-          styles.listUsers
-          //   , {
-          //   [styles.listUsersVisible]: listUserVisible,
-          //   [styles.listUsersHidden]: !listUserVisible,
-          // }
-        )}
+        className={cn(styles.listUsers)}
       >
         <ListUser
           usersInDepartment={usersInDepartment}
@@ -108,7 +94,7 @@ const Depart = ({
           </Button>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 export default Depart;

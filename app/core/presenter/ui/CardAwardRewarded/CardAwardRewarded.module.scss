@@ -22,11 +22,16 @@
     margin-top: 30px;
   }
 
-  .remove {
+  .dots {
     cursor: pointer;
     position: absolute;
     top: 20px;
     right: 20px;
     color: var(--white);
+  }
+
+  .editPanel {
+    top: 50px;
+    right: 50px;
   }
 }
