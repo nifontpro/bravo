@@ -3,6 +3,7 @@
   background: var(--white);
   padding: 110px 100px;
   border-radius: 27px;
+  @apply animate-fade;
 
   .title {
     margin-bottom: 100px !important;
