@@ -16,7 +16,6 @@ const CountUsersPreview = ({
   className,
   ...props
 }: CountUsersPreviewProps): JSX.Element => {
-  // console.log(usersInDepartment);
 
   return (
     <div className={className} {...props}>

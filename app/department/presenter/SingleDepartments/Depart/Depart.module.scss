@@ -24,7 +24,7 @@
   display: flex;
   justify-content: center;
   margin-top: 55px;
-  @apply animate-fade
+  @apply animate-fade;
 }
 
 .colUser {
@@ -32,17 +32,13 @@
 }
 
 .listUsers {
-  // margin-top: 90px;
-  @apply animate-fade
+  overflow: hidden;
 }
 
-.colUserVisible,
-.listUsersVisible
- {
+.colUserVisible {
   display: block;
 }
 
-.colUserHidden,
-.listUsersHidden {
+.colUserHidden {
   display: none;
 }

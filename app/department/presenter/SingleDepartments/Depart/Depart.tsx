@@ -11,9 +11,9 @@ import ListUser from './ListUsers/ListUser';
 import Button from '@/core/presenter/ui/Button/Button';
 import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
-import { IUser } from '@/user/model/user.types';
 import { getDepartmentEditUrl } from '@/core/config/api.config';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import { motion } from 'framer-motion';
 
 const Depart = ({
   data,
@@ -25,35 +25,25 @@ const Depart = ({
     departmentId: data.id,
     filter: '',
   });
-  //   const { data: countAwards } = userApi.useGetAwardCountByDepartmentQuery(data.id,);
-  // console.log(`Кол медалей в отедле ${data.name} ${countAwards?.awards}`)
-  // console.log(`Кол номинаций в отедле ${data.name} ${countAwards?.nominee}`)
-  // console.log(`Кол всего в отедле ${data.name} ${countAwards?.total}`)
-  // console.log(`Кол всего в отедле ${data.name} ${countAwards?.total}`)
-
-  // let arrUser: IUser[] = []
-  // usersInDepartment?.forEach((item) => {
-  //   arrUser.push(item)
-  // })
-
-  // console.log(arrUser)
-
-  // if (usersInDepartment != undefined) {
-  //   usersInDepartment.sort((prev: IUser, next: IUser) => {
-  //     if (prev != undefined && next != undefined) {
-  //       if (prev.lastname < next.lastname) return -1;
-  //       if (prev.lastname < next.lastname) return 1;
-  //     }
-  //   });
-  // }
 
   const [visible, setVisible] = useState<boolean>(false);
   const [listUserVisible, setListUserVisible] = useState<boolean>(false);
 
   const { deleteAsync } = useDepartmentAdmin(data.companyId);
 
+  const variants = {
+    visible: {
+      opacity: 1,
+      height: 'auto',
+    },
+    hidden: {
+      opacity: 0,
+      height: '0',
+    },
+  };
+
   return (
-    <div className={styles.wrapper} {...props}>
+    <motion.div className={styles.wrapper} {...props}>
       <div className={styles.header}>
         <div className={styles.title}>
           <Htag tag='h3'>{data.name}</Htag>
@@ -77,18 +67,32 @@ const Depart = ({
         </P>
       </div>
 
-      <CountUsersPreview
-        onClick={() => setListUserVisible(!listUserVisible)}
-        appearanceBtn='black'
-        listUserVisible={listUserVisible}
-        usersInDepartment={usersInDepartment}
-      />
+      <motion.div
+        animate={listUserVisible ? 'hidden' : 'visible'}
+        variants={variants}
+        initial='hidden'
+        transition={{ duration: 0.5 }}
+      >
+        <CountUsersPreview
+          onClick={() => setListUserVisible(!listUserVisible)}
+          appearanceBtn='black'
+          listUserVisible={listUserVisible}
+          usersInDepartment={usersInDepartment}
+        />
+      </motion.div>
 
-      <div
-        className={cn(styles.listUsers, {
-          [styles.listUsersVisible]: listUserVisible,
-          [styles.listUsersHidden]: !listUserVisible,
-        })}
+      <motion.div
+        animate={listUserVisible ? 'visible' : 'hidden'}
+        variants={variants}
+        initial='hidden'
+        transition={{ duration: 0.5 }}
+        className={cn(
+          styles.listUsers
+          //   , {
+          //   [styles.listUsersVisible]: listUserVisible,
+          //   [styles.listUsersHidden]: !listUserVisible,
+          // }
+        )}
       >
         <ListUser
           usersInDepartment={usersInDepartment}
@@ -103,8 +107,8 @@ const Depart = ({
             Свернуть
           </Button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 export default Depart;
