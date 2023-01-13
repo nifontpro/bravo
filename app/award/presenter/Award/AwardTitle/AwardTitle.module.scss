@@ -18,7 +18,7 @@
     padding: 75px;
 
     > .title {
-      position: relative;
+      // position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -26,12 +26,6 @@
 
       > .header {
         font-size: 54px;
-      }
-
-      .dots {
-        position: absolute;
-        top: -50px;
-        right: -50px;
       }
     }
 

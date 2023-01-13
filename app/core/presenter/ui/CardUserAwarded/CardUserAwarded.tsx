@@ -8,10 +8,12 @@ import { awardApi } from 'award/data/award.api';
 import { toast } from 'react-toastify';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import AwardIcon from '@/core/presenter/images/union.svg';
-import EditPanel from '../EditPanel/EditPanel';
+import EditPanel from '../EditPanelAuthBtn/EditPanel/EditPanel';
 import ButtonCircleIcon from '../ButtonCircleIcon/ButtonCircleIcon';
 import { getUserEditUrl } from '@/core/config/api.config';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import useOutsideClick from '@/core/hooks/useOutsideClick';
+import EditPanelAuthBtn from '../EditPanelAuthBtn/EditPanelAuthBtn';
 
 const CardUserAwarded = ({
   award,
@@ -20,7 +22,15 @@ const CardUserAwarded = ({
   ...props
 }: CardUserAwardedProps): JSX.Element => {
   let convertDate = timeConverterUser(user.awardDate);
+
   const [visible, setVisible] = useState<boolean>(false);
+  //Закрытие модального окна нажатием вне его
+  const ref = useRef(null);
+  const refOpen = useRef(null);
+  const handleClickOutside = () => {
+    setVisible(false);
+  };
+  useOutsideClick(ref, refOpen, handleClickOutside, visible);
 
   const [deleteUserReward] = awardApi.useDeleteUserAwardMutation();
   const handleRemove = async () => {
@@ -67,21 +77,12 @@ const CardUserAwarded = ({
         <AwardIcon />
       </div>
 
-      <AuthComponent minRole={'director'}>
-        <ButtonCircleIcon
-          onClick={() => setVisible(!visible)}
-          icon='dots'
-          appearance='transparent'
-          className={styles.dots}
-        />
-        <EditPanel
-          getUrl={getUserEditUrl}
-          onMouseLeave={() => setVisible(!visible)}
-          id={user.user.id}
-          deleteAsync={handleRemove}
-          visible={visible}
-        />
-      </AuthComponent>
+      <EditPanelAuthBtn
+        onlyRemove={true}
+        handleRemove={handleRemove}
+        id={user.user.id}
+        getUrl={getUserEditUrl}
+      />
     </div>
   );
 };

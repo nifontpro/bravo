@@ -1,7 +1,7 @@
 import styles from './SingleUserTitle.module.scss';
 import { SingleUserTitleProps } from './SingleUserTitle.props';
 import cn from 'classnames';
-import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
+import EditPanel from '@/core/presenter/ui/EditPanelAuthBtn/EditPanel/EditPanel';
 import { useRef, useState } from 'react';
 import {
   getUserEditPasswordUrl,
@@ -23,6 +23,7 @@ import { IAward } from 'award/model/award.types';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import { useAuthState } from '@/auth/data/auth.slice';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
+import EditPanelAuthBtn from '@/core/presenter/ui/EditPanelAuthBtn/EditPanelAuthBtn';
 
 const SingleUserTitle = ({
   user,
@@ -76,21 +77,14 @@ const SingleUserTitle = ({
         <Htag tag='h2'>
           {user.lastname} {user.name}
         </Htag>
-        <AuthComponent minRole={'director'}>
-          <ButtonCircleIcon
-            onClick={() => setVisible(!visible)}
-            icon='dots'
-            appearance='transparent'
-            className={styles.dots}
-          />
-          <EditPanel
-            getUrl={getUserEditUrl}
-            onMouseLeave={() => setVisible(!visible)}
+        <div className={styles.editPanel}>
+          <EditPanelAuthBtn
+            onlyRemove={false}
+            handleRemove={handleRemove}
             id={user.id}
-            deleteAsync={handleRemove}
-            visible={visible}
+            getUrl={getUserEditUrl}
           />
-        </AuthComponent>
+        </div>
       </div>
 
       <div className={styles.position}>

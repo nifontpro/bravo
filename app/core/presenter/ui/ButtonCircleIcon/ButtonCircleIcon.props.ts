@@ -14,7 +14,7 @@ export const icons = {
 export type IconName = keyof typeof icons
 
 export type ButtonCircleIconProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
-    appearance: 'black' | 'transparent';
+    appearance: 'black' | 'transparent' | 'white';
     icon: IconName
     children?: ReactNode
 }

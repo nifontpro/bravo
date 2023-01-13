@@ -18,6 +18,7 @@ const ButtonCircleIcon = forwardRef(
             {
               [styles.black]: appearance == 'black',
               [styles.transparent]: appearance == 'transparent',
+              [styles.white]: appearance == 'white',
             },
             className
           )}

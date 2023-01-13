@@ -21,44 +21,6 @@
     gap: 10px;
     align-items: center;
 
-    > .userComponent {
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--gray-light05);
-      border-radius: 10px;
-      width: 64px;
-      height: 64px;
-
-      svg path {
-        @apply duration-200;
-      }
-
-      &:hover svg path {
-        stroke: var(--gray-light05);
-      }
-
-      .notificationCircle {
-        width: 8px;
-        height: 8px;
-        background-color: var(--lime);
-        border-radius: 5px;
-        position: absolute;
-        top: 20px;
-        right: 19px;
-        color: var(--white);
-      }
-
-      .notificationCount {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        color: var(--gray-light05);
-      }
-    }
-
     .userImg {
       cursor: pointer;
       height: 64px;

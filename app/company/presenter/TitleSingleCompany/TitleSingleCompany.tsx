@@ -1,21 +1,18 @@
 import styles from './TitleSingleCompany.module.scss';
-import cn from 'classnames';
 import { TitleSingleCompanyProps } from './TitleSingleCompany.props';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import P from '@/core/presenter/ui/P/P';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
-import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
+import EditPanel from '@/core/presenter/ui/EditPanelAuthBtn/EditPanel/EditPanel';
 import { useState } from 'react';
-// import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
 import { useCompanyAdmin } from '../admin/useCompanyAdmin';
-// import { useMyUser } from '@/user/presenter/useMyUsers';
-import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
 import GpsIcon from './gps.svg';
 import { getCompanyEditUrl, getCompanyUrl } from '@/core/config/api.config';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import { useMyUser } from '@/user/presenter/useMyUsers';
+import EditPanelAuthBtn from '@/core/presenter/ui/EditPanelAuthBtn/EditPanelAuthBtn';
 
 const TitleSingleCompany = ({
   company,
@@ -23,13 +20,8 @@ const TitleSingleCompany = ({
   className,
   ...props
 }: TitleSingleCompanyProps): JSX.Element => {
-  const { users } = useMyUser('')
-  // const { data: users } = userApi.useGetByCompanyDepNameQuery({
-  //   companyId: company.id,
-  // });
+  const { users } = useMyUser('');
 
-  // console.log(users)
- 
   const [visible, setVisible] = useState<boolean>(false);
 
   const { deleteAsync } = useCompanyAdmin();
@@ -52,21 +44,12 @@ const TitleSingleCompany = ({
           <Htag tag='h1' className={styles.header}>
             {company.name}
           </Htag>
-          <AuthComponent minRole={'director'}>
-            <ButtonCircleIcon
-              onClick={() => setVisible(!visible)}
-              icon='dots'
-              appearance='transparent'
-              className={styles.dots}
-            />
-            <EditPanel
-              getUrl={getCompanyEditUrl}
-              onMouseLeave={() => setVisible(!visible)}
-              id={company.id}
-              deleteAsync={deleteAsync}
-              visible={visible}
-            />
-          </AuthComponent>
+          <EditPanelAuthBtn
+            onlyRemove={false}
+            handleRemove={deleteAsync}
+            id={company.id}
+            getUrl={getCompanyEditUrl}
+          /> 
         </div>
 
         <div className={styles.address}>

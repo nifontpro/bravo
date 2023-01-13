@@ -18,8 +18,7 @@ const MainAwars = ({
   ...props
 }: MainAwarsProps): JSX.Element => {
   const { user } = useAuthState();
-  // console.log(user);
-  // console.log(users);
+
   const { push } = useRouter();
   let countAll = users.length;
   let countWithAward = users.filter((user) => user.awards.length > 0).length;
@@ -104,7 +103,7 @@ const MainAwars = ({
         <div className={styles.content}>
           <div
             className={cn(styles.allAwards, styles.card)}
-            onClick={() => push('/statistic')}
+            onClick={() => push('/award')}
           >
             <div className='flex'>
               <div className={styles.img}>

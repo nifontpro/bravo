@@ -7,6 +7,7 @@ import { ForwardedRef, forwardRef } from 'react';
 import { useUserPanelModalWindow } from './useNotificationModalWindow';
 import uniqid from 'uniqid';
 import NotificationItem from './NotificationItem/NotificationItem';
+import { motion } from 'framer-motion';
 
 const NotificationModalWindow = forwardRef(
   (
@@ -21,15 +22,26 @@ const NotificationModalWindow = forwardRef(
   ): JSX.Element => {
     const { handleClickReadAll } = useUserPanelModalWindow(message);
 
+    const variants = {
+      visible: {
+        opacity: 1,
+        height: 'auto',
+        padding: '40px 0px 0px 0px'
+      },
+      hidden: {
+        opacity: 0,
+        height: 0,
+        padding: 0
+      },
+    };
+
     return (
-      <div
-        className={cn(
-          styles.userModalWindow,
-          {
-            [styles.hidden]: !visibleModal,
-          },
-          className
-        )}
+      <motion.div
+        animate={visibleModal ? 'visible' : 'hidden'}
+        variants={variants}
+        initial='hidden'
+        transition={{ duration: 0.4 }}
+        className={cn(styles.userModalWindow, className)}
         {...props}
         ref={ref}
       >
@@ -61,7 +73,7 @@ const NotificationModalWindow = forwardRef(
             У вас пока нет уведомлений
           </P>
         )}
-      </div>
+      </motion.div>
     );
   }
 );

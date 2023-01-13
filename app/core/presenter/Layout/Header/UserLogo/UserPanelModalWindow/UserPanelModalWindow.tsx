@@ -9,6 +9,7 @@ import ChangePasswordIcon from '@/core/presenter/images/changePassword.svg';
 import P from '@/core/presenter/ui/P/P';
 import { ForwardedRef, forwardRef } from 'react';
 import { useUserPanelModalWindow } from './useUserPanelModalWindow';
+import { motion } from 'framer-motion';
 
 const UserPanelModalWindow = forwardRef(
   (
@@ -28,15 +29,26 @@ const UserPanelModalWindow = forwardRef(
       handleLogout,
     } = useUserPanelModalWindow(setVisibleModal, user);
 
+    const variants = {
+      visible: {
+        opacity: 1,
+        height: 'auto',
+        padding: '45px 40px'
+      },
+      hidden: {
+        opacity: 0,
+        height: 0,
+        padding: 0,
+      },
+    };
+
     return (
-      <div
-        className={cn(
-          styles.userModalWindow,
-          {
-            [styles.hidden]: !visibleModal,
-          },
-          className
-        )}
+      <motion.div
+        animate={visibleModal ? 'visible' : 'hidden'}
+        variants={variants}
+        initial='hidden'
+        transition={{ duration: 0.4 }}
+        className={cn(styles.userModalWindow, className)}
         {...props}
         ref={ref}
       >
@@ -69,7 +81,7 @@ const UserPanelModalWindow = forwardRef(
             </P>
           </li>
         </ul>
-      </div>
+      </motion.div>
     );
   }
 );

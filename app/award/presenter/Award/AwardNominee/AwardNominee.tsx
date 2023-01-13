@@ -47,7 +47,6 @@ const AwardNominee = ({
       arrUserNominee.push(user);
     }
   });
-  // console.log(arrUserNominee)
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
