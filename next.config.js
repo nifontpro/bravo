@@ -10,7 +10,7 @@ const nextConfig = {
     APP_SERVER_URL: process.env.REACT_APP_SERVER_URL
   },
   images : {
-    domains: ['medalist.storage.yandexcloud.net']
+    domains: ['medalist.storage.yandexcloud.net', 'medalistgallery.storage.yandexcloud.net']
   },
   webpack(config, options) {
     config.module.rules.push({

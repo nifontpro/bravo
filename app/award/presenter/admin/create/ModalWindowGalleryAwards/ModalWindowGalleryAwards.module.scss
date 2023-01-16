@@ -1,0 +1,52 @@
+.modalWindow {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  top: 0;
+  left: 0;
+  background: #00000052;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+
+  .module {
+    margin-top: 200px;
+    padding: 85px;
+    position: relative;
+    border-radius: 27px;
+    min-width: fit-content;
+    min-height: fit-content;
+    background: var(--white);
+
+    .title {
+      margin-bottom: 40px;
+    }
+
+    .exit {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      cursor: pointer;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+    }
+
+    .wrapperChoiceImg {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(4, 175px);
+    }
+  }
+}
+.hidden {
+  display: none;
+}
+
+.active {
+  display: flex;
+}

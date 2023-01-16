@@ -18,10 +18,9 @@ const AwardWasAwarded = ({
   className,
   ...props
 }: AwardWasAwardedProps): JSX.Element => {
-  const [visibleModal, setVisibleModal] = useState<boolean>(false);
-
   const { users } = useMyUser('');
 
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
   //Закрытие модального окна нажатием вне его
   const ref = useRef(null);
   const refOpen = useRef(null);

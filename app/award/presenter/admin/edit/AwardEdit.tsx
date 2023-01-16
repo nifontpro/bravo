@@ -13,18 +13,14 @@ import { useCompanyState } from '@/company/data/company.slice';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { IAwardUpdate } from 'award/model/api.types';
 import { useAwardEdit } from './useAwardEdit';
-import RemoveIcon from '@/core/presenter/images/remove.svg';
-import RefreshIcon from '@/core/presenter/images/refresh.svg';
-import InputPhotoRefresh from '@/core/presenter/ui/InputPhotoRefresh/InputPhotoRefresh';
 import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
+import { useRef, useState } from 'react';
+import useOutsideClick from '@/core/hooks/useOutsideClick';
+import ModalWindowGalleryAwards from '../create/ModalWindowGalleryAwards/ModalWindowGalleryAwards';
 
 const AwardEdit = ({}: AwardEditProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
-
-  // if (currentCompany === null) {
-  //   push('/company');
-  // }
 
   const {
     handleSubmit,
@@ -35,12 +31,21 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
     reset,
   } = useForm<IAwardUpdate>({ mode: 'onChange' });
 
-  const { onSubmit, changePhoto, removePhoto, img } = useAwardEdit(setValue);
+  const { onSubmit, removePhoto, img } = useAwardEdit(setValue);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
     back();
   };
+
+  //Закрытие модального окна нажатием вне его
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
+  const ref = useRef(null);
+  const refOpen = useRef(null);
+  const handleClickOutside = () => {
+    setVisibleModal(false);
+  };
+  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
 
   return (
     <Meta title='Редактирование компании'>
@@ -51,22 +56,22 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
         <div className={cn(styles.field, styles.uploadField)}>
           <div className={styles.images}>
             <ImageDefault
-              // onClick={changePreviewPhoto}
               src={img}
               width={400}
               height={400}
               alt='preview image'
               objectFit='cover'
-              // className='rounded-[10px]'
             />
           </div>
- 
+
           <div className={styles.editPanel}>
-            <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
-              <ButtonEdit icon='refresh'/>
-              {/* <RefreshIcon className={styles.refresh} /> */}
-            </InputPhotoRefresh>
-            <ButtonEdit icon='remove' onClick={removePhoto}/>
+            <ButtonEdit
+              icon='refresh'
+              className='mr-[10px]'
+              ref={refOpen}
+              onClick={() => setVisibleModal(true)}
+            />
+            <ButtonEdit icon='remove' onClick={removePhoto} />
           </div>
         </div>
 
@@ -119,6 +124,13 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
           </div>
         </form>
       </div>
+      <ModalWindowGalleryAwards
+        visibleModal={visibleModal}
+        setVisibleModal={setVisibleModal}
+        textBtn='Подтвердить'
+        ref={ref}
+        create={true}
+      />
     </Meta>
   );
 };
