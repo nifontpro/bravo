@@ -66,8 +66,10 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
       user.departmentId?.includes(departSort)
     );
     //Фильтр по наградам
-    if (sortAward) {
-      filteredValue = filteredValue.filter((user) => user.awardCount >= 0);
+    if (!sortAward) {
+      filteredValue = filteredValue.filter((user) =>
+        user.awards.find((item) => item.state == 'AWARD')
+      );
     } else {
       filteredValue = filteredValue.filter((user) => user.awardCount > 0);
     }
@@ -98,7 +100,12 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
           <ButtonToggle setSortAward={setSortAward} className={styles.toogle} />
         </div>
 
-        {currentUser && <CurrentUser currentUser={currentUser} currentUserIndex={currentUserIndex}/>}
+        {currentUser && (
+          <CurrentUser
+            currentUser={currentUser}
+            currentUserIndex={currentUserIndex}
+          />
+        )}
 
         <div className={styles.usersListRating}>
           <Search
