@@ -113,7 +113,7 @@ const UserCreate: FC = () => {
           >
             Загрузить изображение
           </InputFile>
-        </div>
+        </div> 
 
         <div className={styles.fields}>
           <Htag tag='h2' className={styles.title}>
@@ -238,7 +238,7 @@ const UserCreate: FC = () => {
             </Button>
             <Button
               onClick={handleSubmit(onSubmit)}
-              appearance='gray'
+              appearance='blackWhite'
               size='l'
               className='ml-[15px]'
               disabled={!isDirty || !isValid}

@@ -42,10 +42,10 @@ export const useAwardCreate = (
   const [reward] = awardApi.useAwardUserMutation();
 
   const onSubmitReward: SubmitHandler<IAwardCreate> = async (data) => {
-    if (data.endDate != undefined && data.startDate != undefined) {
+    // if (data.endDate != undefined && data.startDate != undefined) {
       data.endDate = Math.floor(new Date().getTime());
       data.startDate = Math.floor(new Date().getTime());
-    }
+    // }
     let isError = false;
 
     if (companyId) {
