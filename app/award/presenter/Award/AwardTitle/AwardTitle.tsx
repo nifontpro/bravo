@@ -27,11 +27,10 @@ const AwardTitle = ({
   let convertDate = timeConverter(award.endDate);
   let currentDateNumber = +new Date();
 
-  const [visible, setVisible] = useState<boolean>(false);
-
   const { deleteAsync } = useAwardAdmin(award.id);
 
   //Закрытие модального окна нажатием вне его
+  const [visible, setVisible] = useState<boolean>(false);
   const ref = useRef(null);
   const refOpen = useRef(null);
   const handleClickOutside = () => {

@@ -14,7 +14,7 @@ export const useModalWindowGalleryAwards = (
   const awardId = String(query.id);
 
   const { data: awardsGallery } = galleryApi.useGetAwardCountQuery({
-    folderId: '63c414bcad76a144ae8fcb5c',
+    folderId: '63c52aacf615255dd0f15d75',
   });
 
   const [imagesPreview, setImagesPreview] = useState<

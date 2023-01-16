@@ -14,16 +14,8 @@ const SingleAward = ({
   className,
   ...props
 }: SingleAwardProps): JSX.Element => {
-  // if (award.startDate != undefined && award.endDate != undefined) {
-  //   let start: Date = new Date(award.startDate * 1000);
-  //   let end: Date = new Date(award.endDate * 1000);
-
-  //   console.log((end - start)/60000 + ' минут')
-  // }
-
   let currentDate = +new Date();
 
-  // console.log(award);
   if (award.state == 'AWARD' || award.state == 'NONE') {
     return (
       <div
