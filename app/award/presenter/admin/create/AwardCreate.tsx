@@ -22,10 +22,10 @@ import SelectCalendar from './SelectCalendar/SelectCalendar';
 import type { DatePickerProps } from 'antd';
 import { useDispatch } from 'react-redux';
 import { dateActions } from './dataCreateAward.slice';
-import ModalWindowGalleryAwards from './ModalWindowGalleryAwards/ModalWindowGalleryAwards';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
 import P from '@/core/presenter/ui/P/P';
 import { IGalleryObject } from 'gallery/model/gallery.types';
+import ModalWindowGalleryAwards from '@/award/presenter/admin/create/ModalWindowGalleryAwards/ModalWindowGalleryAwards';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const dispatch = useDispatch();

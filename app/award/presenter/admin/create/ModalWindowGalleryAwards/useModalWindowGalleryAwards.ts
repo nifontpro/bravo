@@ -13,7 +13,7 @@ export const useModalWindowGalleryAwards = (
   const { query } = useRouter();
   const awardId = String(query.id);
 
-  const { data: awardsGallery } = galleryApi.useGetAwardCountQuery({
+  const { data: awardsGallery } = galleryApi.useGetGalleryObjectsQuery({
     folderId: '63c52aacf615255dd0f15d75',
   });
 

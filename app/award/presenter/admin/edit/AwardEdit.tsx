@@ -16,19 +16,17 @@ import { useAwardEdit } from './useAwardEdit';
 import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 import { useRef, useState } from 'react';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
-import ModalWindowGalleryAwards from '../create/ModalWindowGalleryAwards/ModalWindowGalleryAwards';
+import ModalWindowGalleryAwards from '@/award/presenter/admin/create/ModalWindowGalleryAwards/ModalWindowGalleryAwards';
 
 const AwardEdit = ({}: AwardEditProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
-  const { push, back } = useRouter();
+  const { back } = useRouter();
 
   const {
     handleSubmit,
     register,
     formState: { errors },
-    setValue,
-    control,
-    reset,
+    setValue
   } = useForm<IAwardUpdate>({ mode: 'onChange' });
 
   const { onSubmit, removePhoto, img } = useAwardEdit(setValue);

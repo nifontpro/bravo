@@ -3,7 +3,6 @@ import Meta from '@/core/utils/meta/Meta';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { AwardsProps } from './Awards.props';
 import { useState } from 'react';
-import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import SingleAward from './SingleAward/SingleAward';
 import Link from 'next/link';
 import { getAwardCreateUrl } from '@/core/config/api.config';
@@ -12,6 +11,7 @@ import { useAward } from './useAward';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import TabTitle from '@/core/presenter/ui/TabTitle/TabTitle';
+import SortButton from '@/core/presenter/ui/SortButton/SortButton';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { awardsFull } = useAward('');

@@ -13,7 +13,7 @@ import {queryWithReauth} from "@/core/data/base.api";
  	  /**
  	   * Получить список объектов из папки галереи
  		 */
- 	  getAwardCount: build.query<IGalleryObject[], IGetGalleryRequest>({
+ 	  getGalleryObjects: build.query<IGalleryObject[], IGetGalleryRequest>({
   			query: (request) => ({
   				method: 'POST',
   				url: getGalleryUrl("/get_folder"),

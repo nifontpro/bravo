@@ -3,11 +3,11 @@ import Meta from '@/core/utils/meta/Meta';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
 import styles from './Users.module.scss';
-import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import UserList from './UserList/UserList';
 import { IUser } from '../model/user.types';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import cn from 'classnames';
+import SortButton from '@/core/presenter/ui/SortButton/SortButton';
 
 const Users: FC = () => {
   const { users } = useMyUser('');
