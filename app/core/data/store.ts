@@ -14,6 +14,7 @@ import { registerApi } from '@/register/data/register.api';
 import { messageApi } from '@/message/data/message.api';
 import { activityApi } from '@/activity/data/activity.api';
 import { dataCreateAwardSlice } from '@/award/presenter/admin/create/dataCreateAward.slice';
+import {galleryApi} from "../../gallery/data/gallery.api";
 
 const rootReducer = combineReducers({
   login: loginSlice.reducer,
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   [awardApi.reducerPath]: awardApi.reducer,
   [messageApi.reducerPath]: messageApi.reducer,
   [activityApi.reducerPath]: activityApi.reducer,
+  [galleryApi.reducerPath]: galleryApi.reducer,
 });
 
 export const store = configureStore({
@@ -49,6 +51,7 @@ export const store = configureStore({
       awardApi.middleware,
       messageApi.middleware,
       activityApi.middleware,
+      galleryApi.middleware,
     ),
 });
 

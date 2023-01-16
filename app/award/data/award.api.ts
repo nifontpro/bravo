@@ -56,6 +56,20 @@ export const awardApi = createApi({
     }),
 
     /**
+ 		 * Установить изображение из галереи
+ 		 * @param [awardId]
+ 		 * @param [galleryItemId] - id объекта из галереи
+ 		 */
+ 		setImageFromGallery: build.mutation<void, { awardId: string; galleryItemId: string }>({
+      query: (request) => ({
+        method: 'POST',
+        url: getAwardUrl('/image/set_sys'),
+        body: request,
+      }),
+      invalidatesTags: ['Award'],
+    }),
+
+    /**
      * Удаление основного изображения
      * @param [awardId]
      */

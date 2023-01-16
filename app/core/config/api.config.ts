@@ -21,3 +21,4 @@ export const getAwardCreateUrl = (string: string = '') => `/award/create${string
 export const getAwardEditUrl = (string: string = '') => `/award/edit${string}`
 export const getMessageUrl = (string: string = '') => `/message${string}`
 export const getActivityUrl = (string: string = '') => `/activity${string}`
+export const getGalleryUrl = (string: string = '') => `/gallery${string}`
