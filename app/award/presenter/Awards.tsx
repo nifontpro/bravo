@@ -12,14 +12,18 @@ import { useAward } from './useAward';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import TabTitle from '@/core/presenter/ui/TabTitle/TabTitle';
+import { galleryApi } from 'gallery/data/gallery.api';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { awardsFull } = useAward('');
 
+  const { data: awardsGallery } = galleryApi.useGetAwardCountQuery({
+    folderId:"63c414bcad76a144ae8fcb5c"
+  });
+  console.log(awardsGallery)
+
   let allAwards = awardsFull.filter((award) => award.state == 'AWARD');
   let allNominee = awardsFull.filter((award) => award.state == 'NOMINEE');
-
-  console.log(awardsFull)
 
   const { push } = useRouter();
 

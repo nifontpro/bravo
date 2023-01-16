@@ -113,7 +113,7 @@ const UserCreate: FC = () => {
           >
             Загрузить изображение
           </InputFile>
-        </div>
+        </div> 
 
         <div className={styles.fields}>
           <Htag tag='h2' className={styles.title}>
