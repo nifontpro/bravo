@@ -18,7 +18,6 @@ const UserListRating = ({
   className,
   ...props
 }: UserListRatingProps): JSX.Element => {
-  // console.log(users);
   const { push } = useRouter();
 
   return (

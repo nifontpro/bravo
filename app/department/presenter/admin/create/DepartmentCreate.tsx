@@ -9,6 +9,7 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import { DepartmentCreateProps } from './DepartmentCreate.props';
 import { useDepartmentCreate } from './useDepartmentCreate';
 import { IDepartmentCreate } from '@/department/model/department.types';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -30,6 +31,9 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
 
   return (
     <Meta title='Создание нового отдела'>
+      <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>
+        Вернуться назад
+      </ButtonCircleIcon>
       <form className={styles.form}>
         <Htag tag='h2' className={styles.title}>
           Новый отдел

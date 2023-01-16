@@ -19,6 +19,8 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   let allAwards = awardsFull.filter((award) => award.state == 'AWARD');
   let allNominee = awardsFull.filter((award) => award.state == 'NOMINEE');
 
+  console.log(awardsFull)
+
   const { push } = useRouter();
 
   const [active, setActive] = useState<'' | 'NOMINEE' | 'AWARD' | 'DELETE_USER'>('');

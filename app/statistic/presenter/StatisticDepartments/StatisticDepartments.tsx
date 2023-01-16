@@ -41,7 +41,7 @@ const StatisticDepartments = ({
               <P size='l'>{depart.id.name}</P>
               <div className={styles.countAwards}>
                 <Htag className={styles.count} tag='h2'>
-                {depart.userAwardCount}
+                  {depart.userAwardCount}
                 </Htag>
                 <AwardIcon className='@apply ml-[10px] w-[17px] h-[24px]' />
               </div>

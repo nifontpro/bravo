@@ -49,6 +49,10 @@
       align-items: center;
       grid-column: startCount / endCount;
 
+      > svg path {
+        stroke: var(--gray);
+      }
+
       .union {
         margin-left: 10px;
         width: 15px;
@@ -61,6 +65,9 @@
       }
       > svg path {
         fill: var(--gray);
+      }
+      > svg path {
+        stroke: var(--gray);
       }
     }
 
@@ -85,8 +92,6 @@
         &:first-child {
           margin-left: 0px;
         }
-
-
       }
 
       .countIcon {

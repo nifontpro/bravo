@@ -238,7 +238,7 @@ const UserCreate: FC = () => {
             </Button>
             <Button
               onClick={handleSubmit(onSubmit)}
-              appearance='gray'
+              appearance='blackWhite'
               size='l'
               className='ml-[15px]'
               disabled={!isDirty || !isValid}
