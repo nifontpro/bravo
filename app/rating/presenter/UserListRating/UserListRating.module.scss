@@ -49,9 +49,9 @@
       align-items: center;
       grid-column: startCount / endCount;
 
-      > svg path {
-        stroke: var(--gray);
-      }
+      // > svg path {
+      //   stroke: var(--gray);
+      // }
 
       .union {
         margin-left: 10px;
@@ -185,6 +185,9 @@
       }
       > svg path {
         fill: var(--gray);
+      }
+      > svg path {
+        stroke: var(--gray);
       }
     }
 
