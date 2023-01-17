@@ -44,7 +44,7 @@ const UserListRating = ({
               className={styles.numberOfRating}
               color='gray'
             >
-              #{index+1}
+              #{index + 1}
             </P>
             <div className={styles.img}>
               <ImageDefault

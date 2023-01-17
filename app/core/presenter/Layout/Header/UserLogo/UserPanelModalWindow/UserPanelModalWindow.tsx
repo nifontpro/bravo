@@ -9,7 +9,7 @@ import ChangePasswordIcon from '@/core/presenter/images/changePassword.svg';
 import P from '@/core/presenter/ui/P/P';
 import { ForwardedRef, forwardRef } from 'react';
 import { useUserPanelModalWindow } from './useUserPanelModalWindow';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const UserPanelModalWindow = forwardRef(
   (
@@ -32,56 +32,63 @@ const UserPanelModalWindow = forwardRef(
     const variants = {
       visible: {
         opacity: 1,
-        height: 'auto',
-        padding: '45px 40px'
+        y: 0,
       },
       hidden: {
         opacity: 0,
-        height: 0,
-        padding: 0,
+        y: '-60px',
+      },
+      exit: {
+        opacity: 0,
+        y: '-60px',
       },
     };
 
     return (
-      <motion.div
-        animate={visibleModal ? 'visible' : 'hidden'}
-        variants={variants}
-        initial='hidden'
-        transition={{ duration: 0.4 }}
-        className={cn(styles.userModalWindow, className)}
-        {...props}
-        ref={ref}
-      >
-        <Htag tag='h3' className={styles.title}>
-          {user?.login}
-        </Htag>
-        <ul className={styles.list}>
-          <li className={styles.item} onClick={handleClickProfile}>
-            <ProfileIcon />
-            <P size='xs' fontstyle='thin' className={styles.link}>
-              Мой профиль
-            </P>
-          </li>
-          <li className={styles.item} onClick={handleClickEditProfile}>
-            <EditIcon />
-            <P size='xs' fontstyle='thin' className={styles.link}>
-              Редактировать
-            </P>
-          </li>
-          <li className={styles.item} onClick={handleClickEditPassword}>
-            <ChangePasswordIcon />
-            <P size='xs' fontstyle='thin' className={styles.link}>
-              Сменить пароль
-            </P>
-          </li>
-          <li className={styles.item} onClick={handleLogout}>
-            <ExitIcon />
-            <P size='xs' fontstyle='thin' className={styles.link}>
-              Выйти
-            </P>
-          </li>
-        </ul>
-      </motion.div>
+      <AnimatePresence exitBeforeEnter>
+        {visibleModal && (
+          <motion.div
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+            variants={variants}
+            transition={{ duration: 0.4 }}
+            className={cn(styles.userModalWindow, className)}
+            {...props}
+            ref={ref}
+          >
+            <Htag tag='h3' className={styles.title}>
+              {user?.login}
+            </Htag>
+            <ul className={styles.list}>
+              <li className={styles.item} onClick={handleClickProfile}>
+                <ProfileIcon />
+                <P size='xs' fontstyle='thin' className={styles.link}>
+                  Мой профиль
+                </P>
+              </li>
+              <li className={styles.item} onClick={handleClickEditProfile}>
+                <EditIcon />
+                <P size='xs' fontstyle='thin' className={styles.link}>
+                  Редактировать
+                </P>
+              </li>
+              <li className={styles.item} onClick={handleClickEditPassword}>
+                <ChangePasswordIcon />
+                <P size='xs' fontstyle='thin' className={styles.link}>
+                  Сменить пароль
+                </P>
+              </li>
+              <li className={styles.item} onClick={handleLogout}>
+                <ExitIcon />
+                <P size='xs' fontstyle='thin' className={styles.link}>
+                  Выйти
+                </P>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     );
   }
 );

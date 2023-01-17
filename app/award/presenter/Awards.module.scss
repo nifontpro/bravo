@@ -1,4 +1,6 @@
 .wrapper {
+  @apply animate-fade;
+
   .headTitle {
     margin-bottom: 40px;
   }

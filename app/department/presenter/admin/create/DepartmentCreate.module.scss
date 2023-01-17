@@ -4,6 +4,7 @@
     padding: 60px 85px;
     border-radius: 27px;
     margin-top: 50px;
+    @apply animate-fade;
 
     > .title {
         margin-bottom: 50px;

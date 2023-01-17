@@ -1,6 +1,5 @@
 .wrapper {
   .buttonEdit,
-  .buttonRemove,
   .buttonRefresh {
     width: 52px;
     height: 52px;
@@ -42,5 +41,9 @@
         stroke: var(--gray-dark);
       }
     }
+  }
+  .buttonRemove {
+    width: 56px;
+    height: 56px;
   }
 }

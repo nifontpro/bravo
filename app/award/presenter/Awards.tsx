@@ -3,7 +3,6 @@ import Meta from '@/core/utils/meta/Meta';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { AwardsProps } from './Awards.props';
 import { useState } from 'react';
-import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import SingleAward from './SingleAward/SingleAward';
 import Link from 'next/link';
 import { getAwardCreateUrl } from '@/core/config/api.config';
@@ -12,15 +11,10 @@ import { useAward } from './useAward';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import TabTitle from '@/core/presenter/ui/TabTitle/TabTitle';
-import { galleryApi } from 'gallery/data/gallery.api';
+import SortButton from '@/core/presenter/ui/SortButton/SortButton';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { awardsFull } = useAward('');
-
-  const { data: awardsGallery } = galleryApi.useGetAwardCountQuery({
-    folderId:"63c414bcad76a144ae8fcb5c"
-  });
-  console.log(awardsGallery)
 
   let allAwards = awardsFull.filter((award) => award.state == 'AWARD');
   let allNominee = awardsFull.filter((award) => award.state == 'NOMINEE');
@@ -103,7 +97,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             return (
               <Link key={item.id} href={'/award/' + item.id}>
                 <a>
-                  <SingleAward award={item} />
+                  <SingleAward layout award={item} />
                 </a>
               </Link>
             );

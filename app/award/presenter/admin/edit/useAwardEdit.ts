@@ -1,7 +1,6 @@
 import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import {
-  ChangeEvent,
   useEffect,
   useState,
 } from 'react';
@@ -36,7 +35,6 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
   }, [isGetSuccess, setValue, award]);
 
   const onSubmit: SubmitHandler<IAwardUpdate> = async (data) => {
-    // console.log(data);
     let isError = false;
     if (award) {
       await update({ ...data, id: award.id })
@@ -68,23 +66,23 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
     }
   };
 
-  const changePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
-    let isError = false;
-    if (event.target.files !== null && award != undefined) {
-      setImg(URL.createObjectURL(event.target.files[0]));
-      const formData = new FormData();
-      formData.append('imageUrl', event.target.files[0]);
-      await updateImg({ awardId: award.id, formData })
-        .unwrap()
-        .catch((e) => {
-          isError = true;
-          toast.error(e + 'Ошибка обновления фотографии');
-        });
-      if (!isError) {
-        toast.success('Фото успешно обновлено');
-      }
-    }
-  };
+  // const changePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
+  //   let isError = false;
+  //   if (event.target.files !== null && award != undefined) {
+  //     setImg(URL.createObjectURL(event.target.files[0]));
+  //     const formData = new FormData();
+  //     formData.append('imageUrl', event.target.files[0]);
+  //     await updateImg({ awardId: award.id, formData })
+  //       .unwrap()
+  //       .catch((e) => {
+  //         isError = true;
+  //         toast.error(e + 'Ошибка обновления фотографии');
+  //       });
+  //     if (!isError) {
+  //       toast.success('Фото успешно обновлено');
+  //     }
+  //   }
+  // };
 
-  return { award, onSubmit, changePhoto, removePhoto, isLoading, img };
+  return { award, onSubmit, removePhoto, isLoading, img };
 };

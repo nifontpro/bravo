@@ -3,7 +3,7 @@
   align-items: center;
   cursor: pointer;
   width: fit-content;
-  @apply animate-fade;
+  @apply animate-fade duration-200;
 
   &:hover {
     .black {
@@ -32,7 +32,14 @@
   }
 
   .transparent {
-    background-color: none;
+    background-color: transparent;
+    @apply duration-200;
+  }
+
+  &:hover {
+    .transparent {
+      background-color: var(--gray-light);
+    }
   }
 
   .white {

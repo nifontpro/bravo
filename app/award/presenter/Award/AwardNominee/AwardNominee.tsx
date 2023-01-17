@@ -20,9 +20,9 @@ const AwardNominee = ({
   ...props
 }: AwardNomineeProps): JSX.Element => {
   const { user: currentUser } = useAuthState();
-  const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
   //Закрытие модального окна нажатием вне его
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
   const ref = useRef(null);
   const refOpen = useRef(null);
   const handleClickOutside = () => {

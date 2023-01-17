@@ -3,7 +3,7 @@ import Meta from '@/core/utils/meta/Meta';
 import { ActivityProps } from './Activity.props';
 import { useState } from 'react';
 import Htag from '@/core/presenter/ui/Htag/Htag';
-import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
+import SortButton from '@/core/presenter/ui/SortButton/SortButton';
 import TabTitle from '@/core/presenter/ui/TabTitle/TabTitle';
 import { useActivity } from './useActivity';
 import SingleActivity from './SingleActivity/SingleActivity';
@@ -15,35 +15,21 @@ const Activity = ({
   className,
   ...props
 }: ActivityProps): JSX.Element => {
-
-  const [active, setActive] = useState<
-    '' | 'AWARD' | 'NOMINEE' | 'DELETE_USER'
-  >('');
-
-  const [state, setState] = useState<1 | -1>(1);
-  const [startDate, setStartDate] = useState<number>(10000000);
-  const [endDate, setEndDate] = useState<number>(16732673054000);
-  const [searchValue, setSearchValue] = useState<string>('');
-
-  const { activity } = useActivity(searchValue, state, startDate, endDate);
-
-  const allActivityLength = activity.length;
-  const awardsLength = activity?.filter((item) =>
-    item.state?.includes('AWARD')
-  ).length;
-  const nomineeLength = activity?.filter((item) =>
-    item.state?.includes('NOMINEE')
-  ).length;
-  const otherLength = activity?.filter((item) =>
-    item.state?.includes('DELETE_USER')
-  ).length;
-
-  //Фитруем по категории
-  let filteredValue = activity?.filter((item) => item.state?.includes(active));
-
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setSearchValue(event.currentTarget.value);
-  };
+  
+  const {
+    active,
+    setActive,
+    allActivityLength,
+    awardsLength,
+    nomineeLength,
+    otherLength,
+    state,
+    setState,
+    setStartDate,
+    setEndDate,
+    handleChange,
+    filteredValue,
+  } = useActivity();
 
   return (
     <Meta title='Активность'>
@@ -98,7 +84,7 @@ const Activity = ({
             Сначала новые
           </SortButton>
 
-            <RangeCalendar setStartDate={setStartDate} setEndDate={setEndDate}/>
+          <RangeCalendar setStartDate={setStartDate} setEndDate={setEndDate} />
         </div>
 
         <div className={styles.cards}>

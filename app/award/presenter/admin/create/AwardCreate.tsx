@@ -10,7 +10,7 @@ import { AwardCreateProps } from './AwardCreate.props';
 import { useAwardCreate } from './useAwardCreate';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useCompanyState } from '@/company/data/company.slice';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
@@ -22,6 +22,10 @@ import SelectCalendar from './SelectCalendar/SelectCalendar';
 import type { DatePickerProps } from 'antd';
 import { useDispatch } from 'react-redux';
 import { dateActions } from './dataCreateAward.slice';
+import useOutsideClick from '@/core/hooks/useOutsideClick';
+import P from '@/core/presenter/ui/P/P';
+import { IGalleryObject } from 'gallery/model/gallery.types';
+import ModalWindowGalleryAwards from '@/award/presenter/admin/create/ModalWindowGalleryAwards/ModalWindowGalleryAwards';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const dispatch = useDispatch();
@@ -29,6 +33,8 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const { push } = useRouter();
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
   const { users } = useMyUser('');
+
+  const [images, setImg] = useState<IGalleryObject | undefined>(undefined);
 
   const {
     handleSubmit,
@@ -38,20 +44,29 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
     reset,
   } = useForm<IAwardCreate>({ mode: 'onChange' });
 
-  const { onSubmitReward, onSubmitNominee, changePhoto, img } = useAwardCreate(
+  const { onSubmitReward, onSubmitNominee } = useAwardCreate(
     setValue,
     reset,
+    images,
     currentCompany?.id,
     arrChoiceUser
   );
 
-  const onChangeStart: DatePickerProps['onChange'] = (date, dateString) => {
+  const onChangeStart: DatePickerProps['onChange'] = (_, dateString) => {
     dispatch(dateActions.setStartDate(dateString));
   };
-
-  const onChangeEnd: DatePickerProps['onChange'] = (date, dateString) => {
+  const onChangeEnd: DatePickerProps['onChange'] = (_, dateString) => {
     dispatch(dateActions.setEndDate(dateString));
   };
+
+  //Закрытие модального окна нажатием вне его
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
+  const ref = useRef(null);
+  const refOpen = useRef(null);
+  const handleClickOutside = () => {
+    setVisibleModal(false);
+  };
+  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
 
   return (
     <Meta title='Создание новой награды'>
@@ -67,7 +82,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
         <div className={cn(styles.field, styles.uploadField)}>
           <div className={styles.images}>
             <ImageDefault
-              src={img}
+              src={images?.imageUrl}
               width={400}
               height={400}
               alt='preview image'
@@ -75,12 +90,26 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
             />
           </div>
 
-          <InputFile
+          <div
+            className={styles.choiceImg}
+            ref={refOpen}
+            onClick={() => setVisibleModal(true)}
+          >
+            <P
+              size='xs'
+              fontstyle='thin'
+              color='white'
+              className={styles.download}
+            >
+              Загрузить изображение
+            </P>
+          </div>
+          {/* <InputFile
             error={errors.file}
             {...register('file', { onChange: changePhoto })}
           >
             Загрузить изображение
-          </InputFile>
+          </InputFile> */}
         </div>
 
         <div className={styles.fields}>
@@ -112,17 +141,6 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
           />
 
           <div className={styles.group}>
-            {/* <Field
-              {...register('startDate', {
-                pattern: {
-                  value: validDate,
-                  message: 'Пожалуйста введите корректную дату',
-                },
-              })}
-              title='Начинается'
-              placeholder='ММ.ДД.ГГГГ'
-              error={errors.startDate}
-            /> */}
             <SelectCalendar
               handleChangeDate={onChangeStart}
               title='Начинается'
@@ -133,17 +151,6 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
               title='Заканчивается'
               error={errors.endDate}
             />
-            {/* <Field
-              {...register('endDate', {
-                pattern: {
-                  value: validDate,
-                  message: 'Пожалуйста введите корректную дату',
-                },
-              })}
-              title='Заканчивается'
-              placeholder='ММ.ДД.ГГГГ'
-              error={errors.endDate}
-            /> */}
           </div>
 
           <ChoiceUsers
@@ -173,6 +180,15 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
           </div>
         </div>
       </form>
+      <ModalWindowGalleryAwards
+        img={images}
+        setImg={setImg}
+        visibleModal={visibleModal}
+        setVisibleModal={setVisibleModal}
+        textBtn='Подтвердить'
+        ref={ref}
+        create={false}
+      />
     </Meta>
   );
 };
