@@ -27,7 +27,7 @@ const VerticalBarChart = ({
     responsive: true,
     plugins: {
       legend: {
-        align: 'start',
+        // align: 'start',
         labels: {
           usePointStyle: true,
           pointStyleWidth: 16,
