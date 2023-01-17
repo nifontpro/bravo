@@ -1,6 +1,7 @@
 import { ICompany } from '@/company/model/company.types';
 import { IUserAwards } from '@/user/model/user.types';
-import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, ReactNode, SetStateAction } from "react"
+import { MotionProps } from 'framer-motion';
+import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, ReactNode, RefAttributes, SetStateAction } from "react"
 
 export type UserListRatingProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     children?: ReactNode;

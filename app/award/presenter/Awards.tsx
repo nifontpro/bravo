@@ -97,7 +97,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             return (
               <Link key={item.id} href={'/award/' + item.id}>
                 <a>
-                  <SingleAward award={item} />
+                  <SingleAward layout award={item} />
                 </a>
               </Link>
             );

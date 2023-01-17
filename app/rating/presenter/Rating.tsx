@@ -4,7 +4,6 @@ import { RatingProps } from './Rating.props';
 import cn from 'classnames';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { IOption } from '@/core/presenter/ui/SelectArtem/SelectArtem.interface';
-import SortButton from '@/core/presenter/ui/SortButton/EditPanel/SortButton';
 import { useState } from 'react';
 import ButtonToggle from '@/core/presenter/ui/ButtonToggle/ButtonToggle';
 import UserListRating from './UserListRating/UserListRating';
@@ -14,6 +13,7 @@ import { useMyUser } from '@/user/presenter/useMyUsers';
 import Search from '@/core/presenter/ui/Search/Search';
 import { useAuthState } from '@/auth/data/auth.slice';
 import CurrentUser from './CurrentUser/CurrentUser';
+import SortButton from '@/core/presenter/ui/SortButton/SortButton';
 
 const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
   const { user } = useAuthState();

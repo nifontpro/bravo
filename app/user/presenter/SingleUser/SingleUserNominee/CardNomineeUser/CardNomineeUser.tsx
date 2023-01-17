@@ -15,6 +15,7 @@ import RemoveIcon from './removeUser.svg';
 // import { toast } from 'react-toastify';
 import { useCardNominee } from 'award/presenter/Award/AwardNominee/CardNominee/useCardNominee';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 
 const CardNomineeUser = ({
   userId,
@@ -66,10 +67,7 @@ const CardNomineeUser = ({
                 Буден награжден
               </Button>
             )}
-            <RemoveIcon
-              onClick={handleRemove}
-              className='ml-[5px] cursor-pointer'
-            />
+            <ButtonEdit icon='remove' onClick={handleRemove} />
           </div>
         </AuthComponent>
       )}

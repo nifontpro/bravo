@@ -65,7 +65,7 @@ const Users: FC = () => {
 
           {filteredValue.map((user) => {
             return (
-              <UserList key={user.id} user={user} className={styles.userList} />
+              <UserList layout key={user.id} user={user} className={styles.userList} />
             );
           })}
         </div>

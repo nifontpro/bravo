@@ -3,6 +3,7 @@
   grid-template-columns: 400px 1fr;
   gap: 30px;
   margin-top: 85px;
+  @apply animate-fade;
 
   > .content {
     grid-column: 2 / 3;
