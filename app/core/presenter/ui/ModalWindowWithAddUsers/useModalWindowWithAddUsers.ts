@@ -11,6 +11,7 @@ export const useModalWindowWithAddUsers = (
   const [reward] = awardApi.useAwardUserMutation();
 
   const handleCancel = () => {
+    setArrChoiceUser([]);
     setVisibleModal(false);
   };
 

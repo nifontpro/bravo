@@ -42,7 +42,7 @@ const ModalWindowWithAddAwards = forwardRef(
     };
 
     return (
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode='wait'>
         {visibleModal && (
           <motion.div
             initial='hidden'
@@ -55,7 +55,7 @@ const ModalWindowWithAddAwards = forwardRef(
           >
             <div className={styles.module} ref={ref}>
               <ExitIcon
-                onClick={() => setVisibleModal(false)}
+                onClick={handleCancel}
                 className={styles.exit}
               />
               <Htag tag='h2' className={styles.title}>

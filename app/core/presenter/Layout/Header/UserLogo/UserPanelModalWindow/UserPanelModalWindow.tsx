@@ -45,7 +45,7 @@ const UserPanelModalWindow = forwardRef(
     };
 
     return (
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode='wait'>
         {visibleModal && (
           <motion.div
             initial='hidden'
