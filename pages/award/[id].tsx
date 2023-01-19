@@ -50,6 +50,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     {}
   );
 
+  console.log(allAwardsId.map(item => getAwardUrl(`/${item}`)))
+
   return {
     paths: allAwardsId.map(item => getAwardUrl(`/${item}`)),
     // fallback: 'blocking'
@@ -66,7 +68,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     const id = String(params?.id);
-    // const {data: award } = awardApi.useGetAwardByIdWithUsersQuery(id)
     const { data: award } = await axiosCore.post<IAwardUsers>(
       getAwardUrl('/get_idu'),
       {

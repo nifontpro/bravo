@@ -34,7 +34,9 @@ const AwardNominee = ({
 
   //Фильтр тех кто еще не участвует в номинации
   let arrIdUserNominee: string[] = [];
-  award.relateUsers.forEach((user) => arrIdUserNominee.push(user.user.id));
+  // let arrAwards = [...award.relateUsers]
+  // console.log(award.relateUsers)
+  award.relateUsers?.forEach((user) => arrIdUserNominee.push(user.user.id));
   let arrUserNotNominee: IUser[] = [];
   users.forEach((user) => {
     if (arrIdUserNominee.find((item) => item == user.id) == undefined) {
@@ -80,13 +82,13 @@ const AwardNominee = ({
 
         {currentUser?.role == 'user' ? (
           <div className={styles.usersAwarded}>
-            {arrUserNominee.map((user) => {
+            {arrUserNominee?.map((user) => {
               return <CardNomineeUser user={user} key={uniqid()} />;
             })}
           </div>
         ) : (
           <div className={styles.usersAwarded}>
-            {award.relateUsers.map((item) => {
+            {award.relateUsers?.map((item) => {
               if (item.state === 'NOMINEE' || item.state === 'AWARD') {
                 return (
                   <CardNominee awardId={award.id} user={item} key={uniqid()} />
