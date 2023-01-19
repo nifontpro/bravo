@@ -50,8 +50,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     {}
   );
 
-  console.log(allAwardsId.map(item => getAwardUrl(`/${item}`)))
-
   return {
     paths: allAwardsId.map(item => getAwardUrl(`/${item}`)),
     // fallback: 'blocking'
