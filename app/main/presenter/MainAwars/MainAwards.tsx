@@ -67,7 +67,7 @@ const MainAwars = ({
               <div className={styles.description}>
                 <P size='s'>Место в рейтинге</P>
                 <div className='flex items-start'>
-                  <P size='xl'>{positionRating}</P>
+                  <P size='xl'>{positionRating+1}</P>
                   <P size='l'>#</P>
                 </div>
               </div>
