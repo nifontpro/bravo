@@ -3,6 +3,7 @@ import {queryWithReauth} from "@/core/data/base.api";
  import {getGalleryUrl} from "@/core/config/api.config";
  import {IGalleryObject} from "../model/gallery.types";
  import {IGetGalleryRequest} from "../model/request.types";
+import {IFolder} from "../model/folder.types";
 
  export const galleryApi = createApi({
   	reducerPath: 'galleryApi',
@@ -21,6 +22,20 @@ import {queryWithReauth} from "@/core/data/base.api";
   			}),
   			providesTags: ['Gallery']
   		}),
+
+		  /**
+		   * Получить список каталогов хранилища
+		   * @param [parentId] - родительский каталог из которого получаем папки
+		   * корневой каталог имеет id = "root"
+		   */
+		  getFolders: build.query<IFolder[], string>({
+			  query: (parentId) => ({
+				  method: 'POST',
+				  url: getGalleryUrl("/folders"),
+				  body: {parentId}
+			  }),
+			  providesTags: ['Gallery']
+		  }),
 
   	})
   })
