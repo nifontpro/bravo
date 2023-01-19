@@ -20,6 +20,7 @@ const CardUserNominee = ({
           alt='award img'
           objectFit='cover'
           className='rounded-full'
+          // priority={true}
         />
       </div>
       <div className={styles.description}>

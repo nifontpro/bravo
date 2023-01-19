@@ -48,6 +48,7 @@ const CountUsersPreview = ({
                       alt={user.name}
                       objectFit='cover'
                       className='rounded-full mr-4'
+                      // priority={true}
                     />
                   </div>
                 );
@@ -89,6 +90,7 @@ const CountUsersPreview = ({
                       alt={item.user.name}
                       objectFit='cover'
                       className='rounded-full mr-4'
+                      // priority={true}
                     />
                   </div>
                 );

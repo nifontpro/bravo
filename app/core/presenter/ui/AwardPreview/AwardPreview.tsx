@@ -19,6 +19,7 @@ const AwardPreview = ({
           alt={award.name}
           objectFit='cover'
           className='rounded-full'
+          // priority={true}
         />
         <div className={styles.info}>
           <P size='m' fontstyle='bold'>

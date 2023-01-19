@@ -29,6 +29,7 @@ const CardNominee = ({
           alt='award img'
           objectFit='cover'
           className='rounded-[27px]'
+          priority={true}
         />
       </div>
 

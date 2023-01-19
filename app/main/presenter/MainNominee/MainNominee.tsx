@@ -50,6 +50,7 @@ const MainNominee = ({
             alt='preview image'
             objectFit='cover'
             className='rounded-[10px]'
+            priority={true}
           />
         </div>
         <P size='m' color='white' className={styles.countAwardsTitle}>

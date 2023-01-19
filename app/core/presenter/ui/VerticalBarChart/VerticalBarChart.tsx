@@ -27,12 +27,16 @@ const VerticalBarChart = ({
     responsive: true,
     plugins: {
       legend: {
-        // align: 'start',
+        align: 'start',
         labels: {
+          display: true,
+          lineWidth: 100,
+          color: 'rgba(16, 16, 16, 0.5)',
+          font: {
+            size: 22,
+          },
           usePointStyle: true,
-          pointStyleWidth: 16,
-          useBorderRadius: true,
-          borderRadius: 16
+          pointStyleWidth: 32,
         },
       },
     },
@@ -72,7 +76,7 @@ const VerticalBarChart = ({
 
   return (
     <div className={className} {...props}>
-      <Bar options={options} data={data} />
+      <Bar  data={data} />
     </div>
   );
 };

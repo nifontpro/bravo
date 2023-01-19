@@ -44,6 +44,7 @@ const CurrentUser = ({
             alt='preview image'
             objectFit='cover'
             className='rounded-[10px]'
+            // priority={true}
           />
         </div>
         <div className={styles.user}>

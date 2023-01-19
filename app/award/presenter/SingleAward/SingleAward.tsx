@@ -33,6 +33,7 @@ const SingleAward = motion(
                 alt={award.name}
                 objectFit='cover'
                 className='rounded-full'
+                // priority={true}
               />
             </div>
             <P size='m' color='white' className={styles.name}>
@@ -61,6 +62,7 @@ const SingleAward = motion(
                 alt={award.name}
                 objectFit='cover'
                 className='rounded-full'
+                // priority={true}
               />
             </div>
 

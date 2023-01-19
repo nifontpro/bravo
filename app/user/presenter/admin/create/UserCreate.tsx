@@ -103,6 +103,7 @@ const UserCreate: FC = () => {
               height={400}
               alt='preview image'
               objectFit='cover'
+              // priority={true}
               // className='rounded-[10px]'
             />
           </div>

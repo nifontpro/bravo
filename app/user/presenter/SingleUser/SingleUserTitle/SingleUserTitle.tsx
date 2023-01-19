@@ -153,6 +153,7 @@ const SingleUserTitle = ({
                       alt='preview image'
                       objectFit='cover'
                       className='rounded-full'
+                      // priority={true}
                     />
                   </div>
                 );

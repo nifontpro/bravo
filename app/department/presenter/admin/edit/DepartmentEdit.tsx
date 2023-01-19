@@ -71,6 +71,7 @@ const DepartmentEdit: FC = () => {
                     alt='preview image'
                     objectFit='cover'
                     className='rounded-xl'
+                    // priority={true}
                   />
                   <div>
                     <span>Выберите новое изображение</span>

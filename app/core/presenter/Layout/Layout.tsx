@@ -1,31 +1,11 @@
-import {
-  FC,
-  FunctionComponent,
-  PropsWithChildren,
-  useEffect,
-  useLayoutEffect,
-} from 'react';
+import { FC, PropsWithChildren } from 'react';
 import styles from '@/core/presenter/Layout/Layout.module.scss';
 import Navigation from '@/core/presenter/Layout/Navigation/Navigation';
-// import Sidebar from '@/core/presenter/Layout/Sidebar/Sidebar';
 import { useAuthState } from '@/auth/data/auth.slice';
-import cn from 'classnames';
-import Modal from '@/core/presenter/Layout/Modal';
-import { useDispatch } from 'react-redux';
-import { modalActions, useModalState } from '@/core/store/modal.slice';
-import MaterialIcon from '@/core/presenter/ui/icons/MaterialIcon';
 import Header from './Header/Header';
-import Auth from '@/auth/presenter/Auth';
-import { useRouter } from 'next/router';
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
-  const { push } = useRouter();
   const { user } = useAuthState();
-  const { isOpen } = useModalState();
-  const dispatch = useDispatch();
-  const handleClick = (state: boolean) => {
-    dispatch(modalActions.setState(state));
-  };
 
   if (user != undefined) {
     return (

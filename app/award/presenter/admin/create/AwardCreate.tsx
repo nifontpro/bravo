@@ -87,6 +87,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
               height={400}
               alt='preview image'
               objectFit='cover'
+              // priority={true}
             />
           </div>
 

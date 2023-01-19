@@ -35,7 +35,7 @@ export const ImageDefault: FC<ImageDefaultProps> = ({
       layout={layout}
       draggable={draggable}
       priority={priority}
-      objectFit={objectFit} 
+      objectFit={objectFit}
       // loader={imageLoader}
     />
   ) : (
@@ -51,6 +51,6 @@ export const ImageDefault: FC<ImageDefaultProps> = ({
     // />
     // <div className={`w-[${width}px] h-[${height}px]`}>
 
-    <DefaultImage className={`w-[${width}px] h-[${height}px]`}/>
+    <DefaultImage className={`w-[${width}px] h-[${height}px]`} />
   );
 };

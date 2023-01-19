@@ -75,6 +75,7 @@ const CardAwardRewarded = ({
           alt='award img'
           objectFit='cover'
           className='rounded-[27px]'
+          // priority={true}
         />
       </div>
       <P size='l' color='white'>

@@ -20,6 +20,7 @@ const UserPreview = ({
         alt={user.name}
         objectFit='cover'
         className='rounded-xl'
+        // priority={true}
       />
       <div className={styles.info}>
         <P size='m' fontstyle='bold'>

@@ -46,7 +46,7 @@ const StatisticUsersAwards = ({
               {countWithoutAward}
             </P>
             <P size='s' className={styles.percent}>
-              {countWithAwardPercent}%
+              {countWithoutAwardPercent}%
             </P>
           </div>
         </div>
@@ -62,7 +62,7 @@ const StatisticUsersAwards = ({
               {countWithAward}
             </P>
             <P size='s' className={styles.percent}>
-              {countWithoutAwardPercent}%
+              {countWithAwardPercent}%
             </P>
           </div>
         </div>

@@ -32,6 +32,7 @@ const SingleUser = ({
               alt='award img'
               objectFit='cover'
               className='rounded-[27px]'
+              // priority={true}
             />
           </div>
           <div className={styles.content}>

@@ -26,6 +26,7 @@ const NotificationItem = ({
           alt='award img'
           objectFit='cover'
           className='rounded-[5px]'
+          // priority={true}
         />
       </div>
       <div>

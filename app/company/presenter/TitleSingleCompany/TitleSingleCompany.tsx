@@ -36,6 +36,7 @@ const TitleSingleCompany = ({
           alt='company img'
           objectFit='cover'
           className='rounded-[27px]'
+          priority={true}
         />
       </div>
 
