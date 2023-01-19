@@ -3,17 +3,11 @@ import Meta from '@/core/utils/meta/Meta';
 import styles from './CompanyCreate.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
 import cn from 'classnames';
-import { IUserCreateInput } from '@/user/presenter/admin/create/user-create.type';
-import { useCompanyState } from '@/company/data/company.slice';
 import { useRouter } from 'next/router';
 import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { CompanyCreateProps } from './CompanyCreate.props';
 import { useCompanyCreate } from './useCompanyCreate';
-import {
-  IDepartment,
-  IDepartmentCreate,
-} from '@/department/model/department.types';
 import { ICompanyCreate } from '@/company/model/company.types';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
@@ -34,11 +28,16 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
   } = useForm<ICompanyCreate>({ mode: 'onChange' });
 
   const { onSubmit } = useCompanyCreate(setValue);
+
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back();
+  };
 
   return (
     <Meta title='Создание новой компании'>
@@ -46,20 +45,22 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
         onClick={() => push('/company')}
         appearance='black'
         icon='down'
-        className='mb-[50px]'
       >
         Вернуться назад
       </ButtonCircleIcon>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            src={img}
-            width={300}
-            height={300}
-            alt='preview image'
-            objectFit='cover'
-            className='rounded-[10px]'
-          />
+          <div className={styles.images}>
+            <ImageDefault
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+              // priority={true}
+            />
+          </div>
+
           <InputFile
             error={errors.file}
             {...register('file', { onChange: changePhoto })}
@@ -107,10 +108,16 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
           />
 
           <div className={styles.buttons}>
-            <Button onClick={() => back()} appearance='white' size='l'>
+            <Button onClick={handleClick} appearance='whiteBlack' size='l'>
               Отменить
             </Button>
-            <Button appearance='gray' size='l' className='ml-[15px]'>
+            <Button
+              onClick={handleSubmit(onSubmit)}
+              appearance='blackWhite'
+              size='l'
+              className='ml-[15px]'
+              disabled={!isDirty || !isValid}
+            >
               Добавить
             </Button>
           </div>

@@ -79,6 +79,7 @@ const EditUserPhotos = ({
               alt='preview image'
               objectFit='cover'
               className='rounded-[10px]'
+              // priority={true}
             />
             <ArrowNextPrev
               className='absolute right-[10px] top-[45%]'
@@ -107,6 +108,7 @@ const EditUserPhotos = ({
             alt='preview image'
             objectFit='cover'
             className='rounded-[10px]'
+            // priority={true}
           />
         )}
       </div>

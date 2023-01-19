@@ -1,42 +1,107 @@
 .menu {
-	@apply mb-14 animate-fade;
+  @apply mb-14 animate-fade;
 
-	.heading {
-		color: var(--gray-light);
-		@apply uppercase text-sm font-semibold pl-layout;
-	}
+  .heading {
+    color: var(--gray-light);
+    @apply uppercase text-sm font-semibold pl-layout;
+  }
 
-	.ul {
-		> li {
-			@apply mx-[45px] ;
-			> a {
-				@apply  border-r-4 border-r-transparent transition-colors  py-[17px] px-[30px] flex items-center text-white mt-6 cursor-pointer rounded-[12px] hover:bg-gray_middle hover:text-gray_dark;
+  .ul {
+    > li {
+      @apply mx-[35px];
 
-				> span {
-					@apply ml-3 text-lg hover:text-gray-600 text-[16px];
-				}
+      > a {
+        @apply border-r-4 border-r-transparent  py-[17px] px-[30px] flex items-center text-white mt-6 cursor-pointer rounded-[12px] hover:bg-gray_middle duration-200;
 
-				> svg {
-					@apply text-2lg;
-				}
+        &:hover {
+          // @apply text-gray_dark;
+          background: var(--gray96);
+        }
 
-				> span,
-				> svg {
-					@apply transition-all;
-				}
-			}
+        // &:hover svg path {
+        //   @apply stroke-gray_dark;
+        // }
 
-			&.active {
-				
-				@apply bg-gray_middle rounded-[12px];
-				> a > span {
-					@apply text-gray_dark ;
-				}
+        > span {
+          @apply ml-3 text-lg text-[16px];
+        }
 
-				> a > svg {
-					@apply fill-black
-				}
-			}
-		}
-	}
+        > svg {
+          @apply text-2lg;
+        }
+
+        > span,
+        > svg {
+          @apply transition-all;
+        }
+      }
+
+      &.active,
+      .activeUser {
+        @apply bg-gray_middle rounded-[12px];
+        > a > span {
+          @apply text-gray_dark;
+        }
+
+        > a svg path {
+          @apply stroke-gray_dark;
+        }
+      }
+
+      &.helpActive {
+        > a {
+          border-top: 2px solid var(--gray96);
+          color: var(--gray96);
+          @apply rounded-none mt-10;
+
+          span {
+            color: var(--gray96);
+          }
+
+          svg path {
+            stroke: var(--gray96);
+          }
+
+          &:hover {
+            @apply text-white bg-transparent;
+
+            span {
+              color: var(--white);
+            }
+
+            svg path {
+              stroke: var(--white);
+            }
+          }
+        }
+      }
+
+      &.help {
+        @apply bg-gray_middle rounded-[12px];
+        > a {
+          @apply border-transparent;
+
+          &:hover {
+            @apply text-white bg-transparent;
+
+            span {
+              color: var(--gray-dark);
+            }
+
+            svg path {
+              stroke: var(--gray-dark);
+            }
+          }
+        }
+
+        > a > span {
+          @apply text-gray_dark;
+        }
+
+        > a svg path {
+          @apply stroke-gray_dark;
+        }
+      }
+    }
+  }
 }

@@ -1,0 +1,22 @@
+.wrapper {
+  margin-top: 95px;
+  margin-bottom: 50px;
+
+  .title {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+
+    .countAwards {
+      margin-left: 10px;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border-radius: 27px;
+    padding: 80px 60px;
+  }
+}

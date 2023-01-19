@@ -12,11 +12,14 @@ import { companyApi } from '@/company/data/company.api';
 import { ICompany, ICompanyCreate } from '@/company/model/company.types';
 import { ICompanyUpdateRequest } from './company-edit.type';
 
-export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>) => {
-  const { push, query } = useRouter();
+export const useCompanyEdit = (
+  setValue: UseFormSetValue<ICompanyUpdateRequest>
+) => {
+  const { push, back, query } = useRouter();
   const companyId = String(query.id);
 
   const [updateImg] = companyApi.useUpdateImageMutation();
+  const [removeImg] = companyApi.useDeleteMainImageMutation();
 
   const {
     data: company,
@@ -33,16 +36,16 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>)
       setValue('email', company.email);
       setValue('phone', company.phone);
       setValue('address', company.address);
-	  setImg(company.imageUrl)
+      setImg(company.imageUrl);
     }
-  }, [isGetSuccess, setValue]);
-//   console.log(company)
+  }, [isGetSuccess, setValue, company]);
+  //   console.log(company)
 
   const onSubmit: SubmitHandler<ICompanyUpdateRequest> = async (data) => {
     console.log(data);
     let isError = false;
     if (company) {
-      await update({...data, id: company.id})
+      await update({ ...data, id: company.id })
         .unwrap()
         .catch(() => {
           isError = true;
@@ -51,7 +54,22 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>)
 
       if (!isError) {
         toast.success('Данные компании успешно обновлены');
-        await push('/company');
+        await back();
+      }
+    }
+  };
+
+  const removePhoto = async () => {
+    let isError = false;
+    if (company != undefined) {
+      await removeImg(companyId)
+        .unwrap()
+        .catch(() => {
+          isError = true;
+          toast.error('Ошибка удаления фотографии');
+        });
+      if (!isError) {
+        toast.success('Фото успешно удалено');
       }
     }
   };
@@ -74,5 +92,5 @@ export const useCompanyEdit = (setValue: UseFormSetValue<ICompanyUpdateRequest>)
     }
   };
 
-  return { company, onSubmit, changePhoto, isLoading, img };
+  return { company, onSubmit, changePhoto, removePhoto, isLoading, img };
 };

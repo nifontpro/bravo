@@ -17,6 +17,9 @@ import TextArea from '@/core/presenter/ui/TextArea/TextArea';
 import { departmentApi } from '@/department/data/department.api';
 import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import { useDepartment } from '@/department/presenter/useDepartment';
+import { IUserCreate } from '@/user/model/user.types';
 
 const UserCreate: FC = () => {
   const [active, setActive] = useState<
@@ -25,15 +28,13 @@ const UserCreate: FC = () => {
   const { currentCompany } = useCompanyState();
   const { push, back } = useRouter();
 
-  if (currentCompany === null) {
-    push('/company');
-  }
+  // if (currentCompany === null) {
+  //   push('/company');
+  // }
 
   // const { currentDepartment } = useDepartmentState();
 
-  const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
-    currentCompany!.id
-  );
+  const { departmentInCompany: departments } = useDepartment('');
 
   let arrDeparts: IOption[] = [];
   departments?.forEach((item) => {
@@ -58,10 +59,10 @@ const UserCreate: FC = () => {
     reset,
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
     control,
-  } = useForm<IUserCreateInput>({ mode: 'onChange' });
+  } = useForm<IUserCreate>({ mode: 'onChange' });
 
   const { onSubmit } = useUserCreate(
     setValue,
@@ -82,25 +83,38 @@ const UserCreate: FC = () => {
   //   { label: 'Обычный сотрудник', value: 'user' },
   // ];
 
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back();
+  };
+
   return (
     <Meta title='Создание профиля сотрудника'>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <ButtonCircleIcon onClick={back} appearance='black' icon='down'>
+        Вернуться назад
+      </ButtonCircleIcon>
+
+      <form className={styles.form}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            src={img}
-            width={300}
-            height={300}
-            alt='preview image'
-            objectFit='cover'
-            className='rounded-[10px]'
-          />
+          <div className={styles.images}>
+            <ImageDefault
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+              // priority={true}
+              // className='rounded-[10px]'
+            />
+          </div>
+
           <InputFile
             error={errors.file}
             {...register('file', { onChange: changePhoto })}
           >
             Загрузить изображение
           </InputFile>
-        </div>
+        </div> 
 
         <div className={styles.fields}>
           <Htag tag='h2' className={styles.title}>
@@ -148,19 +162,29 @@ const UserCreate: FC = () => {
               error={errors.login}
             />
 
-            <Field
-              {...register('password', {
-                required: 'Пароль обязательно!',
-                minLength: 6,
-              })}
+            {/* <Field
+              // {...register('password', {
+              //   required: 'Пароль обязательно!',
+              //   minLength: 6,
+              // })}
               title='Пароль'
               placeholder='Придумайте пароль'
               error={errors.password}
-            />
+            /> */}
           </div>
 
+          <Field
+            {...register('email', { required: 'Почта обязательно!' })}
+            title='Почта'
+            placeholder='Введите свою почту'
+            error={errors.email}
+            className='@apply mb-[60px]'
+          />
+
           <div className={styles.group}>
-            <div className={styles.fixedCompanyName}>{currentCompany?.name}</div>
+            <div className={styles.fixedCompanyName}>
+              {currentCompany?.name}
+            </div>
             {/* <Field
               {...register('companyId', { required: 'Компания обязательно!' })}
               title='Компания, отдел'
@@ -210,10 +234,16 @@ const UserCreate: FC = () => {
           />
 
           <div className={styles.buttons}>
-            <Button onClick={() => back()} appearance='white' size='l'>
+            <Button onClick={handleClick} appearance='whiteBlack' size='l'>
               Отменить
             </Button>
-            <Button appearance='gray' size='l' className='ml-[15px]'>
+            <Button
+              onClick={handleSubmit(onSubmit)}
+              appearance='blackWhite'
+              size='l'
+              className='ml-[15px]'
+              disabled={!isDirty || !isValid}
+            >
               Добавить
             </Button>
           </div>

@@ -1,29 +1,47 @@
-import {GetServerSideProps, NextPage} from "next";
-import {errorCatch} from "@/core/utils/api.helpers";
-import {departmentApi} from "@/department/data/department.api";
-import SingleDepartment from "@/department/presenter/SingleDepartment";
-import Error404 from "../404";
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { errorCatch } from '@/core/utils/api.helpers';
+import SingleDepartment from '@/department/presenter/SingleDepartment';
+import Error404 from '../404';
+import { IDepartment } from '@/department/model/department.types';
+import { axiosCore } from '@/core/data/axios.core';
+import { getDepartmentUrl } from '@/core/config/api.config';
 
-const SingleDepartmentPage: NextPage<{ id: string}> = ({id}) => {
+const SingleDepartmentPage: NextPage<IDepartment | undefined> = (
+  department
+) => {
+  return <Error404 />;
+  // return department ? (
+  //   <SingleDepartment department={department} />
+  // ) : (
+  //   <Error404 />
+  // );
+};
 
-	const {data: department} = departmentApi.useGetByIdQuery(id)
-	// console.log(department)
-	return department ?
-		<SingleDepartment department={department}/>
-		:
-		<Error404/>
-}
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    // fallback: 'blocking'
+    fallback: true,
+  };
+};
 
-export const getServerSideProps: GetServerSideProps = async ({params}) => {
-	try {
-		const id = String(params?.id)
-		return {
-			props: {id}
-		}
-	} catch (e) {
-		console.log(errorCatch(e))
-		return {notFound: true}
-	}
-}
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  try {
+    const id = String(params?.id);
+    const { data: department } = await axiosCore.post<IDepartment>(
+      getDepartmentUrl('/get_id'),
+      {
+        departmentId: id,
+      }
+    );
 
-export default SingleDepartmentPage
+    return {
+      props: department,
+    };
+  } catch (e) {
+    console.log(errorCatch(e));
+    return { props: {} };
+  }
+};
+
+export default SingleDepartmentPage;

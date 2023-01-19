@@ -1,0 +1,35 @@
+.wrapper {
+  padding: 10px 22px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+
+  .toogle {
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+
+    .dot {
+      padding: 5px 20px;
+      background: var(--gray-dark);
+      border-radius: 15px;
+      color: var(--white);
+      @apply duration-200;
+
+      &:hover {
+        background-color: var(--gray-dark-hover);
+        color: var(--white);
+      }
+    }
+
+    .active {
+      color: var(--gray-dark);
+      background: transparent;
+    }
+  }
+}

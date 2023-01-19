@@ -1,48 +1,62 @@
-import {FC} from 'react';
-import {FormState, UseFormRegister} from "react-hook-form";
-import {IAuthInput} from "@/auth/model/auth.interface";
-import Field from "@/core/presenter/ui/form/Field/Field";
-import {validEmail} from "@/core/utils/regex";
+import { FC } from 'react';
+import { FormState, UseFormRegister } from 'react-hook-form';
+import { IAuthInput } from '@/auth/model/auth.interface';
+import Field from '@/core/presenter/ui/form/Field/Field';
+import { validEmail } from '@/core/utils/regex';
+import EyeIcon from '@/core/presenter/images/eye.svg';
 
 interface IAuthFields {
-	register: UseFormRegister<any>
-	formState: FormState<IAuthInput>
-	isPasswordRequired?: boolean
+  register: UseFormRegister<any>;
+  formState: FormState<IAuthInput>;
+  isPasswordRequired?: boolean;
 }
- 
-const AuthFields: FC<IAuthFields> =
-	({register, formState: {errors}, isPasswordRequired = false}) => {
-		return (
-			<>
-				<Field
-					{...register('email', {
-						required: 'Email is required',
-						pattern: {
-							value: validEmail,
-							message: 'Please enter a valid email address'
-						}
-					})}
-					placeholder='Ваш email'
-					title='Email'
-					error={errors.email}
-					className='mb-[50px]'
-				/>
 
-				<Field
-					{...register('password', isPasswordRequired ? {
-						required: 'Password is required',
-						minLength: {
-							value: 4,
-							message: 'Min length should more 4 symbols'
-						}
-					} : {})}
-					placeholder='Password'
-					title='Password'
-					type='password'
-					error={errors.password}
-				/>
-			</>
-		);
-	};
+const AuthFields: FC<IAuthFields> = ({
+  register,
+  formState: { errors },
+  isPasswordRequired = false,
+}) => {
+  return (
+    <>
+      <Field
+        {...register('login', {
+          required: 'Логин обязательно',
+          // pattern: {
+          // 	value: validEmail,
+          // 	message: 'Пожалуйста введите свой логин'
+          // }
+        })}
+        placeholder='Ваш логин'
+        title='Логин'
+        error={errors.login}
+        className='mb-[50px]'
+      />
+
+      <div>
+        <Field
+          {...register(
+            'password',
+            isPasswordRequired
+              ? {
+                  required: 'Пароль обязательно',
+                  minLength: {
+                    value: 4,
+                    message: 'Минимальная длина пароля 4 символа',
+                  },
+                }
+              : {}
+          )}
+          placeholder='Введите пароль'
+          title='Пароль'
+          type='password'
+          error={errors.password}
+        />
+        <div className='hidden'>
+          <EyeIcon />
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default AuthFields;

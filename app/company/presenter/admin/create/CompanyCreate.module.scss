@@ -1,38 +1,44 @@
 .form {
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    gap: 30px;
-  
-    > .uploadField {
-      border-radius: 27px;
-      width: 400px;
-      height: 450px;
-      background: var(--white);
-      padding: 55px;
-    }
-  
-    > .fields {
-      padding: 80px;
-      background: var(--white);
-      border-radius: 27px;
-      margin-bottom: 30px;
-      
-      > .title {
-        margin-bottom: 80px;
-      }
-  
-      > .group {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-bottom: 60px;
-        align-items: flex-end;
-      }
-  
-      > .buttons {
-        margin-top: 100px;
-        display: flex;
-        justify-content: flex-end;
-      }
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+  margin-top: 50px;
+
+  > .uploadField {
+    overflow: hidden;
+    border-radius: 27px;
+    width: 400px;
+    height: fit-content;
+    background: var(--white);
+
+    .images {
+      height: 400px;
+      border-bottom: 1px solid var(--gray);
     }
   }
+
+  > .fields {
+    padding: 80px;
+    background: var(--white);
+    border-radius: 27px;
+    margin-bottom: 30px;
+
+    > .title {
+      margin-bottom: 80px;
+    }
+
+    > .group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 60px;
+      align-items: flex-end;
+    }
+
+    > .buttons {
+      margin-top: 100px;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

@@ -14,6 +14,10 @@ import { authApi } from '@/auth/data/auth.api';
 import { loginActions } from '@/auth/data/login.slice';
 import { useDispatch } from 'react-redux';
 import { toastError } from '@/core/utils/toast-error';
+import P from '@/core/presenter/ui/P/P';
+import Link from 'next/link';
+import { ILoginPasswordCheck } from './login.interface';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const LoginFormStepOne = ({
   visible,
@@ -29,11 +33,11 @@ const LoginFormStepOne = ({
   const {
     handleSubmit,
     register,
-    formState: { errors },
-  } = useForm<ILoginInput>({ mode: 'onChange' });
+    formState: { errors, isDirty, isValid },
+  } = useForm<ILoginPasswordCheck>({ mode: 'onChange' });
 
-  const onSubmit: SubmitHandler<ILoginInput> = async (data) => {
-    if (data.password !== data.passwordСheck) {
+  const onSubmit: SubmitHandler<ILoginPasswordCheck> = async (data) => {
+    if (data.password !== data.passwordCheck) {
       toast.error('Пароли не совпадают!');
     } else {
       const { email, login, name, password } = data;
@@ -55,9 +59,21 @@ const LoginFormStepOne = ({
       {...props}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Htag tag='h1' className={styles.title}>
-        Регистрация
-      </Htag>
+      <div className={styles.title}>
+        <Htag tag='h1'>Регистрация</Htag>
+        <Link href={'/auth'}>
+          <a className={styles.registration}>
+            <P size='s' className={styles.registrationText}>
+              Войти
+            </P>
+            <ButtonCircleIcon
+              appearance='black'
+              icon='right'
+              className={styles.arrow}
+            />
+          </a>
+        </Link>
+      </div>
 
       <Field
         {...register('name', { required: 'Имя необходимо!' })}
@@ -67,13 +83,28 @@ const LoginFormStepOne = ({
         className='mb-[60px]'
       />
 
-      <Field
-        {...register('login', { required: 'Логин необходим!' })}
-        title='Логин'
-        placeholder='Введите логин'
-        error={errors.login}
-        className='mb-[60px]'
-      />
+      <div className={styles.group}>
+        <Field
+          {...register('login', { required: 'Логин необходим!' })}
+          title='Логин'
+          placeholder='Введите логин'
+          error={errors.login}
+          className='mb-[20px]'
+        />
+        <Field
+          {...register('email', {
+            required: 'Почта необходима!',
+            pattern: {
+              value: validEmail,
+              message: 'Пожалуйста введите корректный адрес',
+            },
+          })}
+          title='Почта'
+          placeholder='Введите почту'
+          error={errors.email}
+          className='mb-[20px]'
+        />
+      </div>
 
       <div className={styles.group}>
         <Field
@@ -89,7 +120,7 @@ const LoginFormStepOne = ({
           error={errors.password}
         />
         <Field
-          {...register('passwordСheck', {
+          {...register('passwordCheck', {
             required: 'Продублируйте пароль!',
             minLength: {
               value: 4,
@@ -98,26 +129,16 @@ const LoginFormStepOne = ({
           })}
           title='Повторите пароль'
           placeholder='Продублируйте пароль'
-          error={errors.passwordСheck}
+          error={errors.passwordCheck}
         />
       </div>
 
-      <Field
-        {...register('email', {
-          required: 'Почта необходима!',
-          pattern: {
-            value: validEmail,
-            message: 'Пожалуйста введите корректный адрес',
-          },
-        })}
-        title='Почта'
-        placeholder='Введите почту'
-        error={errors.email}
-        className='mb-[60px]'
-      />
-
       <div className={styles.buttons}>
-        <Button appearance='blackWhite' size='l'>
+        <Button
+          appearance='blackWhite'
+          size='l'
+          disabled={!isDirty || !isValid}
+        >
           Продолжить
         </Button>
       </div>

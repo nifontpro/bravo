@@ -1,0 +1,29 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+  margin-top: 85px;
+  @apply animate-fade;
+
+  > .content {
+    grid-column: 2 / 3;
+
+    > .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    > .usersAwarded {
+      margin-top: 45px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    > .none{
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+  }
+}

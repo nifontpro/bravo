@@ -1,0 +1,44 @@
+.wrapper {
+  background: var(--white);
+  border-radius: 15px;
+  min-width: 335px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: [start] 64px [endImg] 25px [startUser] 250px [endUser] 1fr [startDepart] 200px [endDepart] 1fr [startAward] 500px [end];
+  align-items: center;
+
+  :hover {
+  }
+
+  .img {
+    grid-column: start / endImg;
+  }
+
+  .user {
+    grid-column: startUser / endUser;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+
+    .userTag {
+      margin-top: 5px;
+    }
+  }
+
+  .depart {
+    grid-column: startDepart / endDepart;
+  }
+
+  .award {
+    grid-column: startAward / end;
+    display: flex;
+    align-items: center;
+
+    .imgAward {
+      margin-right: 10px;
+      width: 64px;
+      height: 64px;
+    }
+  }
+}

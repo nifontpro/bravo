@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import formStyles from '../form/form.module.scss'
+
 import styles from './SelectArtem.module.scss'
 import {IOption, ISelect} from './SelectArtem.interface'
 import ReactSelect, {OnChangeValue} from "react-select";
@@ -37,7 +37,7 @@ const SelectArtem: FC<ISelect> = (
 
 	return (
 		<div className={styles.selectContainer}>
-			<label>
+			<label className={styles.label}>
 				<span>{placeholder}</span>
 				<ReactSelect
 					classNamePrefix="custom-select"

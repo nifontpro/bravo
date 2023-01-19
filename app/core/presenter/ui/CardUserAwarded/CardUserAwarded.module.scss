@@ -1,0 +1,39 @@
+.wrapper {
+  background: var(--white);
+  border-radius: 27px;
+  padding: 55px;
+  min-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  > .img {
+    height: 175px;
+    width: 175px;
+    margin-bottom: 30px;
+  }
+
+  > .post {
+    margin-top: 5px;
+  }
+
+  > .date {
+    display: flex;
+    margin-top: 65px;
+    background: var(--graySilver);
+    padding: 5px 20px;
+    border-radius: 30px;
+
+    .dateRewarded {
+      margin-right: 10px;
+    }
+  }
+
+  .remove {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}

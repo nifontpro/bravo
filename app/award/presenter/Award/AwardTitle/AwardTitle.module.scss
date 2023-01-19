@@ -1,0 +1,59 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 30px;
+  margin-top: 50px;
+  @apply animate-fade;
+
+  > .img {
+    background: var(--gray-dark);
+    border-radius: 27px;
+    width: 400px;
+    height: 400px;
+  }
+
+  > .awardDescription {
+    position: relative;
+    background: var(--white);
+    border-radius: 27px;
+    padding: 75px;
+
+    > .title {
+      // position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 21px;
+
+      > .header {
+        font-size: 54px;
+      }
+    }
+
+    > .description {
+      margin-bottom: 30px;
+    }
+
+    > .criteria {
+      margin-top: 30px;
+    }
+
+    .criteriaTitle {
+      padding-top: 30px;
+    }
+
+    > .date,
+    .dateAward {
+      margin-top: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    > .dateAward {
+      margin-top: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #0000001a;
+    }
+  }
+}

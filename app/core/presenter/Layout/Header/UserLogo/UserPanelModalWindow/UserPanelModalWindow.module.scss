@@ -1,0 +1,50 @@
+.userModalWindow {
+  position: absolute;
+  top: 160px;
+  right: 50px;
+  background: var(--white);
+  z-index: 100;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 45px 40px;
+  @apply animate-fade;
+
+  .title {
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--gray);
+  }
+
+  .list {
+    padding-top: 35px;
+
+    .item {
+       display: flex;
+       align-items: center;
+       margin-bottom: 35px;
+       cursor: pointer;
+       @apply duration-200;
+
+       svg path {
+        @apply duration-200;
+       }
+
+       &:hover .link {
+        color: var(--gray);
+       }
+
+       &:hover svg path {
+        stroke: var(--gray);
+       }
+
+       &:last-child {
+        margin-bottom: 0px;
+       }
+    }
+
+    .link {
+      margin-left: 20px;
+      @apply duration-200;
+    }
+  }
+}

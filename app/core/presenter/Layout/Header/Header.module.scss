@@ -1,4 +1,5 @@
 .header {
+  position: relative;
   padding: 40px 55px 40px 70px;
   grid-template-columns: [start] 360px [endNavigation] 78px [startSearch] 730px [endSearch] 1fr [startUser] auto [end];
   @apply pb-[40px] grid items-center;
@@ -16,18 +17,19 @@
     grid-column: startUser / endUser;
 
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
     align-items: center;
 
-    > .userComponent {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #f6f6f625;
-      border-radius: 10px;
-      width: 64px;
+    .userImg {
+      cursor: pointer;
       height: 64px;
+      width: 64px;
+      @apply duration-200;
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
 
     > a {

@@ -20,7 +20,7 @@ const SidebarItem: FC<SidebarItemProps> = (
 				draggable={false}
 				objectFit="cover"
 				unoptimized
-				priority
+				// priority={true}
 			/>
 		</a>
 		<h2 className="text-xl py-3">{text}</h2>

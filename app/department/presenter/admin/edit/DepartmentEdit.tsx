@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
-import AdminNavigation from '@/admin/presenter/admin-navigation/AdminNavigation';
-import Heading from '@/core/presenter/ui/heading/Heading';
+// import AdminNavigation from '@/admin/presenter/admin-navigation/AdminNavigation';
+// import Heading from '@/core/presenter/ui/heading/Heading';
 import SkeletonLoader from '@/core/presenter/ui/sceleton-loader/SkeletonLoader';
-import formStyles from '@/core/presenter/ui/form/admin-form.module.scss';
+// import formStyles from '@/core/presenter/ui/form/admin-form.module.scss';
 // import styles from "@/core/presenter/ui/form/form.module.scss"
 import styles from './DepartmentEdit.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
@@ -15,6 +15,7 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import Button from '@/core/presenter/ui/Button/Button';
 import { useRouter } from 'next/router';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 
 const DepartmentEdit: FC = () => {
   const { back } = useRouter();
@@ -44,14 +45,21 @@ const DepartmentEdit: FC = () => {
     setImage(department?.imageUrl);
   }, [department]);
 
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back();
+  };
+
   return (
     <Meta title='Редактирование отдела'>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <ButtonCircleIcon onClick={() => back()} appearance='black' icon='down'>
+        Вернуться назад
+      </ButtonCircleIcon>
+      <form className={styles.form}>
         {isLoading ? (
           <SkeletonLoader count={3} />
         ) : (
           <>
-          
             {/* Скрыто так как нет фото в редактирование */}
             <div className='hidden'>
               <div className={styles.uploadFlex}>
@@ -63,6 +71,7 @@ const DepartmentEdit: FC = () => {
                     alt='preview image'
                     objectFit='cover'
                     className='rounded-xl'
+                    // priority={true}
                   />
                   <div>
                     <span>Выберите новое изображение</span>
@@ -99,10 +108,15 @@ const DepartmentEdit: FC = () => {
             />
 
             <div className={styles.btn}>
-              <Button onClick={() => back()} size='m' appearance='white'>
+              <Button onClick={handleClick} size='l' appearance='whiteBlack'>
                 Отменить
               </Button>
-              <Button size='m' appearance='gray' className='ml-[15px]'>
+              <Button
+                onClick={handleSubmit(onSubmit)}
+                size='l'
+                appearance='blackWhite'
+                className='ml-[15px]'
+              >
                 Сохранить
               </Button>
             </div>

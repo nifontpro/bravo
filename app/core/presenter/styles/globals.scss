@@ -5,121 +5,135 @@
 @import 'app/core/presenter/styles/react-select';
 
 @layer base {
-	h1 {
-		@apply text-3xl font-extrabold;
-	}
+  h1 {
+    @apply text-3xl font-extrabold;
+  }
 
-	h2 {
-		@apply text-2xl font-bold;
-	}
+  h2 {
+    @apply text-2xl font-bold;
+  }
 
-	h3 {
-		@apply text-2xl font-semibold;
-	}
+  h3 {
+    @apply text-2xl font-semibold;
+  }
 
-	h4 {
-		@apply text-2xl font-normal;
-	}
+  h4 {
+    @apply text-2xl font-normal;
+  }
 
-	h5 {
-		@apply text-2lg font-normal;
-	}
+  h5 {
+    @apply text-2lg font-normal;
+  }
 
-	h6 {
-		@apply text-lg font-medium;
-	}
-	span {
-		@apply font-semibold;
-	}
+  h6 {
+    @apply text-lg font-medium;
+  }
+  span {
+    @apply font-semibold;
+  }
 }
 
 html,
 body {
-	padding: 0;
-	margin: 0;
-	//font-family: 'Comfortaa', sans-serif !important;
-	//font-family: 'Philosopher', sans-serif !important;
-	font-family: 'Manrope', sans-serif !important;
-	background: var(--gray);
-	@apply  text-black;
+  padding: 0;
+  margin: 0;
+  //font-family: 'Comfortaa', sans-serif !important;
+  //font-family: 'Philosopher', sans-serif !important;
+  font-family: 'Manrope', sans-serif !important;
+  background: var(--gray);
+  @apply text-black;
 }
 
 @layer components {
-	.btn-second {
-		@apply bg-gray-500 text-white font-medium py-2 px-4 rounded-lg shadow-xl active:shadow-none;
-		&:hover {
-			@apply hover:bg-opacity-90;
-		}
+  .btn-second {
+    @apply bg-gray-500 text-white font-medium py-2 px-4 rounded-lg shadow-xl active:shadow-none;
+    &:hover {
+      @apply hover:bg-opacity-90;
+    }
 
-		&:active {
-			@apply translate-y-[2px] translate-x-[2px];
-			//transform: translateY(2px)  translateX(2px);
-		}
-	}
+    &:active {
+      @apply translate-y-[2px] translate-x-[2px];
+      //transform: translateY(2px)  translateX(2px);
+    }
+  }
 }
 
 a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 :root {
-	--black: #101010;
-	--white: #FFFFFF;
-	--gray: #D8D8D8;
-	--gray-light: #F6F6F6;
-	--gray-middle: #F1F1F1;
-	--gray-dark: #101010;
-	--red: #ff2600;
-	// --gray-light: #EBEBEB;
-	// --gray-dark: #787D85;
-	// --gray: #A4A4A4;
-	// --white: white;
-	// --primary: #7653FC;
-	// --primary-hover: #6344df;
-	// --red: #FC836D;
-	// --red-light: #fea291;
-	// --green: #1DC37E;
-	// --green-light: #C8F8E4;
-	--font-family: 'Manrope', sans-serif;
-	--primary-color: #22EAEF;
+  --black: #101010;
+  --white: #ffffff;
+  --gray: #d8d8d8;
+  --gray96: #969696;
+  --grayF8: #f0f4f8;
+  --graySilver: #D9E2EC;
+  --backgroundMain: #F0F4F8;
+  --gray-light: #f6f6f6;
+  --gray-light05: #f6f6f680;
+  --gray-middle: #f1f1f1;
+  --gray-dark: #101010;
+  --gray-dark-hover: rgba(16, 16, 16, 0.8);
+  --gray-dark-015: #10101015;
+  --red: #ff2600;
+  --lime: #E5F23B;
+  --lime-dark: #D9E62E;
+  --yellow: #E5D833;
+  --yellow-dark: #D3C72A;
+  --orange: #EDC34C;
+  --orange-dark: #D9AE36;
+  
+  // --gray-light: #EBEBEB;
+  // --gray-dark: #787D85;
+  // --gray: #A4A4A4;
+  // --white: white;
+  // --primary: #7653FC;
+  // --primary-hover: #6344df;
+  // --red: #FC836D;
+  // --red-light: #fea291;
+  // --green: #1DC37E;
+  // --green-light: #C8F8E4;
+  --font-family: 'Manrope', sans-serif;
+  --primary-color: #22eaef;
 }
 
 input[type='file'],
 input[type='file']::-webkit-file-upload-button {
-	@apply cursor-pointer focus:outline-none;
+  @apply cursor-pointer focus:outline-none;
 }
 
 input:focus {
-	box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .admin-form {
-	@apply w-1/2 mt-12;
+  @apply w-1/2 mt-12;
 }
 
 /* Slide animation */
 .slide-animation-enter {
-	opacity: 0;
-	transform: scale(0.9);
+  opacity: 0;
+  transform: scale(0.9);
 }
 
 .slide-animation-enter-active {
-	opacity: 1;
-	transform: translateX(0);
-	transition: opacity 300ms, transform 300ms;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
 }
 
 .slide-animation-exit {
-	opacity: 1;
+  opacity: 1;
 }
 
 .slide-animation-exit-active {
-	opacity: 0;
-	transform: scale(0.9);
-	transition: opacity 300ms, transform 300ms;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }

@@ -10,11 +10,14 @@ import { departmentApi } from '@/department/data/department.api';
 import { IDepartmentCreate } from '@/department/model/department.types';
 import { ICompany, ICompanyCreate } from '@/company/model/company.types';
 import { companyApi } from '@/company/data/company.api';
+import { useDispatch } from 'react-redux';
+import { companyActions } from '@/company/data/company.slice';
 
 export const useCompanyCreate = (setValue: UseFormSetValue<ICompanyCreate>) => {
   const { back } = useRouter();
   const [create] = companyApi.useCreateMutation();
   const [updateImage] = companyApi.useUpdateImageMutation();
+  const dispatch = useDispatch()
 
   const onSubmit: SubmitHandler<ICompanyCreate> = async (data) => {
     let isError = false;
@@ -29,11 +32,12 @@ export const useCompanyCreate = (setValue: UseFormSetValue<ICompanyCreate>) => {
           formData.append('imageUrl', fileData);
           await updateImage({ companyId: company.id, formData })
             .unwrap()
-            .catch(() => {
+            .catch(() => { 
               isError = true;
               toast.error('Ошибка добавления фото компании');
             });
         }
+        dispatch(companyActions.setState(company))
       })
       .catch((e) => {
         isError = true;

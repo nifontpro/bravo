@@ -3,11 +3,12 @@ import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IUser, IUserAwards, IUserAwardsUnion, IUserCreate} from "@/user/model/user.types";
 import {getUserUrl} from "@/core/config/api.config";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
+import {IUserAwardCount, IUserAwardsCountDep} from '../model/count.types';
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['User', 'Reward', 'Count'],
+	tagTypes: ['User', 'Count', 'Award', 'None'],
 	endpoints: (build) => ({
 
 		//Получить всех сотрудников по отделу
@@ -97,6 +98,21 @@ export const userApi = createApi({
 			providesTags: ['User']
 		}),
 
+		/**
+		 * Получить сотрудников компании с присвоенными наградами (полная информация)
+		 * Сортировка по
+		 *  -количеству наград по убыванию
+		 *  -фамилии по возрастанию
+		 */
+		getByCompanyWithAwardsUnion: build.query<IUserAwardsUnion[], { companyId: string, filter?: string }>({
+			query: (data) => ({
+				method: 'POST',
+				url: getUserUrl('/get_awards_full'),
+				body: data
+			}),
+			providesTags: ['User']
+		}),
+
 		getBests: build.query<IUser[], { companyId: string, limit: number }>({
 			query: (body) => ({
 				method: 'POST',
@@ -133,6 +149,18 @@ export const userApi = createApi({
 			invalidatesTags: ['User']
 		}),
 
+		/**
+		 * Обновление пароля сотрудника
+		 */
+		updatePassword: build.mutation<void, { userId: string, password: string, newPassword: string }>({
+			query: (body) => ({
+				method: 'PUT',
+				url: getUserUrl('/password'),
+				body: body
+			}),
+			invalidatesTags: ['None']
+		}),
+
 		getCountByCompany: build.query<number, string>({
 			query: (companyId) => ({
 				method: 'POST',
@@ -151,6 +179,46 @@ export const userApi = createApi({
 			providesTags: ['Count']
 		}),
 
+		/**
+		 * Получить количество наград в отделе
+		 * @param [departmentId]
+		 */
+		getAwardCountByDepartment: build.query<IUserAwardCount, string>({
+			query: (departmentId) => ({
+				method: 'POST',
+				url: getUserUrl("/count_ad"),
+				body: {departmentId}
+			}),
+			providesTags: ['Count']
+		}),
+
+		/**
+		 * Получить количество наград в компании
+		 * @param [companyId]
+		 */
+		getAwardCountByCompany: build.query<IUserAwardCount, string>({
+			query: (companyId) => ({
+				method: 'POST',
+				url: getUserUrl("/count_ac"),
+				body: {companyId}
+			}),
+			providesTags: ['Count']
+		}),
+
+		/**
+		 * Получить информацию о награжденных сотрудниках в компании,
+		 * с группировкой по отделам
+		 * @param [companyId]
+		 */
+		getAwardCountByCompanyDepGroup: build.query<IUserAwardsCountDep[], string>({
+			query: (companyId) => ({
+				method: 'POST',
+				url: getUserUrl("/count_ac_dep"),
+				body: {companyId}
+			}),
+			providesTags: ['Count']
+		}),
+
 		// Удалить в будущем
 		updateImage: build.mutation<void, { userId: string, formData: FormData }>({
 			query: (arg) => ({
@@ -160,6 +228,19 @@ export const userApi = createApi({
 				body: arg.formData
 			}),
 			invalidatesTags: [{type: 'User'}]
+		}),
+
+		/**
+		 * Удаление основного изображения
+		 * @param [userId]
+		 */
+		deleteMainImage: build.mutation<void, string>({
+			query: (userId) => ({
+				method: 'DELETE',
+				url: getUserUrl('/image/delete'),
+				body: {userId},
+			}),
+			invalidatesTags: ['User']
 		}),
 
 		/**

@@ -111,6 +111,15 @@ export const companyApi = createApi({
 			invalidatesTags: [{type: 'Company'}]
 		}),
 
+		getCount: build.query<number, undefined>({
+			query: () => ({
+				method: 'POST',
+				url: getCompanyUrl('/count'),
+				body: {filter: ""}
+			}),
+			providesTags: ['Count']
+		}),
+
 		updateImage: build.mutation<void, { companyId: string, formData: FormData }>({
 			query: (arg) => ({
 				method: 'PUT',
@@ -122,13 +131,17 @@ export const companyApi = createApi({
 			invalidatesTags: [{type: 'Company'}]
 		}),
 
-		getCount: build.query<number, undefined>({
-			query: () => ({
-				method: 'POST',
-				url: getCompanyUrl('/count'),
-				body: {filter: ""}
+		/**
+ 		 * Удаление основного изображения
+ 		 * @param [companyId]
+ 		 */
+		deleteMainImage: build.mutation<void, string>({
+			query: (companyId) => ({
+				method: 'DELETE',
+				url: getCompanyUrl('/image/delete'),
+				body: {companyId},
 			}),
-			providesTags: ['Count']
+			invalidatesTags: ['Company']
 		}),
 
 		/**

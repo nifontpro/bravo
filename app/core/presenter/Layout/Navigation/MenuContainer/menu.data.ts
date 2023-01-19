@@ -3,43 +3,49 @@ import {IMenu, IMenuItem} from '@/core/presenter/Layout/Navigation/MenuContainer
 export const menuTitle = 'Меню'
 
 const itemHome: IMenuItem = {
-	icon: 'MdHome',
+	icon: 'main',
 	link: '/',
 	title: 'Сводка',
 }
 
 const itemCompany: IMenuItem = {
-	icon: 'MdAccountBalance',
+	icon: 'company',
 	link: '/company',
-	title: 'Отделы и сотрудники',
+	title: 'Компания',
 }
 
-const itemDepartment: IMenuItem = {
-	icon: 'MdFoundation',
-	link: '/department',
-	title: 'Мои отделы',
+const itemHelp: IMenuItem = {
+	icon: 'help',
+	link: '/help',
+	title: 'Помощь',
 }
 
-const itemUser: IMenuItem = {
-	icon: 'MdGroup',
-	link: '/user',
-	title: 'Мои сотрудники',
-}
+// const itemDepartment: IMenuItem = {
+// 	icon: 'MdFoundation',
+// 	link: '/department',
+// 	title: 'Мои отделы',
+// }
+
+// const itemUser: IMenuItem = {
+// 	icon: 'MdGroup',
+// 	link: '/user',
+// 	title: 'Мои сотрудники',
+// }
 
 const itemMedals: IMenuItem = {
-	icon: 'MdHotelClass',
-	link: '/medal',
+	icon: 'awards',
+	link: '/award',
 	title: 'Награды',
 }
 
 const itemRating: IMenuItem = {
-	icon: 'MdHotelClass',
+	icon: 'rating',
 	link: '/rating',
 	title: 'Рейтинг',
 }
 
 const itemStatistic: IMenuItem = {
-	icon: 'MdHotelClass',
+	icon: 'statistic',
 	link: '/statistic',
 	title: 'Статистика',
 }
@@ -48,6 +54,14 @@ export const firstMenu: IMenu = {
 	title: menuTitle,
 	items: [
 		itemHome,
+		itemRating,
+		itemMedals,
+		itemCompany,
+		// itemDepartment,
+		// itemUser,
+
+		itemStatistic,
+		itemHelp
 	],
 }
 
@@ -60,7 +74,8 @@ export const firstMenuOwner: IMenu = {
 		// itemDepartment,
 		// itemUser,
 		itemRating,
-		itemStatistic
+		itemStatistic,
+		itemHelp
 	],
 }
 
@@ -68,8 +83,8 @@ export const firstMenuAdmin: IMenu = {
 	title: menuTitle,
 	items: [
 		itemHome,
-		itemDepartment,
-		itemUser,
+		// itemDepartment,
+		// itemUser,
 		itemMedals
 	],
 }
@@ -78,7 +93,7 @@ export const firstMenuDirector: IMenu = {
 	title: menuTitle,
 	items: [
 		itemHome,
-		itemUser,
+		// itemUser,
 		itemMedals
 	],
 }

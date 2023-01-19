@@ -6,12 +6,15 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import ButtonIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useDepartmentAdmin } from '../../admin/useDepartmentAdmin';
 import { useState } from 'react';
-import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
+import EditPanel from '@/core/presenter/ui/EditPanelAuthBtn/EditPanel/EditPanel';
 import ListUser from './ListUsers/ListUser';
 import Button from '@/core/presenter/ui/Button/Button';
 import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
-import { IUser } from '@/user/model/user.types';
+import { getDepartmentEditUrl } from '@/core/config/api.config';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import { motion } from 'framer-motion';
+import EditPanelAuthBtn from '@/core/presenter/ui/EditPanelAuthBtn/EditPanelAuthBtn';
 
 const Depart = ({
   data,
@@ -24,63 +27,58 @@ const Depart = ({
     filter: '',
   });
 
-  // let arrUser: IUser[] = []
-  // usersInDepartment?.forEach((item) => {
-  //   arrUser.push(item)
-  // })
-
-  // console.log(arrUser)
-
-  // if (usersInDepartment != undefined) {
-  //   usersInDepartment.sort((prev: IUser, next: IUser) => {
-  //     if (prev != undefined && next != undefined) {
-  //       if (prev.lastname < next.lastname) return -1;
-  //       if (prev.lastname < next.lastname) return 1;
-  //     }
-  //   });
-  // }
-
-  let URL = '/manage/department/edit/';
-
   const [visible, setVisible] = useState<boolean>(false);
   const [listUserVisible, setListUserVisible] = useState<boolean>(false);
 
   const { deleteAsync } = useDepartmentAdmin(data.companyId);
+
+  const variants = {
+    visible: {
+      opacity: 1,
+      height: 'auto',
+    },
+    hidden: {
+      opacity: 0,
+      height: '0',
+    },
+  };
 
   return (
     <div className={styles.wrapper} {...props}>
       <div className={styles.header}>
         <div className={styles.title}>
           <Htag tag='h3'>{data.name}</Htag>
-          <ButtonIcon
-            onClick={() => setVisible(!visible)}
-            icon='dots'
-            appearance='transparent'
-          />
-          <EditPanel
-            URL={URL}
-            onMouseLeave={() => setVisible(!visible)}
+          <EditPanelAuthBtn
+            onlyRemove={false}
+            handleRemove={deleteAsync}
             id={data.id}
-            deleteAsync={() => deleteAsync(data.id)}
-            visible={visible}
+            getUrl={getDepartmentEditUrl}
           />
         </div>
-        <P size='m' className={styles.description}>
+        <P size='m' type='silverBtn' className={styles.description}>
           {data.description}
         </P>
       </div>
 
-      <CountUsersPreview
-        onClick={() => setListUserVisible(!listUserVisible)}
-        listUserVisible={listUserVisible}
-        usersInDepartment={usersInDepartment}
-      />
+      <motion.div
+        animate={listUserVisible ? 'hidden' : 'visible'}
+        variants={variants}
+        initial='hidden'
+        transition={{ duration: 0.2 }}
+      >
+        <CountUsersPreview
+          onClick={() => setListUserVisible(!listUserVisible)}
+          appearanceBtn='black'
+          usersInDepartment={usersInDepartment}
+        />
+      </motion.div>
 
-      <div
-        className={cn(styles.listUsers, {
-          [styles.listUsersVisible]: listUserVisible,
-          [styles.listUsersHidden]: !listUserVisible,
-        })}
+      <motion.div
+        animate={listUserVisible ? 'visible' : 'hidden'}
+        variants={variants}
+        initial='hidden'
+        transition={{ duration: 0.5 }}
+        className={cn(styles.listUsers)}
       >
         <ListUser
           usersInDepartment={usersInDepartment}
@@ -89,13 +87,13 @@ const Depart = ({
         <div className={styles.button}>
           <Button
             onClick={() => setListUserVisible(!listUserVisible)}
-            appearance='white'
+            appearance='whiteBlack'
             size='s'
           >
             Свернуть
           </Button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

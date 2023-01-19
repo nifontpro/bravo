@@ -10,7 +10,12 @@ export const authApi = createApi({
 	baseQuery: baseQuery,
 	tagTypes: ['Auth'],
 	endpoints: (build) => ({
-		login: build.mutation<IAuthResponse, { email: string, password: string }>({
+
+		/**
+		 * Вход пользователя
+		 * @param: login, password
+		 */
+		login: build.mutation<IAuthResponse, { login: string, password: string }>({
 			query: (body) => ({
 				url: getAuthUrl('/login'),
 				method: 'POST',

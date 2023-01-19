@@ -1,17 +1,23 @@
 .container {
-    background: var(--white);
-    padding: 80px 95px;
-    border-radius: 27px;
+  background: var(--white);
+  padding: 80px 95px;
+  border-radius: 27px;
+  margin-bottom: 30px;
+  @apply animate-fade;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 30px;
-    @apply animate-fade;
 
     > .filter {
-        width: fit-content;
-        margin: 40px 0px 0px 0px;
-        cursor: pointer;
+      width: fit-content;
+      cursor: pointer;
     }
+  }
 
-    > .userList{
-        margin-top: 70px;
-    }
+  > .userList {
+    margin-top: 70px;
+  }
 }

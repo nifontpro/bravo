@@ -1,0 +1,44 @@
+.wrapper {
+
+  .header {
+    margin-top: 40px;
+    margin-bottom: 65px;
+    display: grid;
+    grid-template-columns: [start] 250px [endCompany] 15px [startDepart] 250px [endDepart] 1fr [startSort] auto [endSort] 30px [startToogle] auto [end];
+
+    .selectCompany {
+      grid-column: start / endCompany;
+    }
+
+    .selectDepartment {
+      grid-column: startDepart / endDepart;
+    }
+
+    .sort {
+      grid-column: startSort / endSort;
+      cursor: pointer;
+    }
+
+    .toogle {
+      grid-column: startToogle / end;
+    }
+  }
+
+  .headerUser {
+    .selectDepartment {
+      grid-column: start / endCompany;
+    }
+  }
+
+  .usersListRating {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 50px;
+
+    .search {
+      margin-bottom: 50px;
+    }
+  }
+
+}

@@ -1,0 +1,63 @@
+.wrapper {
+  background: var(--white);
+  border-radius: 27px;
+  padding: 75px;
+
+  .title {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .editPanel {
+      position: absolute;
+      top: -70px;
+      right: -70px;
+    }
+  }
+
+  .position {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    .post {
+      margin-left: 10px;
+    }
+  }
+
+  .contacts {
+    margin-top: 60px;
+  }
+
+  .awards {
+    margin-top: 95px;
+    margin-bottom: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 80px;
+    border-bottom: 1px solid #00000016;
+
+    .imagesAward {
+      display: flex;
+      align-items: center;
+      .imgAward {
+        margin-left: 10px;
+        width: 50px;
+        height: 50px;
+
+        &:nth-child(1) {
+          margin-left: 0;
+        }
+      }
+
+      .countIcon {
+        height: fit-content;
+      }
+    }
+  }
+
+  .aboutUser {
+    margin-bottom: 20px;
+  }
+}

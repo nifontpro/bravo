@@ -1,0 +1,20 @@
+.wrapper {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 20px 55px;
+  min-width: 480px;
+  display: flex;
+  align-items: center;
+
+  > .img {
+    height: 60px;
+    width: 60px;
+    margin-right: 30px;
+  }
+
+  > .description {
+    > .post {
+      margin-top: 5px;
+    }
+  }
+}

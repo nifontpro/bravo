@@ -1,0 +1,43 @@
+.calendar {
+  border: none;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  color: var(--black);
+
+  border-radius: 12px;
+
+  font-weight: 500;
+  font-size: 15.2338px;
+  line-height: 21px;
+  font-family: var(--font-family);
+
+  > div {
+    border: 1px solid #00000020;
+    padding: 16px 30px;
+    box-shadow: none !important;
+
+    &.error {
+      border: 1px solid var(--red);
+    }
+
+    &:hover {
+      border: 1px solid #00000020;
+
+      > div {
+        border: none;
+      }
+    }
+
+    > div {
+      border: none;
+      padding: 0px 0px;
+    }
+  }
+
+  .placeholder {
+    margin-bottom: 20px;
+  }
+}

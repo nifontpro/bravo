@@ -18,6 +18,11 @@ import { useCompanyState } from '@/company/data/company.slice';
 import { departmentApi } from '@/department/data/department.api';
 import { IOption } from '@/core/presenter/ui/select/select.interface';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import { useDepartment } from '@/department/presenter/useDepartment';
+import InputPhotoRefresh from '@/core/presenter/ui/InputPhotoRefresh/InputPhotoRefresh';
+import RemoveIcon from '@/core/presenter/images/remove.svg';
+import RefreshIcon from '@/core/presenter/images/refresh.svg';
+import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 
 const UserEdit: FC = () => {
   const {
@@ -33,13 +38,12 @@ const UserEdit: FC = () => {
   const { currentCompany } = useCompanyState();
   const { back, push } = useRouter();
 
-  if (currentCompany === null || currentCompany === undefined) {
-    push('/company');
-  }
+  // if (currentCompany === null || currentCompany === undefined) {
+  //   push('/company');
+  // }
 
-  const { data: departments } = departmentApi.useGetByCompanyQuery(
-    currentCompany!.id
-  );
+  const { departmentInCompany: departments } = useDepartment('');
+
   let arrDeparts: IOption[] = [];
   departments?.forEach((item) => {
     arrDeparts.push({
@@ -48,12 +52,18 @@ const UserEdit: FC = () => {
     });
   });
 
-  const { user, isLoading, onSubmit, changePhoto, img } = useUserEdit(setValue);
-  const [active, setActive] = useState<
-    'MALE' | 'FEMALE' | 'UNDEFINED' | undefined
-  >(user?.gender);
+  const { user, isLoading, onSubmit, changePhoto, setActive, active, removePhoto, img } =
+    useUserEdit(setValue);
+  // const [active, setActive] = useState<
+  //   'MALE' | 'FEMALE' | 'UNDEFINED' | undefined
+  // >(user?.gender);
 
   // console.log(user)
+
+  const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    back();
+  };
 
   return (
     <Meta title='Редактирование профиля сотрудника'>
@@ -62,20 +72,27 @@ const UserEdit: FC = () => {
       </ButtonCircleIcon>
       <div className={styles.newForm}>
         <div className={cn(styles.field, styles.uploadField)}>
-          <ImageDefault
-            src={img}
-            width={300}
-            height={300}
-            alt='preview image'
-            objectFit='cover'
-            className='rounded-[10px]'
-          />
-          <InputFile onChange={changePhoto}>
-            Загрузить новое изображение
-          </InputFile>
+          <div className={styles.images}>
+            <ImageDefault
+              src={img}
+              width={400}
+              height={400}
+              alt='preview image'
+              objectFit='cover'
+              // priority={true}
+              // className='rounded-[10px]'
+            />
+          </div>
+
+          <div className={styles.editPanel}>
+            <InputPhotoRefresh onChange={changePhoto} className={styles.input}>
+            <ButtonEdit icon='refresh'/>
+            </InputPhotoRefresh>
+            <ButtonEdit icon='remove' onClick={removePhoto}/>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <form className={styles.form}>
           <div className={styles.fields}>
             <Htag tag='h2' className={styles.title}>
               Сотрудник
@@ -122,12 +139,12 @@ const UserEdit: FC = () => {
                 error={errors.login}
               />
 
-              <Field
+              {/* <Field
                 {...register('password', { minLength: 6 })}
                 title='Пароль'
                 placeholder='Введите пароль'
                 error={errors.password}
-              />
+              /> */}
             </div>
 
             <div className={styles.group}>
@@ -188,11 +205,16 @@ const UserEdit: FC = () => {
             />
 
             <div className={styles.buttons}>
-              <Button onClick={() => back()} appearance='white' size='l'>
+              <Button onClick={handleClick} appearance='whiteBlack' size='l'>
                 Отменить
               </Button>
-              <Button appearance='gray' size='l' className='ml-[15px]'>
-                Изменить
+              <Button
+                onClick={handleSubmit(onSubmit)}
+                appearance='blackWhite'
+                size='l'
+                className='ml-[15px]'
+              >
+                Сохранить
               </Button>
             </div>
           </div>

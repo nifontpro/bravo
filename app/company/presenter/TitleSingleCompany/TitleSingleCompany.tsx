@@ -1,18 +1,18 @@
 import styles from './TitleSingleCompany.module.scss';
-import cn from 'classnames';
 import { TitleSingleCompanyProps } from './TitleSingleCompany.props';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import P from '@/core/presenter/ui/P/P';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
-import EditPanel from '@/core/presenter/ui/EditPanel/EditPanel';
+import EditPanel from '@/core/presenter/ui/EditPanelAuthBtn/EditPanel/EditPanel';
 import { useState } from 'react';
-import { useDepartmentAdmin } from '@/department/presenter/admin/useDepartmentAdmin';
 import { useCompanyAdmin } from '../admin/useCompanyAdmin';
-import { useMyUser } from '@/user/presenter/useMyUsers';
-import { userApi } from '@/user/data/user.api';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
-import GpsIcon from './gps.svg'
+import GpsIcon from './gps.svg';
+import { getCompanyEditUrl, getCompanyUrl } from '@/core/config/api.config';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import { useMyUser } from '@/user/presenter/useMyUsers';
+import EditPanelAuthBtn from '@/core/presenter/ui/EditPanelAuthBtn/EditPanelAuthBtn';
 
 const TitleSingleCompany = ({
   company,
@@ -20,19 +20,15 @@ const TitleSingleCompany = ({
   className,
   ...props
 }: TitleSingleCompanyProps): JSX.Element => {
-  const { data: users } = userApi.useGetByCompanyQuery({
-    companyId: company.id,
-  });
-
-  let URL = '/manage/company/edit/';
+  const { users } = useMyUser('');
 
   const [visible, setVisible] = useState<boolean>(false);
 
   const { deleteAsync } = useCompanyAdmin();
 
   return (
-    <div className={styles.titleCompany}>
-      <div>
+    <div className={styles.titleCompany} {...props}>
+      <div className={styles.img}>
         <ImageDefault
           src={company.imageUrl}
           width={400}
@@ -40,6 +36,7 @@ const TitleSingleCompany = ({
           alt='company img'
           objectFit='cover'
           className='rounded-[27px]'
+          priority={true}
         />
       </div>
 
@@ -48,22 +45,16 @@ const TitleSingleCompany = ({
           <Htag tag='h1' className={styles.header}>
             {company.name}
           </Htag>
-          <ButtonCircleIcon
-            onClick={() => setVisible(!visible)}
-            icon='dots'
-            appearance='transparent'
-          />
-          <EditPanel
-            URL={URL}
-            onMouseLeave={() => setVisible(!visible)}
+          <EditPanelAuthBtn
+            onlyRemove={false}
+            handleRemove={deleteAsync}
             id={company.id}
-            deleteAsync={deleteAsync}
-            visible={visible}
-          />
+            getUrl={getCompanyEditUrl}
+          /> 
         </div>
 
         <div className={styles.address}>
-          <GpsIcon className='mr-[10px]'/>
+          <GpsIcon className='mr-[10px]' />
           <P size='s' className={styles.description}>
             {company.address}
           </P>
@@ -77,7 +68,11 @@ const TitleSingleCompany = ({
           <a href='mailto:hello@familyagency.ru'>{company.email}</a>
         </div>
         <div className={styles.colUsers}>
-          <CountUsersPreview usersInDepartment={users} className={styles.default}/>
+          <CountUsersPreview
+            appearanceBtn='black'
+            usersInDepartment={users}
+            className={styles.default}
+          />
         </div>
       </div>
     </div>

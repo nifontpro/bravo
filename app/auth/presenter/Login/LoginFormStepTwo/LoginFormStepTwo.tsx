@@ -29,23 +29,23 @@ const LoginFormStepTwo = ({
   const [registerStepTwo] = authApi.useRegisterStepTwoMutation();
   const { setAuthData } = useSetAuthData();
 
-  useEffect(() => {
-    setValue('email', email);
-  }, [email]);
-
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
   } = useForm<{ code: string; email: string }>({ mode: 'onChange' });
+
+  useEffect(() => {
+    setValue('email', email);
+  }, [email, setValue]);
 
   const onSubmit: SubmitHandler<{
     code: string;
     email: string;
   }> = async (data) => {
     console.log(data);
-    registerStepTwo({ ...data})
+    registerStepTwo({ ...data })
       .unwrap()
       .then((d) => {
         setAuthData(d);
@@ -54,7 +54,6 @@ const LoginFormStepTwo = ({
       .catch((e) => {
         toastError(e, 'Ошибка регистрации');
       });
-    setVisible(!visible);
     push('/auth');
   };
 
@@ -72,8 +71,9 @@ const LoginFormStepTwo = ({
         icon='down'
         className={styles.back}
       >
-        Вернуться назад
+        Назад
       </ButtonCircleIcon>
+
       <Htag tag='h1' className={styles.title}>
         Регистрация
       </Htag>
@@ -90,6 +90,7 @@ const LoginFormStepTwo = ({
         <Button
           appearance='blackWhite'
           size='l'
+          disabled={!isDirty || !isValid}
         >
           Продолжить
         </Button>

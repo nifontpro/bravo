@@ -10,7 +10,7 @@ const InputFile = forwardRef(
   ): JSX.Element => {
 
     return (
-      <div className={cn(className, styles.inputWrapper)}>
+      <div className={cn(styles.inputWrapper, className)}>
         <input type='file' className={styles.inputFile} ref={ref} {...props} />
         <label className={styles.fileButton}>
           <span className={styles.buttonText}>{children}</span>
