@@ -1,5 +1,4 @@
 import {AwardState, 
-  AwardState,
   IAwardRelate,
   IAwardRelateUser,
 } from './awardRelate.types';
