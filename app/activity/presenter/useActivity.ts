@@ -5,8 +5,8 @@ import { IActivity } from '../model/activity.types';
 
 const currentDate = Math.floor(new Date().getTime());
 
-export const useActivity = (filter?: string, sort?: number) => {
-  const [state, setState] = useState<1 | -1>(1);
+export const useActivity = (filter?: string, sort?: number, startDateProps?: number, endDateProps?: number) => {
+  const [state, setState] = useState<1 | -1>(-1);
   const [startDate, setStartDate] = useState<number>(10000000);
   const [endDate, setEndDate] = useState<number>(16732673054000);
   const [searchValue, setSearchValue] = useState<string>('');
@@ -21,8 +21,8 @@ export const useActivity = (filter?: string, sort?: number) => {
       // companyId: '638621902741bb167c6c2386',
       sort: sort || state,
       filter: filter || searchValue,
-      startDate: startDate,
-      endDate: endDate,
+      startDate: startDateProps || startDate,
+      endDate: endDateProps || endDate,
     });
     depActivity = activity || [];
   }

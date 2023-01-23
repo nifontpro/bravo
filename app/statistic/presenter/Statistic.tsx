@@ -1,31 +1,32 @@
 import styles from './Statistic.module.scss';
 import Meta from '@/core/utils/meta/Meta';
 import { StatisticProps } from './Statistic.props';
-import { useAward } from 'award/presenter/useAward';
-import { useMyUser } from '@/user/presenter/useMyUsers';
 import Htag from '@/core/presenter/ui/Htag/Htag';
-import SelectCustom from '@/core/presenter/ui/SelectCustom/SelectCustom';
-import { useState } from 'react';
 import StatisticUsersGender from './StatisticUsersGender/StatisticUsersGender';
 import StatisticCountNominee from './StatisticCountNominee/StatisticCountNominee';
 import StatisticCountAwards from './StatisticCountAwards/StatisticCountAwards';
 import StatisticUsersAwards from './StatisticUsersAwards/StatisticUsersAwards';
 import StatisticDepartments from './StatisticDepartments/StatisticDepartments';
-import StatisticAcrivity from './StatisticActivity/StatisticAcrivity';
-import { useRouter } from 'next/router';
 import P from '@/core/presenter/ui/P/P';
+import Select from 'react-select';
+import StatisticActivity from './StatisticActivity/StatisticActivity';
+import { useStatistic } from './useStatistic';
 
 const Statistic = ({
   company,
   className,
   ...props
 }: StatisticProps): JSX.Element => {
-  const { awardsLight, awardsFullCompany } = useAward('');
-  const { usersCountAwardsOnDepCompany } = useMyUser('');
-  const { usersWithAwardsUnion: users } = useMyUser('');
-  const { push } = useRouter();
-
-  const [departSort, setDepartSort] = useState<string>('');
+  const {
+    arrYear,
+    onChange,
+    animatedComponents,
+    awardsLight,
+    push,
+    usersCountAwardsOnDepCompany,
+    yearActivity,
+    users,
+  } = useStatistic();
 
   return (
     <Meta title='Статистика'>
@@ -35,11 +36,13 @@ const Statistic = ({
             Статистика
           </Htag>
           <div className={styles.headerTitle}>
-            <SelectCustom
-              placeholder={'2022'}
+            <Select
               className={styles.selectCompany}
-              options={[]}
-              setDepartSort={setDepartSort}
+              classNamePrefix='custom-select-rating'
+              placeholder={'2023'}
+              options={arrYear}
+              onChange={onChange}
+              components={animatedComponents}
             />
             <P size='l' className={styles.title}>
               По отделам
@@ -68,7 +71,10 @@ const Statistic = ({
 
           <StatisticUsersAwards users={users} className={styles.usersAwards} />
 
-          <StatisticAcrivity className={styles.activity} />
+          <StatisticActivity
+            className={styles.activity}
+            yearActivity={yearActivity}
+          />
         </div>
       </div>
     </Meta>
