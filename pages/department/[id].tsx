@@ -18,14 +18,23 @@ const SingleDepartmentPage: NextPage<IDepartment | undefined> = (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const { data: allDepartmentId } = await axiosCore.post<string[]>(
+    getDepartmentUrl('/ids'),
+    {}
+  );
   return {
-    paths: [],
+    paths: allDepartmentId.map((item) => getDepartmentUrl(`/${item}`)),
     // fallback: 'blocking'
     fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  if (!params) {
+    return {
+      notFound: true,
+    };
+  }
   try {
     const id = String(params?.id);
     const { data: department } = await axiosCore.post<IDepartment>(

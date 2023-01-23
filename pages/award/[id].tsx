@@ -1,5 +1,4 @@
 import {
-  GetServerSideProps,
   GetStaticPaths,
   GetStaticProps,
   NextPage,
@@ -9,8 +8,6 @@ import Error404 from '../404';
 import Award from 'award/presenter/Award/Award';
 import { IAwardUsers } from '@/award/model/award.types';
 import { getAwardUrl } from '@/core/config/api.config';
-import axios from 'axios';
-import { awardApi } from '@/award/data/award.api';
 import { axiosCore } from '@/core/data/axios.core';
 
 const SingleAwardPage: NextPage<IAwardUsers | undefined> = (award) => {
@@ -19,37 +16,11 @@ const SingleAwardPage: NextPage<IAwardUsers | undefined> = (award) => {
 
 export default SingleAwardPage;
 
-// export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-//   if (!params) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   try {
-//     const id = String(params?.id);
-//     const { data: award } = await axiosCore.post<IAwardUsers>(
-//       getAwardUrl('/get_idu'),
-//       {
-//         awardId: id,
-//       }
-//     );
-
-//     return {
-//       props: award,
-//     };
-//   } catch (e) {
-//     console.log(errorCatch(e));
-//     return { props: {} };
-//   }
-// };
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data: allAwardsId } = await axiosCore.post<string[]>(
     getAwardUrl('/ids'),
     {}
   );
-
   return {
     paths: allAwardsId.map(item => getAwardUrl(`/${item}`)),
     // fallback: 'blocking'
@@ -63,7 +34,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       notFound: true,
     };
   }
-
   try {
     const id = String(params?.id);
     const { data: award } = await axiosCore.post<IAwardUsers>(
@@ -72,7 +42,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         awardId: id,
       }
     );
-
     return {
       props: award,
     };
