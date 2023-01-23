@@ -1,17 +1,16 @@
 import styles from './StatisticAcrivity.module.scss';
-
-import { StatisticAcrivityProps } from './StatisticAcrivity.props';
+import { StatisticActivityProps } from './StatisticActivity.props';
 import cn from 'classnames';
 import P from '@/core/presenter/ui/P/P';
 import VerticalBarChart from '@/core/presenter/ui/VerticalBarChart/VerticalBarChart';
-import { useActivity } from '@/activity/presenter/useActivity';
+import { useStatisticActivity } from './useStatisticActivity';
 
-const StatisticAcrivity = ({
+const StatisticActivity = ({
   className,
   ...props
-}: StatisticAcrivityProps): JSX.Element => {
-  const { activity } = useActivity();
-  console.log(activity);
+}: StatisticActivityProps): JSX.Element => {
+  const { objNominees, objAwards } = useStatisticActivity()
+
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <P size='l' className={styles.title}>
@@ -31,9 +30,9 @@ const StatisticAcrivity = ({
           </P>
         </li>
       </ul> */}
-      <VerticalBarChart />
+      <VerticalBarChart objNominees={objNominees} objAwards={objAwards}/>
     </div>
   );
 };
 
-export default StatisticAcrivity;
+export default StatisticActivity;

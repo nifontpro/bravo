@@ -11,7 +11,7 @@ import StatisticCountNominee from './StatisticCountNominee/StatisticCountNominee
 import StatisticCountAwards from './StatisticCountAwards/StatisticCountAwards';
 import StatisticUsersAwards from './StatisticUsersAwards/StatisticUsersAwards';
 import StatisticDepartments from './StatisticDepartments/StatisticDepartments';
-import StatisticAcrivity from './StatisticAcrivity/StatisticAcrivity';
+import StatisticAcrivity from './StatisticActivity/StatisticAcrivity';
 import { useRouter } from 'next/router';
 import P from '@/core/presenter/ui/P/P';
 
