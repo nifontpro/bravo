@@ -129,7 +129,7 @@ const MainAwars = ({
                 <div className='flex items-end'>
                   <P size='xl'>{countWithAward}</P>
                   <P size='l' color='gray' className={styles.percent}>
-                    {countWithAwardPercent} %
+                    {Number.isNaN(countWithAwardPercent) ? '0' : countWithAwardPercent} %
                   </P>
                 </div>
               </div>

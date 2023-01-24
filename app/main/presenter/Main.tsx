@@ -1,52 +1,51 @@
 import styles from './Main.module.scss';
 import Meta from '@/core/utils/meta/Meta';
 import { MainProps } from './Main.props';
-
+import cn from 'classnames';
 import MainAwars from './MainAwars/MainAwards';
 import MainUsers from './MainUsers/MainUsers';
 import MainNominee from './MainNominee/MainNominee';
 import MainActivity from './MainActivity/MainActivity';
-import { useAward } from 'award/presenter/useAward';
-import { useMyUser } from '@/user/presenter/useMyUsers';
-import { getAwardUrl } from '@/core/config/api.config';
-import axios from 'axios';
-import { axiosCore } from '@/core/data/axios.core';
+import P from '@/core/presenter/ui/P/P';
+import Button from '@/core/presenter/ui/Button/Button';
+import { useMain } from './useMain';
+import OnBoarding from './OnBoarding/OnBoarding';
 
 const Main = ({ className, ...props }: MainProps): JSX.Element => {
-  const { awardsLight } = useAward('');
-  const {
-    usersWithAwards: users,
-    usersCountAwardsOnDepCompany: awardsOnCompanyGroupDep,
-  } = useMyUser('');
-
-//   axios.post('https://nmedalist.ru/api/award/ids').then((resp) => {
-//     const allIds = resp.data;
-//     console.log(allIds);
-//   });
-
-//   axios({
-//     method: 'post',
-//     url: 'https://nmedalist.ru/api/award/ids',
-// }).then(function (response) {
-//     console.log(response);
-// }).catch(function (error) {
-//     console.log(error);
-// });
+  const { onBoarding, awardsLight, users, awardsOnCompanyGroupDep, state, onBoardingText, onBoardingText3, handleClick } =
+    useMain();
 
   return (
     <Meta title='Главная'>
       <div {...props} className={styles.wrapper}>
         <MainAwars
-          className={styles.awards}
+          className={cn(styles.awards, {
+            [styles.index30]: onBoarding == 1,
+          })}
           awards={awardsLight}
           users={users}
           awardsOnCompanyGroupDep={awardsOnCompanyGroupDep}
         />
         <MainUsers className={styles.users} users={users} />
-        <div className={styles.nominee}>
-          <MainNominee awards={awardsLight} />
-          <MainActivity />
+        <div
+          className={cn(styles.nominee, {
+            [styles.index30]: onBoarding >= 2 && state == true,
+          })}
+        >
+          <MainNominee
+            awards={awardsLight}
+            className={cn({
+              [styles.index0]: onBoarding == 3 && state == true,
+            })}
+          />
+          <MainActivity
+            className={cn({
+              [styles.index0]: onBoarding == 2,
+            })}
+          />
         </div>
+
+        <OnBoarding state={state} onBoarding={onBoarding} onBoardingText={onBoardingText} onBoardingText3={onBoardingText3} handleClick={handleClick}/>
       </div>
     </Meta>
   );
