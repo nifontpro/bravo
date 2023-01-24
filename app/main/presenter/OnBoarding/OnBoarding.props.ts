@@ -7,5 +7,5 @@ export type OnBoardingProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElem
     onBoardingText: string
     onBoardingText3: string
     handleClick: () => void
-    state: boolean
+    state: boolean | undefined
 }

@@ -17,4 +17,5 @@ export type ButtonCircleIconProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElem
     appearance: 'black' | 'transparent' | 'white';
     icon: IconName
     children?: ReactNode
+    disabled?: boolean
 }

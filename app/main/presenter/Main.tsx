@@ -27,13 +27,13 @@ const Main = ({ className, ...props }: MainProps): JSX.Element => {
         <MainUsers className={styles.users} users={users} />
         <div
           className={cn(styles.nominee, {
-            [styles.index30]: onBoarding >= 2 && state == true,
+            [styles.index30]: onBoarding >= 2 && !state
           })}
         >
           <MainNominee
             awards={awardsLight}
             className={cn({
-              [styles.index0]: onBoarding == 3 && state == true,
+              [styles.index0]: onBoarding == 3 && !state
             })}
           />
           <MainActivity

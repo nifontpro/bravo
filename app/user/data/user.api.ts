@@ -327,7 +327,7 @@ export const userApi = createApi({
     /**
      * Получить настройки сотрудника
      * @param: [userId]
-     */
+     */ 
     getSetting: build.query<IUserSetting, string>({
       query: (userId) => ({
         method: 'POST',

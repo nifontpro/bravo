@@ -5,13 +5,15 @@ import { ForwardedRef, forwardRef } from 'react';
 
 const ButtonCircleIcon = forwardRef(
   (
-    { appearance, icon, className, children, ...props }: ButtonCircleIconProps,
+    { appearance, icon, disabled, className, children, ...props }: ButtonCircleIconProps,
     ref: ForwardedRef<HTMLDivElement>
   ): JSX.Element => {
     const IconComp = icons[icon];
 
     return (
-      <div className={cn(styles.wrapper)} {...props} ref={ref}>
+      <div className={cn(styles.wrapper, {
+        [styles.disabled]: disabled
+      })} {...props} ref={ref}>
         <button
           className={cn(
             styles.button,

@@ -13,7 +13,7 @@ export const useUserCreate = (
   companyId?: string
   // departmentId?: string,
 ) => {
-  const { push, back } = useRouter();
+  const { back } = useRouter();
   const [create] = userApi.useCreateMutation();
   const [updateImage] = userApi.useUpdateImageMutation();
 

@@ -13,7 +13,7 @@ const UserEditPassword: FC = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     setValue,
   } = useForm<{
     userId: string,
@@ -65,14 +65,15 @@ const UserEditPassword: FC = () => {
         </div>
 
         <div className={styles.buttons}>
-          <Button onClick={handleClick} appearance='white' size='l'>
+          <Button onClick={handleClick} appearance='whiteBlack' size='l'>
             Отменить
           </Button>
           <Button
             onClick={handleSubmit(onSubmit)}
-            appearance='gray'
+            appearance='blackWhite'
             size='l'
             className='ml-[15px]'
+            disabled={!isDirty || !isValid}
           >
             Изменить
           </Button>

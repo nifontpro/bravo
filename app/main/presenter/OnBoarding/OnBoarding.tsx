@@ -32,7 +32,7 @@ const OnBoarding = ({
 
   return (
     <AnimatePresence mode='wait'>
-      {state && (
+      {state == false && (
         <motion.div
           initial='hidden'
           animate='visible'
