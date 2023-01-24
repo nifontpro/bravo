@@ -2,7 +2,7 @@
 const nextConfig = {
   poweredByHeader: false,
   optimizeFonts: false,
-  swcMinify: true,
+  swcMinify: false, // Нужно по итогу поставить true (сейчас false из-за конфликта с chartJS)
   reactStrictMode: false,
   env: {
     APP_URL: process.env.REACT_APP_URL,
