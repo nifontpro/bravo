@@ -24,7 +24,7 @@ export const useAward = (filter: string) => {
 
     //Подробный запрос с пользователями
     const { data: awardsFull } = awardApi.useGetAwardsByCompanyWithUserQuery({
-      companyId: currentCompany.id,
+      companyId: currentCompany != null ? currentCompany.id : ''
     });
 
     //Получить статистику о награждениях в компании

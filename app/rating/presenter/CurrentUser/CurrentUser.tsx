@@ -34,7 +34,7 @@ const CurrentUser = ({
           className={styles.numberOfRating}
           color='white'
         >
-          #{currentUserIndex}
+          #{currentUserIndex+1}
         </P>
         <div className={styles.img}>
           <ImageDefault

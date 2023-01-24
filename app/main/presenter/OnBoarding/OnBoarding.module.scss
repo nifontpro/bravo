@@ -1,0 +1,30 @@
+.layout {
+  position: absolute;
+  width: calc(100% + 100px);
+  height: calc(100% + 50px);
+  top: -50px;
+  left: -50px;
+  background: #00000070;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+
+  .layoutContent {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    margin-top: 300px;
+    width: 360px;
+    height: 360px;
+    background: var(--white);
+
+    .onBoardingText {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+  }
+}
