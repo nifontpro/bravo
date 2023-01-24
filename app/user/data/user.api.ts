@@ -4,11 +4,12 @@ import {IUser, IUserAwards, IUserAwardsUnion, IUserCreate} from "@/user/model/us
 import {getUserUrl} from "@/core/config/api.config";
 import {IUserUpdateRequest} from "@/user/presenter/admin/edit/user-edit.type";
 import {IUserAwardCount, IUserAwardsCountDep} from '../model/count.types';
+import {IUserSaveSettingRequest, IUserSetting} from "@/user/model/user.setting";
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: queryWithReauth,
-	tagTypes: ['User', 'Count', 'Award', 'None'],
+	tagTypes: ['User', 'Count', 'Award', 'None', 'Setting'],
 	endpoints: (build) => ({
 
 		//Получить всех сотрудников по отделу
@@ -284,6 +285,31 @@ export const userApi = createApi({
 				body: body
 			}),
 			invalidatesTags: [{type: 'User'}]
+		}),
+
+		/**
+		 * Сохранение настроек сотрудника
+		 */
+		saveSetting: build.mutation<void, IUserSaveSettingRequest>({
+			query: (body) => ({
+				method: 'PUT',
+				url: getUserUrl('/setting'),
+				body: body
+			}),
+			invalidatesTags: ['Setting']
+		}),
+
+		/**
+		 * Получить настройки сотрудника
+		 * @param: [userId]
+		 */
+		getSetting: build.query<IUserSetting, string>({
+			query: (userId) => ({
+				method: 'POST',
+				url: getUserUrl("/setting"),
+				body: {userId}
+			}),
+			providesTags: ['Setting']
 		}),
 	})
 })
