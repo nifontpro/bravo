@@ -6,8 +6,6 @@ import MainAwars from './MainAwars/MainAwards';
 import MainUsers from './MainUsers/MainUsers';
 import MainNominee from './MainNominee/MainNominee';
 import MainActivity from './MainActivity/MainActivity';
-import P from '@/core/presenter/ui/P/P';
-import Button from '@/core/presenter/ui/Button/Button';
 import { useMain } from './useMain';
 import OnBoarding from './OnBoarding/OnBoarding';
 
