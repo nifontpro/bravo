@@ -33,7 +33,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
   try {
     const id = String(params?.id);
-    const { data: company } = await CompanyService.getById(id);
+    const { data: company } = await axiosCore.post<ICompany>(getCompanyUrl("/get_id"), {
+			companyId: id
+		})
+    // const { data: company } = await CompanyService.getById(id);
 
     return {
       props: company,
