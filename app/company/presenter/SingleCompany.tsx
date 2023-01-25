@@ -5,11 +5,10 @@ import styles from './SingleCompany.module.scss';
 import TitleSingleCompany from './TitleSingleCompany/TitleSingleCompany';
 import DepartmentAndUsers from './DepartmentAndUsers/DepartmentAndUsers';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
-import { useRouter } from 'next/router';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import Link from 'next/link';
 
 const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
-  const { push } = useRouter();
 
   return (
     <Meta
@@ -17,13 +16,13 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
       description={`Просмотр компании ${company.name}`}
     >
       <AuthComponent minRole={'director'}>
-        <ButtonCircleIcon
-          onClick={() => push('/company')}
-          appearance='black'
-          icon='down'
-        >
-          Вернуться назад
-        </ButtonCircleIcon>
+        <Link href='/company'>
+          <a>
+            <ButtonCircleIcon appearance='black' icon='down'>
+              Вернуться назад
+            </ButtonCircleIcon>
+          </a>
+        </Link>
       </AuthComponent>
 
       <div className={styles.wrapper}>

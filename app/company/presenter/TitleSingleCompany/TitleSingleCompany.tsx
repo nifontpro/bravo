@@ -3,14 +3,10 @@ import { TitleSingleCompanyProps } from './TitleSingleCompany.props';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import P from '@/core/presenter/ui/P/P';
-import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
-import EditPanel from '@/core/presenter/ui/EditPanelAuthBtn/EditPanel/EditPanel';
-import { useState } from 'react';
 import { useCompanyAdmin } from '../admin/useCompanyAdmin';
 import CountUsersPreview from '@/core/presenter/ui/CountUsersPreview/CountUsersPreview';
 import GpsIcon from './gps.svg';
 import { getCompanyEditUrl, getCompanyUrl } from '@/core/config/api.config';
-import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import EditPanelAuthBtn from '@/core/presenter/ui/EditPanelAuthBtn/EditPanelAuthBtn';
 
@@ -21,8 +17,6 @@ const TitleSingleCompany = ({
   ...props
 }: TitleSingleCompanyProps): JSX.Element => {
   const { users } = useMyUser('');
-
-  const [visible, setVisible] = useState<boolean>(false);
 
   const { deleteAsync } = useCompanyAdmin();
 
