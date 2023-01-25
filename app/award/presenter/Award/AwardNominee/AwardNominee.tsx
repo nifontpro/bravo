@@ -64,6 +64,7 @@ const AwardNominee = ({
               appearance='black'
               icon='plus'
               className='font-bold'
+              disabled={true}
             >
               Рекомендовать
             </ButtonCircleIcon>

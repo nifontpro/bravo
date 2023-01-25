@@ -54,3 +54,12 @@
     @apply duration-200;
   }
 }
+
+.disabled {
+  opacity: .5;
+  cursor: default;
+
+  .button {
+    cursor: default;
+  }
+}

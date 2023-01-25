@@ -18,7 +18,6 @@ const Catalog: FC<ICatalog> = ({ title, description, prefix, data }) => {
         {data.map((d, index) => {
           return (
             <GalleryItem
-              // key={d.id} 
               key={index}
               variant='horizontal'
               item={{

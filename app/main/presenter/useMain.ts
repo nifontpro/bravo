@@ -1,4 +1,6 @@
+import { useAuthState } from '@/auth/data/auth.slice';
 import { useAward } from '@/award/presenter/useAward';
+import { userApi } from '@/user/data/user.api';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import { useEffect, useState } from 'react';
 
@@ -9,12 +11,20 @@ export const useMain = () => {
     usersCountAwardsOnDepCompany: awardsOnCompanyGroupDep,
   } = useMyUser('');
 
-  const [state, setState] = useState<boolean>(true);
+  const user = useAuthState();
+  const { data: settingsUser } = userApi.useGetSettingQuery(
+    user.user?.id || ''
+  );
+
+  const [saveSetting] = userApi.useSaveSettingMutation();
+
+  const [state, setState] = useState<boolean | undefined>(undefined);
   const [onBoarding, setOnboarding] = useState<number>(1);
   const [onBoardingText, setOnboardingText] = useState<string>('');
   const [onBoardingText3, setOnboardingText3] = useState<string>('');
 
   useEffect(() => {
+    setState(settingsUser?.showOnboarding);
     if (onBoarding == 1) {
       setOnboardingText('Следи за своим прогрессом');
     }
@@ -25,13 +35,19 @@ export const useMain = () => {
       setOnboardingText(`Узнавай об активностях `);
       setOnboardingText3('в компании');
     }
-  }, [onBoarding]);
+  }, [onBoarding, settingsUser]);
 
-  const handleClick = () => {
-    if (onBoarding < 3) {
-      setOnboarding((prev) => prev + 1);
-    } else {
-      setState(false);
+  const handleClick = async () => {
+    if (user.user?.id) {
+      if (onBoarding < 3) {
+        setOnboarding((prev) => prev + 1);
+      } else {
+        await saveSetting({
+          userId: user.user?.id,
+          showOnboarding: true,
+          pageOnboarding: 3,
+        }).unwrap();
+      }
     }
   };
 

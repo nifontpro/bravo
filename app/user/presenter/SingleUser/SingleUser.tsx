@@ -15,7 +15,7 @@ const SingleUser = ({
   children,
   ...props
 }: SingleUserProps): JSX.Element => {
-  const { push, back } = useRouter();
+  const { back } = useRouter();
 
   return (
     <Meta title={user.name} description={`Профиль сотрудника ${user.name}`}>

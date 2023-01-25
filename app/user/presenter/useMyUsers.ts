@@ -24,30 +24,31 @@ export const useMyUser = (filter: string) => {
   const { data: depUsers } = userApi.useGetByCompanyDepNameQuery({
     companyId: currentCompany != null ? currentCompany.id : '',
     filter,
-  });
+  }, {skip: !currentCompany});
+
   // Сотрудники c медалями
   const { data: depUserWithAwards } = userApi.useGetByCompanyWithAwardsQuery({
     companyId: currentCompany != null ? currentCompany.id : '',
-  });
+  }, {skip: !currentCompany}); 
 
   // Сотрудники с подробной информацией
   const { data: depUserWithAwardsUnion } =
     userApi.useGetByCompanyWithAwardsUnionQuery({
       companyId: currentCompany != null ? currentCompany.id : '',
       filter,
-    });
+    }, {skip: !currentCompany});
 
   // Сотрудник по ID
   // const {
   //   data: userWithId,
   //   isLoading,
   //   isSuccess: isGetSuccess,
-  // } = userApi.useGetByIdQuery(filter);
+  // } = userApi.useGetByIdQuery(filter); 
 
   // Получить информацию о награжденных сотрудниках в компании, с группировкой по отделам
   const { data: depCountAwardsOnDepCompany } =
     userApi.useGetAwardCountByCompanyDepGroupQuery(
-      currentCompany != null ? currentCompany.id : ''
+      currentCompany != null ? currentCompany.id : '', {skip: !currentCompany}
     );
 
   // users = depUsers || [];

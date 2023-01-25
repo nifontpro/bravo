@@ -11,7 +11,7 @@ import { getAwardUrl } from '@/core/config/api.config';
 import { axiosCore } from '@/core/data/axios.core';
 
 const SingleAwardPage: NextPage<IAwardUsers | undefined> = (award) => {
-  return award ? <Award award={award} /> : <Error404 />;
+  return award ? <Award award={award} /> : <Error404/>;
 };
 
 export default SingleAwardPage;

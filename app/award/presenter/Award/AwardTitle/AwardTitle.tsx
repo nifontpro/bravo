@@ -130,6 +130,7 @@ const AwardTitle = ({
               onClick={() => console.log('Хочу участвовать')}
               appearance='blackWhite'
               size='l'
+              disabled={true}
             >
               Хочу участвовать
             </Button>

@@ -10,10 +10,10 @@ const AuthComponent: FC<PropsWithChildren<{ minRole: TypeRoles }>> = ({
   const { user } = useAuthState();
   const { push } = useRouter();
   useEffect(() => {
-    if (user == undefined) {
+    if (!user) {
       push('/auth');
     }
-  }, []);
+  }, [user, push]);
 
   return checkRole(user?.role, minRole) ? <>{children}</> : null;
 };
