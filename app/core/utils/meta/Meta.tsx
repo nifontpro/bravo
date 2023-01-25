@@ -35,13 +35,14 @@ const Meta: FC<PropsWithChildren<ISeo>> =
 						<meta property='og:url' content={currentUrl}/>
 						<meta property='og:image' content={image || logoImage}/>
 						<meta property='og:site_name' content={siteName}/>
-						{/* <meta
+						<meta
 							property='og:description'
 							content={onlyText(description, 197)}
-						/> */}
+						/>
 					</Head>
 				) : (
-					<meta name='robots' content='noindex, nofollow'/>
+					// <meta name='robots' content='noindex, nofollow'/>
+					<meta name='robots' />
 					// <MetaNoIndex title={title} />
 				)}
 				{children}
