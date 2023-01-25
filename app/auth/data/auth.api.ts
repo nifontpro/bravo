@@ -81,7 +81,7 @@ export const refreshApi = createApi({
 	reducerPath: 'refreshApi',
 	baseQuery: refreshQuery,
 	tagTypes: ['Refresh'],
-	endpoints: (build) => ({
+	endpoints: (build) => ({ 
 		refresh: build.mutation<IAuthResponse, void>({
 			query: () => ({
 				method: 'POST',

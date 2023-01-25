@@ -10,7 +10,7 @@ export const useDepartment = (filter: string) => {
   // if (currentCompany) {
   //Легкий запрос
   const { data: departments, isLoading } = departmentApi.useGetByCompanyQuery(
-    currentCompany != null ? currentCompany.id : ''
+    currentCompany != null ? currentCompany.id : '', {skip: !currentCompany}
   );
 
   // }
