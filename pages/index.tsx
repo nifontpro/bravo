@@ -9,12 +9,24 @@ import { errorCatch } from '@/core/utils/api.helpers';
 import { useCompanyState } from '@/company/data/company.slice';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import Main from 'main/presenter/Main';
+import { useAuthState } from '@/auth/data/auth.slice';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 // const Home: NextPage<{ companies: ICompany[] | undefined }> = ({
 //   companies,
 // }) => {
 const Home: NextPage = () => {
   const { currentCompany } = useCompanyState();
+
+  const { user } = useAuthState();
+  const { push } = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      push('/auth');
+    }
+  }, [user, push]);
 
   return (
     <AuthComponent minRole={'user'}>

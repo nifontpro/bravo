@@ -7,10 +7,12 @@ import {IUser} from "@/user/model/user.types";
 interface IAuthState {
 	user?: IUser
 	ws?: WebSocket
+	isLoading?: boolean
 }
 
 const initialState: IAuthState = {
 	ws: undefined,
+	isLoading: false
 }
 
 export const authSlice = createSlice({

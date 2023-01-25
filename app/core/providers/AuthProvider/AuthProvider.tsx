@@ -9,7 +9,7 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [refresh] = refreshApi.useRefreshMutation();
   const { setAuthData } = useSetAuthData();
 
-  const { user } = useAuthState(); 
+  const { user } = useAuthState();
 
   useEffect(() => {
     const refreshToken = getRefreshCookie();
@@ -20,7 +20,6 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
           await setAuthData(data);
         });
     }
-    console.log('Авторизация')
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <>{children}</>;

@@ -8,12 +8,13 @@ const AuthComponent: FC<PropsWithChildren<{ minRole: TypeRoles }>> = ({
   minRole,
 }) => {
   const { user } = useAuthState();
-  const { push } = useRouter();
-  useEffect(() => {
-    if (!user) {
-      push('/auth');
-    }
-  }, [user, push]);
+  // const { push } = useRouter();
+  // useEffect(() => {
+  //   if (!user) {
+  //     push('/auth');
+  //   }
+  //   console.log('Redirect')
+  // }, [user, push]);
 
   return checkRole(user?.role, minRole) ? <>{children}</> : null;
 };
