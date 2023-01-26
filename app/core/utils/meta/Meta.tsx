@@ -41,8 +41,7 @@ const Meta: FC<PropsWithChildren<ISeo>> =
 						/>
 					</Head>
 				) : (
-					// <meta name='robots' content='noindex, nofollow'/>
-					<meta name='robots' />
+					<meta name='robots' content='noindex, nofollow'/>
 					// <MetaNoIndex title={title} />
 				)}
 				{children}

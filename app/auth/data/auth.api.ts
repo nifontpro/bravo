@@ -89,12 +89,14 @@ export const refreshApi = createApi({
 				body: {filter: ""}
 			}),
 			async onQueryStarted(args, {dispatch, queryFulfilled}) {
+					await dispatch(authActions.setLoading(true))
 				try {
 					const {data} = await queryFulfilled;
 					await dispatch(authActions.setState(data))
-					
+					await dispatch(authActions.setLoading(false))
 				} catch (error) {
 					console.error(`ERROR refresh!`, error)
+					await dispatch(authActions.setLoading(false))
 				}
 			},
 		}),

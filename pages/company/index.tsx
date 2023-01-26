@@ -4,7 +4,6 @@ import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import { useRouter } from 'next/router';
 import { useAuthState } from '@/auth/data/auth.slice';
 import { useEffect } from 'react';
-import { useCompanyState } from '@/company/data/company.slice';
 
 const CompaniesPage: NextPage = () => {
   const { user: currentUser } = useAuthState();

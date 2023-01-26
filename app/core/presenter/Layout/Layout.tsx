@@ -1,11 +1,14 @@
 import { FC, PropsWithChildren } from 'react';
 import styles from '@/core/presenter/Layout/Layout.module.scss';
 import Navigation from '@/core/presenter/Layout/Navigation/Navigation';
-import { useAuthState } from '@/auth/data/auth.slice';
+import { useAuthLoading, useAuthState } from '@/auth/data/auth.slice';
 import Header from './Header/Header';
+import Spinner from '../ui/Spinner/Spinner';
+import Auth from '@/auth/presenter/Auth';
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   const { user } = useAuthState();
+  const isLoading = useAuthLoading();
 
   if (user != undefined) {
     return (
@@ -15,6 +18,8 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
         <div className={styles.center}>{children}</div>
       </div>
     );
+  } else if (isLoading) {
+    return <Spinner />;
   } else {
     return <>{children}</>;
   }

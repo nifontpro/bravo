@@ -1,17 +1,20 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  NextPage,
-} from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { errorCatch } from '@/core/utils/api.helpers';
 import Error404 from '../404';
 import Award from 'award/presenter/Award/Award';
 import { IAwardUsers } from '@/award/model/award.types';
 import { getAwardUrl } from '@/core/config/api.config';
 import { axiosCore } from '@/core/data/axios.core';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const SingleAwardPage: NextPage<IAwardUsers | undefined> = (award) => {
-  return award ? <Award award={award} /> : <Error404/>;
+  return award ? (
+    <AuthComponent minRole={'user'}>
+      <Award award={award} />
+    </AuthComponent>
+  ) : (
+    <Error404 />
+  );
 };
 
 export default SingleAwardPage;
@@ -22,7 +25,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     {}
   );
   return {
-    paths: allAwardsId.map(item => getAwardUrl(`/${item}`)),
+    paths: allAwardsId.map((item) => getAwardUrl(`/${item}`)),
     // fallback: 'blocking'
     fallback: true,
   };

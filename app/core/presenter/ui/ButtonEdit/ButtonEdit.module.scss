@@ -1,10 +1,11 @@
 .wrapper {
   .buttonEdit,
-  .buttonRefresh {
-    width: 52px;
-    height: 52px;
+  .buttonRefresh,
+  .buttonRemove {
+    width: 56px;
+    height: 56px;
   }
-  
+
   svg {
     path {
       @apply duration-200;
@@ -41,9 +42,5 @@
         stroke: var(--gray-dark);
       }
     }
-  }
-  .buttonRemove {
-    width: 56px;
-    height: 56px;
   }
 }
