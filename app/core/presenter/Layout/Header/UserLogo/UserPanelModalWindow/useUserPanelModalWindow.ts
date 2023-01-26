@@ -43,6 +43,7 @@ export const useUserPanelModalWindow = (
     dispatch(companyApi.util.resetApiState());
     dispatch(departmentApi.util.resetApiState());
     dispatch(userApi.util.resetApiState());
+    dispatch(authActions.setLoading(undefined))
     push('/auth');
   };
 

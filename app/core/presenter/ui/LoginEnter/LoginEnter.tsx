@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import styles from './LoginSingin.module.scss';
+import styles from './LoginEnter.module.scss';
 
-const LoginSingin = () => {
+const LoginEnter = () => {
   return (
     <div className={styles.wrapper}>
       <Link href='/auth'>
@@ -15,4 +15,4 @@ const LoginSingin = () => {
   );
 };
 
-export default LoginSingin;
+export default LoginEnter;

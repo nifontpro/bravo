@@ -6,9 +6,16 @@ import { CompanyService } from '@/company/data/company.service';
 import { ICompany } from '@/company/model/company.types';
 import { axiosCore } from '@/core/data/axios.core';
 import { getCompanyUrl } from '@/core/config/api.config';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 
 const SingleCompanyPage: NextPage<ICompany | undefined> = (company) => {
-  return company ? <SingleCompany company={company} /> : <Error404 />;
+  return company ? (
+    <AuthComponent minRole={'user'}>
+      <SingleCompany company={company} />
+    </AuthComponent>
+  ) : (
+    <Error404 />
+  );
 };
 
 export default SingleCompanyPage;
@@ -33,9 +40,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
   try {
     const id = String(params?.id);
-    const { data: company } = await axiosCore.post<ICompany>(getCompanyUrl("/get_id"), {
-			companyId: id
-		})
+    const { data: company } = await axiosCore.post<ICompany>(
+      getCompanyUrl('/get_id'),
+      {
+        companyId: id,
+      }
+    );
     // const { data: company } = await CompanyService.getById(id);
 
     return {

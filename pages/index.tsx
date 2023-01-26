@@ -19,14 +19,15 @@ import { useRouter } from 'next/router';
 const Home: NextPage = () => {
   const { currentCompany } = useCompanyState();
 
-  const { user } = useAuthState();
-  const { push } = useRouter();
+  // const { user } = useAuthState();
+  // const { push } = useRouter();
 
-  useEffect(() => {
-    if (!user) {
-      push('/auth');
-    }
-  }, [user, push]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     push('/auth');
+  //     console.log('redirect Index.ts')
+  //   }
+  // }, [user, push]);
 
   return (
     <AuthComponent minRole={'user'}>
