@@ -43,7 +43,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
   const handleClickOutside = () => {
     setVisibleModal(false);
   };
-  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
+ // useOutsideClick(ref, refOpen, handleClickOutside, visibleModal); // добавить как разберусь с Select React
 
   return (
     <Meta title='Редактирование компании'>

@@ -12,10 +12,15 @@ export const useModalWindowGalleryAwards = (
 ) => {
   const { query } = useRouter();
   const awardId = String(query.id);
+  const [idFolder, setIdFolder] = useState<string>('');
+  const { data: folders } = galleryApi.useGetFoldersQuery('root');
 
-  const { data: awardsGallery } = galleryApi.useGetGalleryObjectsQuery({
-    folderId: '63c52aacf615255dd0f15d75',
-  });
+  const { data: awardsGallery } = galleryApi.useGetGalleryObjectsQuery(
+    {
+      folderId: idFolder,
+    },
+    { skip: idFolder == '' }
+  );
 
   const [imagesPreview, setImagesPreview] = useState<
     IGalleryObject | undefined
@@ -46,5 +51,5 @@ export const useModalWindowGalleryAwards = (
       }
     }
   };
-  return {awardsGallery, imagesPreview, setImagesPreview, onSubmit};
+  return { awardsGallery, imagesPreview, setImagesPreview, onSubmit, folders, setIdFolder };
 };

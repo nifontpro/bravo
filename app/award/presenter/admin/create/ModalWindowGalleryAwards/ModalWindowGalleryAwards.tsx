@@ -7,6 +7,10 @@ import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import ChoiceItemImg from './ChoiceItemImg/ChoiceItemImg';
 import { useModalWindowGalleryAwards } from './useModalWindowGalleryAwards';
+import Select, { OnChangeValue } from 'react-select';
+import { IOption } from '@/core/presenter/ui/SelectArtem/SelectArtem.interface';
+import makeAnimated from 'react-select/animated';
+const animatedComponents = makeAnimated();
 
 const ModalWindowGalleryAwards = forwardRef(
   (
@@ -22,8 +26,26 @@ const ModalWindowGalleryAwards = forwardRef(
     }: ModalWindowGalleryAwardsProps,
     ref: ForwardedRef<HTMLDivElement>
   ): JSX.Element => {
-    const { awardsGallery, imagesPreview, setImagesPreview, onSubmit } =
-      useModalWindowGalleryAwards(create, setVisibleModal, setImg);
+    const {
+      awardsGallery,
+      imagesPreview,
+      setImagesPreview,
+      onSubmit,
+      folders,
+      setIdFolder,
+    } = useModalWindowGalleryAwards(create, setVisibleModal, setImg);
+
+    let arrFolders: IOption[] = [];
+    folders &&
+      folders[0].childrenIds.forEach((item) => {
+        arrFolders.push({
+          label: item,
+          value: item,
+        });
+      });
+    const onChange = (newValue: unknown | OnChangeValue<IOption, boolean>) => {
+      setIdFolder((newValue as IOption).value);
+    };
 
     return (
       <div
@@ -45,6 +67,14 @@ const ModalWindowGalleryAwards = forwardRef(
           <Htag tag='h2' className={styles.title}>
             Выберите медаль
           </Htag>
+
+          <Select
+            classNamePrefix='custom-select-rating'
+            placeholder={'Выберите папку с изображениями'}
+            options={arrFolders}
+            onChange={onChange}
+            components={animatedComponents}
+          />
 
           {
             <div className={cn(styles.wrapperChoiceImg)}>

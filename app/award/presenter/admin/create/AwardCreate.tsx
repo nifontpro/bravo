@@ -66,7 +66,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const handleClickOutside = () => {
     setVisibleModal(false);
   };
-  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
+  // useOutsideClick(ref, refOpen, handleClickOutside, visibleModal); // добавить как разберусь с Selectom React
 
   return (
     <Meta title='Создание новой награды'>
