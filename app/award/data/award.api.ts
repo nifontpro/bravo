@@ -12,6 +12,7 @@ import { userApi } from '@/user/data/user.api';
 import { IAwardCount } from '../model/count.types';
 import { messageApi } from 'message/data/message.api';
 import { activityApi } from '@/activity/data/activity.api';
+import {IGetAwardsWithUserRequest} from "@/award/model/request.types";
 
 export const awardApi = createApi({
   reducerPath: 'awardApi',
@@ -165,13 +166,27 @@ export const awardApi = createApi({
     }),
 
     /**
-     * Получить награды в компании с записями о награждениях с сотрудниками
-     * @param [filter] фильтрует по фамилии и имени, сортировка по фамилии
-     * Тяжелый композитный запрос для БД, использовать только при необходимости!!!
+     * Удалить!!!
      */
     getAwardsByCompanyWithUser: build.query<
       IAwardUsers[],
       { companyId: string; filter?: string }
+    >({
+      query: (body) => ({
+        method: 'POST',
+        url: getAwardUrl('/get_cu'),
+        body: body,
+      }),
+      providesTags: ['Award'],
+    }),
+
+    /**
+     * Получить награды в компании с записями о награждениях с сотрудниками
+     * Тяжелый композитный запрос для БД, использовать только при необходимости!!!
+     */
+    getAwardsByCompanyWithUserBase: build.query<
+        IAwardUsers[],
+        IGetAwardsWithUserRequest
     >({
       query: (body) => ({
         method: 'POST',
