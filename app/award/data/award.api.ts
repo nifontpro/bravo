@@ -171,17 +171,17 @@ export const awardApi = createApi({
     /**
      * Удалить!!!
      */
-    getAwardsByCompanyWithUser: build.query<
-      IAwardUsers[],
-      { companyId: string; filter?: string }
-    >({
-      query: (body) => ({
-        method: 'POST',
-        url: getAwardUrl('/get_cu'),
-        body: body,
-      }),
-      providesTags: ['Award'],
-    }),
+    // getAwardsByCompanyWithUser: build.query<
+    //   IAwardUsers[],
+    //   { companyId: string; filter?: string }
+    // >({
+    //   query: (body) => ({
+    //     method: 'POST',
+    //     url: getAwardUrl('/get_cu'),
+    //     body: body,
+    //   }),
+    //   providesTags: ['Award'],
+    // }),
 
     /**
      * Получить награды в компании с записями о награждениях с сотрудниками

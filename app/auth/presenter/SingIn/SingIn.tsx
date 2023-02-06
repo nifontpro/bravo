@@ -87,7 +87,7 @@ const SingIn = ({
           placeholder='Ваш логин'
           title='Логин'
           error={errors.login}
-          className='mb-[50px]'
+          className='mb-[20px] md:mb-[50px]'
         />
 
         <div className={styles.containerEye}>

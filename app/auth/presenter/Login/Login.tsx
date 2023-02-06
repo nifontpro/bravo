@@ -16,15 +16,15 @@ const LoginAuth = ({ className, ...props }: LoginProps): JSX.Element => {
 
   const [visible, setVisible] = useState<boolean>(true);
 
-  const onSubmitOne: SubmitHandler<ILoginInput> = async (data) => {
-    console.log(data);
-    setVisible(!visible);
-  };
+  // const onSubmitOne: SubmitHandler<ILoginInput> = async (data) => {
+  //   console.log(data);
+  //   setVisible(!visible);
+  // };
 
-  const onSubmitTwo: SubmitHandler<ILoginInput> = async (data) => {
-    console.log(data);
-    setVisible(!visible);
-  };
+  // const onSubmitTwo: SubmitHandler<ILoginInput> = async (data) => {
+  //   console.log(data);
+  //   setVisible(!visible);
+  // };
 
   return (
     <Meta title='Login'>

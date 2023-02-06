@@ -37,10 +37,10 @@ const ModalWindowGalleryAwards = forwardRef(
 
     let arrFolders: IOption[] = [];
     folders &&
-      folders[0].childrenIds.forEach((item) => {
+      folders.forEach((item) => {
         arrFolders.push({
-          label: item,
-          value: item,
+          label: item.name,
+          value: item.id,
         });
       });
     const onChange = (newValue: unknown | OnChangeValue<IOption, boolean>) => {

@@ -80,7 +80,7 @@ const LoginFormStepOne = ({
         title='Имя'
         placeholder='Введите имя'
         error={errors.name}
-        className='mb-[60px]'
+        className='mb-[20px] md:mb-[50px]'
       />
 
       <div className={styles.group}>
@@ -118,6 +118,7 @@ const LoginFormStepOne = ({
           title='Пароль'
           placeholder='Введите пароль'
           error={errors.password}
+          className='mb-[20px] md:mb-[0px]'
         />
         <Field
           {...register('passwordCheck', {

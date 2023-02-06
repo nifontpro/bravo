@@ -77,7 +77,7 @@ const PasswordRecovery = ({
             },
           })}
           title={`Укажите ваш email, мы пришлем ссылку для восстановления пароля.`}
-          placeholder='Введите email для восстановления пароля'
+          placeholder='Введите email'
           error={errors.code}
           type='email'
         />
