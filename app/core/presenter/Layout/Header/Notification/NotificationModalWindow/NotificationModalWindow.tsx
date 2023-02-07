@@ -51,7 +51,10 @@ const NotificationModalWindow = forwardRef(
             {...props}
             ref={ref}
           >
-            <ExitIcon onClick={() => setVisibleModal(false)} className={styles.exit} />
+            <ExitIcon
+              className={styles.exit}
+              onClick={() => setVisibleModal(false)}
+            />
             <Htag tag='h3' className={styles.title}>
               Уведомления
             </Htag>

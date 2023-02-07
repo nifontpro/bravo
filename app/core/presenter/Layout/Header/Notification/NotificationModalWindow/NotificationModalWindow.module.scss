@@ -21,11 +21,18 @@
 
   .exit {
     display: none;
+
     @media screen and (max-width: 768px) {
       display: block;
       position: absolute;
+      cursor: pointer;
       right: 30px;
       top: 30px;
+      &:hover {
+        path {
+          stroke: var(--gray-dark);
+        }
+      }
     }
   }
 

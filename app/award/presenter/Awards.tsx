@@ -21,13 +21,14 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
     useAwardsFull(currentPage);
   const [arr, setArr] = useState<IAwardUsers[]>([]);
   const [state, setState] = useState<1 | -1>(1);
+  console.log(awardsFull)
 
   // useEffect(() => {
   //   if (awardsFull) setArr([...arr, ...awardsFull]);
   // }, [awardsFull]);
 
-  let allAwards = arr?.filter((award) => award.state == 'AWARD');
-  let allNominee = arr?.filter((award) => award.state == 'NOMINEE');
+  let allAwards = awardsFull?.filter((award) => award.state == 'AWARD');
+  let allNominee = awardsFull?.filter((award) => award.state == 'NOMINEE');
 
   const { push } = useRouter();
 
@@ -54,21 +55,21 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   // };
 
   // Сотртировка по startDate
-    const filteredValue = (arr?.filter((item) => item.state?.includes(active)))
+    const filteredValue = (awardsFull?.filter((item) => item.state?.includes(active)))
 
   if (filteredValue) {
     filteredValue.sort((prev, next): number => {
       if (prev.startDate !== undefined && next.startDate !== undefined) {
         if (prev?.startDate > next?.startDate) return state; //(-1)
       }
-      return 1;
+      return state;
     });
   }
 
 
 
-  console.log(filteredValue);
-  console.log(state);
+  // console.log(filteredValue);
+  // console.log(state);
   // console.log(currentPage);
   // console.log(isFetching);
 
@@ -82,7 +83,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             <TabTitle
               active={active}
               setActive={setActive}
-              count={arr.length}
+              count={awardsFull.length}
               onClickActive={''}
               className={styles.all}
             >
