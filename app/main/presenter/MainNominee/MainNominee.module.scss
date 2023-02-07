@@ -40,20 +40,65 @@
     background: var(--gray-dark);
     padding: 30px;
     border-radius: 16px;
+    @media screen and (max-width: 1700px) {
+      max-width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
 
     .img {
       display: flex;
       justify-content: center;
+      @media screen and (max-width: 1700px) {
+        display: none;
+      }
     }
 
-    .countAwardsTitle {
-      margin-top: 40px;
-      margin-bottom: 15px;
+    .wrapper2 {
+      @media screen and (max-width: 1700px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      @media screen and (max-width: 600px) {
+        align-items: center;
+      }
+
+      .imgCenter {
+        display: none;
+        @media screen and (max-width: 600px) {
+          display: block;
+        }
+        @media screen and (max-width: 600px) {
+          width: 200px;
+        }
+      }
+
+      .countAwardsTitle {
+        margin-top: 40px;
+        margin-bottom: 15px;
+        @media screen and (max-width: 1700px) {
+          margin-top: 0px;
+        }
+        @media screen and (max-width: 600px) {
+          display: block;
+        }
+      }
+
+      .countEnd {
+        display: flex;
+        align-items: center;
+      }
     }
 
-    .countEnd {
-      display: flex;
-      align-items: center;
+    .imgEnd {
+      display: none;
+      @media screen and (max-width: 1700px) {
+        display: block;
+      }
+      @media screen and (max-width: 600px) {
+        display: none;
+      }
     }
   }
 }

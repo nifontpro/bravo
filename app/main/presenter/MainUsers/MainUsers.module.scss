@@ -38,5 +38,8 @@
     background: var(--white);
     padding: 30px;
     border-radius: 16px;
+    @media screen and (max-width: 768px) {
+      padding: 20px 10px;
+    }
   }
 }

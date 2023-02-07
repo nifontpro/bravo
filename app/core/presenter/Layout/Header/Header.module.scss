@@ -4,6 +4,10 @@
   grid-template-columns: [start] 360px [endNavigation] 78px [startSearch] 730px [endSearch] 1fr [startUser] auto [end];
   @apply pb-[40px] grid items-center;
 
+  @media screen and (max-width: 1700px) {
+    grid-template-columns: [start] 360px [endNavigation] 78px [startSearch] auto [endSearch] 1fr [startUser] auto [end];
+  }
+
   > .logo {
     grid-column: start / endNavigation;
     @apply self-center cursor-pointer;
@@ -11,6 +15,10 @@
 
   > .search {
     grid-column: startSearch / endSearch;
+
+    @media screen and (max-width: 1700px) {
+      display: none;
+    }
   }
 
   > .user {

@@ -1,17 +1,20 @@
-//$bar-width: 20%;
-
 .layout {
   background: var(--black);
   display: grid;
   grid-template-columns: 360px 1fr;
   grid-template-rows: auto 1fr;
   min-height: 100vh;
-  //   gap: 40px 30px;
   grid-template-areas:
     'header header'
     'navigation center';
-  // @apply relative;
   @apply animate-fade;
+
+  @media screen and (max-width: 1700px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'center';
+  }
 
   > .header {
     grid-area: header;
@@ -19,6 +22,10 @@
 
   > .navigation {
     grid-area: navigation;
+
+    @media screen and (max-width: 1700px) {
+      display: none;
+    }
   }
 
   > .center {
@@ -28,5 +35,18 @@
     grid-area: center;
     border-radius: 15px 0px 0px 0px;
     overflow: hidden;
+
+    @media screen and (max-width: 1700px) {
+      border-radius: 0px;
+    }
+    @media screen and (max-width: 1280px) {
+      padding: 40px 40px 0px 40px;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 30px 20px 0px 20px;
+    }
+    @media screen and (max-width: 400px) {
+      padding: 30px 10px 0px 10px;
+    }
   }
 }

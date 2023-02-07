@@ -2,9 +2,9 @@ import styles from './NotificationItem.module.scss';
 import { NotificationItemProps } from './NotificationItem.props';
 import cn from 'classnames';
 import P from '@/core/presenter/ui/P/P';
-import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import { timeConverter } from '@/core/utils/timeConverter';
 import { useUserPanelModalWindow } from '../useNotificationModalWindow';
+import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 
 const NotificationItem = ({
   className,

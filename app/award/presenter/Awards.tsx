@@ -22,9 +22,9 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const [arr, setArr] = useState<IAwardUsers[]>([]);
   const [state, setState] = useState<1 | -1>(1);
 
-  useEffect(() => {
-    if (awardsFull) setArr([...arr, ...awardsFull]);
-  }, [awardsFull]);
+  // useEffect(() => {
+  //   if (awardsFull) setArr([...arr, ...awardsFull]);
+  // }, [awardsFull]);
 
   let allAwards = arr?.filter((award) => award.state == 'AWARD');
   let allNominee = arr?.filter((award) => award.state == 'NOMINEE');
@@ -35,41 +35,37 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
     '' | 'NOMINEE' | 'AWARD' | 'DELETE_USER'
   >('');
 
-  useEffect(() => {
-    document.addEventListener('scroll', scrollHandler);
-    return function () {
-      document.removeEventListener('scroll', scrollHandler);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener('scroll', scrollHandler);
+  //   return function () {
+  //     document.removeEventListener('scroll', scrollHandler);
+  //   };
+  // }, []);
 
-  const scrollHandler = (e) => {
-    if (
-      e.target.documentElement.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) <
-        10 &&
-      !isFetching
-    ) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
+  // const scrollHandler = (e) => {
+  //   if (
+  //     e.target.documentElement.scrollHeight -
+  //       (e.target.documentElement.scrollTop + window.innerHeight) <
+  //       10 &&
+  //     !isFetching
+  //   ) {
+  //     setCurrentPage((prev) => prev + 1);
+  //   }
+  // };
 
   // Сотртировка по startDate
+    const filteredValue = (arr?.filter((item) => item.state?.includes(active)))
 
-  // if (filteredValue) {
-  //   filteredValue.sort((prev, next): number => {
-  //     if (prev.startDate !== undefined && next.startDate !== undefined) {
-  //       if (prev?.startDate > next?.startDate) return state; //(-1)
-  //     }
-  //     return 1;
-  //   });
-  // }
+  if (filteredValue) {
+    filteredValue.sort((prev, next): number => {
+      if (prev.startDate !== undefined && next.startDate !== undefined) {
+        if (prev?.startDate > next?.startDate) return state; //(-1)
+      }
+      return 1;
+    });
+  }
 
-  const filteredValue = (arr?.filter((item) => item.state?.includes(active))).sort((prev, next): number => {
-    if (prev.startDate !== undefined && next.startDate !== undefined) {
-      if (prev?.startDate > next?.startDate) return state; //(-1)
-    }
-    return state;
-  });
+
 
   console.log(filteredValue);
   console.log(state);

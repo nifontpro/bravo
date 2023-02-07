@@ -15,8 +15,8 @@ export const useAwardsFull = (currentPage: number = 0) => {
     const { data: awardsFull, isFetching } =
       awardApi.useGetAwardsByCompanyWithUserBaseQuery({
         companyId: currentCompany != null ? currentCompany.id : '',
-        page: currentPage,
-        pageSize: 12,
+        // page: currentPage,
+        // pageSize: 12,
         // filter: '123',
         field: 'startDate',
         direction: direction,

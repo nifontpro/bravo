@@ -1,5 +1,4 @@
 .wrapper {
-  //   margin-top: 55px;
   position: relative;
   display: grid;
   gap: 60px 60px;
@@ -10,19 +9,27 @@
     'users nominee';
   @apply animate-fade;
 
+  @media screen and (max-width: 1700px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'awards'
+      'users'
+      'nominee';
+  }
+
   .awards {
     grid-area: awards;
-    @apply duration-200
+    @apply duration-200;
   }
 
   .users {
     grid-area: users;
-    @apply duration-200
+    @apply duration-200;
   }
 
   .nominee {
     grid-area: nominee;
-    @apply duration-200
+    @apply duration-200;
   }
 }
 

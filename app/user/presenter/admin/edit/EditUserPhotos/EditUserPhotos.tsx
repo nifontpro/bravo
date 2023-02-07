@@ -1,7 +1,7 @@
 import styles from './EditUserPhotos.module.scss';
 import cn from 'classnames';
 import { EditUserPhotosProps } from './EditUserPhotos.props';
-import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
+import {ImageDefault} from "@/core/presenter/ui/icons/ImageDefault";
 import { ChangeEvent, useState } from 'react';
 import styleses from '@/core/presenter/ui/form/form.module.scss';
 import { userApi } from '@/user/data/user.api';

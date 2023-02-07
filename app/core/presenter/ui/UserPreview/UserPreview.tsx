@@ -1,7 +1,7 @@
 import styles from './UserPreview.module.scss';
 import cn from 'classnames';
 import { UserPreviewProps } from './UserPreview.props';
-import { ImageDefault } from '../icons/ImageDefault';
+import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import P from '../P/P';
 
 const UserPreview = ({
