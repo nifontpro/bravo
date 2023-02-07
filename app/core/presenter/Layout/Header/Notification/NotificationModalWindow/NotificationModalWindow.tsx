@@ -8,6 +8,7 @@ import { useUserPanelModalWindow } from './useNotificationModalWindow';
 import uniqid from 'uniqid';
 import NotificationItem from './NotificationItem/NotificationItem';
 import { AnimatePresence, motion } from 'framer-motion';
+import ExitIcon from '@/core/presenter/images/close.svg';
 
 const NotificationModalWindow = forwardRef(
   (
@@ -50,13 +51,14 @@ const NotificationModalWindow = forwardRef(
             {...props}
             ref={ref}
           >
+            <ExitIcon onClick={() => setVisibleModal(false)} className={styles.exit} />
             <Htag tag='h3' className={styles.title}>
               Уведомления
             </Htag>
 
             {message != undefined &&
             message.filter((item) => item.read == false).length > 0 ? (
-              <>
+              <div className={styles.wrapperList}>
                 <ul className={styles.list}>
                   {message.map((notification) => {
                     if (notification.read == false) {
@@ -76,7 +78,7 @@ const NotificationModalWindow = forwardRef(
                 >
                   Отметить все прочитанным
                 </P>
-              </>
+              </div>
             ) : (
               <P size='m' fontstyle='thin' className={styles.noneNotification}>
                 У вас пока нет уведомлений
