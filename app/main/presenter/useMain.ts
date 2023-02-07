@@ -18,13 +18,14 @@ export const useMain = () => {
 
   const [saveSetting] = userApi.useSaveSettingMutation();
 
-  const [state, setState] = useState<boolean | undefined>(undefined);
+  const [state, setState] = useState<boolean | undefined>(false);
   const [onBoarding, setOnboarding] = useState<number>(1);
   const [onBoardingText, setOnboardingText] = useState<string>('');
   const [onBoardingText3, setOnboardingText3] = useState<string>('');
 
   useEffect(() => {
     setState(settingsUser?.showOnboarding);
+    // setState(false);
     if (onBoarding == 1) {
       setOnboardingText('Следи за своим прогрессом');
     }

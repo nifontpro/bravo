@@ -5,12 +5,20 @@
   @apply pb-[40px] grid items-center;
 
   @media screen and (max-width: 1700px) {
-    grid-template-columns: [start] 360px [endNavigation] 78px [startSearch] auto [endSearch] 1fr [startUser] auto [end];
+    grid-template-columns: [start] 223px [endNavigation] 1fr [startUser] auto [end];
+  }
+  @media screen and (max-width: 768px) {
+    padding: 30px 20px;
+  }
+  @media screen and (max-width: 500px) {
+    grid-template-columns: [start] 110px [endNavigation] 1fr [startUser] auto [end];
   }
 
   > .logo {
     grid-column: start / endNavigation;
     @apply self-center cursor-pointer;
+    @media screen and (max-width: 1280px) {
+    }
   }
 
   > .search {
