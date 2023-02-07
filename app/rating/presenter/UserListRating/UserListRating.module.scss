@@ -156,7 +156,7 @@
       grid-template-columns: [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
     }
     @media screen and (max-width: 370px) {
-      grid-template-columns: [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
+      grid-template-columns: [startUser] 188px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
     }
 
     &:hover {
