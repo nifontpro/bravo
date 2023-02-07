@@ -1,4 +1,4 @@
-import {FC} from 'react'
+import {Dispatch, FC, SetStateAction} from 'react'
 
 import Menu from '@/core/presenter/Layout/Navigation/MenuContainer/Menu'
 import {
@@ -11,7 +11,7 @@ import {
 import {IMenu} from "@/core/presenter/Layout/Navigation/MenuContainer/menu.interface";
 import {useAuthState} from "@/auth/data/auth.slice";
 
-const MenuContainer: FC = () => {
+const MenuContainer: FC<{setNavigationVisible: Dispatch<SetStateAction<boolean>>}> = ({setNavigationVisible}) => {
 
 	const {user} = useAuthState()
 
@@ -34,7 +34,7 @@ const MenuContainer: FC = () => {
 
 	return (
 		<div className='sticky top-10'>
-			<Menu menu={menu}/>
+			<Menu menu={menu} setNavigationVisible={setNavigationVisible}/>
 			{/* <Menu menu={userMenu}/> */}
 		</div>
 	)

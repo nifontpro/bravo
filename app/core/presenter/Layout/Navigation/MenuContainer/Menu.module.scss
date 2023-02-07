@@ -1,6 +1,26 @@
 .menu {
   @apply mb-14 animate-fade;
 
+  .exit {
+    display: none;
+    @media screen and (max-width: 1700px) {
+      display: block;
+      position: absolute;
+      top: -120px;
+      left: 40px;
+      cursor: pointer;
+
+      path {
+        stroke: var(--white);
+      }
+      &:hover {
+        path {
+          stroke: var(--gray);
+        }
+      }
+    }
+  }
+
   .heading {
     color: var(--gray-light);
     @apply uppercase text-sm font-semibold pl-layout;

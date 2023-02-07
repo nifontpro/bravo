@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 import styles from '@/core/presenter/Layout/Layout.module.scss';
 import Navigation from '@/core/presenter/Layout/Navigation/Navigation';
 import { useAuthLoading, useAuthState } from '@/auth/data/auth.slice';
@@ -9,12 +9,13 @@ import Auth from '@/auth/presenter/Auth';
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   const { user } = useAuthState();
   const isLoading = useAuthLoading();
+  const [navigationVisible, setNavigationVisible] = useState<boolean>(false);
 
   if (user != undefined) {
     return (
       <div className={styles.layout}>
-        <Header className={styles.header} />
-        <Navigation className={styles.navigation} />
+        <Header className={styles.header} setNavigationVisible={setNavigationVisible} navigationVisible={navigationVisible}/>
+        <Navigation className={styles.navigation} setNavigationVisible={setNavigationVisible}/>
         <div className={styles.center}>{children}</div>
       </div>
     );

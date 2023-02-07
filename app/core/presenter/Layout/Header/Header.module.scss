@@ -1,27 +1,38 @@
 .header {
   position: relative;
   padding: 40px 55px 40px 70px;
-  grid-template-columns: [start] 360px [endNavigation] 78px [startSearch] 730px [endSearch] 1fr [startUser] auto [end];
+  grid-template-columns: [start] 236px [endNavigation] 78px [startSearch] 730px [endSearch] 1fr [startUser] auto [end];
   @apply pb-[40px] grid items-center;
 
   @media screen and (max-width: 1700px) {
-    grid-template-columns: [start] 223px [endNavigation] 1fr [startUser] auto [end];
+    grid-template-columns: [startMenu] 40px [endMenu] 30px [startLogo] 236px [endNavigation] 1fr [startUser] auto [end];
   }
   @media screen and (max-width: 768px) {
     padding: 30px 20px;
   }
   @media screen and (max-width: 500px) {
-    grid-template-columns: [start] 110px [endNavigation] 1fr [startUser] auto [end];
+    padding: 15px 10px;
+    grid-template-columns: [startMenu] 30px [endMenu] 15px [startLogo] 130px [endNavigation] 1fr [startUser] auto [end];
   }
 
-  > .logo {
-    grid-column: start / endNavigation;
-    @apply self-center cursor-pointer;
-    @media screen and (max-width: 1280px) {
+  .menu {
+    display: none;
+    cursor: pointer;
+    @media screen and (max-width: 1700px) {
+      display: block;
+      grid-column: startMenu / endMenu;
     }
   }
 
-  > .search {
+  .logo {
+    grid-column: start / endNavigation;
+    @apply self-center cursor-pointer;
+    @media screen and (max-width: 1700px) {
+      grid-column: startLogo / endNavigation;
+    }
+  }
+
+  .search {
     grid-column: startSearch / endSearch;
 
     @media screen and (max-width: 1700px) {
@@ -29,34 +40,59 @@
     }
   }
 
-  > .user {
+  .user {
     grid-column: startUser / endUser;
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     align-items: center;
+    @media screen and (max-width: 500px) {
+      grid-template-columns: 40px 40px;
+    }
 
     .userImg {
       cursor: pointer;
       height: 64px;
       width: 64px;
       @apply duration-200;
+      @media screen and (max-width: 500px) {
+        height: 40px;
+        width: 40px;
+      }
 
       &:hover {
         opacity: 0.5;
       }
     }
 
-    > a {
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      > svg {
-        width: 32px;
-        height: 32px;
-        fill: white;
-      }
+    // a {
+    //   cursor: pointer;
+    //   display: flex;
+    //   justify-content: center;
+    //   > svg {
+    //     width: 32px;
+    //     height: 32px;
+    //     fill: white;
+    //   }
+    // }
+  }
+
+  .navigationVisible {
+    padding-top: 150px;
+    z-index: 100;
+    background-color: var(--gray-dark);
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 375px;
+    height: 100%;
+    @media screen and (max-width: 500px) {
+      width: 320px;
     }
+  }
+
+  .navigationHidden {
+    display: none;
   }
 }
