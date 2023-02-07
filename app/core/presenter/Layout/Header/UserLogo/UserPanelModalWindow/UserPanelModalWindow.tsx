@@ -10,6 +10,7 @@ import P from '@/core/presenter/ui/P/P';
 import { ForwardedRef, forwardRef } from 'react';
 import { useUserPanelModalWindow } from './useUserPanelModalWindow';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const UserPanelModalWindow = forwardRef(
   (
@@ -28,6 +29,7 @@ const UserPanelModalWindow = forwardRef(
       handleClickEditPassword,
       handleLogout,
     } = useUserPanelModalWindow(setVisibleModal, user);
+    const { windowSize } = useWindowSize();
 
     const variants = {
       visible: {
@@ -36,11 +38,11 @@ const UserPanelModalWindow = forwardRef(
       },
       hidden: {
         opacity: 0,
-        y: '-60px',
+        y: windowSize.winWidth > 768 ? '-60px' : '60px',
       },
       exit: {
         opacity: 0,
-        y: '-60px',
+        y: windowSize.winWidth > 768 ? '-60px' : '60px',
       },
     };
 
@@ -57,6 +59,8 @@ const UserPanelModalWindow = forwardRef(
             {...props}
             ref={ref}
           >
+            <div className={styles.slash} onClick={() => setVisibleModal(false)}/>
+
             <Htag tag='h3' className={styles.title}>
               {user?.login}
             </Htag>
