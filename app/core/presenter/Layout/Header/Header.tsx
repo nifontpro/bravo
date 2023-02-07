@@ -10,13 +10,14 @@ import Notification from './Notification/Notification';
 import MenuIcon from '@/core/presenter/images/menu.svg';
 import { useRouter } from 'next/router';
 import Navigation from '../Navigation/Navigation';
-import { useState } from 'react';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
+import { useLayout } from '../useLayout';
 
-const Header = ({ setNavigationVisible, navigationVisible, className, ...props }: HeaderProps): JSX.Element => {
+const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const { user } = useAuthState();
   const { push } = useRouter();
-  const { windowSize } = useWindowSize()
+  const { windowSize } = useWindowSize();
+  const { open, visibleNavigation } = useLayout();
 
   const { data: allMessage } = messageApi.useGetByUserQuery(user?.id || '', {
     skip: !user?.id,
@@ -24,7 +25,7 @@ const Header = ({ setNavigationVisible, navigationVisible, className, ...props }
 
   return (
     <header className={cn(className, styles.header)} {...props}>
-      <MenuIcon className={styles.menu} onClick={() => setNavigationVisible(!navigationVisible)}/>
+      <MenuIcon className={styles.menu} onClick={open} />
       <LogoIcon className={styles.logo} onClick={() => push('/')} />
       <Search
         color='gray'
@@ -38,10 +39,10 @@ const Header = ({ setNavigationVisible, navigationVisible, className, ...props }
         <UserLogo user={user} className={styles.userImg} />
       </div>
       <Navigation
-      setNavigationVisible={setNavigationVisible}
         className={cn({
-          [styles.navigationVisible]: navigationVisible,
-          [styles.navigationHidden]: !navigationVisible || windowSize.winWidth > 1700,
+          [styles.navigationVisible]: visibleNavigation,
+          [styles.navigationHidden]:
+            !visibleNavigation || windowSize.winWidth > 1700,
         })}
       />
     </header>

@@ -9,6 +9,7 @@ import uniqid from 'uniqid';
 import NotificationItem from './NotificationItem/NotificationItem';
 import { AnimatePresence, motion } from 'framer-motion';
 import ExitIcon from '@/core/presenter/images/close.svg';
+import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const NotificationModalWindow = forwardRef(
   (
@@ -22,6 +23,7 @@ const NotificationModalWindow = forwardRef(
     ref: ForwardedRef<HTMLDivElement>
   ): JSX.Element => {
     const { handleClickReadAll } = useUserPanelModalWindow(message);
+    const { windowSize } = useWindowSize();
 
     const variants = {
       visible: {
@@ -30,11 +32,11 @@ const NotificationModalWindow = forwardRef(
       },
       hidden: {
         opacity: 0,
-        y: '-60px',
+        y: windowSize.winWidth < 768 ? '0' : '-60px',
       },
       exit: {
         opacity: 0,
-        y: '-60px',
+        y: windowSize.winWidth < 768 ? '0' : '-60px',
       },
     };
 

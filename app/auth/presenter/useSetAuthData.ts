@@ -7,7 +7,7 @@ import { getCompanyByStorage } from '@/auth/data/auth.helper';
 import { useDispatch } from 'react-redux';
 import { companyActions } from '@/company/data/company.slice';
 
-/** 
+/**
  * Хук устанавливает текущую компанию и отдел при входе пользователя
  */
 

@@ -21,7 +21,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
     useAwardsFull(currentPage);
   const [arr, setArr] = useState<IAwardUsers[]>([]);
   const [state, setState] = useState<1 | -1>(1);
-  console.log(awardsFull)
+  // console.log(awardsFull)
 
   // useEffect(() => {
   //   if (awardsFull) setArr([...arr, ...awardsFull]);

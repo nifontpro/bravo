@@ -1,19 +1,20 @@
 import cn from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Dispatch, FC, SetStateAction } from 'react';
+import { FC } from 'react';
 // import MaterialIcon from '@/core/presenter/ui/icons/MaterialIcon';
 import styles from '@/core/presenter/Layout/Navigation/MenuContainer/Menu.module.scss';
 import { IMenuItem } from '@/core/presenter/Layout/Navigation/MenuContainer/menu.interface';
 // import { useDispatch } from 'react-redux';
 // import { modalActions } from '@/core/store/modal.slice';
 import ButtonMenuIcon from '@/core/presenter/ui/ButtonMenuIcon/ButtonMenuIcon';
+import { useLayout } from '../../useLayout';
 
 const MenuItem: FC<{
   item: IMenuItem;
-  setNavigationVisible: Dispatch<SetStateAction<boolean>>;
-}> = ({ item, setNavigationVisible }) => {
+}> = ({ item }) => {
   const { asPath } = useRouter();
+  const { close } = useLayout();
 
   // const dispatch = useDispatch();
   // const handleClick = () => {
@@ -29,7 +30,7 @@ const MenuItem: FC<{
       })}
     >
       <Link href={item.link}>
-        <a onClick={() => setNavigationVisible(false)}>
+        <a onClick={close}>
           <div className='w-[20px] mr-[15px]'>
             <ButtonMenuIcon icon={item.icon} />
           </div>
