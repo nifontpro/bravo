@@ -21,6 +21,10 @@
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
+      
+      .arrow {
+        width: 13px;
+      }
 
       svg path {
         @apply duration-200;

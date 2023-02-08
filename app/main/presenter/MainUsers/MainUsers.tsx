@@ -3,7 +3,6 @@ import Meta from '@/core/utils/meta/Meta';
 import { MainUsersProps } from './MainUsers.props';
 import cn from 'classnames';
 import UserListRating from 'rating/presenter/UserListRating/UserListRating';
-import { useState } from 'react';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import P from '@/core/presenter/ui/P/P';
 import ArrowIcon from '@/core/presenter/images/arrowRight.svg';

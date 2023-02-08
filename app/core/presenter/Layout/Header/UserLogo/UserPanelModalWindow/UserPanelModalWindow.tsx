@@ -38,11 +38,11 @@ const UserPanelModalWindow = forwardRef(
       },
       hidden: {
         opacity: 0,
-        y: windowSize.winWidth > 768 ? '-60px' : '60px',
+        y: windowSize.winWidth > 768 ? '-60px' : '460px',
       },
       exit: {
         opacity: 0,
-        y: windowSize.winWidth > 768 ? '-60px' : '60px',
+        y: windowSize.winWidth > 768 ? '-60px' : '460px',
       },
     };
 

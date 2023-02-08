@@ -4,15 +4,23 @@
     margin-top: 40px;
     margin-bottom: 65px;
     display: grid;
-    grid-template-columns: [start] 250px [endCompany] 15px [startDepart] 250px [endDepart] 1fr [startSort] auto [endSort] 30px [startToogle] auto [end];
+    // grid-template-columns: [start] 250px [endCompany] 15px [startDepart] 250px [endDepart] 1fr [startSort] auto [endSort] 30px [startToogle] auto [end];
+    grid-template-columns: [start] 250px [endCompany] 1fr [startSort] auto [endSort] 30px [startToogle] auto [end];
+
+    @media screen and (max-width: 1280px) {
+      grid-template-columns: [start] 250px [endCompany] 1fr [startSort] auto [endSort] 15px [startToogle] auto [end];
+    }
+
+    @media screen and (max-width: 820px) {
+      display: none;
+    }
 
     .selectCompany {
       grid-column: start / endCompany;
     }
-
-    .selectDepartment {
-      grid-column: startDepart / endDepart;
-    }
+    // .selectDepartment {
+    //   grid-column: startDepart / endDepart;
+    // }
 
     .sort {
       grid-column: startSort / endSort;
@@ -35,9 +43,16 @@
     padding: 30px;
     border-radius: 20px;
     margin-bottom: 50px;
+    
+    @media screen and (max-width: 768px) {
+      padding: 20px 10px 13px 10px;
+    }
 
     .search {
       margin-bottom: 50px;
+      @media screen and (max-width: 1280px) {
+        margin-bottom: 20px;
+      }
     }
   }
 
