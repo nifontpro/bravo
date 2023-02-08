@@ -9,6 +9,7 @@ import SingleActivity from './SingleActivity/SingleActivity';
 import Search from '@/core/presenter/ui/Search/Search';
 import RangeCalendar from '@/core/presenter/ui/RangeCalendar/RangeCalendar';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
+import FilterActivity from './FilterActivity/FilterActivity';
 
 const Activity = ({
   company,
@@ -38,6 +39,15 @@ const Activity = ({
         <Htag tag='h2' className={styles.headTitle}>
           Активность
         </Htag>
+
+        <FilterActivity
+          active={active}
+          setActive={setActive}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+          state={state}
+          setState={setState}
+        />
 
         <div className={styles.header}>
           <TabTitle
@@ -85,7 +95,7 @@ const Activity = ({
             Сначала новые
           </SortButton>
 
-          <RangeCalendar setStartDate={setStartDate} setEndDate={setEndDate} />
+          <RangeCalendar placement='bottomLeft' setStartDate={setStartDate} setEndDate={setEndDate} />
         </div>
 
         <div className={styles.cards}>

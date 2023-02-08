@@ -4,14 +4,14 @@
   min-width: 335px;
   height: 100%;
   display: grid;
-  grid-template-columns: [start] 64px [endImg] 25px [startUser] 250px [endUser] 1fr [startDepart] 200px [endDepart] 1fr [startAward] auto [end];
+  grid-template-columns: [start] 64px [endImg] 25px [startUser] 250px [endUser] 1fr [startDepart] 200px [endDepart] 1fr [startAward] 300px [end];
   align-items: center;
 
   @media screen and (max-width: 1280px) {
-    grid-template-columns: [start] 64px [endImg] 25px [startUser] 200px [endUser] 1fr [startDepart] 200px [endDepart] 1fr [startAward] auto [end];
+    grid-template-columns: [start] 64px [endImg] 25px [startUser] 200px [endUser] 1fr [startDepart] 200px [endDepart] 1fr [startAward] 300px [end];
   }
   @media screen and (max-width: 1000px) {
-    grid-template-columns: [start] 64px [endImg] 25px [startUser] 200px [endUser] 1fr [startAward] auto [end];
+    grid-template-columns: [start] 64px [endImg] 25px [startUser] 200px [endUser] 1fr [startAward] 300px [end];
   }
   @media screen and (max-width: 680px) {
     min-width: 100%;
@@ -48,11 +48,10 @@
     grid-column: startAward / end;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
 
     @media screen and (max-width: 680px) {
       grid-column: start / endUser;
-      justify-content: flex-start;
     }
 
     .imgAward {
