@@ -4,6 +4,15 @@
     align-items: center;
     justify-content: space-between;
 
+    .arrow {
+      width: 13px;
+      margin-left: 20px;
+      @media screen and (max-width: 768px) {
+        margin-left: 10px;
+        width: 8px;
+      }
+    }
+
     .img {
       background: var(--orange-dark);
       border-radius: 16px;
