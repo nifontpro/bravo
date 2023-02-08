@@ -19,16 +19,25 @@
     display: none;
     cursor: pointer;
     @media screen and (max-width: 1700px) {
+      width: 40px;
       display: block;
       grid-column: startMenu / endMenu;
+    }
+    @media screen and (max-width: 1700px) {
+      width: 30px;
     }
   }
 
   .logo {
+    width: 236px;
     grid-column: start / endNavigation;
     @apply self-center cursor-pointer;
+
     @media screen and (max-width: 1700px) {
       grid-column: startLogo / endNavigation;
+    }
+    @media screen and (max-width: 500px) {
+    width: 130px;
     }
   }
 
