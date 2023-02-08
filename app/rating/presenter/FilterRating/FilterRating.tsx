@@ -3,10 +3,11 @@ import cn from 'classnames';
 import uniqid from 'uniqid';
 import { FilterRatingProps } from './FilterRating.props';
 import Button from '@/core/presenter/ui/Button/Button';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import P from '@/core/presenter/ui/P/P';
 import CheckedIcon from '@/core/presenter/images/checked.svg';
+import useOutsideClick from '@/core/hooks/useOutsideClick';
 
 const FilterRating = ({
   departments,
@@ -36,9 +37,23 @@ const FilterRating = ({
     },
   };
 
+  //Закрытие модального окна уведомлений нажатием вне
+  const refFilter = useRef(null);
+  const refOpenFilter = useRef(null);
+  const handleClickOutsideNotification = () => {
+    setVisibleFilter(false);
+  };
+  useOutsideClick(
+    refFilter,
+    refOpenFilter,
+    handleClickOutsideNotification,
+    visibleFilter
+  );
+
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <Button
+      ref={refFilter}
         size='m'
         appearance='whiteBlack'
         className={styles.button}
@@ -49,6 +64,7 @@ const FilterRating = ({
       <AnimatePresence mode='wait'>
         {visibleFilter && (
           <motion.div
+            ref={refOpenFilter}
             initial='hidden'
             animate='visible'
             exit='exit'
@@ -183,12 +199,15 @@ const FilterRating = ({
                   Показать
                 </P>
                 <ul className={styles.list}>
-                  <li className={styles.listItem} onClick={() => setSortAward(false)}>
+                  <li
+                    className={styles.listItem}
+                    onClick={() => setSortAward(false)}
+                  >
                     <div className={styles.circle}></div>
                     <CheckedIcon
                       className={cn(styles.checked, {
                         [styles.visible]: !sortAward,
-                        [styles.hidden]: sortAward
+                        [styles.hidden]: sortAward,
                       })}
                     />
                     <P
@@ -201,7 +220,10 @@ const FilterRating = ({
                       С наградами
                     </P>
                   </li>
-                  <li className={styles.listItem} onClick={() => setSortAward(true)}>
+                  <li
+                    className={styles.listItem}
+                    onClick={() => setSortAward(true)}
+                  >
                     <div className={styles.circle}></div>
                     <CheckedIcon
                       className={cn(styles.checked, {
