@@ -8,13 +8,13 @@ import { useActivity } from './useActivity';
 import SingleActivity from './SingleActivity/SingleActivity';
 import Search from '@/core/presenter/ui/Search/Search';
 import RangeCalendar from '@/core/presenter/ui/RangeCalendar/RangeCalendar';
+import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const Activity = ({
   company,
   className,
   ...props
 }: ActivityProps): JSX.Element => {
-  
   const {
     active,
     setActive,
@@ -29,6 +29,8 @@ const Activity = ({
     handleChange,
     filteredValue,
   } = useActivity();
+
+  const { windowSize } = useWindowSize();
 
   return (
     <Meta title='Активность'>
@@ -89,7 +91,9 @@ const Activity = ({
         <div className={styles.cards}>
           <Search
             onChange={handleChange}
-            placeholder='Фамилия, Имя, Отдел...'
+            placeholder={
+              windowSize.winWidth < 768 ? 'Поиск...' : 'Фамилия, Имя, Отдел...'
+            }
             color='white'
             button={false}
             search={true}

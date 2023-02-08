@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import P from '@/core/presenter/ui/P/P';
 import CheckedIcon from '@/core/presenter/images/checked.svg';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
+import SortIcon from '@/core/presenter/images/sort.svg';
 
 const FilterRating = ({
   departments,
@@ -53,13 +54,13 @@ const FilterRating = ({
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <Button
-      ref={refFilter}
+        ref={refFilter}
         size='m'
         appearance='whiteBlack'
         className={styles.button}
         onClick={() => setVisibleFilter(!visibleFilter)}
       >
-        Фильтры
+        <SortIcon /> &emsp;Фильтры
       </Button>
       <AnimatePresence mode='wait'>
         {visibleFilter && (

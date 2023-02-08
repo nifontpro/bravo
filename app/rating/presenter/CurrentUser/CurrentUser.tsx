@@ -25,7 +25,6 @@ const CurrentUser = ({
           <div
             key={uniqid()}
             className={styles.userWrapper}
-            // onClick={() => push(getUserUrl(`/${currentUser?.id}`))}
           >
             <P
               size='s'
