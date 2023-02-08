@@ -19,16 +19,25 @@
     display: none;
     cursor: pointer;
     @media screen and (max-width: 1700px) {
+      width: 40px;
       display: block;
       grid-column: startMenu / endMenu;
+    }
+    @media screen and (max-width: 1700px) {
+      width: 30px;
     }
   }
 
   .logo {
+    width: 236px;
     grid-column: start / endNavigation;
     @apply self-center cursor-pointer;
+
     @media screen and (max-width: 1700px) {
       grid-column: startLogo / endNavigation;
+    }
+    @media screen and (max-width: 500px) {
+    width: 130px;
     }
   }
 
@@ -77,11 +86,10 @@
     // }
   }
 
-  .navigationVisible {
+  .navigation {
     padding-top: 150px;
-    z-index: 100;
+    // z-index: 100;
     background-color: var(--gray-dark);
-    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -90,9 +98,5 @@
     @media screen and (max-width: 500px) {
       width: 320px;
     }
-  }
-
-  .navigationHidden {
-    display: none;
   }
 }
