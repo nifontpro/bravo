@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import Navigation from '../Navigation/Navigation';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
 import { useLayout } from '../useLayout';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const { user } = useAuthState();
@@ -22,6 +23,18 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   const { data: allMessage } = messageApi.useGetByUserQuery(user?.id || '', {
     skip: !user?.id,
   });
+
+  const variants = {
+    visible: {
+      opacity: 1,
+    },
+    hidden: {
+      opacity: 0,
+    },
+    exit: {
+      opacity: 0,
+    },
+  };
 
   return (
     <header className={cn(className, styles.header)} {...props}>
@@ -38,13 +51,24 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
         <Notification allMessage={allMessage} />
         <UserLogo user={user} className={styles.userImg} />
       </div>
-      <Navigation
-        className={cn({
-          [styles.navigationVisible]: visibleNavigation,
-          [styles.navigationHidden]:
-            !visibleNavigation || windowSize.winWidth > 1700,
-        })}
-      />
+      <AnimatePresence mode='wait'>
+        {visibleNavigation && windowSize.winWidth < 1700 ? (
+          <motion.div
+          initial='hidden'
+          animate='visible'
+          exit='exit'
+          variants={variants}
+          transition={{ duration: 0.4 }}
+          className='z-[100]'
+          >
+            <Navigation
+              className={styles.navigation}
+            />
+          </motion.div>
+        ) : (
+          ''
+        )}
+      </AnimatePresence>
     </header>
   );
 };
