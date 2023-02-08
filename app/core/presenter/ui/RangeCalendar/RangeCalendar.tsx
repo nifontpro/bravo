@@ -54,16 +54,6 @@ const RangeCalendar = ({
           position: 'fixed',
           width: `${windowSize.winWidth}`
         } : {}}
-        // style={{
-        //   height: "auto",
-        //   width: "1000px",
-        //   // border: "none",
-        //   // borderRadius: "0px",
-        //   // cursor: "pointer",
-        //   // fontSize: "17px",
-        //   // margin: "0px",
-        //   // padding: "0px"
-        // }}
       />
     </div>
   );
