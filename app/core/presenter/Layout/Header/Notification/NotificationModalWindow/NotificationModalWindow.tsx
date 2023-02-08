@@ -8,6 +8,8 @@ import { useUserPanelModalWindow } from './useNotificationModalWindow';
 import uniqid from 'uniqid';
 import NotificationItem from './NotificationItem/NotificationItem';
 import { AnimatePresence, motion } from 'framer-motion';
+import ExitIcon from '@/core/presenter/images/close.svg';
+import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const NotificationModalWindow = forwardRef(
   (
@@ -21,6 +23,7 @@ const NotificationModalWindow = forwardRef(
     ref: ForwardedRef<HTMLDivElement>
   ): JSX.Element => {
     const { handleClickReadAll } = useUserPanelModalWindow(message);
+    const { windowSize } = useWindowSize();
 
     const variants = {
       visible: {
@@ -29,11 +32,11 @@ const NotificationModalWindow = forwardRef(
       },
       hidden: {
         opacity: 0,
-        y: '-60px',
+        y: windowSize.winWidth < 768 ? '0' : '-60px',
       },
       exit: {
         opacity: 0,
-        y: '-60px',
+        y: windowSize.winWidth < 768 ? '0' : '-60px',
       },
     };
 
@@ -50,13 +53,17 @@ const NotificationModalWindow = forwardRef(
             {...props}
             ref={ref}
           >
+            <ExitIcon
+              className={styles.exit}
+              onClick={() => setVisibleModal(false)}
+            />
             <Htag tag='h3' className={styles.title}>
               Уведомления
             </Htag>
 
             {message != undefined &&
             message.filter((item) => item.read == false).length > 0 ? (
-              <>
+              <div className={styles.wrapperList}>
                 <ul className={styles.list}>
                   {message.map((notification) => {
                     if (notification.read == false) {
@@ -76,7 +83,7 @@ const NotificationModalWindow = forwardRef(
                 >
                   Отметить все прочитанным
                 </P>
-              </>
+              </div>
             ) : (
               <P size='m' fontstyle='thin' className={styles.noneNotification}>
                 У вас пока нет уведомлений

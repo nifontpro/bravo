@@ -4,7 +4,6 @@ import Navigation from '@/core/presenter/Layout/Navigation/Navigation';
 import { useAuthLoading, useAuthState } from '@/auth/data/auth.slice';
 import Header from './Header/Header';
 import Spinner from '../ui/Spinner/Spinner';
-import Auth from '@/auth/presenter/Auth';
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   const { user } = useAuthState();

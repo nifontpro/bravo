@@ -14,6 +14,8 @@ import Search from '@/core/presenter/ui/Search/Search';
 import { useAuthState } from '@/auth/data/auth.slice';
 import CurrentUser from './CurrentUser/CurrentUser';
 import SortButton from '@/core/presenter/ui/SortButton/SortButton';
+import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
+import FilterRating from './FilterRating/FilterRating';
 
 const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
   const { user } = useAuthState();
@@ -100,6 +102,16 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
           <ButtonToggle setSortAward={setSortAward} className={styles.toogle} />
         </div>
 
+        <FilterRating
+          departments={departments}
+          departSort={departSort}
+          setDepartSort={setDepartSort}
+          state={state}
+          setState={setState}
+          sortAward={sortAward}
+          setSortAward={setSortAward}
+        />
+
         {currentUser && (
           <CurrentUser
             currentUser={currentUser}
@@ -118,6 +130,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
           />
           <UserListRating withoutCountAwards={true} users={filteredValue} />
         </div>
+        <ButtonScrollUp />
       </div>
     </Meta>
   );

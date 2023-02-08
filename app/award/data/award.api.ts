@@ -12,7 +12,7 @@ import { userApi } from '@/user/data/user.api';
 import { IAwardCount } from '../model/count.types';
 import { messageApi } from 'message/data/message.api';
 import { activityApi } from '@/activity/data/activity.api';
-import {IGetAwardsWithUserRequest} from "@/award/model/request.types";
+import { IGetAwardsWithUserRequest } from '../model/request.types';
 
 export const awardApi = createApi({
   reducerPath: 'awardApi',
@@ -57,11 +57,14 @@ export const awardApi = createApi({
     }),
 
     /**
- 		 * Установить изображение из галереи
- 		 * @param [awardId]
- 		 * @param [galleryItemId] - id объекта из галереи
- 		 */
- 		setImageFromGallery: build.mutation<void, { awardId: string; galleryItemId: string }>({
+     * Установить изображение из галереи
+     * @param [awardId]
+     * @param [galleryItemId] - id объекта из галереи
+     */
+    setImageFromGallery: build.mutation<
+      void,
+      { awardId: string; galleryItemId: string }
+    >({
       query: (request) => ({
         method: 'POST',
         url: getAwardUrl('/image/set_sys'),
@@ -168,25 +171,25 @@ export const awardApi = createApi({
     /**
      * Удалить!!!
      */
-    getAwardsByCompanyWithUser: build.query<
-      IAwardUsers[],
-      { companyId: string; filter?: string }
-    >({
-      query: (body) => ({
-        method: 'POST',
-        url: getAwardUrl('/get_cu'),
-        body: body,
-      }),
-      providesTags: ['Award'],
-    }),
+    // getAwardsByCompanyWithUser: build.query<
+    //   IAwardUsers[],
+    //   { companyId: string; filter?: string }
+    // >({
+    //   query: (body) => ({
+    //     method: 'POST',
+    //     url: getAwardUrl('/get_cu'),
+    //     body: body,
+    //   }),
+    //   providesTags: ['Award'],
+    // }),
 
     /**
      * Получить награды в компании с записями о награждениях с сотрудниками
      * Тяжелый композитный запрос для БД, использовать только при необходимости!!!
      */
     getAwardsByCompanyWithUserBase: build.query<
-        IAwardUsers[],
-        IGetAwardsWithUserRequest
+      IAwardUsers[],
+      IGetAwardsWithUserRequest
     >({
       query: (body) => ({
         method: 'POST',

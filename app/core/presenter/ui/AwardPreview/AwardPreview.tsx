@@ -1,7 +1,7 @@
 import styles from './AwardPreview.module.scss';
 import cn from 'classnames';
 import { AwardPreviewProps } from './AwardPreview.props';
-import { ImageDefault } from '../icons/ImageDefault';
+import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import P from '../P/P';
 
 const AwardPreview = ({

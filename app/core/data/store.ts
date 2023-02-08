@@ -15,6 +15,7 @@ import { messageApi } from '@/message/data/message.api';
 import { activityApi } from '@/activity/data/activity.api';
 import { dataCreateAwardSlice } from '@/award/presenter/admin/create/dataCreateAward.slice';
 import {galleryApi} from "../../gallery/data/gallery.api";
+import { layoutSlice } from '../presenter/Layout/Layout.slice';
 
 const rootReducer = combineReducers({
   login: loginSlice.reducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   department: departmentSlice.reducer,
   modal: modalSlice.reducer,
   dataCreateAward: dataCreateAwardSlice.reducer,
+  layout: layoutSlice.reducer,
   [registerApi.reducerPath]: registerApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [refreshApi.reducerPath]: refreshApi.reducer,

@@ -3,6 +3,12 @@
   font-size: 48px;
   line-height: 65px;
   margin: 0;
+
+  @media screen and (max-width: 768px) {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 100%;
+  }
 }
 
 .h2 {
@@ -10,6 +16,12 @@
   font-size: 40px;
   line-height: 54px;
   margin: 0;
+
+  @media screen and (max-width: 768px) {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 120%;
+  }
 }
 
 .h3 {
@@ -17,6 +29,9 @@
   font-size: 32px;
   line-height: 44px;
   margin: 0;
+
+  @media screen and (max-width: 768px) {
+  }
 }
 
 .white {

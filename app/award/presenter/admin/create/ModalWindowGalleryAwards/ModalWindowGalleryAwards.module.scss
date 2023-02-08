@@ -37,9 +37,12 @@
     }
 
     .wrapperChoiceImg {
+      margin-top: 25px;
       display: grid;
       gap: 15px;
       grid-template-columns: repeat(4, 175px);
+      max-height: 400px;
+      overflow-y: scroll;
     }
   }
 }

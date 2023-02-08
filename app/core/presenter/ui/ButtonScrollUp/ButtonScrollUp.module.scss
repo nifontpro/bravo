@@ -1,0 +1,31 @@
+.wrapper {
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    margin-bottom: 60px;
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    svg path {
+      stroke: var(--white)
+    };
+
+    .icon {
+      margin-left: 10px;
+    }
+  }
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

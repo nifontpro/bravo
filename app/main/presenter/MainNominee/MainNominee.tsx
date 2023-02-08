@@ -53,34 +53,59 @@ const MainNominee = ({
             priority={true}
           />
         </div>
-        <P size='m' color='white' className={styles.countAwardsTitle}>
-          {minEndDateNominee?.name}
-        </P>
-        <div className={styles.countEnd}>
-          <P size='s' color='white' fontstyle='thin'>
-            Заканчивается
+        <div className={styles.wrapper2}>
+          <P size='m' color='white' className={styles.countAwardsTitle}>
+            {minEndDateNominee?.name}
           </P>
-          {minEndDateNominee != undefined &&
-            minEndDateNominee.endDate != undefined &&
-            (Math.floor((minEndDateNominee.endDate - currentDate) / 86400000) !=
-            0 ? (
-              <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
-                через{' '}
-                {Math.floor(
-                  (minEndDateNominee.endDate - currentDate) / 86400000
-                )}{' '}
-                {declOfNum(
-                  Math.floor(
+          <div className={styles.imgCenter}>
+            <ImageDefault
+              src={minEndDateNominee?.imageUrl}
+              width={236}
+              height={236}
+              alt='preview image'
+              objectFit='cover'
+              className='rounded-[10px]'
+              priority={true}
+            />
+          </div>
+          <div className={styles.countEnd}>
+            <P size='s' color='white' fontstyle='thin'>
+              Заканчивается
+            </P>
+            {minEndDateNominee != undefined &&
+              minEndDateNominee.endDate != undefined &&
+              (Math.floor(
+                (minEndDateNominee.endDate - currentDate) / 86400000
+              ) != 0 ? (
+                <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
+                  через{' '}
+                  {Math.floor(
                     (minEndDateNominee.endDate - currentDate) / 86400000
-                  ),
-                  ['день', 'дня', 'дней']
-                )}
-              </ButtonIcon>
-            ) : (
-              <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
-                сегодня
-              </ButtonIcon>
-            ))}
+                  )}{' '}
+                  {declOfNum(
+                    Math.floor(
+                      (minEndDateNominee.endDate - currentDate) / 86400000
+                    ),
+                    ['день', 'дня', 'дней']
+                  )}
+                </ButtonIcon>
+              ) : (
+                <ButtonIcon className='ml-[10px]' appearance='whiteBlack'>
+                  сегодня
+                </ButtonIcon>
+              ))}
+          </div>
+        </div>
+        <div className={styles.imgEnd}>
+          <ImageDefault
+            src={minEndDateNominee?.imageUrl}
+            width={236}
+            height={236}
+            alt='preview image'
+            objectFit='cover'
+            className='rounded-[10px]'
+            priority={true}
+          />
         </div>
       </div>
     </div>

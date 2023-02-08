@@ -1,7 +1,6 @@
 import styles from './Activity.module.scss';
 import Meta from '@/core/utils/meta/Meta';
 import { ActivityProps } from './Activity.props';
-import { useState } from 'react';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import SortButton from '@/core/presenter/ui/SortButton/SortButton';
 import TabTitle from '@/core/presenter/ui/TabTitle/TabTitle';

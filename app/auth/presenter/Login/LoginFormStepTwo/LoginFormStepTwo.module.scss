@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 }
 
 .form {
@@ -12,6 +11,16 @@
   background: var(--white);
   padding: 110px 100px;
   border-radius: 27px;
+  @media screen and (max-width: 1280px) {
+    width: 95%;
+    padding: 60px 80px;
+    border-radius: 27px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 40px 15px;
+    border-radius: 16px;
+  }
 }
 
 .logo {
@@ -21,12 +30,20 @@
 .title {
   margin-bottom: 100px !important;
   margin-top: 30px !important;
+
+  @media screen and (max-width: 1280px) {
+    margin-bottom: 45px !important;
+  }
 }
 
 .buttons {
   margin-top: 100px;
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 1280px) {
+    margin-top: 50px;
+  }
 }
 
 .sendUs {

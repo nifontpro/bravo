@@ -8,6 +8,28 @@
     border-radius: 20px;
     padding: 20px 30px;
     @apply duration-200;
+    
+    @media screen and (max-width: 1280px) {
+      padding: 20px 20px;
+      grid-template-columns: [startLogo] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startCount] auto [endCount] 1fr [startViewer] 250px [endViewer] 50px [startArrow] auto [end];
+    }
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: [startLogo] 70px [endLogo] 30px [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 1fr [startViewer] 250px [endViewer] 50px [startArrow] auto [end];
+    }
+    @media screen and (max-width: 900px) {
+      padding: 20px 10px 13px 10px;
+      grid-template-columns: [startLogo] 70px [endLogo] 30px [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 1fr [startViewer] 250px [endViewer] 10px [startArrow] auto [end];
+    }
+    @media screen and (max-width: 800px) {
+      grid-template-columns: [startLogo] 40px [endLogo] 15px  [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 1fr [startViewer] 250px [endViewer] 10px [startArrow] auto [end];
+    }
+    @media screen and (max-width: 660px) {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: [startLogo] 40px [endLogo] 15px  [startUser] 147px [endUser] 1fr [startCount] auto [endCount] ;
+    }
+    @media screen and (max-width: 370px) {
+
+    }
 
     &:hover {
       background: var(--graySilver);
@@ -23,6 +45,9 @@
 
     .numberOfRating {
       grid-column: start / endPosition;
+      @media screen and (max-width: 1280px) {
+        display: none;
+      }
     }
 
     .img {
@@ -40,6 +65,9 @@
 
     .depart {
       grid-column: startDepart / endDepart;
+      @media screen and (max-width: 1280px) {
+        display: none;
+      }
     }
 
     .countAwards,
@@ -48,10 +76,6 @@
       justify-content: flex-end;
       align-items: center;
       grid-column: startCount / endCount;
-
-      // > svg path {
-      //   stroke: var(--gray);
-      // }
 
       .union {
         margin-left: 10px;
@@ -78,6 +102,11 @@
       justify-content: flex-end;
       grid-column: startViewer / endViewer;
 
+      @media screen and (max-width: 660px) {
+        justify-content: flex-start;
+        grid-column: startLogo / endUser;
+      }
+
       .countPreview {
         margin-left: 10px;
       }
@@ -88,6 +117,10 @@
         margin-left: 10px;
         width: 50px;
         height: 50px;
+        @media screen and (max-width: 800px) {
+          width: 30px;
+          height: 30px;
+        }
 
         &:first-child {
           margin-left: 0px;
@@ -117,6 +150,11 @@
 
     .arrowRight {
       grid-column: startArrow / end;
+      width: 13px;
+
+      @media screen and (max-width: 1000px) {
+        width: 8px;
+      }
 
       svg path {
         @apply duration-200;
@@ -130,12 +168,30 @@
   .userWrapper {
     display: grid;
     align-items: center;
-    grid-template-columns: [start] 40px [endPosition] 20px [startLogo] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 1fr [startViewer] 0px [endViewer] 0px [startArrow] auto [end];
+    grid-template-columns: [start] 40px [endPosition] 20px [startLogo] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 50px [startArrow] auto [end];
     margin-bottom: 50px;
     cursor: pointer;
     border-radius: 20px;
     padding: 20px 30px;
     @apply duration-200;
+
+    @media screen and (max-width: 1280px) {
+      padding: 20px 20px;
+      grid-template-columns: [startLogo] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startDepart] 150px [endDepart] 1fr [startCount] auto [endCount] 50px [startArrow] auto [end];
+    }
+    @media screen and (max-width: 900px) {
+      grid-template-columns: [startLogo] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startCount] auto [endCount] 1fr [startArrow] auto [end];
+    }
+    @media screen and (max-width: 768px) {
+      padding: 20px 10px 13px 10px;
+      grid-template-columns: [startLogo] 70px [endLogo] 30px [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
+    }
+    @media screen and (max-width: 500px) {
+      grid-template-columns: [startLogo] 40px [endLogo] 15px [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
+    }
+    @media screen and (max-width: 370px) {
+      grid-template-columns: [startLogo] 40px [endLogo] 15px  [startUser] 138px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
+    }
 
     &:hover {
       background: var(--graySilver);
@@ -147,6 +203,13 @@
 
     &:nth-last-child(1) {
       margin-bottom: 0px;
+    }
+
+    .numberOfRating {
+      grid-column: start / endPosition;
+      @media screen and (max-width: 1280px) {
+        display: none;
+      }
     }
 
     .img {
@@ -164,6 +227,9 @@
 
     .depart {
       grid-column: startDepart / endDepart;
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
     }
 
     .countAwards,
@@ -248,6 +314,11 @@
 
     .arrowRight {
       grid-column: startArrow / end;
+      width: 13px;
+
+      @media screen and (max-width: 900px) {
+        width: 8px;
+      }
 
       svg path {
         @apply duration-200;

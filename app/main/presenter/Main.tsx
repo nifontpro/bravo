@@ -8,10 +8,19 @@ import MainNominee from './MainNominee/MainNominee';
 import MainActivity from './MainActivity/MainActivity';
 import { useMain } from './useMain';
 import OnBoarding from './OnBoarding/OnBoarding';
+import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
 
 const Main = ({ className, ...props }: MainProps): JSX.Element => {
-  const { onBoarding, awardsLight, users, awardsOnCompanyGroupDep, state, onBoardingText, onBoardingText3, handleClick } =
-    useMain();
+  const {
+    onBoarding,
+    awardsLight,
+    users,
+    awardsOnCompanyGroupDep,
+    state,
+    onBoardingText,
+    onBoardingText3,
+    handleClick,
+  } = useMain();
 
   return (
     <Meta title='Главная'>
@@ -27,13 +36,13 @@ const Main = ({ className, ...props }: MainProps): JSX.Element => {
         <MainUsers className={styles.users} users={users} />
         <div
           className={cn(styles.nominee, {
-            [styles.index30]: onBoarding >= 2 && !state
+            [styles.index30]: onBoarding >= 2 && !state,
           })}
         >
           <MainNominee
             awards={awardsLight}
             className={cn({
-              [styles.index0]: onBoarding == 3 && !state
+              [styles.index0]: onBoarding == 3 && !state,
             })}
           />
           <MainActivity
@@ -42,8 +51,14 @@ const Main = ({ className, ...props }: MainProps): JSX.Element => {
             })}
           />
         </div>
-
-        <OnBoarding state={state} onBoarding={onBoarding} onBoardingText={onBoardingText} onBoardingText3={onBoardingText3} handleClick={handleClick}/>
+        <ButtonScrollUp />
+        <OnBoarding
+          state={state}
+          onBoarding={onBoarding}
+          onBoardingText={onBoardingText}
+          onBoardingText3={onBoardingText3}
+          handleClick={handleClick}
+        />
       </div>
     </Meta>
   );

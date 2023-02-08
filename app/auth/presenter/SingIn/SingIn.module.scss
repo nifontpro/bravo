@@ -5,11 +5,26 @@
   border-radius: 27px;
   @apply animate-fade;
 
+  @media screen and (max-width: 1280px) {
+    padding: 60px 80px;
+    border-radius: 27px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 95%;
+    padding: 40px 15px;
+    border-radius: 16px;
+  }
+
   .title {
     margin-bottom: 100px !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: 1280px) {
+      margin-bottom: 45px !important;
+    }
 
     .registration {
       display: flex;
@@ -45,6 +60,10 @@
     margin-top: 100px;
     display: flex;
     justify-content: center;
+
+    @media screen and (max-width: 1280px) {
+      margin-top: 50px;
+    }
   }
 
   .passwordRecovery {

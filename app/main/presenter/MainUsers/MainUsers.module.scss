@@ -29,7 +29,12 @@
         @apply duration-200;
       }
       .arrow {
+        width: 13px;
         margin-left: 20px;
+        @media screen and (max-width: 768px) {
+          margin-left: 10px;
+          width: 8px;
+        }
       }
     }
   }
@@ -38,5 +43,8 @@
     background: var(--white);
     padding: 30px;
     border-radius: 16px;
+    @media screen and (max-width: 768px) {
+      padding: 20px 10px;
+    }
   }
 }

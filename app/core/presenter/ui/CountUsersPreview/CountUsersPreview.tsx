@@ -3,9 +3,9 @@ import cn from 'classnames';
 import { CountUsersPreviewProps } from './CountUsersPreview.props';
 import P from '../P/P';
 import { declOfNum } from '@/core/utils/declOfNum';
-import { ImageDefault } from '../icons/ImageDefault';
 import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import uniqid from 'uniqid';
+import { ImageDefault } from '../icons/ImageDefault';
 
 const CountUsersPreview = ({
   usersAwards,
