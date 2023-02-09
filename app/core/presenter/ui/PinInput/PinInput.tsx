@@ -20,11 +20,8 @@ const PinInput = ({
   const updateArray = (array: string[], index: number, newValue: string) => {
     const copy = [...array];
     copy[index] = newValue;
-    console.log(copy);
     return copy;
   };
-
-  console.log('reRender');
 
   const handleChange = (index: number, newValue: string) => {
     const oldDigit = digits[index];
