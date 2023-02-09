@@ -7,4 +7,8 @@ export type FilterActivityProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDiv
     setActive: Dispatch<SetStateAction<"" | "AWARD" | "NOMINEE" | "DELETE_USER">>
     setStartDate: Dispatch<SetStateAction<number>>
     setEndDate: Dispatch<SetStateAction<number>>
+    allActivityLength: number
+    awardsLength: number
+    nomineeLength: number
+    otherLength: number
 }

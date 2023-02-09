@@ -1,11 +1,10 @@
 import styles from './RangeCalendar.module.scss';
 import cn from 'classnames';
 import { RangeCalendarProps } from './RangeCalendar.props';
-import { DatePicker, DatePickerProps } from 'antd';
+import { DatePicker } from 'antd';
 import dayjs from 'dayjs';
 import CalenradIcon from './calendar.svg';
 import { convertCorrectDataForUnix } from '@/core/utils/convertCorrectDataForUnix';
-import { useState } from 'react';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 type RangeValue = Parameters<
@@ -20,7 +19,6 @@ const RangeCalendar = ({
   ...props
 }: RangeCalendarProps): JSX.Element => {
   const { RangePicker } = DatePicker;
-  // const dateFormat = 'DD.MM.YYYY';
 
   const onChange = (values: RangeValue, formatString: [string, string]) => {
     if (formatString[0].length > 0 && formatString[1].length > 0) {

@@ -60,6 +60,10 @@
     margin-bottom: 15px;
     @apply duration-200 cursor-default;
 
+    @media screen and (max-width: 680px) {
+      margin-bottom: 0px;
+    }
+
     &:hover {
       background: var(--graySilver);
     }

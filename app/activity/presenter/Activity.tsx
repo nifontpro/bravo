@@ -10,6 +10,7 @@ import Search from '@/core/presenter/ui/Search/Search';
 import RangeCalendar from '@/core/presenter/ui/RangeCalendar/RangeCalendar';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
 import FilterActivity from './FilterActivity/FilterActivity';
+import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
 
 const Activity = ({
   company,
@@ -47,6 +48,10 @@ const Activity = ({
           setEndDate={setEndDate}
           state={state}
           setState={setState}
+          allActivityLength={allActivityLength}
+          awardsLength={awardsLength}
+          nomineeLength={nomineeLength}
+          otherLength={otherLength}
         />
 
         <div className={styles.header}>
@@ -119,6 +124,7 @@ const Activity = ({
             );
           })}
         </div>
+        <ButtonScrollUp />
       </div>
     </Meta>
   );

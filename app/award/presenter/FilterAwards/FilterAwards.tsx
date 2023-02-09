@@ -1,7 +1,6 @@
-import styles from './FilterActivity.module.scss';
+import styles from './FilterAwards.module.scss';
 import cn from 'classnames';
-import uniqid from 'uniqid';
-import { FilterActivityProps } from './FilterActivity.props';
+import { FilterAwardsProps } from './FilterAwards.props';
 import Button from '@/core/presenter/ui/Button/Button';
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -9,22 +8,18 @@ import P from '@/core/presenter/ui/P/P';
 import CheckedIcon from '@/core/presenter/images/checked.svg';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
 import SortIcon from '@/core/presenter/images/sort.svg';
-import RangeCalendar from '@/core/presenter/ui/RangeCalendar/RangeCalendar';
 
-const FilterActivity = ({
+const FilterAwards = ({
   state,
   setState,
   active,
   setActive,
-  setEndDate,
-  setStartDate,
-  allActivityLength,
-  awardsLength,
-  nomineeLength,
-  otherLength,
+  allNominee,
+  allAwards,
+  awardsFull,
   className,
   ...props
-}: FilterActivityProps): JSX.Element => {
+}: FilterAwardsProps): JSX.Element => {
   const [visibleFilter, setVisibleFilter] = useState<boolean>(false);
 
   const variants = {
@@ -109,8 +104,8 @@ const FilterActivity = ({
                         [styles.disabled]: active != '',
                       })}
                     >
-                      Вся активность
-                      <span className={styles.count}>{allActivityLength}</span>
+                      Все награды
+                      <span className={styles.count}>{awardsFull?.length}</span>
                     </P>
                   </li>
                   <li
@@ -132,7 +127,7 @@ const FilterActivity = ({
                       })}
                     >
                       Медали
-                      <span className={styles.count}>{awardsLength}</span>
+                      <span className={styles.count}>{allAwards?.length}</span>
                     </P>
                   </li>
                   <li
@@ -154,29 +149,7 @@ const FilterActivity = ({
                       })}
                     >
                       Номинации
-                      <span className={styles.count}>{nomineeLength}</span>
-                    </P>
-                  </li>
-                  <li
-                    className={styles.listItem}
-                    onClick={() => setActive('DELETE_USER')}
-                  >
-                    <div className={styles.circle}></div>
-                    <CheckedIcon
-                      className={cn(styles.checked, {
-                        [styles.visible]: active == 'DELETE_USER',
-                        [styles.hidden]: active != 'DELETE_USER',
-                      })}
-                    />
-                    <P
-                      size='s'
-                      fontstyle='thin'
-                      className={cn({
-                        [styles.disabled]: active != 'DELETE_USER',
-                      })}
-                    >
-                      Прочее
-                      <span className={styles.count}>{otherLength}</span>
+                      <span className={styles.count}>{allNominee?.length}</span>
                     </P>
                   </li>
                 </ul>
@@ -231,23 +204,6 @@ const FilterActivity = ({
                   </li>
                 </ul>
               </div>
-
-              {/* Сортировка по периоду */}
-              <div className={styles.sortAwards}>
-                <P
-                  size='xs'
-                  fontstyle='thin'
-                  color='gray'
-                  className={styles.title}
-                >
-                  Период
-                </P>
-                <RangeCalendar
-                  placement='topRight'
-                  setStartDate={setStartDate}
-                  setEndDate={setEndDate}
-                />
-              </div>
             </div>
           </motion.div>
         )}
@@ -256,4 +212,4 @@ const FilterActivity = ({
   );
 };
 
-export default FilterActivity;
+export default FilterAwards;

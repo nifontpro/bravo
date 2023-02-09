@@ -36,14 +36,16 @@ const SingleAward = motion(
                 // priority={true}
               />
             </div>
-            <P size='m' color='white' className={styles.name}>
-              {award.name}
-            </P>
-            <CountUsersPreview
-              appearanceBtn='black'
-              usersAwards={award.relateUsers}
-              className={styles.default}
-            />
+            <div>
+              <P size='m' color='white' className={styles.name}>
+                {award.name}
+              </P>
+              <CountUsersPreview
+                appearanceBtn='black'
+                usersAwards={award.relateUsers}
+                className={styles.default}
+              />
+            </div>
           </div>
         );
       } else if (award.endDate != undefined) {
@@ -65,29 +67,31 @@ const SingleAward = motion(
                 // priority={true}
               />
             </div>
-
-            <P size='m' color='white' className={styles.name}>
-              {award.name}
-            </P>
-            <P
-              size='xs'
-              color='gray96'
-              fontstyle='thin'
-              className={styles.date}
-            >
-              Награждение через
-              <ButtonIcon className={styles.btnIcon} appearance='whiteBlack'>
-                {Math.floor(
-                  (award.endDate - currentDate) / 1000 / 60 / 60 / 24
-                )}{' '}
-                {declOfNum(
-                  Math.floor(
+            <div>
+              <div className={styles.nomineeAdaptive}>Номинация</div>
+              <P size='m' color='white' className={styles.name}>
+                {award.name}
+              </P>
+              <P
+                size='xs'
+                color='gray96'
+                fontstyle='thin'
+                className={styles.date}
+              >
+                Награждение через
+                <ButtonIcon className={styles.btnIcon} appearance='whiteBlack'>
+                  {Math.floor(
                     (award.endDate - currentDate) / 1000 / 60 / 60 / 24
-                  ),
-                  ['день', 'дня', 'дней']
-                )}
-              </ButtonIcon>
-            </P>
+                  )}{' '}
+                  {declOfNum(
+                    Math.floor(
+                      (award.endDate - currentDate) / 1000 / 60 / 60 / 24
+                    ),
+                    ['день', 'дня', 'дней']
+                  )}
+                </ButtonIcon>
+              </P>
+            </div>
           </div>
         );
       } else {

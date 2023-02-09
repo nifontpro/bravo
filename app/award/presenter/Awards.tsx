@@ -14,6 +14,8 @@ import SortButton from '@/core/presenter/ui/SortButton/SortButton';
 import { useAwardsFull } from './useAwardsFull';
 import { IAwardUsers } from '../model/award.types';
 import uniqid from 'uniqid';
+import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
+import FilterAwards from './FilterAwards/FilterAwards';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -55,7 +57,9 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   // };
 
   // Сотртировка по startDate
-    const filteredValue = (awardsFull?.filter((item) => item.state?.includes(active)))
+  const filteredValue = awardsFull?.filter((item) =>
+    item.state?.includes(active)
+  );
 
   if (filteredValue) {
     filteredValue.sort((prev, next): number => {
@@ -66,8 +70,6 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
     });
   }
 
-
-
   // console.log(filteredValue);
   // console.log(state);
   // console.log(currentPage);
@@ -76,7 +78,20 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   return (
     <Meta title='Медали'>
       <div {...props} className={styles.wrapper}>
-        <Htag tag='h2' className={styles.headTitle}>{`Награды`}</Htag>
+        <div className={styles.headerTitle}>
+          <Htag tag='h2' className={styles.headTitle}>{`Награды`}</Htag>
+          <AuthComponent minRole={'director'}>
+            <div className={styles.createAwardAdaptive}>
+              <ButtonCircleIcon
+                onClick={() => push(getAwardCreateUrl())}
+                appearance='black'
+                icon='plus'
+              >
+                Создать
+              </ButtonCircleIcon>
+            </div>
+          </AuthComponent>
+        </div>
 
         {awardsFull && allAwards && allNominee && (
           <div className={styles.header}>
@@ -116,17 +131,28 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             </SortButton>
 
             <AuthComponent minRole={'director'}>
-              <ButtonCircleIcon
-                onClick={() => push(getAwardCreateUrl())}
-                appearance='black'
-                icon='plus'
-                className='font-bold'
-              >
-                Создать награду
-              </ButtonCircleIcon>
+              <div className={styles.createAward}>
+                <ButtonCircleIcon
+                  onClick={() => push(getAwardCreateUrl())}
+                  appearance='black'
+                  icon='plus'
+                >
+                  Создать награду
+                </ButtonCircleIcon>
+              </div>
             </AuthComponent>
           </div>
         )}
+
+        <FilterAwards
+          state={state}
+          setState={setState}
+          active={active}
+          setActive={setActive}
+          allNominee={allNominee}
+          allAwards={allAwards}
+          awardsFull={awardsFull}
+        />
 
         <div className={styles.cards}>
           {filteredValue?.map((item) => {
@@ -139,6 +165,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             );
           })}
         </div>
+        <ButtonScrollUp />
       </div>
     </Meta>
   );
