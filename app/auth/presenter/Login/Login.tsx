@@ -14,7 +14,7 @@ import SendUs from '../../../core/presenter/ui/SendUs/SendUs';
 const LoginAuth = ({ className, ...props }: LoginProps): JSX.Element => {
   useAuthRedirect();
 
-  const [visible, setVisible] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(false);
 
   // const onSubmitOne: SubmitHandler<ILoginInput> = async (data) => {
   //   console.log(data);
