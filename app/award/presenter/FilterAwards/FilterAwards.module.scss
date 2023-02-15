@@ -1,6 +1,6 @@
 .wrapper {
   display: none;
-  @media screen and (max-width: 820px) {
+  @media screen and (max-width: 840px) {
     display: block;
   }
   .button {
@@ -54,7 +54,7 @@
 }
 
 .list {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
   .listItem {
     position: relative;
     display: flex;
@@ -62,9 +62,17 @@
     margin-bottom: 8px;
     cursor: pointer;
 
+    .count {
+      float: right;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 100%;
+      margin-left: 5px;
+    }
+
     &:last-child {
-        margin-bottom: 0px;
-      }
+      margin-bottom: 0px;
+    }
     .circle {
       width: 20px;
       height: 20px;
@@ -80,15 +88,15 @@
     }
 
     .disabled {
-        opacity: .4;
+      opacity: 0.4;
     }
   }
 }
 
 .visible {
-    display: block;
+  display: block;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }

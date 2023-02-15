@@ -1,7 +1,6 @@
-import styles from './FilterRating.module.scss';
+import styles from './FilterAwards.module.scss';
 import cn from 'classnames';
-import uniqid from 'uniqid';
-import { FilterRatingProps } from './FilterRating.props';
+import { FilterAwardsProps } from './FilterAwards.props';
 import Button from '@/core/presenter/ui/Button/Button';
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -10,17 +9,17 @@ import CheckedIcon from '@/core/presenter/images/checked.svg';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
 import SortIcon from '@/core/presenter/images/sort.svg';
 
-const FilterRating = ({
-  departments,
-  departSort,
-  setDepartSort,
+const FilterAwards = ({
   state,
   setState,
-  sortAward,
-  setSortAward,
+  active,
+  setActive,
+  allNominee,
+  allAwards,
+  awardsFull,
   className,
   ...props
-}: FilterRatingProps): JSX.Element => {
+}: FilterAwardsProps): JSX.Element => {
   const [visibleFilter, setVisibleFilter] = useState<boolean>(false);
 
   const variants = {
@@ -38,23 +37,23 @@ const FilterRating = ({
     },
   };
 
-  //Закрытие модального окна уведомлений нажатием вне
-  const refFilter = useRef(null);
-  const refOpenFilter = useRef(null);
-  const handleClickOutsideNotification = () => {
-    setVisibleFilter(false);
-  };
-  useOutsideClick(
-    refFilter,
-    refOpenFilter,
-    handleClickOutsideNotification,
-    visibleFilter
-  );
+  // //Закрытие модального окна уведомлений нажатием вне
+  // const refFilter = useRef(null);
+  // const refOpenFilter = useRef(null);
+  // const handleClickOutsideNotification = () => {
+  //   setVisibleFilter(false);
+  // };
+  // useOutsideClick(
+  //   refFilter,
+  //   refOpenFilter,
+  //   handleClickOutsideNotification,
+  //   visibleFilter
+  // );
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <Button
-        ref={refFilter}
+        // ref={refFilter}
         size='m'
         appearance='whiteBlack'
         className={styles.button}
@@ -62,10 +61,11 @@ const FilterRating = ({
       >
         <SortIcon /> &emsp;Фильтры
       </Button>
+
       <AnimatePresence mode='wait'>
         {visibleFilter && (
           <motion.div
-            ref={refOpenFilter}
+            // ref={refOpenFilter}
             initial='hidden'
             animate='visible'
             exit='exit'
@@ -78,7 +78,7 @@ const FilterRating = ({
               onClick={() => setVisibleFilter(false)}
             />
             <div className={styles.filterContent}>
-              {/* Сортировка по отделу */}
+              {/* Сортировка по виду */}
               <div className={styles.departs}>
                 <P
                   size='xs'
@@ -86,56 +86,72 @@ const FilterRating = ({
                   color='gray'
                   className={styles.title}
                 >
-                  Отдел
+                  Показать
                 </P>
                 <ul className={styles.list}>
-                  <li
-                    className={styles.listItem}
-                    onClick={() => setDepartSort('')}
-                  >
+                  <li className={styles.listItem} onClick={() => setActive('')}>
                     <div className={styles.circle}></div>
                     <CheckedIcon
                       className={cn(styles.checked, {
-                        [styles.visible]: departSort == '',
-                        [styles.hidden]: departSort != '',
+                        [styles.visible]: active == '',
+                        [styles.hidden]: active != '',
                       })}
                     />
                     <P
                       size='s'
                       fontstyle='thin'
                       className={cn({
-                        [styles.disabled]: departSort != '',
+                        [styles.disabled]: active != '',
                       })}
                     >
-                      Все отделы
+                      Все награды
+                      <span className={styles.count}>{awardsFull?.length}</span>
                     </P>
                   </li>
-                  {departments?.map((d) => {
-                    return (
-                      <li
-                        key={uniqid()}
-                        className={styles.listItem}
-                        onClick={() => setDepartSort(d.id)}
-                      >
-                        <div className={styles.circle}></div>
-                        <CheckedIcon
-                          className={cn(styles.checked, {
-                            [styles.visible]: departSort == d.id,
-                            [styles.hidden]: departSort != d.id,
-                          })}
-                        />
-                        <P
-                          size='s'
-                          fontstyle='thin'
-                          className={cn({
-                            [styles.disabled]: departSort != d.id,
-                          })}
-                        >
-                          {d.name}
-                        </P>
-                      </li>
-                    );
-                  })}
+                  <li
+                    className={styles.listItem}
+                    onClick={() => setActive('AWARD')}
+                  >
+                    <div className={styles.circle}></div>
+                    <CheckedIcon
+                      className={cn(styles.checked, {
+                        [styles.visible]: active == 'AWARD',
+                        [styles.hidden]: active != 'AWARD',
+                      })}
+                    />
+                    <P
+                      size='s'
+                      fontstyle='thin'
+                      className={cn({
+                        [styles.disabled]: active != 'AWARD',
+                      })}
+                    >
+                      Медали
+                      <span className={styles.count}>{allAwards?.length}</span>
+                    </P>
+                  </li>
+                  <li
+                    className={styles.listItem}
+                    onClick={() => setActive('NOMINEE')}
+                  >
+                    <div className={styles.circle}></div>
+                    <CheckedIcon
+                      className={cn(styles.checked, {
+                        [styles.visible]: active == 'NOMINEE',
+                        [styles.hidden]: active != 'NOMINEE',
+                      })}
+                    />
+                    <P
+                      size='s'
+                      fontstyle='thin'
+                      className={cn({
+                        [styles.disabled]: active != 'NOMINEE',
+                      })}
+                    >
+                      Номинации
+                      <span className={styles.count}>{allNominee?.length}</span>
+                    </P>
+                  </li>
                 </ul>
               </div>
 
@@ -188,62 +204,6 @@ const FilterRating = ({
                   </li>
                 </ul>
               </div>
-
-              {/* Сортировка по наградам */}
-              <div className={styles.sortAwards}>
-                <P
-                  size='xs'
-                  fontstyle='thin'
-                  color='gray'
-                  className={styles.title}
-                >
-                  Показать
-                </P>
-                <ul className={styles.list}>
-                  <li
-                    className={styles.listItem}
-                    onClick={() => setSortAward(false)}
-                  >
-                    <div className={styles.circle}></div>
-                    <CheckedIcon
-                      className={cn(styles.checked, {
-                        [styles.visible]: !sortAward,
-                        [styles.hidden]: sortAward,
-                      })}
-                    />
-                    <P
-                      size='s'
-                      fontstyle='thin'
-                      className={cn({
-                        [styles.disabled]: sortAward,
-                      })}
-                    >
-                      С наградами
-                    </P>
-                  </li>
-                  <li
-                    className={styles.listItem}
-                    onClick={() => setSortAward(true)}
-                  >
-                    <div className={styles.circle}></div>
-                    <CheckedIcon
-                      className={cn(styles.checked, {
-                        [styles.visible]: sortAward,
-                        [styles.hidden]: !sortAward,
-                      })}
-                    />
-                    <P
-                      size='s'
-                      fontstyle='thin'
-                      className={cn({
-                        [styles.disabled]: !sortAward,
-                      })}
-                    >
-                      Все
-                    </P>
-                  </li>
-                </ul>
-              </div>
             </div>
           </motion.div>
         )}
@@ -252,4 +212,4 @@ const FilterRating = ({
   );
 };
 
-export default FilterRating;
+export default FilterAwards;

@@ -32,7 +32,11 @@
   margin-top: 30px !important;
 
   @media screen and (max-width: 1280px) {
-    margin-bottom: 45px !important;
+    margin-bottom: 50px !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 30px !important;
   }
 }
 
@@ -43,6 +47,10 @@
 
   @media screen and (max-width: 1280px) {
     margin-top: 50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-top: 30px;
   }
 }
 

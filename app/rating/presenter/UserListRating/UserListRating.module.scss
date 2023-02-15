@@ -8,7 +8,7 @@
     border-radius: 20px;
     padding: 20px 30px;
     @apply duration-200;
-    
+
     @media screen and (max-width: 1280px) {
       padding: 20px 20px;
       grid-template-columns: [startLogo] 70px [endLogo] 30px [startUser] 250px [endUser] 1fr [startCount] auto [endCount] 1fr [startViewer] 250px [endViewer] 50px [startArrow] auto [end];
@@ -21,14 +21,11 @@
       grid-template-columns: [startLogo] 70px [endLogo] 30px [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 1fr [startViewer] 250px [endViewer] 10px [startArrow] auto [end];
     }
     @media screen and (max-width: 800px) {
-      grid-template-columns: [startLogo] 40px [endLogo] 15px  [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 1fr [startViewer] 250px [endViewer] 10px [startArrow] auto [end];
+      grid-template-columns: [startLogo] 40px [endLogo] 15px [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 1fr [startViewer] 250px [endViewer] 10px [startArrow] auto [end];
     }
     @media screen and (max-width: 660px) {
       grid-template-rows: 1fr 1fr;
-      grid-template-columns: [startLogo] 40px [endLogo] 15px  [startUser] 147px [endUser] 1fr [startCount] auto [endCount] ;
-    }
-    @media screen and (max-width: 370px) {
-
+      grid-template-columns: [startLogo] 40px [endLogo] 15px [startUser] 147px [endUser] 1fr [startCount] auto [endCount];
     }
 
     &:hover {
@@ -45,6 +42,7 @@
 
     .numberOfRating {
       grid-column: start / endPosition;
+
       @media screen and (max-width: 1280px) {
         display: none;
       }
@@ -117,6 +115,7 @@
         margin-left: 10px;
         width: 50px;
         height: 50px;
+
         @media screen and (max-width: 800px) {
           width: 30px;
           height: 30px;
@@ -190,7 +189,7 @@
       grid-template-columns: [startLogo] 40px [endLogo] 15px [startUser] 200px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
     }
     @media screen and (max-width: 370px) {
-      grid-template-columns: [startLogo] 40px [endLogo] 15px  [startUser] 138px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
+      grid-template-columns: [startLogo] 40px [endLogo] 15px [startUser] 138px [endUser] 1fr [startCount] auto [endCount] 10px [startArrow] auto [end];
     }
 
     &:hover {

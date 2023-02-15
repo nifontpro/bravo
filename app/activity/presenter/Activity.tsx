@@ -8,13 +8,15 @@ import { useActivity } from './useActivity';
 import SingleActivity from './SingleActivity/SingleActivity';
 import Search from '@/core/presenter/ui/Search/Search';
 import RangeCalendar from '@/core/presenter/ui/RangeCalendar/RangeCalendar';
+import { useWindowSize } from '@/core/hooks/useWindowSize';
+import FilterActivity from './FilterActivity/FilterActivity';
+import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
 
 const Activity = ({
   company,
   className,
   ...props
 }: ActivityProps): JSX.Element => {
-  
   const {
     active,
     setActive,
@@ -30,12 +32,27 @@ const Activity = ({
     filteredValue,
   } = useActivity();
 
+  const { windowSize } = useWindowSize();
+
   return (
     <Meta title='Активность'>
       <div {...props} className={styles.wrapper}>
         <Htag tag='h2' className={styles.headTitle}>
           Активность
         </Htag>
+
+        <FilterActivity
+          active={active}
+          setActive={setActive}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+          state={state}
+          setState={setState}
+          allActivityLength={allActivityLength}
+          awardsLength={awardsLength}
+          nomineeLength={nomineeLength}
+          otherLength={otherLength}
+        />
 
         <div className={styles.header}>
           <TabTitle
@@ -83,13 +100,15 @@ const Activity = ({
             Сначала новые
           </SortButton>
 
-          <RangeCalendar setStartDate={setStartDate} setEndDate={setEndDate} />
+          <RangeCalendar placement='bottomLeft' setStartDate={setStartDate} setEndDate={setEndDate} />
         </div>
 
         <div className={styles.cards}>
           <Search
             onChange={handleChange}
-            placeholder='Фамилия, Имя, Отдел...'
+            placeholder={
+              windowSize.winWidth < 768 ? 'Поиск...' : 'Фамилия, Имя, Отдел...'
+            }
             color='white'
             button={false}
             search={true}
@@ -105,6 +124,7 @@ const Activity = ({
             );
           })}
         </div>
+        <ButtonScrollUp />
       </div>
     </Meta>
   );

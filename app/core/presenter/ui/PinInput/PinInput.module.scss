@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  .wrapperInput {
+    width: 60px;
+    height: 70px;
+    font-size: 50px;
+    color: var(--gray-dark);
+    text-align: center;
+    border-radius: 10px;
+    margin: 5px;
+    border: 1px solid var(--gray);
+    @apply duration-200;
+
+    @media screen and (max-width: 1280px) {
+      width: 50px;
+      height: 60px;
+      font-size: 40px;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 30px;
+      height: 40px;
+      font-size: 20px;
+    }
+
+    &:focus {
+      outline: none;
+      border: 3px solid var(--graySilver);
+    }
+  }
+}

@@ -14,6 +14,8 @@ import { toastError } from '@/core/utils/toast-error';
 import { toast } from 'react-toastify';
 import { useLoginState } from '@/auth/data/login.slice';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import PinInput from '@/core/presenter/ui/PinInput/PinInput';
+import P from '@/core/presenter/ui/P/P';
 
 const LoginFormStepTwo = ({
   visible,
@@ -22,6 +24,7 @@ const LoginFormStepTwo = ({
   ...props
 }: LoginFormStepTwoProps): JSX.Element => {
   useAuthRedirect();
+  const [state, setState] = useState<string[]>(['', '', '', '', '', '']);
   const { push } = useRouter();
 
   const { email } = useLoginState();
@@ -44,6 +47,7 @@ const LoginFormStepTwo = ({
     code: string;
     email: string;
   }> = async (data) => {
+    data.code = state.join('');
     console.log(data);
     registerStepTwo({ ...data })
       .unwrap()
@@ -78,19 +82,22 @@ const LoginFormStepTwo = ({
         Регистрация
       </Htag>
 
-      <Field
+      {/* <Field
         {...register('code', { required: 'Код необходим!' })}
         title={`Введите код из письма, которое мы отправили на ${email}`}
         placeholder='Введите код подтверждения'
         error={errors.code}
         type='password'
-      />
+      /> */}
+
+      <P size='m' fontstyle='thin'>Введите код из письма, которое мы отправили на <span>{email}</span></P>
+      <PinInput digits={state} setState={setState}/>
 
       <div className={styles.buttons}>
         <Button
           appearance='blackWhite'
           size='l'
-          disabled={!isDirty || !isValid}
+          disabled={state.join('').length < 6}
         >
           Продолжить
         </Button>
