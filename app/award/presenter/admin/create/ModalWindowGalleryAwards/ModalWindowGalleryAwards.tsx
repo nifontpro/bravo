@@ -1,7 +1,7 @@
 import styles from './ModalWindowGalleryAwards.module.scss';
 import cn from 'classnames';
 import ExitIcon from '@/core/presenter/images/close.svg';
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, MouseEvent } from 'react';
 import { ModalWindowGalleryAwardsProps } from './ModalWindowGalleryAwards.props';
 import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
@@ -46,6 +46,11 @@ const ModalWindowGalleryAwards = forwardRef(
     const onChange = (newValue: unknown | OnChangeValue<IOption, boolean>) => {
       setIdFolder((newValue as IOption).value);
     };
+
+    const handleCancel = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+      e.preventDefault();
+      setVisibleModal(false)
+    }
 
     return (
       <div
@@ -93,18 +98,18 @@ const ModalWindowGalleryAwards = forwardRef(
 
           <div className={styles.buttons}>
             <Button
-              onClick={() => setVisibleModal(false)}
+              onClick={(e) => handleCancel(e)}
               appearance='whiteBlack'
               size='l'
-              className='w-[50%]'
+              className={styles.cancelBtn}
             >
               Отменить
             </Button>
             <Button
-              onClick={onSubmit}
+              onClick={(e) => onSubmit(e)}
               appearance='blackWhite'
               size='l'
-              className='w-[50%] ml-[20px]'
+              className={styles.confirmBtn}
             >
               {textBtn}
             </Button>

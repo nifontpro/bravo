@@ -44,7 +44,7 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
         color='gray'
         search={true}
         button={false}
-        placeholder='Сотрудник, отдел, медаль...'
+        placeholder='Поиск пока не работает...'
         className={styles.search}
       />
       <div className={styles.user}>

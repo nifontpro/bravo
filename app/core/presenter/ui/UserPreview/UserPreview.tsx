@@ -12,7 +12,7 @@ const UserPreview = ({
   ...props
 }: UserPreviewProps): JSX.Element => {
   return (
-    <div className={cn(className, styles.wrapper)} {...props}>
+    <div className={cn(styles.wrapper, className)} {...props}>
       <ImageDefault
         src={user.imageUrl}
         width={76}

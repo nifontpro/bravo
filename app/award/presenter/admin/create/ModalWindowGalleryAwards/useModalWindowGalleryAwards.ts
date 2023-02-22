@@ -2,7 +2,7 @@ import { awardApi } from '@/award/data/award.api';
 import { galleryApi } from 'gallery/data/gallery.api';
 import { IGalleryObject } from 'gallery/model/gallery.types';
 import { useRouter } from 'next/router';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import { toast } from 'react-toastify';
 
 export const useModalWindowGalleryAwards = (
@@ -28,7 +28,8 @@ export const useModalWindowGalleryAwards = (
 
   const [setImage] = awardApi.useSetImageFromGalleryMutation();
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    e.preventDefault();
     if (imagesPreview) {
       if (!create && setImg) {
         setImg(imagesPreview);

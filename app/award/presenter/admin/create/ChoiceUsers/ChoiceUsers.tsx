@@ -54,7 +54,7 @@ const ChoiceUsers = ({
         color='white'
       />
       <div className={styles.searchPanel}>
-        <P size='s' fontstyle='thin' color='gray'>
+        <P size='s' fontstyle='thin' color='gray' className={styles.countUsers}>
           Выбрано {arrChoiceUser.length}{' '}
           {declOfNum(arrChoiceUser.length, [
             'сотрудник',

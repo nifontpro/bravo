@@ -10,14 +10,23 @@
   height: 100%;
   z-index: 10;
 
+  @media screen and (max-width: 768px) {
+    background: none;
+  }
+
   .module {
     margin-top: 200px;
     padding: 85px;
     position: relative;
     border-radius: 27px;
-    min-width: fit-content;
+    width: fit-content;
     min-height: fit-content;
     background: var(--white);
+
+    @media screen and (max-width: 768px) {
+      margin-top: 50px;
+      padding: 10px;
+    }
 
     .title {
       margin-bottom: 40px;
@@ -28,12 +37,38 @@
       top: 40px;
       right: 40px;
       cursor: pointer;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
 
     .buttons {
       display: flex;
       justify-content: space-between;
       margin-top: 50px;
+
+      @media screen and (max-width: 600px) {
+        flex-direction: column;
+      }
+
+      .cancelBtn,
+      .confirmBtn {
+        width: 50%;
+
+        @media screen and (max-width: 600px) {
+          width: 100%;
+        }
+      }
+
+      .confirmBtn {
+        margin-left: 20px;
+
+        @media screen and (max-width: 600px) {
+          margin-left: 0px;
+          margin-top: 15px;
+        }
+      }
     }
 
     .wrapperChoiceImg {
@@ -43,6 +78,17 @@
       grid-template-columns: repeat(4, 175px);
       max-height: 400px;
       overflow-y: scroll;
+      justify-content: center;
+
+      @media screen and (max-width: 950px) {
+        grid-template-columns: repeat(3, 175px);
+      }
+      @media screen and (max-width: 600px) {
+        grid-template-columns: repeat(2, 175px);
+      }
+      @media screen and (max-width: 400px) {
+        grid-template-columns: repeat(2, 125px);
+      }
     }
   }
 }
