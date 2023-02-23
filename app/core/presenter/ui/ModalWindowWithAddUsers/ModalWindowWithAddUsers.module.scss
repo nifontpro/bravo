@@ -11,9 +11,13 @@
   z-index: 10;
 
   @media screen and (max-width: 768px) {
-    position:static;
+    position: fixed;
+    display: block;
+    top: auto;
+    bottom: 0;
     background: none;
-    width: auto;
+    width: 100%;
+    // height: fit-content;
   }
 
   .module {
@@ -46,9 +50,9 @@
       display: none;
       @media screen and (max-width: 768px) {
         display: block;
-        position: absolute;
+        position: fixed;
         cursor: pointer;
-        top: 20px;
+        bottom: 480px;
         left: calc(50vw - 50px);
         width: 100px;
         height: 5px;

@@ -2,9 +2,14 @@
   background: var(--white);
   border-radius: 27px;
   display: grid;
-  grid-template-columns: [start] 76px [endLogo] 30px [startUser] auto [EndUser] 1fr [starDate] auto [endDate] 70px [startButtons] auto [end];
+  grid-template-columns: [start] 76px [endLogo] 30px [startUser] 100px [EndUser] 1fr [starDate] auto [endDate] 70px [startButtons] auto [end];
   margin-bottom: 50px;
   align-items: center;
+
+  @media screen and (max-width: 400px) {
+    grid-template-columns: [start] 50px [endLogo] 15px [startUser] 100px [EndUser] 1fr [startButtons] auto [end];
+    margin-bottom: 50px;
+  }
 
   .countAwards {
     display: flex;
@@ -25,6 +30,11 @@
     height: 76px;
     width: 76px;
     grid-column: start / endLogo;
+
+    @media screen and (max-width: 400px) {
+      height: 50px;
+      width: 50px;
+    }
   }
 
   > .user {

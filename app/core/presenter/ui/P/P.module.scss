@@ -62,6 +62,11 @@
 .bold {
   font-size: 22px;
   line-height: 29px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    line-height: 100%;
+  }
 }
 
 .gray {

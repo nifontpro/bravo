@@ -50,6 +50,8 @@ const AwardNominee = ({
     }
   });
 
+  console.log(arrUserNominee);
+
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.content}>
@@ -80,13 +82,21 @@ const AwardNominee = ({
         </div>
 
         {currentUser?.role == 'user' ? (
-          <div className={styles.usersAwarded}>
+          <div
+            className={cn(styles.usersAwarded, {
+              [styles.hidden]: arrUserNominee.length == 0,
+            })}
+          >
             {arrUserNominee?.map((user) => {
               return <CardNomineeUser user={user} key={uniqid()} />;
             })}
           </div>
         ) : (
-          <div className={styles.usersAwarded}>
+          <div
+            className={cn(styles.usersAwarded, {
+              [styles.hidden]: arrUserNominee.length == 0,
+            })}
+          >
             {award.relateUsers?.map((item) => {
               if (item.state === 'NOMINEE' || item.state === 'AWARD') {
                 return (
@@ -95,6 +105,13 @@ const AwardNominee = ({
               }
             })}
           </div>
+        )}
+        {arrUserNominee.length == 0 ? (
+          <P className={styles.none} fontstyle='thin' size='m'>
+            Нет участников
+          </P>
+        ) : (
+          ''
         )}
       </div>
 

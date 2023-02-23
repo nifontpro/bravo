@@ -108,7 +108,7 @@ const AwardTitle = ({
               </ButtonIcon>
             </P>
           )}
-          {award.state == 'NOMINEE' && currentUser?.role == 'user' ? (
+          {/* {award.state == 'NOMINEE' && currentUser?.role == 'user' ? (
             <Button
               onClick={() => console.log('Хочу участвовать')}
               appearance='blackWhite'
@@ -119,7 +119,7 @@ const AwardTitle = ({
             </Button>
           ) : (
             ''
-          )}
+          )} */}
         </div>
       </div>
     </div>
