@@ -65,23 +65,6 @@ const AwardTitle = ({
             id={award.id}
             getUrl={getAwardEditUrl}
           />
-          {/* <AuthComponent minRole={'director'}>
-            <ButtonCircleIcon
-              onClick={() => setVisible(!visible)}
-              icon='dots'
-              appearance='transparent'
-              className={styles.dots}
-              ref={refOpen}
-            />
-            <EditPanel
-              getUrl={getAwardEditUrl}
-              onMouseLeave={() => setVisible(!visible)}
-              id={award.id}
-              deleteAsync={deleteAsync}
-              visible={visible}
-              ref={ref}
-            />
-          </AuthComponent> */}
         </div>
 
         <P

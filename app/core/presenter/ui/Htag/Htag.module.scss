@@ -4,11 +4,19 @@
   line-height: 65px;
   margin: 0;
 
+  @media screen and (max-width: 1280px) {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 100%;
+  }
+
   @media screen and (max-width: 768px) {
     font-weight: 700;
     font-size: 22px;
     line-height: 100%;
   }
+
+
 }
 
 .h2 {

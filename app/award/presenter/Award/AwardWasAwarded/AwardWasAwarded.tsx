@@ -39,13 +39,15 @@ const AwardWasAwarded = ({
     }
   });
 
+  console.log(award.relateUsers)
+
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.content}>
         <div className={styles.header}>
-          <Htag tag='h3' className='@apply flex'>
+          <Htag tag='h3' className={styles.headerTitle}>
             Награжденные
-            <P className={styles.rewardedLength}>{arrIdUserRewarded.length}</P>
+            <P className={styles.rewardedLength}>{award.relateUsers.filter((user) => user.state == 'AWARD').length}</P>
           </Htag>
           <AuthComponent minRole={'director'}>
             <ButtonCircleIcon

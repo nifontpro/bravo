@@ -16,6 +16,7 @@ const AwardWasNominee = ({
       <div className={styles.content}>
         <div className={styles.header}>
           <Htag tag='h3'>Были номинированы </Htag>
+          <P className={styles.rewardedLength}>{award.relateUsers.filter((user) => user.state == 'NOMINEE').length}</P>
         </div>
         {award.relateUsers.findIndex((item) => item.state === 'NOMINEE') >= 0 ? (
           <div className={styles.usersAwarded}>

@@ -2,7 +2,7 @@ import styles from './ChoiceImg.module.scss';
 import { ChoiceImgProps } from './ChoiceImg.props';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
-import FilterModalGallery from '../FilterModalGallery/FilterModalGallery';
+import FilterModalGallery from '../ModalWindowGalleryAwards/FilterModalGallery/FilterModalGallery';
 import Button from '@/core/presenter/ui/Button/Button';
 import { MouseEvent } from 'react';
 

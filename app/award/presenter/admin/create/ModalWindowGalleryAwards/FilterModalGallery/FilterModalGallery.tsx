@@ -6,7 +6,7 @@ import { MouseEvent, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import useOutsideClick from '@/core/hooks/useOutsideClick';
-import ModalWindowGalleryAwards from '../ModalWindowGalleryAwards/ModalWindowGalleryAwards';
+import ModalWindowGalleryAwards from '../ModalWindowGalleryAwards';
 // import SortIcon from '@/core/presenter/images/sort.svg';
 // import ChoiceUsers from '../ChoiceUsers/ChoiceUsers';
 // import Htag from '@/core/presenter/ui/Htag/Htag';
