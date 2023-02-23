@@ -39,8 +39,6 @@ const AwardWasAwarded = ({
     }
   });
 
-  console.log(award.relateUsers)
-
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.content}>

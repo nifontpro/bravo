@@ -54,7 +54,7 @@ const AwardNominee = ({
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.content}>
         <div className={styles.header}>
-          <Htag tag='h3' className='@apply flex'>
+          <Htag tag='h3' className={styles.headerTitle}>
             Кто участвует
             <P className={styles.rewardedLength}>{arrIdUserNominee.length}</P>
           </Htag>
@@ -63,7 +63,6 @@ const AwardNominee = ({
               onClick={() => console.log('Рекомендовать')}
               appearance='black'
               icon='plus'
-              className='font-bold'
               disabled={true}
             >
               Рекомендовать
@@ -73,7 +72,6 @@ const AwardNominee = ({
               onClick={() => setVisibleModal(true)}
               appearance='black'
               icon='plus'
-              className='font-bold'
               ref={refOpen}
             >
               Добавить участников

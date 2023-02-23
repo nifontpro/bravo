@@ -68,6 +68,10 @@
 
 .m {
   @apply px-[50px];
+
+  @media screen and (max-width: 768px) {
+  @apply px-[20px];
+  }
 }
 
 .l {

@@ -29,9 +29,9 @@ const UsersPreview = ({
 
   const [visible, setVisible] = useState<boolean>(false);
 
-  const handleClick = () => {
-    setVisible(true);
-  };
+  // const handleClick = () => {
+  //   setVisible(true);
+  // };
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
