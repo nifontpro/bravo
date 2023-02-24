@@ -2,7 +2,6 @@ import styles from './ChoiceImgCreate.module.scss';
 import { ChoiceImgCreateProps } from './ChoiceImgCreate.props';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
-import FilterModalGallery from '../ModalWindowGalleryAwards/FilterModalGallery/FilterModalGallery';
 import Button from '@/core/presenter/ui/Button/Button';
 import { MouseEvent } from 'react';
 
@@ -47,8 +46,6 @@ const ChoiceImgCreate = ({
           Загрузить изображение
         </Button>
       </div>
-
-      {/* <FilterModalGallery images={images} setImg={setImg} /> */}
     </div>
   );
 };
