@@ -45,7 +45,6 @@ const ChoiceUsers = ({
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
-      {/* <P className={styles.searchTitle}>Поиск</P> */}
       <Search
         onChange={handleChange}
         placeholder='Поиск сотрудника'
@@ -54,7 +53,7 @@ const ChoiceUsers = ({
         color='white'
       />
       <div className={styles.searchPanel}>
-        <P size='s' fontstyle='thin' color='gray'>
+        <P size='s' fontstyle='thin' color='gray' className={styles.countUsers}>
           Выбрано {arrChoiceUser.length}{' '}
           {declOfNum(arrChoiceUser.length, [
             'сотрудник',

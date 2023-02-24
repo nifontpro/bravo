@@ -1,5 +1,9 @@
 .button {
   @apply py-[18px] h-fit cursor-pointer text-[15px] font-bold leading-[20px] rounded-[12px] border-none text-center box-border inline-block;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .white {
@@ -64,6 +68,10 @@
 
 .m {
   @apply px-[50px];
+
+  @media screen and (max-width: 768px) {
+  @apply px-[20px];
+  }
 }
 
 .l {

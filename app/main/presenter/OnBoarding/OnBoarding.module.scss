@@ -21,6 +21,18 @@
     height: 360px;
     background: var(--white);
 
+    @media screen and (max-width: 1280px) {
+      margin-top: 350px;
+    }
+
+    @media screen and (max-width: 870px) {
+      margin-top: 470px;
+    }
+
+    @media screen and (max-width: 768px) {
+      margin-top: 450px;
+    }
+
     .onBoardingText {
       text-align: center;
       margin-top: 10px;

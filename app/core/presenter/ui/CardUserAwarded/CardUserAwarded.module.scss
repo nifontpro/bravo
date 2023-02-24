@@ -6,34 +6,59 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   position: relative;
 
-  > .img {
-    height: 175px;
-    width: 175px;
-    margin-bottom: 30px;
+  @media screen and (max-width: 1500px) {
+    min-width: auto;
+  }
+  @media screen and (max-width: 1280px) {
+    padding: 40px 30px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 40px 10px 20px 10px;
+    border-radius: 16px;
   }
 
-  > .post {
-    margin-top: 5px;
+  .contentTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .img {
+      height: 175px;
+      width: 175px;
+      margin-bottom: 30px;
+
+      @media screen and (max-width: 768px) {
+        height: 75px;
+        width: 75px;
+      }
+    }
+
+    .post {
+      margin-top: 5px;
+    }
   }
 
-  > .date {
+  .date {
     display: flex;
     margin-top: 65px;
     background: var(--graySilver);
     padding: 5px 20px;
     border-radius: 30px;
 
-    .dateRewarded {
-      margin-right: 10px;
+    @media screen and (max-width: 768px) {
+      margin-top: 30px;
     }
-  }
 
-  .remove {
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    .dateRewarded {
+      display: flex;
+      align-items: center;
+      .icon {
+        margin-left: 5px;
+        width: 10px;
+      }
+    }
   }
 }

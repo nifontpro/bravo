@@ -1,6 +1,7 @@
 import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import {
+  MouseEvent,
   useEffect,
   useState,
 } from 'react';
@@ -51,7 +52,8 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
     }
   };
 
-  const removePhoto = async () => {
+  const removePhoto = async (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+    e.preventDefault();
     let isError = false;
     if (award != undefined) {
       await removeImg(award.id)

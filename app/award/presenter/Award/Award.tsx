@@ -6,9 +6,12 @@ import AwardTitle from './AwardTitle/AwardTitle';
 import AwardWasAwarded from './AwardWasAwarded/AwardWasAwarded';
 import AwardWasNominee from './AwardWasNominee/AwardWasNominee';
 import AwardNominee from './AwardNominee/AwardNominee';
+import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
 
 const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
   const { push } = useRouter();
+
+  console.log(award)
 
   if (award.state == 'AWARD' || award.state == 'NONE') {
     return (
@@ -24,6 +27,7 @@ const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
         <AwardTitle award={award} />
         <AwardWasAwarded award={award} />
         <AwardWasNominee award={award} className='mb-[50px]' />
+        <ButtonScrollUp />
       </div>
     );
   } else {
@@ -39,6 +43,7 @@ const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
 
         <AwardTitle award={award} />
         <AwardNominee award={award} />
+        <ButtonScrollUp />
       </div>
     );
   }

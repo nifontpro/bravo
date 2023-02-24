@@ -54,7 +54,7 @@ const AwardNominee = ({
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.content}>
         <div className={styles.header}>
-          <Htag tag='h3' className='@apply flex'>
+          <Htag tag='h3' className={styles.headerTitle}>
             Кто участвует
             <P className={styles.rewardedLength}>{arrIdUserNominee.length}</P>
           </Htag>
@@ -63,7 +63,6 @@ const AwardNominee = ({
               onClick={() => console.log('Рекомендовать')}
               appearance='black'
               icon='plus'
-              className='font-bold'
               disabled={true}
             >
               Рекомендовать
@@ -73,7 +72,6 @@ const AwardNominee = ({
               onClick={() => setVisibleModal(true)}
               appearance='black'
               icon='plus'
-              className='font-bold'
               ref={refOpen}
             >
               Добавить участников
@@ -82,13 +80,21 @@ const AwardNominee = ({
         </div>
 
         {currentUser?.role == 'user' ? (
-          <div className={styles.usersAwarded}>
+          <div
+            className={cn(styles.usersAwarded, {
+              [styles.hidden]: arrUserNominee.length == 0,
+            })}
+          >
             {arrUserNominee?.map((user) => {
               return <CardNomineeUser user={user} key={uniqid()} />;
             })}
           </div>
         ) : (
-          <div className={styles.usersAwarded}>
+          <div
+            className={cn(styles.usersAwarded, {
+              [styles.hidden]: arrUserNominee.length == 0,
+            })}
+          >
             {award.relateUsers?.map((item) => {
               if (item.state === 'NOMINEE' || item.state === 'AWARD') {
                 return (
@@ -97,6 +103,13 @@ const AwardNominee = ({
               }
             })}
           </div>
+        )}
+        {arrUserNominee.length == 0 ? (
+          <P className={styles.none} fontstyle='thin' size='m'>
+            Нет участников
+          </P>
+        ) : (
+          ''
         )}
       </div>
 

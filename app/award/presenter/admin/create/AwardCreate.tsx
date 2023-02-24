@@ -2,15 +2,14 @@ import { useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
 import styles from './AwardCreate.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
-import cn from 'classnames';
+// import cn from 'classnames';
 import { useRouter } from 'next/router';
 import Button from '@/core/presenter/ui/Button/Button';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import { AwardCreateProps } from './AwardCreate.props';
 import { useAwardCreate } from './useAwardCreate';
-import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
-import InputFile from '@/core/presenter/ui/InputFile/InputFile';
-import { useEffect, useRef, useState } from 'react';
+// import InputFile from '@/core/presenter/ui/InputFile/InputFile';
+import { useRef, useState } from 'react';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useCompanyState } from '@/company/data/company.slice';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
@@ -22,10 +21,11 @@ import SelectCalendar from './SelectCalendar/SelectCalendar';
 import type { DatePickerProps } from 'antd';
 import { useDispatch } from 'react-redux';
 import { dateActions } from './dataCreateAward.slice';
-import useOutsideClick from '@/core/hooks/useOutsideClick';
-import P from '@/core/presenter/ui/P/P';
+// import useOutsideClick from '@/core/hooks/useOutsideClick';
 import { IGalleryObject } from 'gallery/model/gallery.types';
 import ModalWindowGalleryAwards from '@/award/presenter/admin/create/ModalWindowGalleryAwards/ModalWindowGalleryAwards';
+import ChoiceImgCreate from './ChoiceImgCreate/ChoiceImgCreate';
+import UsersPreview from './UsersPreview/UsersPreview';
 
 const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
   const dispatch = useDispatch();
@@ -61,11 +61,11 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
 
   //Закрытие модального окна нажатием вне его
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
-  const ref = useRef(null);
-  const refOpen = useRef(null);
-  const handleClickOutside = () => {
-    setVisibleModal(false);
-  };
+  // const ref = useRef(null);
+  // const refOpen = useRef(null);
+  // const handleClickOutside = () => {
+  //   setVisibleModal(false);
+  // };
   // useOutsideClick(ref, refOpen, handleClickOutside, visibleModal); // добавить как разберусь с Selectom React
 
   return (
@@ -79,44 +79,23 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
       </ButtonCircleIcon>
 
       <form className={styles.form}>
-        <div className={cn(styles.field, styles.uploadField)}>
-          <div className={styles.images}>
-            <ImageDefault
-              src={images?.imageUrl}
-              width={400}
-              height={400}
-              alt='preview image'
-              objectFit='cover'
-              // priority={true}
-            />
-          </div>
-
-          <div
-            className={styles.choiceImg}
-            ref={refOpen}
-            onClick={() => setVisibleModal(true)}
-          >
-            <P
-              size='xs'
-              fontstyle='thin'
-              color='white'
-              className={styles.download}
-            >
-              Загрузить изображение
-            </P>
-          </div>
-          {/* <InputFile
-            error={errors.file}
-            {...register('file', { onChange: changePhoto })}
-          >
-            Загрузить изображение
-          </InputFile> */}
-        </div>
+        <ChoiceImgCreate
+          setVisibleModal={setVisibleModal}
+          images={images}
+          setImg={setImg}
+        />
 
         <div className={styles.fields}>
           <Htag tag='h2' className={styles.title}>
             Новая награда
           </Htag>
+
+          <ChoiceImgCreate
+            className={styles.mediaVisible}
+            setVisibleModal={setVisibleModal}
+            images={images}
+            setImg={setImg}
+          />
 
           <Field
             {...register('name', { required: 'Название необходимо!' })}
@@ -154,6 +133,12 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
             />
           </div>
 
+          <UsersPreview
+            arrChoiceUser={arrChoiceUser}
+            users={users}
+            setArrChoiceUser={setArrChoiceUser}
+          />
+
           <ChoiceUsers
             users={users}
             arrChoiceUser={arrChoiceUser}
@@ -173,7 +158,7 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
               onClick={handleSubmit(onSubmitNominee)}
               appearance='blackWhite'
               size='l'
-              className='ml-[15px]'
+              className={styles.lastBtn}
               disabled={!isDirty || !isValid}
             >
               Номинировать
@@ -181,13 +166,14 @@ const AwardCreate = ({}: AwardCreateProps): JSX.Element => {
           </div>
         </div>
       </form>
+
       <ModalWindowGalleryAwards
         img={images}
         setImg={setImg}
         visibleModal={visibleModal}
         setVisibleModal={setVisibleModal}
         textBtn='Подтвердить'
-        ref={ref}
+        // ref={ref}
         create={false}
       />
     </Meta>

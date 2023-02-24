@@ -37,23 +37,23 @@ const FilterAwards = ({
     },
   };
 
-  // //Закрытие модального окна уведомлений нажатием вне
-  // const refFilter = useRef(null);
-  // const refOpenFilter = useRef(null);
-  // const handleClickOutsideNotification = () => {
-  //   setVisibleFilter(false);
-  // };
-  // useOutsideClick(
-  //   refFilter,
-  //   refOpenFilter,
-  //   handleClickOutsideNotification,
-  //   visibleFilter
-  // );
+  //Закрытие модального окна уведомлений нажатием вне
+  const refFilter = useRef(null);
+  const refOpenFilter = useRef(null);
+  const handleClickOutsideNotification = () => {
+    setVisibleFilter(false);
+  };
+  useOutsideClick(
+    refFilter,
+    refOpenFilter,
+    handleClickOutsideNotification,
+    visibleFilter
+  );
 
   return (
     <div {...props} className={cn(styles.wrapper, className)}>
       <Button
-        // ref={refFilter}
+        ref={refFilter}
         size='m'
         appearance='whiteBlack'
         className={styles.button}
@@ -65,7 +65,7 @@ const FilterAwards = ({
       <AnimatePresence mode='wait'>
         {visibleFilter && (
           <motion.div
-            // ref={refOpenFilter}
+            ref={refOpenFilter}
             initial='hidden'
             animate='visible'
             exit='exit'

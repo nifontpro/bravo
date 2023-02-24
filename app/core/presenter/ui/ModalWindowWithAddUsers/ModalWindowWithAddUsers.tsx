@@ -8,6 +8,7 @@ import { ForwardedRef, forwardRef } from 'react';
 import Button from '../Button/Button';
 import { useModalWindowWithAddUsers } from './useModalWindowWithAddUsers';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const ModalWindowWithAddUsers = forwardRef(
   (
@@ -26,18 +27,32 @@ const ModalWindowWithAddUsers = forwardRef(
     const { arrChoiceUser, setArrChoiceUser, onSubmitNominee, handleCancel } =
       useModalWindowWithAddUsers(setVisibleModal, awardId, awardState);
 
+      const {windowSize} = useWindowSize()
+
     const variants = {
       visible: {
         opacity: 1,
-        // y: 0,
       },
       hidden: {
         opacity: 0,
-        // y: '-100vh',
       },
       exit: {
         opacity: 0,
-        // y: '-100vh',
+      },
+    };
+
+    const variantsMedia = {
+      visible: {
+        opacity: 1,
+        y: 0,
+      },
+      hidden: {
+        opacity: 0,
+        y: '460px',
+      },
+      exit: {
+        opacity: 0,
+        y: '460px',
       },
     };
 
@@ -48,33 +63,44 @@ const ModalWindowWithAddUsers = forwardRef(
             initial='hidden'
             animate='visible'
             exit='exit'
-            variants={variants}
+            variants={windowSize.winWidth <= 768 ? variantsMedia : variants}
             transition={{ duration: 0.4 }}
             className={cn(styles.modalWindow, className)}
             {...props}
           >
             <div className={styles.module} ref={ref}>
-              <ExitIcon
+              <div
+                className={styles.slash}
                 onClick={handleCancel}
-                className={styles.exit}
               />
+              <ExitIcon onClick={handleCancel} className={styles.exit} />
               <Htag tag='h2' className={styles.title}>
                 Добавить участника
+              </Htag>
+              <Htag className={styles.titleMedia} tag='h2'>
+                Выбрано сотрудников{' '}
+                <span className={styles.count}>{arrChoiceUser.length}</span>
               </Htag>
               <ChoiceUsers
                 users={users}
                 arrChoiceUser={arrChoiceUser}
                 setArrChoiceUser={setArrChoiceUser}
+                className={styles.mediaVisible}
               />
               <div className={styles.buttons}>
-                <Button onClick={handleCancel} appearance='whiteBlack' size='l'>
+                <Button
+                  onClick={handleCancel}
+                  appearance='whiteBlack'
+                  size='l'
+                  className={styles.cancel}
+                >
                   Отменить
                 </Button>
                 <Button
                   onClick={onSubmitNominee}
                   appearance='blackWhite'
                   size='l'
-                  className='ml-[15px]'
+                  className={styles.confirm}
                 >
                   {textBtn}
                 </Button>

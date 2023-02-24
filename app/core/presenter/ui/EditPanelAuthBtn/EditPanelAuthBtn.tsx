@@ -5,6 +5,7 @@ import ButtonCircleIcon from '../ButtonCircleIcon/ButtonCircleIcon';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
 import { useRef, useState } from 'react';
 import EditPanel from './EditPanel/EditPanel';
+import FilterEditPanel from './FilterEditPanel/FilterEditPanel';
 
 const EditPanelAuthBtn = ({
   handleRemove,
@@ -37,7 +38,15 @@ const EditPanelAuthBtn = ({
         id={id}
         deleteAsync={handleRemove}
         visible={visible}
-        className={styles.editPanel}
+        ref={ref}
+        onlyRemove={onlyRemove}
+      />
+      <FilterEditPanel
+        getUrl={getUrl}
+        setVisible={setVisible}
+        id={id}
+        deleteAsync={handleRemove}
+        visible={visible}
         ref={ref}
         onlyRemove={onlyRemove}
       />

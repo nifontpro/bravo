@@ -5,6 +5,10 @@
   margin-top: 50px;
   @apply animate-fade;
 
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: 1fr;
+  }
+
   > .uploadField {
     border-radius: 27px;
     width: 400px;
@@ -13,6 +17,10 @@
     overflow: hidden;
     // padding: 55px;
     padding-bottom: 20px;
+
+    @media screen and (max-width: 1280px) {
+      display: none;
+    }
 
     .images {
       height: 400px;
@@ -51,8 +59,53 @@
     background: var(--white);
     border-radius: 27px;
     margin-bottom: 30px;
+
+    @media screen and (max-width: 1280px) {
+      padding: 60px;
+      border-radius: 16px;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 60px 40px;
+    }
+    @media screen and (max-width: 400px) {
+      padding: 30px 15px;
+    }
+
+    .mediaVisible {
+      display: none;
+      @media screen and (max-width: 1280px) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 80px;
+      }
+      @media screen and (max-width: 700px) {
+        flex-direction: column;
+        margin-bottom: 40px;
+      }
+    }
+
+    .textArea {
+      margin-bottom: 100px;
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: 50px;
+      }
+    }
+
+    .field {
+      margin-bottom: 60px;
+      @media screen and (max-width: 768px) {
+        margin-bottom: 30px;
+      }
+    }
+    
     > .title {
       margin-bottom: 80px;
+      @media screen and (max-width: 768px) {
+        margin-bottom: 40px;
+      }
     }
 
     > .groupGender {
@@ -99,7 +152,20 @@
     > .buttons {
       display: flex;
       justify-content: flex-end;
-      margin-top: 100px;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        margin-top: 0px
+      }
+
+      .confirmBtn {
+        margin-left: 15px;
+
+        @media screen and (max-width: 768px) {
+          margin-left: 0px;
+          margin-top: 15px;
+        }
+      }
     }
   }
 }

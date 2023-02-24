@@ -11,8 +11,7 @@ const CardNomineeUser = ({
   className,
   ...props
 }: CardNomineeUserProps): JSX.Element => {
-  // console.log(user)
-
+  
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.img}>

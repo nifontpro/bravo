@@ -3,7 +3,7 @@ import { CardNomineeProps } from './CardNominee.props';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import P from '@/core/presenter/ui/P/P';
-import { timeConverterUser } from '@/core/utils/timeConverterUser';
+// import { timeConverterUser } from '@/core/utils/timeConverterUser';
 import Button from '../../../../../core/presenter/ui/Button/Button';
 import { useCardNominee } from './useCardNominee';
 import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
@@ -14,7 +14,7 @@ const CardNominee = ({
   className,
   ...props
 }: CardNomineeProps): JSX.Element => {
-  let convertDate = timeConverterUser(user.nomineeDate);
+  // let convertDate = timeConverterUser(user.nomineeDate);
   let userId = user.user.id;
   const { handleReward, handleRemove } = useCardNominee(userId, awardId);
   // console.log(user)

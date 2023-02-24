@@ -65,23 +65,6 @@ const AwardTitle = ({
             id={award.id}
             getUrl={getAwardEditUrl}
           />
-          {/* <AuthComponent minRole={'director'}>
-            <ButtonCircleIcon
-              onClick={() => setVisible(!visible)}
-              icon='dots'
-              appearance='transparent'
-              className={styles.dots}
-              ref={refOpen}
-            />
-            <EditPanel
-              getUrl={getAwardEditUrl}
-              onMouseLeave={() => setVisible(!visible)}
-              id={award.id}
-              deleteAsync={deleteAsync}
-              visible={visible}
-              ref={ref}
-            />
-          </AuthComponent> */}
         </div>
 
         <P
@@ -125,7 +108,7 @@ const AwardTitle = ({
               </ButtonIcon>
             </P>
           )}
-          {award.state == 'NOMINEE' && currentUser?.role == 'user' ? (
+          {/* {award.state == 'NOMINEE' && currentUser?.role == 'user' ? (
             <Button
               onClick={() => console.log('Хочу участвовать')}
               appearance='blackWhite'
@@ -136,7 +119,7 @@ const AwardTitle = ({
             </Button>
           ) : (
             ''
-          )}
+          )} */}
         </div>
       </div>
     </div>

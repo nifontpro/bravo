@@ -6,10 +6,7 @@ import P from '@/core/presenter/ui/P/P';
 import { timeConverterUser } from '@/core/utils/timeConverterUser';
 import { awardApi } from 'award/data/award.api';
 import { toast } from 'react-toastify';
-import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import AwardIcon from '@/core/presenter/images/union.svg';
-import EditPanel from '../EditPanelAuthBtn/EditPanel/EditPanel';
-import ButtonCircleIcon from '../ButtonCircleIcon/ButtonCircleIcon';
 import { getUserEditUrl } from '@/core/config/api.config';
 import { useRef, useState } from 'react';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
@@ -54,28 +51,31 @@ const CardUserAwarded = ({
 
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
-      <div className={styles.img}>
-        <ImageDefault
-          src={user.user.imageUrl}
-          width={175}
-          height={175}
-          alt='award img'
-          objectFit='cover'
-          className='rounded-[27px]'
-          // priority={true}
-        />
-      </div>
-      <P size='l'>
-        {user.user.lastname} {user.user.name}
-      </P>
-      <P size='s' fontstyle='thin' color='gray' className={styles.post}>
-        {user.user.post}
-      </P>
-      <div className={styles.date}>
-        <P size='s' fontstyle='thin' className={styles.dateRewarded}>
-          {convertDate}
+      <div className={styles.contentTitle}>
+        <div className={styles.img}>
+          <ImageDefault
+            src={user.user.imageUrl}
+            width={175}
+            height={175}
+            alt='award img'
+            objectFit='cover'
+            className='rounded-[27px]'
+            // priority={true}
+          />
+        </div>
+        <P size='l'>
+          {user.user.lastname} {user.user.name}
         </P>
-        <AwardIcon />
+        <P size='s' fontstyle='thin' color='gray' className={styles.post}>
+          {user.user.post}
+        </P>
+      </div>
+
+      <div className={styles.date}>
+        <P size='xs' fontstyle='thin' className={styles.dateRewarded}>
+          {convertDate}
+          <AwardIcon className={styles.icon}/>
+        </P>
       </div>
 
       <EditPanelAuthBtn
