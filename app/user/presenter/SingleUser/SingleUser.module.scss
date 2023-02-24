@@ -5,10 +5,21 @@
   margin-top: 50px;
   @apply animate-fade;
 
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: 1fr;
+  }
+
   > .img {
     background: var(--white);
     border-radius: 27px;
     width: 400px;
     height: 400px;
+
+    @media screen and (max-width: 1280px) {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+    }
   }
 }

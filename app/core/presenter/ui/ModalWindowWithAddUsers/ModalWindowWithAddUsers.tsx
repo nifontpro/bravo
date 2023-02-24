@@ -27,7 +27,7 @@ const ModalWindowWithAddUsers = forwardRef(
     const { arrChoiceUser, setArrChoiceUser, onSubmitNominee, handleCancel } =
       useModalWindowWithAddUsers(setVisibleModal, awardId, awardState);
 
-      const {windowSize} = useWindowSize()
+    const { windowSize } = useWindowSize();
 
     const variants = {
       visible: {
@@ -68,11 +68,8 @@ const ModalWindowWithAddUsers = forwardRef(
             className={cn(styles.modalWindow, className)}
             {...props}
           >
+            <div className={styles.slash} onClick={handleCancel} />
             <div className={styles.module} ref={ref}>
-              <div
-                className={styles.slash}
-                onClick={handleCancel}
-              />
               <ExitIcon onClick={handleCancel} className={styles.exit} />
               <Htag tag='h2' className={styles.title}>
                 Добавить участника
