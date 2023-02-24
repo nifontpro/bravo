@@ -50,8 +50,6 @@ const AwardNominee = ({
     }
   });
 
-  console.log(arrUserNominee);
-
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
       <div className={styles.content}>
