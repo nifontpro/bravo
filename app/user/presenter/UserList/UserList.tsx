@@ -30,16 +30,18 @@ const UserList = motion(
           />
           <AuthComponent minRole={'director'}>
             <div className={styles.editPanel} {...props}>
-              <ButtonEdit
+              <div
+                className={styles.wrapperIcon}
                 onClick={() => push(getUserEditUrl(`/${user.id}`))}
-                icon='edit'
-              />
-
-              <ButtonEdit
+              >
+                <ButtonEdit icon='edit' className={styles.edit} />
+              </div>
+              <div
+                className={styles.wrapperIcon}
                 onClick={() => deleteAsync(user.id)}
-                icon='remove'
-                className='@apply ml-[5px]'
-              />
+              >
+                <ButtonEdit icon='remove' className={styles.remove} />
+              </div>
             </div>
           </AuthComponent>
         </div>

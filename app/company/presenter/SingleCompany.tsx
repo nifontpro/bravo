@@ -7,6 +7,7 @@ import DepartmentAndUsers from './DepartmentAndUsers/DepartmentAndUsers';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import Link from 'next/link';
+import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
 
 const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
 
@@ -29,6 +30,7 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
         <TitleSingleCompany company={company} />
         <DepartmentAndUsers company={company} />
       </div>
+      <ButtonScrollUp />
     </Meta>
   );
 };

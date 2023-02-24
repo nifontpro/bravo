@@ -3,9 +3,7 @@ import { SingleUserNomineeProps } from './SingleUserNominee.props';
 import cn from 'classnames';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import P from '@/core/presenter/ui/P/P';
-// import CardAwardRewarded from '@/core/presenter/ui/CardAwardRewarded/CardAwardRewarded';
 import uniqid from 'uniqid';
-// import CardNominee from 'award/presenter/Award/AwardNominee/CardNominee/CardNominee';
 import CardNomineeUser from './CardNomineeUser/CardNomineeUser';
 
 const SingleUserNominee = ({
