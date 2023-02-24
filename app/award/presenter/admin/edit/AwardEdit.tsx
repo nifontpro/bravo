@@ -17,6 +17,9 @@ import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 import { useRef, useState } from 'react';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
 import ModalWindowGalleryAwards from '@/award/presenter/admin/create/ModalWindowGalleryAwards/ModalWindowGalleryAwards';
+import ChoiceImg from '../create/ChoiceImgCreate/ChoiceImgCreate';
+import { IGalleryObject } from 'gallery/model/gallery.types';
+import ChoiceImgEdit from './ChoiceImgEdit/ChoiceImgEdit';
 
 const AwardEdit = ({}: AwardEditProps): JSX.Element => {
   const { currentCompany } = useCompanyState();
@@ -26,7 +29,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
     handleSubmit,
     register,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm<IAwardUpdate>({ mode: 'onChange' });
 
   const { onSubmit, removePhoto, img } = useAwardEdit(setValue);
@@ -43,7 +46,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
   const handleClickOutside = () => {
     setVisibleModal(false);
   };
- // useOutsideClick(ref, refOpen, handleClickOutside, visibleModal); // добавить как разберусь с Select React
+  // useOutsideClick(ref, refOpen, handleClickOutside, visibleModal); // добавить как разберусь с Select React
 
   return (
     <Meta title='Редактирование компании'>
@@ -51,7 +54,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
         Вернуться назад
       </ButtonCircleIcon>
       <div className={styles.newForm}>
-        <div className={cn(styles.field, styles.uploadField)}>
+        {/* <div className={cn(styles.field, styles.uploadField)}>
           <div className={styles.images}>
             <ImageDefault
               src={img}
@@ -72,20 +75,24 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
             />
             <ButtonEdit icon='remove' onClick={removePhoto} />
           </div>
-        </div>
+        </div> */}
+
+        <ChoiceImgEdit img={img} removePhoto={removePhoto} setVisibleModal={setVisibleModal}/>
 
         <form className={styles.form}>
           <div className={styles.fields}>
             <Htag tag='h2' className={styles.title}>
-              Описание медали
+              Редактирование
             </Htag>
+
+            <ChoiceImgEdit img={img} removePhoto={removePhoto} setVisibleModal={setVisibleModal} className={styles.mediaVisible}/>
 
             <Field
               {...register('name', { required: 'Название необходимо!' })}
               title='Название'
               placeholder={currentCompany?.name}
               error={errors.name}
-              className='mb-[60px]'
+              className={styles.field}
             />
 
             <Field
@@ -95,6 +102,7 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
               title='Описание'
               placeholder={currentCompany?.address}
               error={errors.description}
+              className={styles.field}
             />
 
             <TextArea
@@ -104,18 +112,18 @@ const AwardEdit = ({}: AwardEditProps): JSX.Element => {
               title='Требования к номинанту'
               placeholder='Введите требования к медали'
               error={errors.criteria}
-              className='mb-[100px] mt-[60px]'
+              className={styles.textArea}
             />
 
             <div className={styles.buttons}>
-              <Button onClick={handleClick} appearance='whiteBlack' size='l'>
+              <Button onClick={handleClick} appearance='whiteBlack' size='l' className={styles.cancelBtn}>
                 Отменить
               </Button>
               <Button
                 onClick={handleSubmit(onSubmit)}
                 appearance='blackWhite'
                 size='l'
-                className='ml-[15px]'
+                className={styles.confirmBtn}
               >
                 Изменить
               </Button>

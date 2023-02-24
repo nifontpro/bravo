@@ -10,6 +10,8 @@ import { useModalWindowGalleryAwards } from './useModalWindowGalleryAwards';
 import Select, { OnChangeValue } from 'react-select';
 import { IOption } from '@/core/presenter/ui/SelectArtem/SelectArtem.interface';
 import makeAnimated from 'react-select/animated';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useWindowSize } from '@/core/hooks/useWindowSize';
 const animatedComponents = makeAnimated();
 
 const ModalWindowGalleryAwards = forwardRef(
@@ -35,6 +37,38 @@ const ModalWindowGalleryAwards = forwardRef(
       setIdFolder,
     } = useModalWindowGalleryAwards(create, setVisibleModal, setImg);
 
+    const { windowSize } = useWindowSize();
+
+    const variants = {
+      visible: {
+        opacity: 1,
+        // y: 0,
+      },
+      hidden: {
+        opacity: 0,
+        // y: '460px',
+      },
+      exit: {
+        opacity: 0,
+        // y: '460px',
+      },
+    };
+
+    const variantsMedia = {
+      visible: {
+        opacity: 1,
+        y: 0,
+      },
+      hidden: {
+        opacity: 0,
+        y: '460px',
+      },
+      exit: {
+        opacity: 0,
+        y: '460px',
+      },
+    };
+
     let arrFolders: IOption[] = [];
     folders &&
       folders.forEach((item) => {
@@ -47,75 +81,82 @@ const ModalWindowGalleryAwards = forwardRef(
       setIdFolder((newValue as IOption).value);
     };
 
-    const handleCancel = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    const handleCancel = (
+      e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+    ) => {
       e.preventDefault();
-      setVisibleModal(false)
-    }
+      setVisibleModal(false);
+    };
 
     return (
-      <div
-        className={cn(
-          styles.modalWindow,
-          {
-            [styles.active]: visibleModal,
-            [styles.hidden]: !visibleModal,
-          },
-          className
-        )}
-        {...props}
-      >
-        <div className={styles.module} ref={ref}>
-          <ExitIcon
-            onClick={() => setVisibleModal(false)}
-            className={styles.exit}
-          />
-          <Htag tag='h2' className={styles.title}>
-            Выберите медаль
-          </Htag>
+      <AnimatePresence mode='wait'>
+        {visibleModal && (
+          <motion.div
+            className={styles.modalWindow}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+            variants={windowSize.winWidth > 768 ? variants : variantsMedia}
+            transition={{ duration: 0.4 }}
+          >
+            <div
+              className={styles.slash}
+              onClick={() => setVisibleModal(false)}
+            />
+            <div className={styles.module} ref={ref}>
+              <ExitIcon
+                onClick={() => setVisibleModal(false)}
+                className={styles.exit}
+              />
+              <Htag tag='h2' className={styles.title}>
+                Выберите медаль
+              </Htag>
 
-          <Select
-            classNamePrefix='custom-select-rating'
-            placeholder={'Выберите папку с изображениями'}
-            options={arrFolders}
-            onChange={onChange}
-            components={animatedComponents}
-          />
+              <Select
+                classNamePrefix='custom-select-rating'
+                placeholder={'Выберите папку с изображениями'}
+                options={arrFolders}
+                onChange={onChange}
+                components={animatedComponents}
+              />
 
-          {
-            <div className={cn(styles.wrapperChoiceImg)}>
-              {awardsGallery?.map((item) => {
-                return (
-                  <ChoiceItemImg
-                    itemImg={item}
-                    key={item.id}
-                    imagesPreview={imagesPreview}
-                    setImagesPreview={setImagesPreview}
-                  />
-                );
-              })}
+              {
+                <div className={cn(styles.wrapperChoiceImg)}>
+                  {awardsGallery?.map((item) => {
+                    return (
+                      <ChoiceItemImg
+                        itemImg={item}
+                        key={item.id}
+                        imagesPreview={imagesPreview}
+                        setImagesPreview={setImagesPreview}
+                      />
+                    );
+                  })}
+                </div>
+              }
+
+              <div className={styles.buttons}>
+                <Button
+                  onClick={(e) => handleCancel(e)}
+                  appearance='whiteBlack'
+                  size='l'
+                  className={styles.cancelBtn}
+                >
+                  Отменить
+                </Button>
+                <Button
+                  onClick={(e) => onSubmit(e)}
+                  appearance='blackWhite'
+                  size='l'
+                  className={styles.confirmBtn}
+                >
+                  {textBtn}
+                </Button>
+              </div>
             </div>
-          }
-
-          <div className={styles.buttons}>
-            <Button
-              onClick={(e) => handleCancel(e)}
-              appearance='whiteBlack'
-              size='l'
-              className={styles.cancelBtn}
-            >
-              Отменить
-            </Button>
-            <Button
-              onClick={(e) => onSubmit(e)}
-              appearance='blackWhite'
-              size='l'
-              className={styles.confirmBtn}
-            >
-              {textBtn}
-            </Button>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     );
   }
 );

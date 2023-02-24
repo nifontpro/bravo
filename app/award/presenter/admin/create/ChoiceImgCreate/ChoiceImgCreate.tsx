@@ -1,18 +1,18 @@
-import styles from './ChoiceImg.module.scss';
-import { ChoiceImgProps } from './ChoiceImg.props';
+import styles from './ChoiceImgCreate.module.scss';
+import { ChoiceImgCreateProps } from './ChoiceImgCreate.props';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import FilterModalGallery from '../ModalWindowGalleryAwards/FilterModalGallery/FilterModalGallery';
 import Button from '@/core/presenter/ui/Button/Button';
 import { MouseEvent } from 'react';
 
-const ChoiceImg = ({
+const ChoiceImgCreate = ({
   setVisibleModal,
   images,
   setImg,
   className,
   ...props
-}: ChoiceImgProps): JSX.Element => {
+}: ChoiceImgCreateProps): JSX.Element => {
   const handleClick = (
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
@@ -48,9 +48,9 @@ const ChoiceImg = ({
         </Button>
       </div>
 
-      <FilterModalGallery images={images} setImg={setImg} />
+      {/* <FilterModalGallery images={images} setImg={setImg} /> */}
     </div>
   );
 };
 
-export default ChoiceImg;
+export default ChoiceImgCreate;

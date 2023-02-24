@@ -12,6 +12,32 @@
 
   @media screen and (max-width: 768px) {
     background: none;
+    position: fixed;
+    height: fit-content;
+    top: auto;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    padding: 60px 10px 0px 10px;
+    background: var(--white);
+    border-radius: 16px;
+  }
+
+  .slash {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    top: 20px;
+    left: calc(50vw - 50px);
+    width: 100px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--graySilver);
+    z-index: 100;
+    @apply duration-300;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 
   .module {
@@ -24,8 +50,13 @@
     background: var(--white);
 
     @media screen and (max-width: 768px) {
-      margin-top: 50px;
-      padding: 10px;
+      margin-top: 0px;
+      padding: 0px 10px;
+      height: 500px;
+      overflow-y: scroll;
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 20px;
     }
 
     .title {

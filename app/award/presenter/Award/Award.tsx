@@ -11,6 +11,8 @@ import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
 const Award = ({ award, className, ...props }: AwardProps): JSX.Element => {
   const { push } = useRouter();
 
+  console.log(award)
+
   if (award.state == 'AWARD' || award.state == 'NONE') {
     return (
       <div {...props} className={cn(className)}>
