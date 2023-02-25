@@ -114,12 +114,40 @@ const UserCreate: FC = () => {
           >
             Загрузить изображение
           </InputFile>
-        </div> 
+        </div>
 
         <div className={styles.fields}>
           <Htag tag='h2' className={styles.title}>
             Новый сотрудник
           </Htag>
+
+          <div
+            className={cn(
+              styles.field,
+              styles.uploadField,
+              styles.mediaVisible
+            )}
+          >
+            <div className={styles.images}>
+              <ImageDefault
+                src={img}
+                width={400}
+                height={400}
+                alt='preview image'
+                objectFit='cover'
+                // priority={true}
+                // className='rounded-[10px]'
+              />
+            </div>
+
+            <InputFile
+              error={errors.file}
+              {...register('file', { onChange: changePhoto })}
+              className={styles.downloadBtn}
+            >
+              Загрузить изображение
+            </InputFile>
+          </div>
 
           <div className={styles.groupGender}>
             <Field
@@ -178,7 +206,7 @@ const UserCreate: FC = () => {
             title='Почта'
             placeholder='Введите свою почту'
             error={errors.email}
-            className='@apply mb-[60px]'
+            className={styles.field}
           />
 
           <div className={styles.group}>
@@ -230,18 +258,23 @@ const UserCreate: FC = () => {
             title='О сотруднике'
             placeholder='Введите информацию о сотруднике'
             error={errors.description}
-            className='mb-[100px]'
+            className={styles.field}
           />
 
           <div className={styles.buttons}>
-            <Button onClick={handleClick} appearance='whiteBlack' size='l'>
+            <Button
+              onClick={handleClick}
+              appearance='whiteBlack'
+              size='l'
+              className={styles.cancel}
+            >
               Отменить
             </Button>
             <Button
               onClick={handleSubmit(onSubmit)}
               appearance='blackWhite'
               size='l'
-              className='ml-[15px]'
+              className={styles.confirm}
               disabled={!isDirty || !isValid}
             >
               Добавить

@@ -95,7 +95,7 @@ const UserEdit: FC = () => {
               >
                 <ButtonEdit icon='refresh' />
               </InputPhotoRefresh>
-              <ButtonEdit icon='remove' onClick={removePhoto} />
+              <ButtonEdit icon='remove' onClick={(e) => removePhoto(e)} />
             </div>
           </div>
 

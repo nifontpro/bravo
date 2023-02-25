@@ -133,11 +133,12 @@ const SingleUserTitle = ({
           )}
         </div>
         {currentUser?.id == user.id ? (
-          <div>
+          <div className={styles.buttons}>
             <Button
               onClick={() => push(getUserEditUrl(`/${user.id}`))}
               size='m'
               appearance='blackWhite'
+              className={styles.editBtn}
             >
               Редактировать
             </Button>
@@ -145,7 +146,7 @@ const SingleUserTitle = ({
               onClick={() => push(getUserEditPasswordUrl(`/${user.id}`))}
               size='m'
               appearance='whiteBlack'
-              className='@apply ml-[10px]'
+              className={styles.changePasswordBtn}
             >
               Сменить пароль
             </Button>

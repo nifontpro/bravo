@@ -12,7 +12,7 @@ import { ICompanyCreate } from '@/company/model/company.types';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
 import { ChangeEvent, useState } from 'react';
-import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
+import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon'; 
 
 const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
   const { push, back } = useRouter();
