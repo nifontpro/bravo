@@ -44,7 +44,7 @@ const Statistic = ({
               onChange={onChange}
               components={animatedComponents}
             />
-            <P size='l' className={styles.title}>
+            <P size='l' className={styles.department}>
               По отделам
             </P>
           </div>

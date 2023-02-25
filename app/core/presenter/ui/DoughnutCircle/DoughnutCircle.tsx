@@ -1,3 +1,4 @@
+import { useWindowSize } from '@/core/hooks/useWindowSize';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { DoughnutCircleProps } from './DoughnutCircle.props';
@@ -11,10 +12,12 @@ const DoughnutCircle = ({
   ...props
 }: DoughnutCircleProps): JSX.Element => {
   ChartJS.register(ArcElement, Tooltip, Legend);
+  const { windowSize } = useWindowSize();
 
   const options = {
+    responsive: true,
     plugins: {
-      legend: {}
+      legend: {},
     },
   };
 
@@ -30,7 +33,14 @@ const DoughnutCircle = ({
   };
 
   return (
-    <div className={className} {...props}>
+    <div
+      className={className}
+      style={{
+        height: windowSize.winWidth < 768 ? '100%' : '',
+        width: windowSize.winWidth < 768 ? windowSize.winWidth - 80 : '',
+      }}
+      {...props}
+    >
       <Doughnut options={options} data={data} />
     </div>
   );
