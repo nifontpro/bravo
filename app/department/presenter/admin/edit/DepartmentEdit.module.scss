@@ -6,13 +6,52 @@
   margin-top: 50px;
   @apply animate-fade;
 
+  @media screen and (max-width: 1280px) {
+    padding: 60px 50px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 60px 40px;
+    border-radius: 16px;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 30px 15px;
+  }
+
+  .field {
+    margin-bottom: 60px;
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 30px;
+    }
+  }
+
   > .title {
     margin-bottom: 50px;
+    @media screen and (max-width: 1280px) {
+      margin-bottom: 40px;
+    }
+    @media screen and (max-width: 768px) {
+      margin-bottom: 30px;
+    }
   }
 
   > .btn {
     display: flex;
     justify-content: flex-end;
     margin-top: 90px;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        margin-top: 60px;
+      }
+
+      .confirm {
+        margin-left: 15px;
+
+        @media screen and (max-width: 768px) {
+          margin-left: 0px;
+          margin-top: 15px;
+        }
+      }
   }
 }

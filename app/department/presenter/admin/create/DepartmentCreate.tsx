@@ -44,7 +44,7 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
           title='Название отдела'
           placeholder='Название отдела'
           error={errors.name}
-          className='mb-[50px]'
+          className={styles.field}
         />
 
         <Field
@@ -57,14 +57,19 @@ const DepartmentCreate = ({}: DepartmentCreateProps): JSX.Element => {
         />
 
         <div className={styles.btn}>
-          <Button onClick={handleClick} appearance='whiteBlack' size='l'>
+          <Button
+            onClick={handleClick}
+            appearance='whiteBlack'
+            size='l'
+            className={styles.cancel}
+          >
             Отменить
           </Button>
           <Button
             onClick={handleSubmit(onSubmit)}
             appearance='blackWhite'
             size='l'
-            className='ml-[15px]'
+            className={styles.confirm}
             disabled={!isDirty || !isValid}
           >
             Сохранить

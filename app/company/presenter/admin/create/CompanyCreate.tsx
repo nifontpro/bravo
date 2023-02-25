@@ -74,12 +74,39 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
             Новая компания
           </Htag>
 
+          <div
+            className={cn(
+              styles.field,
+              styles.uploadField,
+              styles.mediaVisible
+            )}
+          >
+            <div className={styles.images}>
+              <ImageDefault
+                src={img}
+                width={400}
+                height={400}
+                alt='preview image'
+                objectFit='cover'
+                // priority={true}
+              />
+            </div>
+
+            <InputFile
+              error={errors.file}
+              {...register('file', { onChange: changePhoto })}
+              className={styles.downloadBtn}
+            >
+              Загрузить изображение
+            </InputFile>
+          </div>
+
           <Field
             {...register('name', { required: 'Название необходимо!' })}
             title='Название'
             placeholder='Введите название компании'
             error={errors.name}
-            className='mb-[60px]'
+            className={styles.field}
           />
 
           <div className={styles.group}>
@@ -105,17 +132,23 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
             title='Офис'
             placeholder='Введите адрес компании'
             error={errors.address}
+            className={styles.field}
           />
 
           <div className={styles.buttons}>
-            <Button onClick={handleClick} appearance='whiteBlack' size='l'>
+            <Button
+              onClick={handleClick}
+              appearance='whiteBlack'
+              size='l'
+              className={styles.cancel}
+            >
               Отменить
             </Button>
             <Button
               onClick={handleSubmit(onSubmit)}
               appearance='blackWhite'
               size='l'
-              className='ml-[15px]'
+              className={styles.confirm}
               disabled={!isDirty || !isValid}
             >
               Добавить

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import {
   ChangeEvent,
   Dispatch,
+  MouseEvent,
   SetStateAction,
   useEffect,
   useState,
@@ -59,7 +60,8 @@ export const useCompanyEdit = (
     }
   };
 
-  const removePhoto = async () => {
+  const removePhoto = async (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+    e.preventDefault();
     let isError = false;
     if (company != undefined) {
       await removeImg(companyId)

@@ -1,0 +1,14 @@
+.title {
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+
+      .headerTitle {
+        @media screen and (max-width: 768px) {
+            margin-bottom: 15px;
+          }
+      }
+}

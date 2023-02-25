@@ -50,7 +50,7 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
         await push('/award/' + award.id);
       }
     }
-  };
+  }; 
 
   const removePhoto = async (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
     e.preventDefault();
