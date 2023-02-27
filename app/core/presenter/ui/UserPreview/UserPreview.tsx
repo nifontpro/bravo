@@ -13,15 +13,18 @@ const UserPreview = ({
 }: UserPreviewProps): JSX.Element => {
   return (
     <div className={cn(styles.wrapper, className)} {...props}>
-      <ImageDefault
-        src={user.imageUrl}
-        width={76}
-        height={76}
-        alt={user.name}
-        objectFit='cover'
-        className='rounded-xl'
-        // priority={true}
-      />
+      <div className={styles.images}>
+        <ImageDefault
+          src={user.imageUrl}
+          width={76}
+          height={76}
+          alt={user.name}
+          objectFit='cover'
+          className='rounded-xl'
+          // priority={true}
+        />
+      </div>
+
       <div className={styles.info}>
         <P size='m' fontstyle='bold'>
           {user.lastname} {user.name}
