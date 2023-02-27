@@ -29,6 +29,7 @@ const SingleCompany: FC<{ company: ICompany }> = ({ company }) => {
       <div className={styles.wrapper}>
         <TitleSingleCompany company={company} />
         <DepartmentAndUsers company={company} />
+        <div className=""></div>
       </div>
       <ButtonScrollUp />
     </Meta>
