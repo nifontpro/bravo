@@ -10,7 +10,7 @@ import { useModalWindowGalleryAwards } from './useModalWindowGalleryAwards';
 import Select, { OnChangeValue } from 'react-select';
 import { IOption } from '@/core/presenter/ui/SelectArtem/SelectArtem.interface';
 import makeAnimated from 'react-select/animated';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, PanInfo } from 'framer-motion';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
 const animatedComponents = makeAnimated();
 
@@ -42,15 +42,12 @@ const ModalWindowGalleryAwards = forwardRef(
     const variants = {
       visible: {
         opacity: 1,
-        // y: 0,
       },
       hidden: {
         opacity: 0,
-        // y: '460px',
       },
       exit: {
         opacity: 0,
-        // y: '460px',
       },
     };
 
@@ -87,6 +84,14 @@ const ModalWindowGalleryAwards = forwardRef(
       e.preventDefault();
       setVisibleModal(false);
     };
+    const handleDrag = (
+      event: globalThis.MouseEvent | TouchEvent | PointerEvent,
+      info: PanInfo
+    ) => {
+      if (info.offset.y > 100 && info.offset.y < 1000) {
+        setVisibleModal(false);
+      }
+    };
 
     return (
       <AnimatePresence mode='wait'>
@@ -98,6 +103,9 @@ const ModalWindowGalleryAwards = forwardRef(
             exit='exit'
             variants={windowSize.winWidth > 768 ? variants : variantsMedia}
             transition={{ duration: 0.4 }}
+            drag={windowSize.winWidth < 768 ? 'y' : undefined}
+            onDragEnd={(event, info) => handleDrag(event, info)}
+            dragSnapToOrigin={true}
           >
             <div
               className={styles.slash}

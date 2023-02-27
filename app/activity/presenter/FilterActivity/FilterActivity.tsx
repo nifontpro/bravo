@@ -4,7 +4,7 @@ import uniqid from 'uniqid';
 import { FilterActivityProps } from './FilterActivity.props';
 import Button from '@/core/presenter/ui/Button/Button';
 import { useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, PanInfo } from 'framer-motion';
 import P from '@/core/presenter/ui/P/P';
 import CheckedIcon from '@/core/presenter/images/checked.svg';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
@@ -42,6 +42,15 @@ const FilterActivity = ({
     },
   };
 
+  const handleDrag = (
+    event: globalThis.MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
+    if (info.offset.y > 100 && info.offset.y < 1000) {
+      setVisibleFilter(false);
+    }
+  };
+
   // //Закрытие модального окна уведомлений нажатием вне
   // const refFilter = useRef(null);
   // const refOpenFilter = useRef(null);
@@ -77,6 +86,9 @@ const FilterActivity = ({
             variants={variants}
             transition={{ duration: 0.4 }}
             className={cn(styles.filterWrapper)}
+            drag='y'
+            onDragEnd={(event, info) => handleDrag(event, info)}
+            dragSnapToOrigin={true}
           >
             <div
               className={styles.slash}

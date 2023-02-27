@@ -7,7 +7,7 @@ import { ForwardedRef, forwardRef } from 'react';
 import Button from '../Button/Button';
 import ChoiceAwards from '@/user/presenter/SingleUser/SingleUserTitle/ChoiceAwards/ChoiceAwards';
 import { useModalWindowWithAddAwards } from './useModalWindowWithAddAwards';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, PanInfo } from 'framer-motion';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const ModalWindowWithAddAwards = forwardRef(
@@ -56,6 +56,15 @@ const ModalWindowWithAddAwards = forwardRef(
       },
     };
 
+    const handleDrag = (
+      event: globalThis.MouseEvent | TouchEvent | PointerEvent,
+      info: PanInfo
+    ) => {
+      if (info.offset.y > 100 && info.offset.y < 1000) {
+        setVisibleModal(false);
+      }
+    };
+
     return (
       <AnimatePresence mode='wait'>
         {visibleModal && (
@@ -66,6 +75,9 @@ const ModalWindowWithAddAwards = forwardRef(
             variants={windowSize.winWidth <= 768 ? variantsMedia : variants}
             transition={{ duration: 0.4 }}
             className={cn(styles.modalWindow, className)}
+            drag={windowSize.winWidth < 768 ? 'y' : undefined}
+            onDragEnd={(event, info) => handleDrag(event, info)}
+            dragSnapToOrigin={true}
             {...props}
           >
             <div className={styles.slash} onClick={handleCancel} />

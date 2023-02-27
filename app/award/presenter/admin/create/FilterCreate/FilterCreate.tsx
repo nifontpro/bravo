@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { FilterCreateProps } from './FilterCreate.props';
 import Button from '@/core/presenter/ui/Button/Button';
 import { MouseEvent, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, PanInfo } from 'framer-motion';
 import P from '@/core/presenter/ui/P/P';
 import CheckedIcon from '@/core/presenter/images/checked.svg';
 import useOutsideClick from '@/core/hooks/useOutsideClick';
@@ -33,6 +33,15 @@ const FilterCreate = ({
       opacity: 0,
       y: '460px',
     },
+  };
+
+  const handleDrag = (
+    event: globalThis.MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
+    if (info.offset.y > 100 && info.offset.y < 1000) {
+      setVisibleFilter(false);
+    }
   };
 
   const handleClick = (
@@ -77,13 +86,18 @@ const FilterCreate = ({
             variants={variants}
             transition={{ duration: 0.4 }}
             className={cn(styles.filterWrapper)}
+            drag='y'
+            onDragEnd={(event, info) => handleDrag(event, info)}
+            dragSnapToOrigin={true}
           >
             <div
               className={styles.slash}
               onClick={() => setVisibleFilter(false)}
             />
             <div className={styles.filterContent}>
-              <Htag className={styles.title} tag='h2'>Сотрудники <span>{arrChoiceUser.length}</span></Htag>
+              <Htag className={styles.title} tag='h2'>
+                Сотрудники <span>{arrChoiceUser.length}</span>
+              </Htag>
               <ChoiceUsers
                 className={styles.mediaVisible}
                 users={users}
