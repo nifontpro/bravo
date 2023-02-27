@@ -9,7 +9,7 @@ import ChangePasswordIcon from '@/core/presenter/images/changePassword.svg';
 import P from '@/core/presenter/ui/P/P';
 import { ForwardedRef, forwardRef } from 'react';
 import { useUserPanelModalWindow } from './useUserPanelModalWindow';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, PanInfo } from 'framer-motion';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const UserPanelModalWindow = forwardRef(
@@ -45,21 +45,35 @@ const UserPanelModalWindow = forwardRef(
         y: windowSize.winWidth > 768 ? '-60px' : '460px',
       },
     };
+    const handleDrag = (
+      event: globalThis.MouseEvent | TouchEvent | PointerEvent,
+      info: PanInfo
+    ) => {
+      if (info.offset.y > 100 && info.offset.y < 1000) {
+        setVisibleModal(false);
+      }
+    };
 
     return (
       <AnimatePresence mode='wait'>
         {visibleModal && (
           <motion.div
+            ref={ref}
             initial='hidden'
             animate='visible'
             exit='exit'
             variants={variants}
             transition={{ duration: 0.4 }}
             className={cn(styles.userModalWindow, className)}
+            drag={windowSize.winWidth < 768 ? 'y' : undefined}
+            onDragEnd={(event, info) => handleDrag(event, info)}
+            dragSnapToOrigin={true}
             {...props}
-            ref={ref}
           >
-            <div className={styles.slash} onClick={() => setVisibleModal(false)}/>
+            <div
+              className={styles.slash}
+              onClick={() => setVisibleModal(false)}
+            />
 
             <Htag tag='h3' className={styles.title}>
               {user?.login}
