@@ -1,14 +1,11 @@
 import styles from './SingleUserTitle.module.scss';
 import { SingleUserTitleProps } from './SingleUserTitle.props';
 import cn from 'classnames';
-import EditPanel from '@/core/presenter/ui/EditPanelAuthBtn/EditPanel/EditPanel';
-import { useRef, useState } from 'react';
 import {
   getUserEditPasswordUrl,
   getUserEditUrl,
 } from '@/core/config/api.config';
 import { useUserAdmin } from '../../admin/useUserAdmin';
-import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
 import { useRouter } from 'next/router';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import ButtonIcon from '@/core/presenter/ui/ButtonIcon/ButtonIcon';
@@ -16,55 +13,21 @@ import P from '@/core/presenter/ui/P/P';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import uniqid from 'uniqid';
 import Button from '@/core/presenter/ui/Button/Button';
-import ModalWindowWithAddAwards from '@/core/presenter/ui/ModalWindowWithAddAwards/ModalWindowWithAddAwards';
-import { awardApi } from 'award/data/award.api';
-// import { useCompanyState } from '@/company/data/company.slice';
-import { IAward } from 'award/model/award.types';
 import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
 import { useAuthState } from '@/auth/data/auth.slice';
-import useOutsideClick from '@/core/hooks/useOutsideClick';
 import EditPanelAuthBtn from '@/core/presenter/ui/EditPanelAuthBtn/EditPanelAuthBtn';
 
 const SingleUserTitle = ({
   user,
+  setVisibleModal,
+  refOpen,
   className,
   ...props
 }: SingleUserTitleProps): JSX.Element => {
   const { user: currentUser } = useAuthState();
-  const { data: awards } = awardApi.useGetAwardsByCompanyQuery(
-    { companyId: user.companyId || '' },
-    { skip: !user.companyId }
-  );
-
-  //Фильтр тех медалей, которыми не награжден еще
-  let arrAwardRewarded: string[] = [];
-  user.awards.forEach((award) => {
-    if (award.awardState == 'AWARD') {
-      arrAwardRewarded.push(award.id);
-    }
-  });
-  let arrAwardNotRewarded: IAward[] = [];
-  awards?.forEach((award) => {
-    if (award.state == 'AWARD') {
-      if (arrAwardRewarded.find((item) => item == award.id) == undefined) {
-        arrAwardNotRewarded.push(award);
-      }
-    }
-  });
-  // console.log(arrAwardNotRewarded)
 
   const { push } = useRouter();
-  const [visible, setVisible] = useState<boolean>(false);
   const { deleteAsync } = useUserAdmin();
-  const [visibleModal, setVisibleModal] = useState<boolean>(false);
-
-  //Закрытие модального окна нажатием вне его
-  const ref = useRef(null);
-  const refOpen = useRef(null);
-  const handleClickOutside = () => {
-    setVisibleModal(false);
-  };
-  useOutsideClick(ref, refOpen, handleClickOutside, visibleModal);
 
   const handleRemove = () => {
     deleteAsync(user.id);
@@ -77,15 +40,14 @@ const SingleUserTitle = ({
         <Htag tag='h2'>
           {user.lastname} {user.name}
         </Htag>
-        <div className={styles.editPanel}>
-          <EditPanelAuthBtn
-            onlyRemove={false}
-            handleRemove={handleRemove}
-            id={user.id}
-            getUrl={getUserEditUrl}
-          />
-        </div>
       </div>
+
+      <EditPanelAuthBtn
+        onlyRemove={false}
+        handleRemove={handleRemove}
+        id={user.id}
+        getUrl={getUserEditUrl}
+      />
 
       <div className={styles.position}>
         {user.departmentName ? (
@@ -171,11 +133,12 @@ const SingleUserTitle = ({
           )}
         </div>
         {currentUser?.id == user.id ? (
-          <div>
+          <div className={styles.buttons}>
             <Button
               onClick={() => push(getUserEditUrl(`/${user.id}`))}
               size='m'
               appearance='blackWhite'
+              className={styles.editBtn}
             >
               Редактировать
             </Button>
@@ -183,7 +146,7 @@ const SingleUserTitle = ({
               onClick={() => push(getUserEditPasswordUrl(`/${user.id}`))}
               size='m'
               appearance='whiteBlack'
-              className='@apply ml-[10px]'
+              className={styles.changePasswordBtn}
             >
               Сменить пароль
             </Button>
@@ -195,6 +158,7 @@ const SingleUserTitle = ({
               size='l'
               appearance='blackWhite'
               ref={refOpen}
+              className={styles.awardedBtn}
             >
               Наградить
             </Button>
@@ -208,16 +172,6 @@ const SingleUserTitle = ({
       <P size='m' fontstyle='thin'>
         {user.description}
       </P>
-
-      <ModalWindowWithAddAwards
-        awardState='AWARD'
-        userId={user.id}
-        awards={arrAwardNotRewarded}
-        visibleModal={visibleModal}
-        setVisibleModal={setVisibleModal}
-        textBtn='Наградить'
-        ref={ref}
-      />
     </div>
   );
 };

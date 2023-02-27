@@ -7,7 +7,7 @@ import ChoiceUsers from 'award/presenter/admin/create/ChoiceUsers/ChoiceUsers';
 import { ForwardedRef, forwardRef } from 'react';
 import Button from '../Button/Button';
 import { useModalWindowWithAddUsers } from './useModalWindowWithAddUsers';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, PanInfo } from 'framer-motion';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const ModalWindowWithAddUsers = forwardRef(
@@ -27,7 +27,7 @@ const ModalWindowWithAddUsers = forwardRef(
     const { arrChoiceUser, setArrChoiceUser, onSubmitNominee, handleCancel } =
       useModalWindowWithAddUsers(setVisibleModal, awardId, awardState);
 
-      const {windowSize} = useWindowSize()
+    const { windowSize } = useWindowSize();
 
     const variants = {
       visible: {
@@ -56,6 +56,15 @@ const ModalWindowWithAddUsers = forwardRef(
       },
     };
 
+    const handleDrag = (
+      event: globalThis.MouseEvent | TouchEvent | PointerEvent,
+      info: PanInfo
+    ) => {
+      if (info.offset.y > 100 && info.offset.y < 1000) {
+        setVisibleModal(false);
+      }
+    };
+
     return (
       <AnimatePresence mode='wait'>
         {visibleModal && (
@@ -66,13 +75,13 @@ const ModalWindowWithAddUsers = forwardRef(
             variants={windowSize.winWidth <= 768 ? variantsMedia : variants}
             transition={{ duration: 0.4 }}
             className={cn(styles.modalWindow, className)}
+            drag={windowSize.winWidth < 768 ? 'y' : undefined}
+            onDragEnd={(event, info) => handleDrag(event, info)}
+            dragSnapToOrigin={true}
             {...props}
           >
+            <div className={styles.slash} onClick={handleCancel} />
             <div className={styles.module} ref={ref}>
-              <div
-                className={styles.slash}
-                onClick={handleCancel}
-              />
               <ExitIcon onClick={handleCancel} className={styles.exit} />
               <Htag tag='h2' className={styles.title}>
                 Добавить участника

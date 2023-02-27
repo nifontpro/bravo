@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import {
   ChangeEvent,
   Dispatch,
+  MouseEvent,
   SetStateAction,
   useEffect,
   useState,
@@ -91,7 +92,8 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
     }
   };
 
-  const removePhoto = async () => {
+  const removePhoto = async (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+    e.preventDefault();
     let isError = false;
     if (user != undefined) {
       await removeImg(user.id)

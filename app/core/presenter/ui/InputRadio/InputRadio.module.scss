@@ -1,5 +1,6 @@
 .radioButton {
     display: flex;
+
   .btn {
     cursor: pointer;
     padding: 12px 17px;
@@ -7,6 +8,11 @@
     font-weight: 700;
     font-size: 14px;
     border-radius: 11px;
+
+    @media screen and (max-width: 768px) { 
+      padding: 5px 10px;
+      font-size: 10px;
+    }
   }
 
   .btnActive {

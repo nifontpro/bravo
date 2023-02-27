@@ -16,7 +16,6 @@ const CountUsersPreview = ({
   className,
   ...props
 }: CountUsersPreviewProps): JSX.Element => {
-
   return (
     <div className={className} {...props}>
       {usersInDepartment && (
@@ -34,31 +33,32 @@ const CountUsersPreview = ({
               'сотрудников',
             ])}
           </P>
-
-          <div className={styles.img}>
-            {usersInDepartment.map((user, index) => {
-              if (index < 4) {
-                return (
-                  <div key={uniqid()} className={styles.singleImg}>
-                    <ImageDefault
-                      src={user.imageUrl}
-                      width={40}
-                      height={40}
-                      alt={user.name}
-                      objectFit='cover'
-                      className='rounded-full mr-4'
-                      // priority={true}
-                    />
-                  </div>
-                );
-              }
-            })}
+          <div className={styles.imgWrapper}>
+            <div className={styles.img}>
+              {usersInDepartment.map((user, index) => {
+                if (index < 4) {
+                  return (
+                    <div key={uniqid()} className={styles.singleImg}>
+                      <ImageDefault
+                        src={user.imageUrl}
+                        width={40}
+                        height={40}
+                        alt={user.name}
+                        objectFit='cover'
+                        className='rounded-full mr-4'
+                        // priority={true}
+                      />
+                    </div>
+                  );
+                }
+              })}
+            </div>
+            {usersInDepartment.length > 4 && (
+              <ButtonIcon appearance={appearanceBtn}>
+                +{usersInDepartment.length - 4}
+              </ButtonIcon>
+            )}
           </div>
-          {usersInDepartment.length > 4 && (
-            <ButtonIcon appearance={appearanceBtn}>
-              +{usersInDepartment.length - 4}
-            </ButtonIcon>
-          )}
         </div>
       )}
       {usersAwards && (
@@ -76,31 +76,32 @@ const CountUsersPreview = ({
               'сотрудников',
             ])}
           </P> */}
-
-          <div className={styles.imgAwards}>
-            {usersAwards.map((item, index) => {
-              if (index < 4) {
-                return (
-                  <div key={uniqid()} className={styles.singleImg}>
-                    <ImageDefault
-                      src={item.user.imageUrl}
-                      width={40}
-                      height={40}
-                      alt={item.user.name}
-                      objectFit='cover'
-                      className='rounded-full mr-4'
-                      // priority={true}
-                    />
-                  </div>
-                );
-              }
-            })}
+          <div className={styles.imgWrapper}>
+            <div className={styles.imgAwards}>
+              {usersAwards.map((item, index) => {
+                if (index < 4) {
+                  return (
+                    <div key={uniqid()} className={styles.singleImg}>
+                      <ImageDefault
+                        src={item.user.imageUrl}
+                        width={40}
+                        height={40}
+                        alt={item.user.name}
+                        objectFit='cover'
+                        className='rounded-full mr-4'
+                        // priority={true}
+                      />
+                    </div>
+                  );
+                }
+              })}
+            </div>
+            {usersAwards.length > 4 && (
+              <ButtonIcon appearance={appearanceBtn}>
+                +{usersAwards.length - 4}
+              </ButtonIcon>
+            )}
           </div>
-          {usersAwards.length > 4 && (
-            <ButtonIcon appearance={appearanceBtn}>
-              +{usersAwards.length - 4}
-            </ButtonIcon>
-          )}
         </div>
       )}
     </div>

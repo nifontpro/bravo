@@ -4,6 +4,10 @@
   min-height: 230px;
   resize: none;
 
+  @media screen and (max-width: 768px) { 
+    padding: 12px 20px;
+  }
+
   color: var(--black);
   border: 1px solid #00000020;
   outline-color: var(--primary);

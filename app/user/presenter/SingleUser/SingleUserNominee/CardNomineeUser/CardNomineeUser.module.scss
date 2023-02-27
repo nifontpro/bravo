@@ -6,6 +6,14 @@
   margin-bottom: 50px;
   align-items: center;
 
+  @media screen and (max-width: 768px) {
+    margin-bottom: 15px;
+  }
+  @media screen and (max-width: 650px) {
+    grid-template-columns: [start] 76px [endLogo] 15px [startUser] auto [end];
+    grid-template-rows: 1fr auto;
+  }
+
   > .img {
     height: 76px;
     width: 76px;
@@ -14,6 +22,10 @@
 
   > .user {
     grid-column: startUser / EndUser;
+
+    @media screen and (max-width: 650px) {
+      grid-column: startUser / end;
+    }
     > .post {
       margin-top: 5px;
     }
@@ -21,6 +33,9 @@
 
   > .date {
     grid-column: starDate / endDate;
+    @media screen and (max-width: 650px) {
+      grid-column: start / end;
+    }
   }
 
   > .buttons {
@@ -28,6 +43,10 @@
     display: grid;
     grid-template-columns: auto auto;
     gap: 12px;
+    @media screen and (max-width: 650px) {
+      grid-template-columns: 1fr auto;
+      grid-column: start / end;
+    }
 
     .btnDefault {
       opacity: 0.5;

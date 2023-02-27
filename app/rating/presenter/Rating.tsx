@@ -73,7 +73,7 @@ const Rating = ({ company, className, ...props }: RatingProps): JSX.Element => {
         user.awards.find((item) => item.state == 'AWARD')
       );
     } else {
-      filteredValue = filteredValue.filter((user) => user.awardCount > 0);
+      filteredValue = filteredValue.filter((user) => user.awardCount >= 0);
     }
   }
 

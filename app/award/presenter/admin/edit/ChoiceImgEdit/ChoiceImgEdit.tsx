@@ -2,9 +2,7 @@ import styles from './ChoiceImgEdit.module.scss';
 import { ChoiceImgEditProps } from './ChoiceImgEdit.props';
 import cn from 'classnames';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
-import Button from '@/core/presenter/ui/Button/Button';
 import { MouseEvent } from 'react';
-import FilterModalGallery from '../../create/ModalWindowGalleryAwards/FilterModalGallery/FilterModalGallery';
 import ButtonEdit from '@/core/presenter/ui/ButtonEdit/ButtonEdit';
 
 const ChoiceImgEdit = ({
@@ -48,7 +46,6 @@ const ChoiceImgEdit = ({
         />
         <ButtonEdit icon='remove' onClick={(e) => removePhoto(e)} />
       </div>
-      {/* <FilterModalGallery images={images} setImg={setImg} /> */}
     </div>
   );
 };

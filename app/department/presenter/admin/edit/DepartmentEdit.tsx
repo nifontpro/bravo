@@ -1,14 +1,9 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Meta from '@/core/utils/meta/Meta';
-// import AdminNavigation from '@/admin/presenter/admin-navigation/AdminNavigation';
-// import Heading from '@/core/presenter/ui/heading/Heading';
 import SkeletonLoader from '@/core/presenter/ui/sceleton-loader/SkeletonLoader';
-// import formStyles from '@/core/presenter/ui/form/admin-form.module.scss';
-// import styles from "@/core/presenter/ui/form/form.module.scss"
 import styles from './DepartmentEdit.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
-import cn from 'classnames';
 import { IDepartmentEditInput } from '@/department/presenter/admin/edit/department-edit.type';
 import { useDepartmentEdit } from '@/department/presenter/admin/edit/useDepartmentEdit';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
@@ -95,7 +90,7 @@ const DepartmentEdit: FC = () => {
               title='Название отдела'
               placeholder={department?.name}
               error={errors.name}
-              className='mb-[50px]'
+              className={styles.field}
             />
 
             <Field
@@ -108,14 +103,19 @@ const DepartmentEdit: FC = () => {
             />
 
             <div className={styles.btn}>
-              <Button onClick={handleClick} size='l' appearance='whiteBlack'>
+              <Button
+                onClick={handleClick}
+                size='l'
+                appearance='whiteBlack'
+                className={styles.cancel}
+              >
                 Отменить
               </Button>
               <Button
                 onClick={handleSubmit(onSubmit)}
                 size='l'
                 appearance='blackWhite'
-                className='ml-[15px]'
+                className={styles.confirm}
               >
                 Сохранить
               </Button>

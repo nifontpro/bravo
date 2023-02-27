@@ -47,6 +47,7 @@ const UserEditPassword: FC = () => {
           title='Текущий пароль'
           placeholder='Ввеите текущий пароль'
           error={errors.password}
+          className={styles.field}
         />
 
         <div className={styles.group}>
@@ -72,7 +73,7 @@ const UserEditPassword: FC = () => {
             onClick={handleSubmit(onSubmit)}
             appearance='blackWhite'
             size='l'
-            className='ml-[15px]'
+            className={styles.confirm}
             disabled={!isDirty || !isValid}
           >
             Изменить

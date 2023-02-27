@@ -5,6 +5,23 @@
   margin-bottom: 30px;
   @apply animate-fade;
 
+  @media screen and (max-width: 1170px) {
+    padding: 60px 40px;
+  }
+  @media screen and (max-width: 768px) {
+    border-radius: 16px;
+    padding: 40px 20px;
+  }
+  .filterMedia {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: flex;
+      margin-top: 15px;
+      margin-bottom: 40px;
+      cursor: pointer;
+    }
+  }
+
   .header {
     display: flex;
     align-items: center;
@@ -14,10 +31,32 @@
     > .filter {
       width: fit-content;
       cursor: pointer;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
   }
+}
 
-  > .userList {
-    margin-top: 70px;
+.newUser {
+  display: none;
+  @media screen and (max-width: 620px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    border: 2px solid var(--graySilver);
+    border-radius: 16px;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+
+  .newUserBtn {
+    justify-content: center;
+    > div {
+      width: 100%;
+      justify-content: center;
+    }
   }
 }

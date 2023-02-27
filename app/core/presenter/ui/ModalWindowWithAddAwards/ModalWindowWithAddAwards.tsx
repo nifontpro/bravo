@@ -7,7 +7,8 @@ import { ForwardedRef, forwardRef } from 'react';
 import Button from '../Button/Button';
 import ChoiceAwards from '@/user/presenter/SingleUser/SingleUserTitle/ChoiceAwards/ChoiceAwards';
 import { useModalWindowWithAddAwards } from './useModalWindowWithAddAwards';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, PanInfo } from 'framer-motion';
+import { useWindowSize } from '@/core/hooks/useWindowSize';
 
 const ModalWindowWithAddAwards = forwardRef(
   (
@@ -26,19 +27,42 @@ const ModalWindowWithAddAwards = forwardRef(
     const { arrChoiceAward, setArrChoiceAward, handleCancel, onSubmitNominee } =
       useModalWindowWithAddAwards(setVisibleModal, userId, awardState);
 
+    const { windowSize } = useWindowSize();
+
     const variants = {
-      visible: { 
+      visible: {
         opacity: 1,
-        // y: 0,
       },
       hidden: {
         opacity: 0,
-        // y: '-100vh',
       },
       exit: {
         opacity: 0,
-        // y: '-100vh',
       },
+    };
+
+    const variantsMedia = {
+      visible: {
+        opacity: 1,
+        y: 0,
+      },
+      hidden: {
+        opacity: 0,
+        y: '460px',
+      },
+      exit: {
+        opacity: 0,
+        y: '460px',
+      },
+    };
+
+    const handleDrag = (
+      event: globalThis.MouseEvent | TouchEvent | PointerEvent,
+      info: PanInfo
+    ) => {
+      if (info.offset.y > 100 && info.offset.y < 1000) {
+        setVisibleModal(false);
+      }
     };
 
     return (
@@ -48,33 +72,43 @@ const ModalWindowWithAddAwards = forwardRef(
             initial='hidden'
             animate='visible'
             exit='exit'
-            variants={variants}
+            variants={windowSize.winWidth <= 768 ? variantsMedia : variants}
             transition={{ duration: 0.4 }}
             className={cn(styles.modalWindow, className)}
+            drag={windowSize.winWidth < 768 ? 'y' : undefined}
+            onDragEnd={(event, info) => handleDrag(event, info)}
+            dragSnapToOrigin={true}
             {...props}
           >
+            <div className={styles.slash} onClick={handleCancel} />
             <div className={styles.module} ref={ref}>
-              <ExitIcon
-                onClick={handleCancel}
-                className={styles.exit}
-              />
+              <ExitIcon onClick={handleCancel} className={styles.exit} />
               <Htag tag='h2' className={styles.title}>
                 Добавить награду
               </Htag>
+              {/* <Htag className={styles.titleMedia} tag='h2'>
+                Выбрано сотрудников{' '}
+                <span className={styles.count}>{arrChoiceAward.length}</span>
+              </Htag> */}
               <ChoiceAwards
                 awards={awards}
                 arrChoiceAward={arrChoiceAward}
                 setArrChoiceAward={setArrChoiceAward}
               />
               <div className={styles.buttons}>
-                <Button onClick={handleCancel} appearance='whiteBlack' size='l'>
+                <Button
+                  onClick={handleCancel}
+                  appearance='whiteBlack'
+                  size='l'
+                  className={styles.cancel}
+                >
                   Отменить
                 </Button>
                 <Button
                   onClick={onSubmitNominee}
                   appearance='blackWhite'
                   size='l'
-                  className='ml-[15px]'
+                  className={styles.confirm}
                 >
                   {textBtn}
                 </Button>

@@ -9,6 +9,16 @@
       grid-template-columns: 2fr 1fr;
       gap: 60px;
       align-items: center;
+
+      @media screen and (max-width: 1280px) {
+        grid-template-columns: 1fr;
+      }
+
+      .department {
+        @media screen and (max-width: 1280px) {
+          display: none;
+        }
+      }
     }
 
     .selectCompany {
@@ -27,6 +37,27 @@
       'usersGender usersAwards countDepartment'
       'activity activity countDepartment';
     @apply animate-fade;
+
+    @media screen and (max-width: 1280px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      grid-template-areas:
+        'countAwards countNominee'
+        'usersGender usersAwards'
+        'countDepartment countDepartment'
+        'activity activity';
+    }
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      grid-template-areas:
+        'countAwards'
+        'countNominee'
+        'usersGender'
+        'usersAwards'
+        'countDepartment'
+        'activity';
+    }
 
     .countNominee {
       grid-area: countNominee;

@@ -3,11 +3,33 @@
   grid-template-columns: 400px 1fr;
   gap: 30px;
 
+  @media screen and (max-width: 1280px) {
+    grid-template-columns: 300px 1fr;
+  }
+  @media screen and (max-width: 1170px) {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
   > .img {
     background: var(--white);
     border-radius: 27px;
     width: 400px;
     height: 400px;
+
+    @media screen and (max-width: 1280px) {
+      width: 300px;
+      height: fit-content;
+    }
+    @media screen and (max-width: 1170px) {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+    }
+    @media screen and (max-width: 768px) {
+      border-radius: 16px;
+    }
   }
 
   > .companyDescription {
@@ -16,14 +38,25 @@
     border-radius: 27px;
     padding: 75px;
 
+    @media screen and (max-width: 1170px) {
+      padding: 60px 40px;
+    }
+    @media screen and (max-width: 768px) {
+      border-radius: 16px;
+      padding: 40px 20px;
+    }
+
     > .title {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 72px;
-      
-      > .header {
-        font-size: 54px;
+
+      @media screen and (max-width: 1170px) {
+        margin-bottom: 60px;
+      }
+      @media screen and (max-width: 768px) {
+        margin-bottom: 40px;
       }
     }
 
@@ -31,10 +64,22 @@
       display: flex;
       align-items: center;
       margin-bottom: 30px;
+      @media screen and (max-width: 1170px) {
+        margin-bottom: 20px;
+      }
+      @media screen and (max-width: 768px) {
+        margin-bottom: 15px;
+      }
     }
 
     > .description {
       margin-bottom: 30px;
+      @media screen and (max-width: 1170px) {
+        margin-bottom: 20px;
+      }
+      @media screen and (max-width: 768px) {
+        margin-bottom: 15px;
+      }
     }
 
     > .contacts {
@@ -45,6 +90,12 @@
 
     > .colUsers {
       margin-top: 120px;
+      @media screen and (max-width: 1170px) {
+        margin-top: 100px;
+      }
+      @media screen and (max-width: 768px) {
+        margin-top: 60px;
+      }
 
       .default {
         cursor: default;

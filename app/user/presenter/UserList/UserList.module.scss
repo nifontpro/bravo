@@ -1,31 +1,69 @@
 .container {
-  display: grid;
-  grid-template-columns: 6fr 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 45px;
+  margin-top: 45px;
 
-  .user {
-    grid-column: 1 / 2;
-    cursor: pointer;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 30px;
   }
 
-  > .title {
-    margin-left: 15px;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 20px;
-    color: var(--black);
-  }
-
-  > .department {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 21px;
-    color: var(--gray-dark);
-  }
-
-  > .editPanel {
-    grid-column: 3 / 4;
+  .editPanel {
     display: flex;
+    @media screen and (max-width: 768px) {
+      margin-top: 15px;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .wrapperIcon {
+      @media screen and (max-width: 768px) {
+        border: 2px solid var(--graySilver);
+        border-radius: 10px;
+        height: 45px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @apply duration-200 cursor-pointer;
+      }
+
+      &:hover {
+        border-color: var(--gray-dark);
+
+        .edit svg {
+          path {
+            stroke: var(--gray-dark);
+          }
+        }
+
+        .remove svg {
+          path {
+            fill: var(--gray-dark);
+          }
+        }
+      }
+
+      .edit,
+      .remove {
+        svg rect {
+          @media screen and (max-width: 768px) {
+            stroke: transparent;
+          }
+        }
+      }
+
+      .remove {
+        margin-left: 10px;
+
+        @media screen and (max-width: 768px) {
+          margin-left: 0px;
+        }
+      }
+    }
   }
 }
