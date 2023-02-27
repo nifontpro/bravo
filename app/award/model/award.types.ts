@@ -1,5 +1,4 @@
-import {
-  AwardState,
+import {AwardState, 
   IAwardRelate,
   IAwardRelateUser,
 } from './awardRelate.types';
@@ -25,6 +24,13 @@ interface IAwardBase {
  */
 export interface IAward extends IAwardBase {
   relations: IAwardRelate[];
+}
+
+/**
+ * Тип "Награда"
+ */
+export interface IAward extends IAwardBase {
+	relations: IAwardRelate[]
 }
 
 /**

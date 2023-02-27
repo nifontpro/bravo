@@ -4,7 +4,6 @@ import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {ITableItem} from "@/core/presenter/ui/admin-table/AdminTable/admin-table.types";
 import {getAdminUrl} from "@/core/config/url.config";
 import {getCompanyUrl} from "@/core/config/api.config";
-import {IdResponse} from "@/core/model/idResponse.types";
 import {companyActions} from "@/company/data/company.slice";
 import {ICompanyUpdateRequest} from "@/company/presenter/admin/edit/company-edit.type";
 
