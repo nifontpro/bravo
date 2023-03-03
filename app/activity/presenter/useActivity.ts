@@ -1,54 +1,128 @@
 import { useCompanyState } from '@/company/data/company.slice';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { activityApi } from '../data/activity.api';
 import { IActivity } from '../model/activity.types';
 
 const currentDate = Math.floor(new Date().getTime());
 
-export const useActivity = (filter?: string, sort?: number, startDateProps?: number, endDateProps?: number) => {
-  const [state, setState] = useState<1 | -1>(-1);
+export const useActivity = (
+  filter?: string,
+  sort?: number,
+  startDateProps?: number,
+  endDateProps?: number
+) => {
+  const [state, setState] = useState<1 | -1>(1);
   const [startDate, setStartDate] = useState<number>(10000000);
   const [endDate, setEndDate] = useState<number>(16732673054000);
   const [searchValue, setSearchValue] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [arr, setArr] = useState<IActivity[]>([]); // Итоговый массив, который показывается
+  const [arrSearch, setArrSearch] = useState<IActivity[]>([]); // Массив по поиску
+  const [generalArr, setGeneralArr] = useState<IActivity[]>([]); // Массив по страницам загруженным
+  const [sizePage, setSizePage] = useState<number>(20); // Кол элементов на странице
 
   const { currentCompany } = useCompanyState();
-  let depActivity: IActivity[] = [];
 
-  if (currentCompany) {
-    //Получить активность в компании
-    const { data: activity } = activityApi.useGetAwardCountQuery({
-      companyId: currentCompany.id,
-      // companyId: '638621902741bb167c6c2386',
-      sort: sort || state,
-      filter: filter || searchValue,
-      startDate: startDateProps || startDate,
-      endDate: endDateProps || endDate,
-    });
-    depActivity = activity || [];
-  }
-  const activity = depActivity;
+  //Получить активность в компании
+  const { data: activity, isFetching } = activityApi.useGetAwardCountQuery({
+    companyId: currentCompany!.id,
+    // sort: sort || state,
+    sort: -1,
+    filter: filter || searchValue,
+    // startDate: startDateProps || startDate,
+    // endDate: endDateProps || endDate,
+    page: currentPage,
+    pageSize: sizePage,
+    // });
+  });
 
   const [active, setActive] = useState<
     '' | 'AWARD' | 'NOMINEE' | 'DELETE_USER'
   >('');
 
-  const allActivityLength = activity.length;
-  const awardsLength = activity?.filter((item) =>
+  const allActivityLength = arr.length;
+  const awardsLength = arr?.filter((item) =>
     item.state?.includes('AWARD')
   ).length;
-  const nomineeLength = activity?.filter((item) =>
+  const nomineeLength = arr?.filter((item) =>
     item.state?.includes('NOMINEE')
   ).length;
-  const otherLength = activity?.filter((item) =>
+  const otherLength = arr?.filter((item) =>
     item.state?.includes('DELETE_USER')
   ).length;
 
   //Фитруем по категории
-  let filteredValue = activity?.filter((item) => item.state?.includes(active));
+  let filteredValue = arr?.filter((item) => item.state?.includes(active));
+
+  // Сотртировка по дате
+  if (filteredValue) {
+    filteredValue.sort((prev, next): number => {
+      if (prev.date !== undefined && next.date !== undefined) {
+        if (prev?.date > next?.date) return state; //(-1)
+      }
+      return state;
+    });
+  }
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setSearchValue(event.currentTarget.value);
+    if (event.currentTarget.value != '') {
+      setSearchValue(event.currentTarget.value);
+      setCurrentPage(0);
+    }
+    if (event.currentTarget.value == '') {
+      setSizePage(20);
+      setArr([]);
+      setCurrentPage(0);
+      setSearchValue(event.currentTarget.value);
+    }
   };
+
+  //Пагинация
+  useEffect(() => {
+    if (activity) {
+      if (activity.length > 0 && searchValue == '') {
+        setGeneralArr([...arr, ...activity]);
+        setArr([...arr, ...activity]);
+      }
+      if (searchValue != '') {
+        setSizePage(100000000);
+        setArr([...activity]);
+        console.log(activity);
+        setCurrentPage(0);
+      }
+    }
+  }, [activity]);
+
+  const handleNextPage = () => {
+    if (activity && activity.length > 0 && searchValue == '') {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  // useEffect(() => {
+  //   if (activity && activity.length > 0) {
+  //     window.addEventListener('scroll', scrollHandler);
+  //   }
+  //   return function () {
+  //     window.removeEventListener('scroll', scrollHandler);
+  //   };
+  // }, [activity]);
+
+  // const scrollHandler = () => {
+  //   if (
+  //     document.documentElement.scrollTop + window.innerHeight + 1 >=
+  //       document.documentElement.scrollHeight &&
+  //     !isFetching
+  //   ) {
+  //     setCurrentPage((prev) => prev + 1);
+  //   }
+  // };
+
+  // console.log(`Текущий массив :`);
+  // console.log(arr);
+  console.log(`Текущая страница загрузки данных: ${currentPage}`);
+  console.log(`General массив :`);
+  console.log(generalArr);
 
   return useMemo(() => {
     return {
@@ -65,6 +139,10 @@ export const useActivity = (filter?: string, sort?: number, startDateProps?: num
       handleChange,
       filteredValue,
       activity,
+      isFetching,
+      setCurrentPage,
+      handleNextPage,
+      searchValue,
     };
   }, [
     active,
@@ -79,5 +157,8 @@ export const useActivity = (filter?: string, sort?: number, startDateProps?: num
     setEndDate,
     filteredValue,
     activity,
+    isFetching,
+    setCurrentPage,
+    searchValue,
   ]);
 };

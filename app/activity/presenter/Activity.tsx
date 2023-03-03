@@ -11,6 +11,8 @@ import RangeCalendar from '@/core/presenter/ui/RangeCalendar/RangeCalendar';
 import { useWindowSize } from '@/core/hooks/useWindowSize';
 import FilterActivity from './FilterActivity/FilterActivity';
 import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
+import uniqid from 'uniqid';
+import SpinnerSmall from '@/core/presenter/ui/SpinnerSmall/SpinnerSmall';
 
 const Activity = ({
   company,
@@ -19,6 +21,7 @@ const Activity = ({
 }: ActivityProps): JSX.Element => {
   const {
     active,
+    activity,
     setActive,
     allActivityLength,
     awardsLength,
@@ -30,6 +33,9 @@ const Activity = ({
     setEndDate,
     handleChange,
     filteredValue,
+    isFetching,
+    handleNextPage,
+    searchValue
   } = useActivity();
 
   const { windowSize } = useWindowSize();
@@ -100,7 +106,11 @@ const Activity = ({
             Сначала новые
           </SortButton>
 
-          <RangeCalendar placement='bottomLeft' setStartDate={setStartDate} setEndDate={setEndDate} />
+          <RangeCalendar
+            placement='bottomLeft'
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+          />
         </div>
 
         <div className={styles.cards}>
@@ -118,11 +128,17 @@ const Activity = ({
             return (
               <SingleActivity
                 activity={item}
-                key={item.id}
+                key={uniqid()}
                 className={styles.activity}
               />
             );
           })}
+          <SpinnerSmall
+            isFetching={isFetching}
+            handleNextPage={handleNextPage}
+            activity={activity}
+            searchValue={searchValue}
+          />
         </div>
         <ButtonScrollUp />
       </div>

@@ -5,14 +5,20 @@ import Htag from '@/core/presenter/ui/Htag/Htag';
 import P from '@/core/presenter/ui/P/P';
 import ArrowIcon from '@/core/presenter/images/arrowRight.svg';
 import { useRouter } from 'next/router';
-import { useActivity } from '@/activity/presenter/useActivity';
 import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
+import { activityApi } from '@/activity/data/activity.api';
+import { useCompanyState } from '@/company/data/company.slice';
 
 const MainActivity = ({
   className,
   ...props
 }: MainActivityProps): JSX.Element => {
-  const { activity } = useActivity('', -1);
+  const { currentCompany } = useCompanyState();
+
+  const { data: allActivity } = activityApi.useGetAwardCountQuery({
+    companyId: currentCompany!.id,
+    sort: -1,
+  });
 
   let currentDate = +new Date();
 
@@ -29,7 +35,7 @@ const MainActivity = ({
         </div>
       </div>
       <ul>
-        {activity.map((item, index) => {
+        {allActivity?.map((item, index) => {
           if (index < 3) {
             return (
               <li key={item.id}>
