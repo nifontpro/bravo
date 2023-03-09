@@ -1,16 +1,8 @@
 import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import {
-  ChangeEvent,
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { companyApi } from '@/company/data/company.api';
-import { ICompany, ICompanyCreate } from '@/company/model/company.types';
 import { ICompanyUpdateRequest } from './company-edit.type';
 
 export const useCompanyEdit = (
@@ -40,7 +32,6 @@ export const useCompanyEdit = (
       setImg(company.imageUrl);
     }
   }, [isGetSuccess, setValue, company]);
-  //   console.log(company)
 
   const onSubmit: SubmitHandler<ICompanyUpdateRequest> = async (data) => {
     console.log(data);
@@ -60,7 +51,9 @@ export const useCompanyEdit = (
     }
   };
 
-  const removePhoto = async (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+  const removePhoto = async (
+    e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
+  ) => {
     e.preventDefault();
     let isError = false;
     if (company != undefined) {

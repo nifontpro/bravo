@@ -37,10 +37,12 @@ const UserCreate: FC = () => {
   });
 
   const [img, setImg] = useState<string>('');
+  const [uploadImg, setUploadImg] = useState<File>()
 
   const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       setImg(URL.createObjectURL(event.target.files[0]));
+      setUploadImg(event.target.files[0])
     }
   };
 
@@ -53,7 +55,7 @@ const UserCreate: FC = () => {
     control,
   } = useForm<IUserCreate>({ mode: 'onChange' });
 
-  const { onSubmit } = useUserCreate(setValue, active, currentCompany?.id);
+  const { onSubmit } = useUserCreate(setValue, active, uploadImg, currentCompany?.id);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();

@@ -2,7 +2,6 @@ import { SubmitHandler, UseFormSetValue } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { IUserCreateInput } from '@/user/presenter/admin/create/user-create.type';
 import { userApi } from '@/user/data/user.api';
 import { toastError } from '@/core/utils/toast-error';
 import { IUser, IUserCreate } from '@/user/model/user.types';
@@ -10,8 +9,8 @@ import { IUser, IUserCreate } from '@/user/model/user.types';
 export const useUserCreate = (
   setValue: UseFormSetValue<IUserCreate>,
   active: 'MALE' | 'FEMALE' | 'UNDEFINED' | undefined,
+  uploadImg: File | undefined,
   companyId?: string
-  // departmentId?: string,
 ) => {
   const { back } = useRouter();
   const [create] = userApi.useCreateMutation();
@@ -39,10 +38,9 @@ export const useUserCreate = (
       await create({ ...data })
         .unwrap()
         .then(async (user: IUser) => {
-          const fileData = data.file && data.file[0];
-          if (fileData) {
+          if (uploadImg) {
             const formData = new FormData();
-            formData.append('imageUrl', fileData);
+            formData.append('imageUrl', uploadImg);
             await updateImage({ userId: user.id, formData })
               .unwrap()
               .catch(() => {
@@ -61,7 +59,6 @@ export const useUserCreate = (
     }
     if (!isError) {
       toast.success('Профиль сотрудника успешно создан');
-      // push('/company/' + companyId).then();
       back();
     }
   };

@@ -18,10 +18,12 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
   const { push, back } = useRouter();
 
   const [img, setImg] = useState<string>('');
+  const [uploadImg, setUploadImg] = useState<File>()
 
   const changePhoto = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       setImg(URL.createObjectURL(event.target.files[0]));
+      setUploadImg(event.target.files[0])
     }
   };
 
@@ -32,7 +34,7 @@ const CompanyCreate = ({}: CompanyCreateProps): JSX.Element => {
     setValue,
   } = useForm<ICompanyCreate>({ mode: 'onChange' });
 
-  const { onSubmit } = useCompanyCreate(setValue);
+  const { onSubmit } = useCompanyCreate(setValue, uploadImg);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
