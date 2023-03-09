@@ -17,8 +17,8 @@ export const useActivity = (
   const [searchValue, setSearchValue] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [arr, setArr] = useState<IActivity[]>([]); // Итоговый массив, который показывается
-  const [arrSearch, setArrSearch] = useState<IActivity[]>([]); // Массив по поиску
-  const [generalArr, setGeneralArr] = useState<IActivity[]>([]); // Массив по страницам загруженным
+  // const [arrSearch, setArrSearch] = useState<IActivity[]>([]); // Массив по поиску
+  // const [generalArr, setGeneralArr] = useState<IActivity[]>([]); // Массив по страницам загруженным
   const [sizePage, setSizePage] = useState<number>(20); // Кол элементов на странице
 
   const { currentCompany } = useCompanyState();
@@ -29,8 +29,8 @@ export const useActivity = (
     // sort: sort || state,
     sort: -1,
     filter: filter || searchValue,
-    // startDate: startDateProps || startDate,
-    // endDate: endDateProps || endDate,
+    startDate: startDateProps || startDate,
+    endDate: endDateProps || endDate,
     page: currentPage,
     pageSize: sizePage,
     // });
@@ -66,10 +66,14 @@ export const useActivity = (
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     if (event.currentTarget.value != '') {
+      // setStartDate(10000000)
+      // setEndDate(16732673054000)
       setSearchValue(event.currentTarget.value);
       setCurrentPage(0);
     }
     if (event.currentTarget.value == '') {
+      // setStartDate(10000000);
+      // setEndDate(16732673054000);
       setSizePage(20);
       setArr([]);
       setCurrentPage(0);
@@ -79,16 +83,28 @@ export const useActivity = (
 
   //Пагинация
   useEffect(() => {
+    if (startDate > 10000000 || endDate < 16732673054000) {
+      setSizePage(100000000);
+      setCurrentPage(0);
+    } else {
+      setSizePage(20);
+    }
     if (activity) {
-      if (activity.length > 0 && searchValue == '') {
-        setGeneralArr([...arr, ...activity]);
-        setArr([...arr, ...activity]);
-      }
-      if (searchValue != '') {
-        setSizePage(100000000);
-        setArr([...activity]);
-        console.log(activity);
+      if (startDate > 10000000 || endDate < 16732673054000) {
         setCurrentPage(0);
+        setArr([...activity]);
+      } else {
+        setSizePage(20);
+        if (activity.length > 0 && searchValue == '') {
+          // setGeneralArr([...arr, ...activity]);
+          setArr([...arr, ...activity]);
+        }
+        if (searchValue != '') {
+          setSizePage(100000000);
+          setArr([...activity]);
+          // console.log(activity);
+          setCurrentPage(0);
+        }
       }
     }
   }, [activity]);
@@ -120,9 +136,9 @@ export const useActivity = (
 
   // console.log(`Текущий массив :`);
   // console.log(arr);
-  console.log(`Текущая страница загрузки данных: ${currentPage}`);
-  console.log(`General массив :`);
-  console.log(generalArr);
+  // console.log(`Текущая страница загрузки данных: ${currentPage}`);
+  // console.log(`General массив :`);
+  // console.log(generalArr);
 
   return useMemo(() => {
     return {
@@ -143,6 +159,10 @@ export const useActivity = (
       setCurrentPage,
       handleNextPage,
       searchValue,
+      startDate,
+      endDate,
+      setSizePage,
+      setArr,
     };
   }, [
     active,
@@ -160,5 +180,9 @@ export const useActivity = (
     isFetching,
     setCurrentPage,
     searchValue,
+    startDate,
+    endDate,
+    setSizePage,
+    setArr,
   ]);
 };

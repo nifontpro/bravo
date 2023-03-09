@@ -22,6 +22,10 @@ const FilterActivity = ({
   awardsLength,
   nomineeLength,
   otherLength,
+  startDate,
+  endDate,
+  setSizePage,
+  setArr,
   className,
   ...props
 }: FilterActivityProps): JSX.Element => {
@@ -255,9 +259,13 @@ const FilterActivity = ({
                   Период
                 </P>
                 <RangeCalendar
-                  placement='topRight'
+                  placement='topLeft'
                   setStartDate={setStartDate}
                   setEndDate={setEndDate}
+                  startDate={startDate}
+                  endDate={endDate}
+                  setSizePage={setSizePage}
+                  setArr={setArr}
                 />
               </div>
             </div>

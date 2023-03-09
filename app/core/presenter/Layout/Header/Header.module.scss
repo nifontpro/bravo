@@ -1,14 +1,14 @@
 .header {
   position: relative;
-  padding: 40px 55px 40px 70px;
+  padding: 20px 55px 20px 70px;
   grid-template-columns: [start] 236px [endNavigation] 78px [startSearch] 730px [endSearch] 1fr [startUser] auto [end];
-  @apply pb-[40px] grid items-center;
+  @apply grid items-center;
 
   @media screen and (max-width: 1700px) {
     grid-template-columns: [startMenu] 40px [endMenu] 30px [startLogo] 236px [endNavigation] 1fr [startUser] auto [end];
   }
   @media screen and (max-width: 768px) {
-    padding: 30px 20px;
+    padding: 20px 20px;
   }
   @media screen and (max-width: 500px) {
     padding: 15px 10px;

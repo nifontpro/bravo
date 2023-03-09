@@ -14,6 +14,7 @@ import { useAwardsFull } from './useAwardsFull';
 import uniqid from 'uniqid';
 import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
 import FilterAwards from './FilterAwards/FilterAwards';
+import SpinnerSmallBtnPagination from '@/core/presenter/ui/SpinnerSmallBtnPagination/SpinnerSmallBtnPagination';
 
 const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
   const { push } = useRouter();
@@ -28,6 +29,7 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
     setState,
     arr,
     filteredValue,
+    handleNextPage,
   } = useAwardsFull();
 
   return (
@@ -120,6 +122,15 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
             );
           })}
         </div>
+        <SpinnerSmallBtnPagination
+          isFetching={isFetching}
+          handleNextPage={handleNextPage}
+          content={awardsFull}
+          searchValue={''}
+          btnSubmitTitle={'Показать еще'}
+          btnEndTitle={'Показаны все награды'}
+          className={styles.spinnerSmallBtnPagination}
+        />
 
         <ButtonScrollUp />
       </div>

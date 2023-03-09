@@ -1,3 +1,4 @@
+import { IActivity } from '@/activity/model/activity.types'
 import { ButtonHTMLAttributes, DetailedHTMLProps, Dispatch, SetStateAction } from "react"
 
 export type FilterActivityProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
@@ -11,4 +12,8 @@ export type FilterActivityProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLDiv
     awardsLength: number
     nomineeLength: number
     otherLength: number
+    startDate: number;
+    endDate: number;
+    setSizePage: Dispatch<SetStateAction<number>>
+    setArr: Dispatch<SetStateAction<IActivity[]>>
 }

@@ -18,7 +18,7 @@ export const useAwardsFull = () => {
         pageSize: 20,
         // filter: 'Test img',
         field: 'startDate',
-        direction: -1,
+        direction: 1,
       },
       { skip: !currentCompany }
     );
@@ -30,29 +30,29 @@ export const useAwardsFull = () => {
     '' | 'NOMINEE' | 'AWARD' | 'DELETE_USER'
   >('');
 
-  //Пагинация
+  // //Пагинация
   useEffect(() => {
     if (awardsFull && awardsFull.length > 0) {
       setArr((prev) => [...prev, ...awardsFull]);
     }
   }, [awardsFull]);
-  useEffect(() => {
-    if (awardsFull && awardsFull.length > 0) {
-      window.addEventListener('scroll', scrollHandler);
-    }
-    return function () {
-      window.removeEventListener('scroll', scrollHandler);
-    };
-  }, [awardsFull]);
-  const scrollHandler = () => {
-    if (
-      document.documentElement.scrollTop + window.innerHeight + 1 >=
-        document.documentElement.scrollHeight &&
-      !isFetching
-    ) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
+  // useEffect(() => {
+  //   if (awardsFull && awardsFull.length > 0) {
+  //     window.addEventListener('scroll', scrollHandler);
+  //   }
+  //   return function () {
+  //     window.removeEventListener('scroll', scrollHandler);
+  //   };
+  // }, [awardsFull]);
+  // const scrollHandler = () => {
+  //   if (
+  //     document.documentElement.scrollTop + window.innerHeight + 1 >=
+  //       document.documentElement.scrollHeight &&
+  //     !isFetching
+  //   ) {
+  //     setCurrentPage((prev) => prev + 1);
+  //   }
+  // };
 
   // Сотртировка по startDate
   const filteredValue = arr?.filter((item) => item.state?.includes(active));
@@ -65,6 +65,12 @@ export const useAwardsFull = () => {
       return state;
     });
   }
+
+  const handleNextPage = () => {
+    if (awardsFull && awardsFull.length > 0) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
 
   // console.log(filteredValue);
   // console.log(state);
@@ -83,6 +89,7 @@ export const useAwardsFull = () => {
       setState,
       arr,
       filteredValue,
+      handleNextPage
     };
   }, [
     awardsFull,

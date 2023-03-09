@@ -12,7 +12,7 @@ import { useWindowSize } from '@/core/hooks/useWindowSize';
 import FilterActivity from './FilterActivity/FilterActivity';
 import ButtonScrollUp from '@/core/presenter/ui/ButtonScrollUp/ButtonScrollUp';
 import uniqid from 'uniqid';
-import SpinnerSmall from '@/core/presenter/ui/SpinnerSmall/SpinnerSmall';
+import SpinnerSmallBtnPagination from '@/core/presenter/ui/SpinnerSmallBtnPagination/SpinnerSmallBtnPagination';
 
 const Activity = ({
   company,
@@ -35,7 +35,11 @@ const Activity = ({
     filteredValue,
     isFetching,
     handleNextPage,
-    searchValue
+    searchValue,
+    startDate,
+    endDate,
+    setSizePage,
+    setArr
   } = useActivity();
 
   const { windowSize } = useWindowSize();
@@ -58,6 +62,10 @@ const Activity = ({
           awardsLength={awardsLength}
           nomineeLength={nomineeLength}
           otherLength={otherLength}
+          startDate={startDate}
+          endDate={endDate}
+          setSizePage={setSizePage}
+          setArr={setArr}
         />
 
         <div className={styles.header}>
@@ -110,6 +118,10 @@ const Activity = ({
             placement='bottomLeft'
             setStartDate={setStartDate}
             setEndDate={setEndDate}
+            startDate={startDate}
+            endDate={endDate}
+            setSizePage={setSizePage}
+            setArr={setArr}
           />
         </div>
 
@@ -133,11 +145,15 @@ const Activity = ({
               />
             );
           })}
-          <SpinnerSmall
+          <SpinnerSmallBtnPagination
             isFetching={isFetching}
             handleNextPage={handleNextPage}
-            activity={activity}
+            content={activity}
             searchValue={searchValue}
+            startDate={startDate}
+            endDate={endDate}
+            btnSubmitTitle={'Показать еще'}
+            btnEndTitle={'Показана вся активность'}
           />
         </div>
         <ButtonScrollUp />

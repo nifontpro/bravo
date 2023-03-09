@@ -15,6 +15,10 @@ const RangeCalendar = ({
   setEndDate,
   setStartDate,
   placement,
+  startDate,
+  endDate,
+  setSizePage,
+  setArr,
   className,
   ...props
 }: RangeCalendarProps): JSX.Element => {
@@ -28,6 +32,12 @@ const RangeCalendar = ({
       setEndDate(
         dayjs(dayjs(convertCorrectDataForUnix(formatString[1]))).unix() * 1000
       );
+    }
+    if (values == undefined) {
+      setStartDate(10000000);
+      setEndDate(16732673054000);
+      setSizePage(20);
+      setArr([]);
     }
   };
 
@@ -43,15 +53,21 @@ const RangeCalendar = ({
         className={styles.calendar}
         inputReadOnly={true}
         placeholder={['Начало', 'Конец']}
-        size='large'
+        size={windowSize.winWidth < 1210 ? 'small' : 'large'}
         suffixIcon={false}
         separator={'-'}
         onChange={onChange}
         placement={placement}
-        popupStyle={windowSize.winWidth < 1210 ? {
-          position: 'fixed',
-          width: `${windowSize.winWidth}`
-        } : {}}
+        popupStyle={
+          windowSize.winWidth < 1210
+            ? {
+                position: 'fixed',
+                width: `${windowSize.winWidth}`,
+              }
+            : {}
+        }
+        // allowClear={false}
+        // defaultValue={undefined}
       />
     </div>
   );

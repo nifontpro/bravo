@@ -1,6 +1,11 @@
 .wrapper {
   @apply animate-fade;
 
+  .spinnerSmallBtnPagination {
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
   .headerTitle {
     margin-bottom: 40px;
     @media screen and (max-width: 1015px) {
