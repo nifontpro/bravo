@@ -9,6 +9,10 @@ import GpsIcon from './gps.svg';
 import { getCompanyEditUrl, getCompanyUrl } from '@/core/config/api.config';
 import { useMyUser } from '@/user/presenter/useMyUsers';
 import EditPanelAuthBtn from '@/core/presenter/ui/EditPanelAuthBtn/EditPanelAuthBtn';
+import AuthComponent from '@/core/providers/AuthProvider/AuthComponent';
+import Button from '@/core/presenter/ui/Button/Button';
+import InputFile from '@/core/presenter/ui/InputFile/InputFile';
+import InputFileExcelUsers from '@/core/presenter/ui/InputFileExcelUsers/InputFileExcelUsers';
 
 const TitleSingleCompany = ({
   company,
@@ -44,9 +48,8 @@ const TitleSingleCompany = ({
             handleRemove={deleteAsync}
             id={company.id}
             getUrl={getCompanyEditUrl}
-          /> 
+          />
         </div>
-
         <div className={styles.address}>
           <GpsIcon className='mr-[10px]' />
           <P size='s' className={styles.description}>
@@ -58,9 +61,12 @@ const TitleSingleCompany = ({
           {company.description}
         </P>
         <div className={styles.contacts}>
-          <a href='tel:+74999228594'>{company.phone}</a>
-          <a href='mailto:hello@familyagency.ru'>{company.email}</a>
+          <a href={`tel:${company.phone}`}>{company.phone}</a>
+          <a href={`mailto:${company.email}`}>{company.email}</a>
         </div>
+
+        <InputFileExcelUsers>Добавить сотрудников из EXCEL</InputFileExcelUsers>
+
         <div className={styles.colUsers}>
           <CountUsersPreview
             appearanceBtn='black'

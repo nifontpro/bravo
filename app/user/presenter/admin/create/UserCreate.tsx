@@ -4,7 +4,6 @@ import Meta from '@/core/utils/meta/Meta';
 import styles from './UserCreate.module.scss';
 import Field from '@/core/presenter/ui/form/Field/Field';
 import cn from 'classnames';
-import { IUserCreateInput } from '@/user/presenter/admin/create/user-create.type';
 import { IOption } from '@/core/presenter/ui/select/select.interface';
 import { useCompanyState } from '@/company/data/company.slice';
 import { useUserCreate } from '@/user/presenter/admin/create/useUserCreate';
@@ -14,7 +13,6 @@ import { ImageDefault } from '@/core/presenter/ui/icons/ImageDefault';
 import InputFile from '@/core/presenter/ui/InputFile/InputFile';
 import Htag from '@/core/presenter/ui/Htag/Htag';
 import TextArea from '@/core/presenter/ui/TextArea/TextArea';
-import { departmentApi } from '@/department/data/department.api';
 import SelectArtem from '@/core/presenter/ui/SelectArtem/SelectArtem';
 import InputRadio from '@/core/presenter/ui/InputRadio/InputRadio';
 import ButtonCircleIcon from '@/core/presenter/ui/ButtonCircleIcon/ButtonCircleIcon';
@@ -26,13 +24,7 @@ const UserCreate: FC = () => {
     'MALE' | 'FEMALE' | 'UNDEFINED' | undefined
   >('MALE');
   const { currentCompany } = useCompanyState();
-  const { push, back } = useRouter();
-
-  // if (currentCompany === null) {
-  //   push('/company');
-  // }
-
-  // const { currentDepartment } = useDepartmentState();
+  const { back } = useRouter();
 
   const { departmentInCompany: departments } = useDepartment('');
 
@@ -43,9 +35,6 @@ const UserCreate: FC = () => {
       value: item.id,
     });
   });
-
-  // console.log(departments)
-  // console.log(currentCompany);
 
   const [img, setImg] = useState<string>('');
 
@@ -64,24 +53,7 @@ const UserCreate: FC = () => {
     control,
   } = useForm<IUserCreate>({ mode: 'onChange' });
 
-  const { onSubmit } = useUserCreate(
-    setValue,
-    active,
-    currentCompany?.id
-    // currentDepartment?.id
-  );
-
-  /*
-		const onSubmit: SubmitHandler<IUserCreateInput> = data => {
-			console.log(`Создание пользователя ${data.role}`)
-		}
-	*/
-
-  // const roles: IOption[] = [
-  //   { label: 'Администратор компании', value: 'admin' },
-  //   { label: 'Директор отдела', value: 'director' },
-  //   { label: 'Обычный сотрудник', value: 'user' },
-  // ];
+  const { onSubmit } = useUserCreate(setValue, active, currentCompany?.id);
 
   const handleClick = (event: React.FormEvent<HTMLButtonElement>) => {
     event.preventDefault();

@@ -126,6 +126,8 @@ const Awards = ({ company, className, ...props }: AwardsProps): JSX.Element => {
           isFetching={isFetching}
           handleNextPage={handleNextPage}
           content={awardsFull}
+          startDate={10000000}
+          endDate={16732673054000}
           searchValue={''}
           btnSubmitTitle={'Показать еще'}
           btnEndTitle={'Показаны все награды'}

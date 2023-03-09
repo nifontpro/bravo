@@ -27,18 +27,19 @@ export const useUserCreate = (
   }, [setValue]);
 
   const onSubmit: SubmitHandler<IUserCreate> = async (data) => {
+    console.log(data);
     let isError = false;
     if (active != undefined) {
       data.gender = active;
     }
 
     if (companyId) {
-      data.companyId = companyId
-      data.test = true
+      data.companyId = companyId;
+      data.test = true;
       await create({ ...data })
         .unwrap()
         .then(async (user: IUser) => {
-          const fileData = data.file[0];
+          const fileData = data.file && data.file[0];
           if (fileData) {
             const formData = new FormData();
             formData.append('imageUrl', fileData);

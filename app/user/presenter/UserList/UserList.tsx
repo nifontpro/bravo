@@ -22,7 +22,7 @@ const UserList = motion(
 
       return (
         <div ref={ref} className={cn(className, styles.container)} {...props}>
-          <UserPreview
+          <UserPreview 
             user={user}
             className={styles.user}
             forWhat='user'
