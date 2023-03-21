@@ -28,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: allAwardsId.map((item) => getAwardUrl(`/${item}`)),
     // fallback: 'blocking'
     fallback: true,
-  };
+  }; 
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

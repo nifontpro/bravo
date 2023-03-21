@@ -31,8 +31,11 @@ export const useAwardEdit = (setValue: UseFormSetValue<IAwardUpdate>) => {
       setValue('name', award.name);
       setValue('description', award.description);
       setValue('criteria', award.criteria);
+      setValue('startDate', award.startDate);
+      setValue('endDate', award.endDate);
       setImg(award.imageUrl);
     }
+    console.log(award)
   }, [isGetSuccess, setValue, award]);
 
   const onSubmit: SubmitHandler<IAwardUpdate> = async (data) => {

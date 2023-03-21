@@ -23,11 +23,11 @@ const Depart = ({
   ...props
 }: DepartProps): JSX.Element => {
   const { data: usersInDepartment } = userApi.useGetByDepartmentQuery({
-    departmentId: data.id,
+    departmentId: data.id, 
     filter: '',
   });
 
-  const [visible, setVisible] = useState<boolean>(false);
+  // const [visible, setVisible] = useState<boolean>(false);
   const [listUserVisible, setListUserVisible] = useState<boolean>(false);
 
   const { deleteAsync } = useDepartmentAdmin(data.companyId);

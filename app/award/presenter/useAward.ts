@@ -18,7 +18,7 @@ export const useAward = (filter: string) => {
     //Получить статистику о награждениях в компании
     const { data: awardsFullCompany } = awardApi.useGetAwardCountQuery(
       currentCompany.id
-    );
+    ); 
 
     depAwardLight = awards || [];
     depAwardFullCompany = awardsFullCompany;

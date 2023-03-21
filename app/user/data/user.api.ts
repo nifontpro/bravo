@@ -22,7 +22,7 @@ export const userApi = createApi({
     //Получить всех сотрудников по отделу
     getByDepartment: build.query<
       IUser[],
-      { departmentId: string; filter: string }
+      { departmentId: string; filter: string } 
     >({
       query: (body) => ({
         method: 'POST',

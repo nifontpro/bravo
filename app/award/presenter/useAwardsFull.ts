@@ -8,11 +8,10 @@ export const useAwardsFull = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [state, setState] = useState<1 | -1>(-1);
   const [arr, setArr] = useState<IAwardUsers[]>([]); // Итоговый массив, который показывается
-  console.log(arr);
 
-  const { data: awardsFull, isFetching } =
+  const { data: awardsFull, isFetching } = 
     awardApi.useGetAwardsByCompanyWithUserBaseQuery(
-      {
+      { 
         companyId: currentCompany != null ? currentCompany.id : '',
         page: currentPage,
         pageSize: 20,

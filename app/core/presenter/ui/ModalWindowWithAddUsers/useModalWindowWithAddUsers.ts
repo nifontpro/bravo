@@ -10,7 +10,7 @@ export const useModalWindowWithAddUsers = (
   const [arrChoiceUser, setArrChoiceUser] = useState<string[]>([]);
   const [reward] = awardApi.useAwardUserMutation();
 
-  const handleCancel = () => {
+  const handleCancel = () => { 
     setArrChoiceUser([]);
     setVisibleModal(false);
   };

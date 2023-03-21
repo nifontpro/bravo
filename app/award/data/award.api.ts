@@ -146,6 +146,8 @@ export const awardApi = createApi({
         try {
           await queryFulfilled;
           await dispatch(userApi.util.invalidateTags(['User']));
+          await dispatch(messageApi.util.invalidateTags(['Message']));
+          await dispatch(activityApi.util.invalidateTags(['Activity']));
         } catch (error) {
           console.error(`Error award user!`, error);
         }
@@ -166,22 +168,17 @@ export const awardApi = createApi({
         body: request,
       }),
       providesTags: ['Award'],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          await dispatch(userApi.util.invalidateTags(['User']));
+          await dispatch(messageApi.util.invalidateTags(['Message']));
+          await dispatch(activityApi.util.invalidateTags(['Activity']));
+        } catch (error) {
+          console.error(`Error award user!`, error);
+        }
+      },
     }),
-
-    /**
-     * Удалить!!!
-     */
-    // getAwardsByCompanyWithUser: build.query<
-    //   IAwardUsers[],
-    //   { companyId: string; filter?: string }
-    // >({
-    //   query: (body) => ({
-    //     method: 'POST',
-    //     url: getAwardUrl('/get_cu'),
-    //     body: body,
-    //   }),
-    //   providesTags: ['Award'],
-    // }),
 
     /**
      * Получить награды в компании с записями о награждениях с сотрудниками
@@ -197,6 +194,14 @@ export const awardApi = createApi({
         body: body,
       }),
       providesTags: ['Award'],
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          await dispatch(userApi.util.invalidateTags(['User']));
+        } catch (error) {
+          console.error(`Error award user!`, error);
+        }
+      },
     }),
 
     /**
@@ -207,7 +212,7 @@ export const awardApi = createApi({
         method: 'POST',
         url: getAwardUrl('/get_id'),
         body: { awardId },
-      }),
+      }), 
       providesTags: ['Award'],
     }),
 
