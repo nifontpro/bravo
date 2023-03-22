@@ -12,12 +12,13 @@ export const useModalWindowGalleryAwards = (
 ) => {
   const { query } = useRouter();
   const awardId = String(query.id);
-  const [idFolder, setIdFolder] = useState<string>('');
+  const [idFolder, setIdFolder] = useState<string>('63c52aacf615255dd0f15d75');
   const { data: folders } = galleryApi.useGetFoldersQuery('63c307f9fd27cd08c07ad710');
 
   const { data: awardsGallery } = galleryApi.useGetGalleryObjectsQuery(
     {
       folderId: idFolder,
+      // folderId: '63c52aacf615255dd0f15d75'
     },
     { skip: idFolder == '' }
   );
