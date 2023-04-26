@@ -80,6 +80,7 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
       setImg(URL.createObjectURL(event.target.files[0]));
       const formData = new FormData();
       formData.append('imageUrl', event.target.files[0]);
+      console.log(formData)
       await updateImg({ userId: user.id, formData })
         .unwrap()
         .catch(() => {
